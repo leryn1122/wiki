@@ -12,6 +12,7 @@ Ingress 就是**入口**的意思, 那么 Ingress Controller 就是 入口控制
 - [NGINX Ingress Controller ConfigMaps - NGINX Ingress Controller 官网](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)
 
 使用 Helm 安装 Ingress Controller, 注意安装后的提示信息.
+
 ```bash
 helm search repo nginx-ingress
 
@@ -25,7 +26,9 @@ helm pull bitnami/nginx-ingress-controller
 tar -xf *.gz
 helm install ingress-nginx nginx-ingress-controller -n ingress-nginx
 ```
-安装后会打印一段信息, 提示如何安装示例
+
+安装后会打印一段信息, 提示如何安装示例:
+
 ```yaml
 Release "ingress-nginx" has been upgraded. Happy Helming!
 NAME: ingress-nginx
@@ -92,30 +95,38 @@ If TLS is enabled for the Ingress, a Secret containing the certificate and key m
 ```
 
 配置一个自己的 Ingress 和 Service 就可以测试了.<br />调试的时候可以通过如下命令来查看 Ingress-nginx 的配置, 如果服务发现配置成功, 可以在其中发现对应服务的配置.
+
 ```bash
 kubectl get pods -n ingress-nginx
 kubectl exec -it ingress-nginx-nginx-ingress-controller-57b6f9794f-zkzrj -n gateway \
   -- bash -c "cat /etc/nginx/nginx.conf"
 ```
+
 <a name="bjIt3"></a>
 ## 配置 Https 证书
 
 需要配置 Https 证书. 获得一下两个值, 我这里是用 acme.sh 生成的自授权证书:
 
 **方法1**
+
 ```bash
 kubectl create secret tls leryn.top \
   --cert '/root/.acme.sh/*.leryn.top/fullchain.cer'   \
   --key  '/root/.acme.sh/*.leryn.top/*.leryn.top.key'
 ```
+
+
 **方法2**
+
 ```bash
 # tls.crt
 cat '/root/.acme.sh/*.leryn.top/fullchain.cer'   | base64 -w 0
 # tls.key
 cat '/root/.acme.sh/*.leryn.top/*.leryn.top.key' | base64 -w 0
 ```
+
 将上面的 `tls.crt`和 `tls.key`填入一下 yaml:
+
 ```bash
 apiVersion: v1
 kind: Secret
@@ -126,10 +137,13 @@ data:
   tls.key: 
 type: kubernetes.io/tls
 ```
+
 ```bash
 kubectl apply -f leryn.top.yaml
 ```
+
 更新 Ingress-controller:
+
 ```bash
 helm install gateway bitnami/nginx-ingress-controller -n gateway \
   --set extraArgs.default-ssl-certificate="default/leryn.top" \

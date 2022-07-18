@@ -1,10 +1,11 @@
 
-
+<a name="o8ndc"></a>
+# Lua 脚本
 参考文档:
 
 - [https://www.lua.org/download.html](https://www.lua.org/download.html)
-<a name="bmQa4"></a>
-# 安装步骤
+<a name="oJ09O"></a>
+## 源码编译安装
 
 ```bash
 curl -R -O http://www.lua.org/ftp/lua-5.4.4.tar.gz

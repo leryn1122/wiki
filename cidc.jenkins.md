@@ -1,6 +1,6 @@
 <a name="ETtiD"></a>
 # Jenkins
-![](https://www.jenkins.io/images/logos/needs-you/Jenkins_Needs_You-transparent.png#crop=0&crop=0&crop=1&crop=1&height=483&id=eFluQ&originHeight=1226&originWidth=866&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=341)<br />参考文档:
+![](https://www.jenkins.io/images/logos/needs-you/Jenkins_Needs_You-transparent.png#crop=0&crop=0&crop=1&crop=1&height=440&id=eFluQ&originHeight=1226&originWidth=866&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=311)<br />参考文档:
 
 - [Jenkins - 官网](https://www.jenkins.io/)
 

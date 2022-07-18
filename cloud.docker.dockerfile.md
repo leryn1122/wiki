@@ -1,5 +1,5 @@
 <a name="dXxxj"></a>
-# Dockerfile
+# Dockerfile 最佳实践
 
 参考文档:
 
@@ -204,6 +204,11 @@ RUN apt-get update && apt-get install -y \
 > 
 > 133MB (`nginx`) + 500KB (`dist`) = 133.5MB
 
+
+<a name="EbTNV"></a>
+### 启动时加载
+
+这一点常常被人忽略, 通常镜像的入口常常是 `entrypoint.sh` 或者 `docker-entrypoint.sh` 之类的脚本. 可以将一些预备工作延迟到这些容器入口脚本里, 例如 MySQL 的镜像在启动时, 就会判断挂载目录中是否存在数据文件来决定是否初始化等等. 
 
 <a name="Ryy3T"></a>
 ## DinD 构建

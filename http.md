@@ -1,5 +1,5 @@
 <a name="QFCuu"></a>
-# HTTP
+# HTTP 浏览器相关知识
 HTTP 和浏览器有关的知识都在这里
 
 <a name="e5GGs"></a>
@@ -141,6 +141,7 @@ server {
 <a name="ERwZB"></a>
 ## XSS
 
+// TODO
 <a name="lzZbj"></a>
 ## CSP 内容安全策略
 
@@ -156,18 +157,25 @@ server {
 CSP 指定了可信任有效域, 让浏览器信任白名单中可执行脚本的来源, 并忽略所有其他脚本. 
 
 CSP 是基于 HTTP 头的安全策略:
+
 ```http
 Content-Security-Policy: default-src 'self' *.trusted.com
 ```
+
 也可以 (但不推荐) 在 HTML 的 `<meta>` 元素中配置该策略:
+
 ```html
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://*; child-src 'none';">
 ```
+
 实际开发中, 我们更倾向于在前端 pod 对应的 ingress (k8s 环境下) 中或对应的 nginx 中 (非 docker 环境) 添加, 这不会对前端原有代码产生侵入式改动.<br />添加不同资源类型:
+
 ```http
 Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval' *.leryn.top *.qq.com *.baidu.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.leryn.top *.qq.com *.baidu.com; img-src 'self' *.leryn.top data: *.qq.com; frame-src 'self' *.leryn.top webcompt: data: *.qq.com; connect-src 'self' *.leryn.top *.leryn.top:30333; font-src 'self' *.alicdn.com data:;
 ```
+
 如果有安全策略, 那么他会报错:
+
 ```
 Refused to load the font 'http://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js' because it violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' 'unsafe-eval' *.leryn.top *.qq.com *.baidu.com".
 ```

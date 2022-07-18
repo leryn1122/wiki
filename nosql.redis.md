@@ -115,8 +115,6 @@ dir /opt/data/redis/
 # 设置密码 将明文写在配置文件中
 requirepass 密码明文
 ```
-<a name="yUInN"></a>
-### 
 <a name="mqs63"></a>
 ### 启动与验证
 

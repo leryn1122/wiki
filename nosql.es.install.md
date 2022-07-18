@@ -1,11 +1,10 @@
-
 <a name="u4O8M"></a>
 # Elastic Search 安装手册
 <a name="FeUce"></a>
 ## Debian 包管理器安装（推荐）
 参考文档:
 
-- [Elastic 官网](https://www.elastic.co/)
+- [Elastic Search - Elastic 官网](https://www.elastic.co/cn/elasticsearch/)
 - [Install Elasticsearch with Debian Package - Elastic 官网](https://www.elastic.co/guide/en/elasticsearch/reference/7.3/deb.html#deb-repo)
 ```bash
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
@@ -55,27 +54,43 @@ tar -xf elasticsearch-7.10.2-linux-x86_64.tar.gz -C /opt/ chown elasticsearch:el
 ```
 进入安装目录，修改配置文件：
 ```yaml
+#cp -ar config/elasticsearch.yml config/elasticsearch.yml.bak
 #vim config/elasticsearch.yml
 
-cluster.name: ES名称
-#默认node-1, node-2, etc.
-
-node.name: ES节点名称
-path.data: 安装目录/data
-path.log: 安装目录/logs
+# ---------------------------------- Cluster -----------------------------------
+# 集群名字如果需要改动的话
+cluster.beanName: my-application
+# ------------------------------------ Node ------------------------------------
+# 节点名字如果需要改动的话
+node.beanName: node-1
+# ----------------------------------- Paths ------------------------------------
+# 指定数据文件目录
+#path.data: /path/to/data
+path.data: /opt/data/elasticsearch/data
+# 指定日志文件目录
+#path.logs: /path/to/logs
+path.logs: /opt/data/elasticsearch/logs
+# ---------------------------------- Network -----------------------------------
+# 网络IP地址
 network.host: 0.0.0.0
-http.port: 9200
-discovery.seed_hosts: ["集群IP地址1", "集群IP地址2", "集群IP地址3"]
-
-# ES节点名称
-cluster.initial_master_nodes: ["node-1"，"node-2", "node-3"]
+network.publish_host: IP地址
+transport.tcp.port: 9300
+# --------------------------------- Discovery ----------------------------------
+# 集群IP地址
+discovery.seed_hosts: ['集群IP地址1', '集群IP地址2', '集群IP地址3']
+# 集群主节点名
+cluster.initial_master_nodes: ['node-1', 'node-2', 'node-3']
 ```
 修改JVM参数：
 ```bash
+#cp -ar config/jvm.options config/jvm.options.bak
 #vim config/jvm.options
 
 # 修改以下两个参数(两个参数必须一致，否则启动时会报错)
--Xmx20g -Xms20g
+# Xms represents the initial size of total heap space
+# Xmx represents the maximum size of total heap space
+-Xmx20g
+-Xms20g
 ```
 用`rsync`命令同步文件到全部节点上：
 ```bash

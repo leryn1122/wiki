@@ -1,6 +1,7 @@
 
 <a name="SReK5"></a>
 ## Dockerfile
+
 ```dockerfile
 FROM node:16-slim as build
 
@@ -24,6 +25,7 @@ ENTRYPOINT ["nginx", "-g", "daemon off;"]
 ```
 <a name="IuqMd"></a>
 ## nginx.conf
+
 ```
 # Default nginx configuration for docker.
 

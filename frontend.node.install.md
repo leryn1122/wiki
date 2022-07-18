@@ -8,7 +8,7 @@
 - [如何在 Ubuntu 20.04 上安装 Node.js - DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
 
 <a name="QOtgg"></a>
-## 包管理器安装
+## 包管理器安装（推荐）
 <a name="qx7nu"></a>
 ### 安装步骤
 
@@ -27,7 +27,7 @@ node -v
 ```
 
 <a name="RHkt8"></a>
-## 二进制安装
+## 二进制安装（不推荐）
 <a name="KOQKX"></a>
 ### 前置准备
 

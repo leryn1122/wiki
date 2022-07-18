@@ -1,28 +1,37 @@
 <a name="ZD5Li"></a>
-## 通用命令
-查看 kubernetes 资源的配置:
+## Kubectl 通用命令
+
+Kubectl 很多命令和 docker 是通用的, 无非是增加 `-n <namespace>` 这个参数:
+
 ```bash
-kubectl get <resource> <name> -n <namespace> -o yaml
-```
-修改 kubernetes 资源的配置:
-```bash
-kubectl edit <resource> <name> -n <namespace>
-```
-进入 pod:
-```bash
+# 进入 pod
 kubectl exec -it <pod> -n <namespace> -- bash
+
+# 查看 pod 日志
+kubectl log -f <pod> -n <namespace>
 ```
-删除无用的 replica:
+
+其他命令也很通俗易懂, 总体而言以下几种命令使用频率比较高:
+
 ```bash
+# 查看 kubernetes 资源的配置:
+kubectl get <resource> <name> -n <namespace> -o yaml
+
+# 修改 kubernetes 资源的配置
+kubectl edit <resource> <name> -n <namespace>
+
+# 删除无用的 replica
 kubectl delete replicaset $(kubectl get replicaset.apps -A | awk '$3==0{printf "%s -n %s\n",$2,$1}')
 ```
-查看 Ingress-nginx 的 `nginx.conf`:
+
+一个更加复杂的例子, 比如查看 Ingress-nginx 的 `nginx.conf`:
+
 ```bash
-kubectl exec -it $(kubectl get pods -n gateway  | grep -E ^gateway | awk '{print $1}') -n gateway -- bash -c "cat /etc/nginx/nginx.conf" | less 
+kubectl exec -it $(kubectl get pods -n gateway  | grep -E ^gateway | awk '{print $1}') \
+  -n ingress-nginx -- bash -c "cat /etc/nginx/nginx.conf" | less 
 ```
 
 ![20211119211339.jpg](./assets/1645168735400-7705f3f6-64a7-4bc3-a9e2-e8068f49d5f8.jpeg)
-
 <a name="Sg5Z4"></a>
 ## K8S 集群网络链路
 
@@ -50,34 +59,4 @@ curl -ik https://xxx.xxx.com/api
 ```
 
 <a name="gzIoo"></a>
-## 强制删除 namespace
-
-登录 k8s-master 节点, 查看 namespace 是否已经是 `terminating` 的状态了.
-
-```bash
-kubectl get ns | grep xxxx
-```
-
-导出 namespace 的 json 数据.
-
-```bash
-kubectl get namespace xxxx -o json > xxxx.json
-```
-
-删除`spec`中的所有内容:
-
-```bash
-# 新开一个kubectl的代理
-kubectl proxy --port=8081
-
-# 调用finalize的api
-curl -k -H "Content-Type: application/json" \
-  -XPUT --data-binary @xxxx.json http://127.0.0.1:8081/api/v1/namespaces/xxxx/finalize
-```
-
-<a name="c3TLx"></a>
-## crictl
-
-```bash
-crictl
-```
+## 
