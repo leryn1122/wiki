@@ -1,4 +1,10 @@
+<a name="bdWAr"></a>
+# Kubernetes 介绍
 Kubernetes 是 Google 推出的容器编排技术, 由 Golang 开发. Google 背书, 通过自家大量的容器管理和运维, 目前在容器编排技术上只此一家.
+
+传统部署、虚拟机部署、容器化部署三者的区别:<br />![](./assets/1658306431889-3842a32a-6c54-4190-a244-6459419ec94b.svg)
+
+
 <a name="JrVDW"></a>
 # Kubernetes 架构
 Kubernetes 分为 master 和 worker 两类节点:
