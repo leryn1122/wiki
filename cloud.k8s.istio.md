@@ -1,29 +1,37 @@
-<a name="wBf34"></a>
-# Istio 安装步骤
-<a name="iUol9"></a>
-## 二进制安装
 
+<a name="PKhLX"></a>
+# Istio - 服务网格
+![istio.svg](./assets/1661492590318-8e5059cc-b135-4737-aca5-e99bd39d3907.svg)<br />参考文档:
+
+- 
+
+<a name="KEIBP"></a>
+### 安装 Istio
+官方提供 `istioctl` 和 `Helm` 两种方式安装, 推荐使用 `Helm`.
 ```bash
-wget https://storage.googleapis.com/istio-release/releases/1.10.3/istio-1.10.3-linux-amd64.tar.gz
-tar -xf istio-1.10.3-linux-amd64.tar.gz
-mv istio-1.10.3 /opt/module/istio-1.10.3
+# Configure the Helm repository
+helm repo add istio https://istio-release.storage.googleapis.com/charts
+helm repo update
+
+# Create namespace
+kubectl create namespace istio-system
+
+# Install base chart & istiod service
+helm install istio-base istio/base -n istio-system
+helm install istiod istio/istiod -n istio-system --wait
+
+# Verfication
+helm status istiod -n istio-system
 ```
-
+<a name="jPWca"></a>
+### 开启 Istio
+开启 Istio 的方式很简单, 在所处 namespace 上加上 `istio-injection=enabled`的 label, 再重启 Deployment, Statefulset, DaemonSet 即可.
 ```bash
-#!/usr/bin/env bash
-export ISTIO_VERSION=1.10.3
-export ISTIO_HOME=/opt/module/istio-${ISTIO_VERSION}
-export PATH=${ISTIO_HOME}/bin:$PATH
-```
+# 
+kubectl label namespace xxxx istio-injection=enabled --overwrite
 
-```bash
-istioctl version
-```
+# 这里重启你的 Deployment, Statefulset, DaemonSet
 
-```bash
-# istio相关镜像 和 prometheus 镜像的仓库, 强制安装.
-istioctl manifest apply \
-  --set hub=dockerhub.azk8s.cn/istio \
-  --set values.prometheus.hub=dockerhub.azk8s.cn/prom \
-  --force
+# 
+kubectl get namespace -l istio-injection=enabled
 ```
