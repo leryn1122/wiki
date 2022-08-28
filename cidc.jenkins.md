@@ -14,15 +14,18 @@ Dockerhub 上 Jenkins 的官方镜像已经 deprecated 了, 改用 [jenkins/jenk
 ```bash
 docker run \
   --detach=true \
-  --publish=8086:8080 \
+  --publish=8061:8080 \
+  --publish=50000:50000 \
   --restart=always \
   --volume=/data/jenkins:/var/jenkins_home \
   --name=jenkins \
   --hostname=jenkins \
-  jenkins/jenkins:lts
+  jenkins/jenkins:lts-jdk11
 ```
 
-首次安装需要查看密码, 密码会写在文件中.
+首次进入网页需要会自动初始化, 如果初始化比较慢, 是由于访问官网太慢. 可以更换源 `hudson.[model](https://so.csdn.net/so/search?q=model&spm=1001.2101.3001.7020).UpdateCenter.xml`. 将其中的源更换为 [https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json](https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json) 并重启 Jenkins.
+
+安装需要查看密码, 密码会写在文件中.
 
 ```bash
 docker exec jenkins \
@@ -30,6 +33,13 @@ docker exec jenkins \
 ```
 
 安装插件, 可能由于网络问题安装失败, 失败也可以在之后手动安装. 后续安装界面提示操作即可.
+
+<a name="XdGHy"></a>
+## 配置
+
+
+
+
 <a name="cezoN"></a>
 ## Jenkins 配置
 
