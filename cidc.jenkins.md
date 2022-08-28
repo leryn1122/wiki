@@ -34,11 +34,6 @@ docker exec jenkins \
 
 安装插件, 可能由于网络问题安装失败, 失败也可以在之后手动安装. 后续安装界面提示操作即可.
 
-<a name="XdGHy"></a>
-## 配置
-
-
-
 
 <a name="cezoN"></a>
 ## Jenkins 配置
