@@ -9,7 +9,7 @@ Jenkins 是最受欢迎的自动化构建工具, 有丰富的扩展和插件. �
 <a name="lCMVr"></a>
 ## Docker
 
-Dockerhub 上 Jenkins 的官方镜像已经 deprecated 了, 改用 [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins) 镜像.
+Dockerhub 上 jenkins 和 jenkinsci/jenkins 的镜像已经 deprecated 了, 改用官方 [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins) 镜像. 它分成每周的 latest 版本 `lts-jdk11`和最新版本 `jdk11`, 这里由于很多插件和版本有关, 所以用最新版.
 
 ```bash
 docker run \
@@ -20,11 +20,15 @@ docker run \
   --volume=/data/jenkins:/var/jenkins_home \
   --name=jenkins \
   --hostname=jenkins \
-  jenkins/jenkins:lts-jdk11
+  jenkins/jenkins:jdk11
 ```
 
-首次进入网页需要会自动初始化, 如果初始化比较慢, 是由于访问官网太慢. 可以更换源 `hudson.[model](https://so.csdn.net/so/search?q=model&spm=1001.2101.3001.7020).UpdateCenter.xml`. 将其中的源更换为 [https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json](https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json) 并重启 Jenkins.
+首次进入网页需要会自动初始化, 如果初始化比较慢, 是由于访问官网太慢.
 
+下载最新的 [default.json](https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json) 并执行如下命令生成新的 JSON 文件. 把他挂到 nginx 上公网可以访问. 可以更换源 `hudson.model.UpdateCenter.xml`. 将其中的源更换为如上 nginx 的地址. 重启 Jenkins.
+```bash
+sed -i 's/https:\/\/updates.jenkins.io\/download/http:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g' /var/lib/jenkins/updates/default.json && sed -i 's/https:\/\/www.google.com/https:\/\/www.baidu.com/g' /var/lib/jenkins/updates/default.json
+```
 安装需要查看密码, 密码会写在文件中.
 
 ```bash
