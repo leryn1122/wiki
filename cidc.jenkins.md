@@ -20,7 +20,7 @@ docker run \
   --volume=/data/jenkins:/var/jenkins_home \
   --name=jenkins \
   --hostname=jenkins \
-  jenkins/jenkins:jdk11
+  jenkins/jenkins:2.319.3-jdk11
 ```
 
 首次进入网页需要会自动初始化, 如果初始化比较慢, 是由于访问官网太慢.
