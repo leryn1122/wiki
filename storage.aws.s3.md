@@ -22,17 +22,18 @@ OSS 完全符合 Amazon S3 的规范, 所有文档参考 Amazon S3 文档即可.
 
 <a name="8f7aab1a"></a>
 ### Maven 依赖
+`1.12.261` 及以下版本有安全性漏洞
 
 ```xml
 <properties>
-    <amazon-s3.version>1.11.699</amazon-s3.version>
+    <amazon-s3.version>1.12.290</amazon-s3.version>
 </properties>
 
 <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
 <dependency>
     <groupId>com.amazonaws</groupId>
     <artifactId>aws-java-sdk-s3</artifactId>
-    <version>${amazon.s3.version}</version>
+    <version>${amazon-s3.version}</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb -->
 <dependency>
