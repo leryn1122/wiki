@@ -8,7 +8,9 @@ ansible-playbook -i hosts main.yaml
 
 <a name="LsvN0"></a>
 ## Semaphore - Ansible 控制台
+参考文档:
 
+- 
 ```bash
 kubectl create secret generic ansible-config -n ansible \
   --from-literal=SEMAPHORE_DB_USER=semaphore \
