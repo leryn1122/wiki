@@ -13,6 +13,7 @@ ansible-playbook -i hosts main.yaml
 - 
 - 
 - 
+- 
 ```bash
 kubectl create secret generic ansible-config -n ansible \
   --from-literal=SEMAPHORE_DB_USER=semaphore \
