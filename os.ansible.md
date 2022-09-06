@@ -11,6 +11,8 @@ ansible-playbook -i hosts main.yaml
 参考文档:
 
 - 
+- 
+- 
 ```bash
 kubectl create secret generic ansible-config -n ansible \
   --from-literal=SEMAPHORE_DB_USER=semaphore \
@@ -34,10 +36,9 @@ metadata:
     app.kubernetes.io/instance: ansible
     app.kubernetes.io/name: ansible
   name: ansible-ingress
-  namespace: ansible
 spec:
   rules:
-    - host: ansible.dev.magic-cube.cc
+    - host: ansible.mydomain.com
       http:
         paths:
           - backend:
@@ -53,7 +54,6 @@ metadata:
     app.kubernetes.io/instance: ansible
     app.kubernetes.io/name: ansible
   name: ansible-service
-  namespace: sbin
 spec:
   ports:
     - name: http
@@ -71,8 +71,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: ansible
     app.kubernetes.io/name: ansible
-  name: sbin-admin-frontend
-  namespace: sbin
+  name: ansible-deploy
 spec:
   replicas: 1
   selector:
