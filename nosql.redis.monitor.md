@@ -31,6 +31,7 @@ WantedBy=multi-user.target
 ```bash
 systemctl start  redis-exporter.service
 systemctl enable redis-exporter.service
+systemctl status redis-exporter.service
 ```
 启动后可以访问端口获得指标:
 ```bash
@@ -38,6 +39,8 @@ curl -XGET http://localhost:9121/metrics
 
 # 实际采集走这个接口, 可以采到集群下不同机器的性能状况
 curl -XGET http://localhost:9121/scrape?target=xxx.xxx.xxx.xxx
+
+curl -XGET -s http://localhost:9121/scrape?target=xxx.xxx.xxx.xxx | grep '^redis_up '
 ```
 修改 Prometheus 配置文件:
 ```yaml

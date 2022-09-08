@@ -1,8 +1,6 @@
 <a name="bnJCx"></a>
 # Redis 安装手册
-![redis.svg](./assets/1660030223577-eb896851-733c-4647-804d-6e3e50592ef1.svg)
-
-Reference:
+参考文档:
 
 - [Redis - 官网](https://redis.io/)
 - [Redis 集群模式介绍](http://www.zzvips.com/article/142376.html)
