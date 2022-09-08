@@ -4,6 +4,7 @@
 参考文档:
 
 - 
+- [Jenkins Shared Libraries - 简书](https://www.jianshu.com/p/a248dc7e80ea)
 <a name="V0UE5"></a>
 ## 安装扩展库
 <a name="CmCoy"></a>
@@ -43,3 +44,6 @@
 /* Accessing multiple libraries with one statement */
 @Library(['jekins-shared-lib', 'otherlib@abc1234']) _
 ```
+<a name="rJPaC"></a>
+## 创建项目
+
