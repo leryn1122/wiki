@@ -41,3 +41,12 @@ docker exec jenkins \
   cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 安装插件, 可能由于网络问题安装失败, 失败也可以在之后手动安装. 后续安装界面提示操作即可.
+<a name="eqm6H"></a>
+## 配置
+<a name="MA9wl"></a>
+### GitHub Proxy 代理
+加速 GitHub clone 的代理设置
+```bash
+git config --global protocol.https.allow always
+git config --global url."https://ghproxy.com/https://github.com/".insteadOf "https://github.com/"
+```
