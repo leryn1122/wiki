@@ -41,6 +41,24 @@ docker exec jenkins \
   cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 安装插件, 可能由于网络问题安装失败, 失败也可以在之后手动安装. 后续安装界面提示操作即可.
+<a name="OLwyH"></a>
+## Helm 安装
+手动创建 namespace, pv, pvc
+```bash
+kubectl create ns jenkins
+```
+然后配置 Helm:
+```bash
+helm repo add jenkinsci https://charts.jenkins.io
+helm repo update
+helm install jenkinsci/jenkins jenkins -n jenkins
+```
+```properties
+controller.ingress.enabled=true
+controller.ingress.hostName=jenkins.domain.com
+persistence.enabled=true
+persistence.existingClaim=jenkins-pvc
+```
 <a name="eqm6H"></a>
 ## 配置
 <a name="MA9wl"></a>
