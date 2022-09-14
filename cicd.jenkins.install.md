@@ -72,3 +72,35 @@ persistence.existingClaim=jenkins-pvc
 git config --global protocol.https.allow always
 git config --global url."https://ghproxy.com/https://github.com/".insteadOf "https://github.com/"
 ```
+<a name="lCboJ"></a>
+## Jenkins Docker
+参考文档:
+
+- 
+
+如果需要容器化部署 Jenkins 同时在 Pipeline 中调用 Docker 命令等等, 请按照以上文档中的步骤构建自己的 Jenkins-docker 镜像. 
+```bash
+docker build . -f Dockerfile -t harbor.leryn.top/infra/jenkins-docker:2.365-jdk11
+```
+```dockerfile
+FROM jenkins/jenkins:2.365-jdk11 AS base
+
+USER root
+
+RUN apt-get update && apt-get install -y lsb-release \
+      && \
+    curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
+      https://download.docker.com/linux/debian/gpg \
+      && \  
+    echo "deb [arch=$(dpkg --print-architecture) \
+          signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
+          https://download.docker.com/linux/debian \
+          $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list \
+      && \
+    apt-get update && apt-get install -y docker-ce-cli
+
+USER jenkins
+
+# 如果外网访问非常慢的话可以注释掉这句话手动安装插件
+RUN jenkins-plugin-cli --plugins "blueocean:1.25.6 docker-workflow:1.29"
+```
