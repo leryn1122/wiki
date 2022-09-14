@@ -8,7 +8,7 @@
 
 - [drone - 官方文档](https://docs.drone.io)
 - [drone 对接 gitee - 官方文档](https://docs.drone.io/server/provider/gitee/)
-- [drone - 插件 - 官方文档](https://plugins.drone.io/)
+- [https://plugins.drone.io/](https://plugins.drone.io/)
 
 不同的 git 产品对接方式各不相同, 请在官方文档中找到相应的对接方式, 这里只有 gitee.
 <a name="Xjfkg"></a>

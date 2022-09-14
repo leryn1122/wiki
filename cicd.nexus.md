@@ -1,7 +1,3 @@
-
-![](https://s3.leryn.top/website/image/sonatype.svg#crop=0&crop=0&crop=1&crop=1&id=bcPNQ&originHeight=436&originWidth=2500&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
-<a name="Fb7cf"></a>
-# 
 Nexus 可以支持 Docker Registry, npm, maven, maven android, nuget 多种仓库.
 <a name="zonc3"></a>
 # Nexus 安装手册
@@ -23,7 +19,7 @@ docker run \
 
 配置`repository-list.txt`:
 
-```plaintext
+```
 # maven-aliyun
 http://maven.aliyun.com/nexus/content/groups/public
 # maven-apache-snapshot

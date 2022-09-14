@@ -2,8 +2,8 @@
 # Jenkins 安装手册
 ![image.png](./assets/1662020535807-e918e80c-2095-457a-97a7-ccfe593dfec0.png)<br />参考文档:
 
-- 
-- 
+- [https://www.jenkins.io/](https://www.jenkins.io/)
+- [https://wiki.eryajf.net/pages/2415.html](https://wiki.eryajf.net/pages/2415.html)
 
 Jenkins 是最受欢迎的自动化构建工具, 有丰富的扩展和插件. 许多流水线工具都内置 Jenkins 来实现自动化构建.<br />在云原生中, Jenkins 迎来了升级版 Jenkins X.<br />最新的消息中 Jenkins 已经开始了 JDK 17 版本的预览, 在不远的将来会全面迁移到 JDK 17.
 <a name="lCMVr"></a>
@@ -45,7 +45,7 @@ docker exec jenkins \
 ## Helm 安装
 参考文档:
 
-- 
+- [https://github.com/jenkinsci/helm-charts](https://github.com/jenkinsci/helm-charts)
 
 手动创建 namespace, pv, pvc
 ```bash

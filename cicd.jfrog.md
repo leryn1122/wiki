@@ -1,24 +1,16 @@
-
-
-
 <a name="SrHc1"></a>
 # Jfrog Artifactory 安装手册
 
 参考文档:
 
 - [https://www.jfrogchina.com/en/open-source/#artifactory](https://www.jfrogchina.com/en/open-source/#artifactory)
-
 <a name="avrri"></a>
 ## 安装步骤
-
 安装 JDK:
-
 ```bash
 apt install -y openjdk-8-jre
 ```
-
 安装 Jfrog Artifactory
-
 ```bash
 mkdir -p /opt/jfrog
 cd /opt/jfrog

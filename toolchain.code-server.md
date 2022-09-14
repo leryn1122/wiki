@@ -2,8 +2,8 @@
 # Code Server - VS Code 网页版
 参考文档:
 
-- 
-- 
+- [https://github.com/coder/code-server](https://github.com/coder/code-server)
+- [https://coder.com/docs/code-server/latest/guide](https://coder.com/docs/code-server/latest/guide)
 <a name="goppM"></a>
 ## 安装方式的选择
 

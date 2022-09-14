@@ -2,9 +2,9 @@
 # Jenkins 扩展共享库
 参考文档:
 
-- 
-- 
-- 
+- [https://www.jenkins.io/zh/doc/book/pipeline/shared-libraries/](https://www.jenkins.io/zh/doc/book/pipeline/shared-libraries/)
+- [https://www.jenkins.io/doc/pipeline/steps/](https://www.jenkins.io/doc/pipeline/steps/)
+- [https://www.jianshu.com/p/a248dc7e80ea](https://www.jianshu.com/p/a248dc7e80ea)
 <a name="V0UE5"></a>
 ## 安装扩展库
 <a name="CmCoy"></a>

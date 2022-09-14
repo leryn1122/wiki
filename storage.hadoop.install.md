@@ -1,6 +1,6 @@
 <a name="r4qtk"></a>
 ## Hadoop
-![image.png](./assets/1660281668296-eb40252e-38b1-453d-8955-3f9f0d89db24.png)<br />Reference:
+Reference:
 
 - 
 <a name="FlcIY"></a>

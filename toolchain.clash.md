@@ -1,6 +1,6 @@
 <a name="x0xAr"></a>
 # Clash 安装手册
-![clash.png](./assets/1660197432792-b2f7ab72-e7cd-4711-8dca-e5275af1e58b.png)<br />本文只介绍如何将 Clash 部署到服务端, 实现上网.
+本文只介绍如何将 Clash 部署到服务端, 实现上网.
 <a name="SINyW"></a>
 ## Clash 手动安装手册
 安装客户端:
@@ -23,7 +23,7 @@ http_proxy=http://127.0.0.1:7890
 all_proxy=soks5://127.0.0.1:7891
 EOF
 ```
-创建 systemd 文件, 并设置开启自启动
+创建 Systemd 文件, 并设置开启自启动
 ```bash
 touch /etc/systemd/system/clash.service
 ```

@@ -3,13 +3,11 @@
 
 参考文档:
 
-- 
-- 
-- 
-
+- [https://www.cnblogs.com/kerrycode/p/4744804.html](https://www.cnblogs.com/kerrycode/p/4744804.html)
+- [https://www.cnblogs.com/zhangdongyu/p/15674265.html](https://www.cnblogs.com/zhangdongyu/p/15674265.html)
+- [https://blog.minirplus.com/8808/](https://blog.minirplus.com/8808/)
 <a name="mlMxK"></a>
 ## 简介
-
 > 下面是网上关于 ntpd 与 ntpdate 区别的相关资料. 如下所示所示.
 > 使用之前得弄清楚一个问题, ntpd 与 ntpdate 在更新时间时有什么区别. ntpd 不仅仅是时间同步服务器, 它还可以做客户端与标准时间服务器进行同步时间, 而且是平滑同步, 并非 ntpdate 立即同步, 在生产环境中慎用 ntpdate, 也正如此两者不可同时运行.
 > 时钟的跃变, 对于某些程序会导致很严重的问题. 许多应用程序依赖连续的时钟——毕竟, 这是一项常见的假定, 即, 取得的时间是线性的, 一些操作, 例如数据库事务, 通常会地依赖这样的事实: 时间不会往回跳跃. 不幸的是, ntpdate 调整时间的方式就是我们所说的”跃变“: 在获得一个时间之后, ntpdate 使用 settimeofday(2)设置系统时间, 这有几个非常明显的问题.
@@ -19,21 +17,16 @@
 > 
 ntpd 在和时间服务器的同步过程中, 会把 BIOS 计时器的振荡频率偏差——或者说 Local Clock 的自然漂移(drift)——记录下来. 这样即使网络有问题, 本机仍然能维持一个相当精确的走时.
 
-
 <a name="wP83I"></a>
 ## 安装前的注意点
-
 注意点:
 
 - `ntp`和`ntpdate`都占用了`123`端口, 如果`ntp`的 daemon 进程启动时, 无法使用`ntpdate`.
 - Ubuntu 默认安装了`chrony`服务, 服务器重启后会默认启用这个服务, 导致 NTP 无法自启动. 虽然`chrony`比`ntp`更加先进, 但很多公司仍然在使用 ntp.`
 - `ntp`使用了双向 UDP 协议校时, 网络权限需要放开 UDP 协议.
-
 <a name="TuDL6"></a>
 ## 包管理器安装
-
 检查 NTP 协议是否安装.
-
 ```bash
 rpm -qa | grep ntp
 ```
