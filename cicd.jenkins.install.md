@@ -67,7 +67,7 @@ persistence.existingClaim=jenkins-pvc
 ## 配置
 <a name="MA9wl"></a>
 ### GitHub Proxy 代理
-加速 GitHub clone 的代理设置
+加速 GitHub clone 的代理设置:
 ```bash
 git config --global protocol.https.allow always
 git config --global url."https://ghproxy.com/https://github.com/".insteadOf "https://github.com/"
