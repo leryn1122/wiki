@@ -1,10 +1,9 @@
-
 <a name="PKhLX"></a>
 # Istio - 服务网格
-![istio.svg](./assets/1661492590318-8e5059cc-b135-4737-aca5-e99bd39d3907.svg)<br />参考文档:
+参考文档:
 
-- 
-- 
+- [https://istio.io/latest/docs/setup/install/helm/](https://istio.io/latest/docs/setup/install/helm/)
+- [https://istio.io/latest/docs/setup/install/istioctl/](https://istio.io/latest/docs/setup/install/istioctl/)
 <a name="KEIBP"></a>
 ### 安装 Istio
 官方提供 `istioctl` 和 `Helm` 两种方式安装, 推荐使用 `Helm`.
