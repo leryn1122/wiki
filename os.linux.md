@@ -1,7 +1,5 @@
 <a name="PGhuW"></a>
 # Linux 常见命令
-![ubuntu-2.svg](./assets/1645714756591-ec855672-e1bc-44f9-a40c-0d0a30deee71.svg)
-
 针对 Ubuntu, 原因提到过很多次:
 
 - 很多软件开发者都以 Ubuntu 作为开发机;

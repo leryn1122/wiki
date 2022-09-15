@@ -7,13 +7,11 @@ Ansible 在我的工作内容中有两个用途:
 <a name="McX3m"></a>
 ## Ansible
 Ansible 基于 ssh 和 Python<br />Ansible 很重要的特性是所有操作的都具备幂等性.
-
 ```bash
 ansible -i hosts -m ping
 
 ansible-playbook -i hosts main.yaml
 ```
-
 <a name="LsvN0"></a>
 ## Semaphore - Ansible 控制台
 参考文档:
@@ -38,7 +36,6 @@ kubectl create secret generic ansible-secret -n ansible \
   --from-literal=SEMAPHORE_ADMIN=admin \
   --from-literal=SEMAPHORE_ACCESS_KEY_ENCRYPTION=gs72mPntFATGJs9qK0pQ0rKtfidlexiMjYCH9gWKhTU=
 ```
-
 ```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -139,14 +136,14 @@ http://ansible.mydomain.com/api/user/tokens
 # {"id":"rqxvmlutifi-yfxphq2k0vf3t-xxxxxxxxxxxxx","created":"2022-09-06T08:10:11Z","expired":false,"user_id":1}
 
 # 之后的请求 Basic Auth 带上 Token 即可
-# 
+# 查看 Project 下的 Task
 curl -ik -XGET \
 -H 'Content-Type: application/json' \
 -H 'Accept: application/json' \
 -H 'Authorization: Bearer rqxvmlutifi-yfxphq2k0vf3t-xxxxxxxxxxxxx' \
 http://ansible.mydomain.com/api/projects
 
-# 
+# 启动一个 Task
 curl -ik -XPOST \
 -H 'Content-Type: application/json' \
 -H 'Accept: application/json' \

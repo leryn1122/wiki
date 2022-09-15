@@ -102,5 +102,4 @@ KillMode=process
 [Install]
 WantedBy=multi-user.target
 ```
-
 ![image.png](./assets/1655637697308-ce727a7b-22cf-4ee1-9105-f0ed83a12435.png)
