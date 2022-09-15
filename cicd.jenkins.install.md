@@ -1,6 +1,6 @@
 <a name="ETtiD"></a>
 # Jenkins 安装手册
-![image.png](./assets/1662020535807-e918e80c-2095-457a-97a7-ccfe593dfec0.png)<br />参考文档:
+参考文档:
 
 - [https://www.jenkins.io/](https://www.jenkins.io/)
 - [https://wiki.eryajf.net/pages/2415.html](https://wiki.eryajf.net/pages/2415.html)
@@ -76,7 +76,7 @@ git config --global url."https://ghproxy.com/https://github.com/".insteadOf "htt
 ## Jenkins Docker
 参考文档:
 
-- 
+- [https://www.jenkins.io/doc/tutorials/build-a-java-app-with-maven/#run-jenkins-in-docker](https://www.jenkins.io/doc/tutorials/build-a-java-app-with-maven/#run-jenkins-in-docker)
 
 如果需要容器化部署 Jenkins 同时在 Pipeline 中调用 Docker 命令等等, 请按照以上文档中的步骤构建自己的 Jenkins-docker 镜像. 
 ```bash
