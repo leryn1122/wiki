@@ -4,17 +4,12 @@
 - RESTful - JSON HTTP
 - gRPC HTTP2.0 Protobuf
 - Thrift
-
-
-
 <a name="TChxb"></a>
 ## RESTful - JSON HTTP
-
 Spring Boot 直接使用 `RestTemplate` 调用 API 接口即可.
 ```java
 ResponseEntity<Map> responseEntity = restTemplate.getForEntity("https://docker.leryn.top/v2/_catalog", Map.class);
 ```
-
 优点:
 
 - 调用方便
@@ -25,12 +20,8 @@ ResponseEntity<Map> responseEntity = restTemplate.getForEntity("https://docker.l
 
 - Http Header 和 JSON 冗余使得网络传输效率低
 - JSON 动态类型, 结构复杂
-
 <a name="XSfiq"></a>
 ## gRPC HTTP2.0 Protobuf
-![image.png](./assets/1646961888385-11575fae-ed56-424c-a242-e3103779da66.png)
-
-
 ```xml
 <build>
   <extensions>

@@ -1,13 +1,10 @@
-
-![](https://s3.leryn.top/website/image/drone.svg#crop=0&crop=0&crop=1&crop=1&id=mIjNO&originHeight=150&originWidth=150&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
-
 本流水线由于存在bug, 已经卸载
 <a name="VZrAF"></a>
 # drone 安装手册
 参考文档:
 
-- [drone - 官方文档](https://docs.drone.io)
-- [drone 对接 gitee - 官方文档](https://docs.drone.io/server/provider/gitee/)
+- [https://docs.drone.io](https://docs.drone.io)
+- [https://docs.drone.io/server/provider/gitee/](https://docs.drone.io/server/provider/gitee/)
 - [https://plugins.drone.io/](https://plugins.drone.io/)
 
 不同的 git 产品对接方式各不相同, 请在官方文档中找到相应的对接方式, 这里只有 gitee.
@@ -37,7 +34,6 @@ openssl rand -hex 16
 ```
 <a name="al0Kw"></a>
 ### Docker 安装 server
-
 ```bash
 # Postgres
 docker run \
@@ -83,12 +79,9 @@ docker run \
 - DRONE_RPC_SECRET<br />必需的字符串值提供在上一步中生成的共享机密. 这用于验证服务器和运行程序之间的 rpc 连接. 必须为服务器和运行程序提供相同的秘密值.
 - DRONE_SERVER_HOST<br />必需的字符串值提供您的外部主机名或 IP 地址. 如果使用 IP 地址, 您可以包含端口. 例如, drone.domain.com
 - DRONE_SERVER_PROTO<br />必需的字符串值提供您的外部协议方案. 此值应设置为 http 或 https. 如果您配置 ssl 或 acme, 则此字段默认为 https
-
 <a name="h6CTV"></a>
 ### Docker 安装 runner
-
 Drone runner 是一个守护进程, 它在临时 docker 容器内执行管道步骤. 您可以安装单个 docker 运行器, 或在多台机器上安装 docker 运行器来创建您自己的构建集群.
-
 ```bash
 docker run \
   --detach=true \
@@ -97,20 +90,16 @@ docker run \
   --env=DRONE_RPC_SECRET=2ff35a69ef0f5c60c781a8775e8db5a2 \
   --env=DRONE_RUNNER_CAPACITY=2 \
   --env=DRONE_RUNNER_NAME=drone-runner \
-  --env=DRONE_USER_CREATE=username:leryn,admin:true \
-  --publish=9181:3000 \
+  --env=DRONE_USER_CREATE=username:leryn,admin:true \  --publish=9181:3000 \
   --restart=always \
   --name=drone-runner \
   --volume=/var/run/docker.sock:/var/run/docker.sock \
   drone/drone-runner-docker:latest
 ```
-
 使用该 docker logs 命令查看日志并验证运行程序是否成功与 Drone 服务器建立连接
-
 ```bash
 docker logs drone-runner
 ```
-
 ```
 INFO[0000] starting the server                           addr=":3000"
 INFO[0000] successfully pinged the remote server
@@ -118,7 +107,6 @@ INFO[0000] polling the remote server                     arch=amd64 capacity=2 e
 ```
 <a name="nAvQD"></a>
 ## 流水线
-
 搭建好 drone 后, 登录 OAuth2 认证. 点击`Activate Repository`激活仓库, 然后配置在仓库提交`.drone.yml`作为流水线配置即可启动流水线.
 <a name="r0wwi"></a>
 ### 示例 .drone.yml
