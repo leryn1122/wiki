@@ -55,7 +55,7 @@ kubectl create ns jenkins
 ```bash
 helm repo add jenkinsci https://charts.jenkins.io
 helm repo update
-helm install jenkinsci/jenkins jenkins -n jenkins
+helm install jenkins jenkinsci/jenkins -n jenkins
 ```
 ```properties
 controller.ingress.enabled=true
@@ -103,4 +103,9 @@ USER jenkins
 
 # 如果外网访问非常慢的话可以注释掉这句话手动安装插件
 RUN jenkins-plugin-cli --plugins "blueocean:1.25.6 docker-workflow:1.29"
+```
+<a name="YyHxK"></a>
+## Jenkins CLI
+```bash
+java -jar jenkins-cli.jar -s https://jenkins.leryn.top/ -auth admin:1159a750229c40a61247baaff72f75b9b5 -webSocket help
 ```
