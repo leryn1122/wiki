@@ -113,7 +113,7 @@ FROM jenkins/inbound-agent:4.10-3-jdk11 AS base
 
 USER root
 
-RUN apt-get update && apt-get install -y lsb-release \
+RUN apt-get update && apt-get install -y lsb-release curl \
       && \
     curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
       https://download.docker.com/linux/debian/gpg \
