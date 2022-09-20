@@ -24,7 +24,7 @@
 > 此外，Flink 能够根据所需资源动态分配和取消分配 TaskManager，因为它可以直接与 Kubernetes 对话。
 
 
-![](./assets/1652684764990-d0d0bc8d-4217-4e37-b6dc-b132d6ed84fd.webp)
+![](./../assets/1652684764990-d0d0bc8d-4217-4e37-b6dc-b132d6ed84fd.webp)
 
 要求：
 

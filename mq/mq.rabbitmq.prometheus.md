@@ -48,4 +48,4 @@ kubectl apply -f additional-scrape-configs.yaml -n monitoring
 ```
 10991
 ```
-![](./assets/1657784846073-11f1ff62-4afc-475a-b13b-88afa47c50e9.png)
+![](./../assets/1657784846073-11f1ff62-4afc-475a-b13b-88afa47c50e9.png)

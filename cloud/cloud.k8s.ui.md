@@ -1,6 +1,6 @@
 <a name="Wbz6w"></a>
 # K9S
-![image.png](./assets/1645719729527-7890d912-e808-4a1e-bb10-96b257d4df63.png)<br />参考文档:
+![image.png](./../assets/1645719729527-7890d912-e808-4a1e-bb10-96b257d4df63.png)<br />参考文档:
 
 - [k9s - GitHub 官网](https://github.com/derailed/k9s)
 
@@ -19,7 +19,7 @@ sudo mv $PWD/k9s /usr/local/bin
 k9s
 ```
 
-![image.png](./assets/1645719540088-85e908a6-9371-44c1-bf68-53dfab5c817e.png)
+![image.png](./../assets/1645719540088-85e908a6-9371-44c1-bf68-53dfab5c817e.png)
 <a name="Jmipg"></a>
 # Rancher 
 <a name="RtgXw"></a>

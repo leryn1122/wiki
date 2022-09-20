@@ -40,7 +40,7 @@ GKE 上的默认 ingress 控制器是启动一个 [HTTP(S) Load Balancer](https:
 
 GKE 上用 [L7 HTTP Load Balancer](https://cloud.google.com/compute/docs/load-balancing/http/) 生成的 Ingress 对象的 YAML 文件类似如下：
 
-[![image.png](./assets/bc92fdf5f0ae4f6d2024a15d056d68b9.png)<br />$ kubectl proxy --port=8080 <br />http://localhost:8080/api/v1/proxy/namespaces/<NAMESPACE>/services/<SERVICE-NAME>:<PORT-NAME>/ <br />http://localhost:8080/api/v1/proxy/namespaces/default/services/my-internal-service:http/ 
+[![image.png](./../assets/bc92fdf5f0ae4f6d2024a15d056d68b9.png)<br />$ kubectl proxy --port=8080 <br />http://localhost:8080/api/v1/proxy/namespaces/<NAMESPACE>/services/<SERVICE-NAME>:<PORT-NAME>/ <br />http://localhost:8080/api/v1/proxy/namespaces/default/services/my-internal-service:http/ 
 <a name="dr8ci"></a>
 #### 何时使用这种方式？
 
@@ -48,7 +48,7 @@ GKE 上用 [L7 HTTP Load Balancer](https://cloud.google.com/compute/docs/load-ba
 1. 容许内部通信，展示内部仪表盘等。
 <a name="tvKmJ"></a>
 ### NodePort
-[![image.png](./assets/58174ac44fdbacbbc89cec648260fcdf.png)<br />apiVersion: v1 kind: Service metadata:   name: my-nodeport-service selector:     app: my-app spec: type: NodePort ports:   - name: http port: 80 targetPort: 80 nodePort: 30036 protocol: TCP 
+[![image.png](./../assets/58174ac44fdbacbbc89cec648260fcdf.png)<br />apiVersion: v1 kind: Service metadata:   name: my-nodeport-service selector:     app: my-app spec: type: NodePort ports:   - name: http port: 80 targetPort: 80 nodePort: 30036 protocol: TCP 
 <a name="UjpOo"></a>
 #### 何时使用这种方式？
 
@@ -57,9 +57,9 @@ GKE 上用 [L7 HTTP Load Balancer](https://cloud.google.com/compute/docs/load-ba
 1. 如果节点/VM 的 IP 地址发生变化，你需要能处理这种情况。
 <a name="n8Px0"></a>
 ### LoadBalancer
-[![image.png](./assets/d8631b315a7acdd6926ec5405ed1043f.png)
+[![image.png](./../assets/d8631b315a7acdd6926ec5405ed1043f.png)
 <a name="RWGff"></a>
 #### 何时使用这种方式？
 <a name="q70Ts"></a>
 ### Ingress
-[![image.png](./assets/ab886a9dd4e912cf6f5a1f3ed983ac4c.png)<br />apiVersion: extensions/v1beta1 kind: Ingress metadata: name: my-ingress spec: backend: serviceName: other servicePort: 8080 rules: - host: foo.mydomain.com http:   paths:   - backend:       serviceName: foo       servicePort: 8080 - host: mydomain.com http:   paths:   - path: /bar/*     backend:       serviceName: bar       servicePort: 8080
+[![image.png](./../assets/ab886a9dd4e912cf6f5a1f3ed983ac4c.png)<br />apiVersion: extensions/v1beta1 kind: Ingress metadata: name: my-ingress spec: backend: serviceName: other servicePort: 8080 rules: - host: foo.mydomain.com http:   paths:   - backend:       serviceName: foo       servicePort: 8080 - host: mydomain.com http:   paths:   - path: /bar/*     backend:       serviceName: bar       servicePort: 8080

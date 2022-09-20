@@ -31,7 +31,7 @@ kubectl exec -it $(kubectl get pods -n gateway  | grep -E ^gateway | awk '{print
   -n ingress-nginx -- bash -c "cat /etc/nginx/nginx.conf" | less 
 ```
 
-![20211119211339.jpg](./assets/1645168735400-7705f3f6-64a7-4bc3-a9e2-e8068f49d5f8.jpeg)
+![20211119211339.jpg](./../assets/1645168735400-7705f3f6-64a7-4bc3-a9e2-e8068f49d5f8.jpeg)
 <a name="Sg5Z4"></a>
 ## K8S 集群网络链路
 

@@ -1,6 +1,5 @@
 
-![](https://s3.leryn.top/website/image/maven.svg#crop=0&crop=0&crop=1&crop=1&height=63&id=UnGAE&originHeight=86&originWidth=340&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=250)
-<a name="oB6Sm"></a>
+<a name="X248G"></a>
 # Maven 安装手册
 <a name="sIIXd"></a>
 ## 包管理器

@@ -1,4 +1,3 @@
-![](https://s3.leryn.top/website/image/confluence.svg#crop=0&crop=0&crop=1&crop=1&id=cQI6E&originHeight=324&originWidth=2500&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 <a name="CXuxx"></a>
 # Confluence
 参考文档:

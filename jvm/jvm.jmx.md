@@ -140,7 +140,7 @@ jconsole <PID> | <HOST>:<PORT> | <JMX_SERVICE_URL>
 jps | grep YourApplicationName  | awk '{print $1}' | xargs jconsole
 ```
 
-![image.png](./assets/1652436159116-a7c1c860-e154-4312-9530-4bdbe524274b.png)<br />如果你在线服务器没有 GUI, 事实上绝大数情况都是这样, 那可以使用这个 cjmx 的 jar 包来运行命令行风格的 jconsole.
+![image.png](./../assets/1652436159116-a7c1c860-e154-4312-9530-4bdbe524274b.png)<br />如果你在线服务器没有 GUI, 事实上绝大数情况都是这样, 那可以使用这个 cjmx 的 jar 包来运行命令行风格的 jconsole.
 
 ```bash
 java -cp /usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/root/cjmx_2.12-2.8.1-app.jar cjmx.Main <PID>

@@ -5,7 +5,7 @@
 
 K3S 是 Rancher 官方提出的轻量级 Kubernetes, 阉割或降级了很多 Kubernetes 的配置, 例如用 SQLite 来替换 Etcd, 但它仍然满足 Kubernetes 的所有 API. 性能上, 资源占用比 Minikube 更小, 是 Kubernetes 开发机最合适的产品实现.
 
-![](./assets/1645099177426-d5558c49-8ada-47c2-938f-2841e284111d.svg)
+![](./../assets/1645099177426-d5558c49-8ada-47c2-938f-2841e284111d.svg)
 <a name="fm1SD"></a>
 ## 安装步骤
 

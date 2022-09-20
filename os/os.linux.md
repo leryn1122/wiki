@@ -34,7 +34,7 @@ ZSH_THEME="half-life"
 PROMPT=$'%{$purple%}%n%{$reset_color%} in %{$limegreen%}%~%{$reset_color%}$(ruby_prompt_info " with%{$fg[red]%} " v g "%{$reset_color%}")$vcs_info_msg_0_%{$orange%}%{$reset_color%} at %{$hotpink%}%* %{$orange%}λ%{$reset_color%} '
 ```
 
-![20220210142804.png](./assets/1644474513988-4cdf2936-e4b8-48a1-a5ee-6031fafe3c0a.png)
+![20220210142804.png](./../assets/1644474513988-4cdf2936-e4b8-48a1-a5ee-6031fafe3c0a.png)
 <a name="FMmLf"></a>
 ## Starship
 
@@ -95,7 +95,7 @@ command -v nu | sudo tee -a /etc/shells
 chsh -s /usr/bin/nu
 ```
 
-[![nushell-autocomplete5.gif](./assets/1644061818678-f339b725-36d0-4ac5-b0da-bc236cc844a2.gif)
+[![nushell-autocomplete5.gif](./../assets/1644061818678-f339b725-36d0-4ac5-b0da-bc236cc844a2.gif)
 
 <a name="XgoLR"></a>
 ## 清理空间

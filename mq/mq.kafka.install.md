@@ -197,7 +197,7 @@ WantedBy=multi-user.target
 
 下载对应版本, 安装即可. 页面如下:
 
-![image.png](./assets/1649832827449-1fb072b7-5c6b-4944-9f40-1ea94e2e7fcb.png)
+![image.png](./../assets/1649832827449-1fb072b7-5c6b-4944-9f40-1ea94e2e7fcb.png)
 
-![image.png](./assets/1649832793899-c7e37b3b-a673-42e3-a70b-e2f1ac53798b.png)
+![image.png](./../assets/1649832793899-c7e37b3b-a673-42e3-a70b-e2f1ac53798b.png)
 

@@ -1,7 +1,7 @@
 <a name="x2QMA"></a>
 # Ingress Controller
 
-Ingress 就是**入口**的意思, 那么 Ingress Controller 就是 入口控制器了. 它为了解决 Kubernetes 集群上同一入口的负载均衡. Ingress Controller 有不同的实现方式, 云原生的 traefik 或者是传统的 nginx. 这里我个人更加倾向于 Ingress-nginx, 因为我个人更加熟悉 nginx 配置文件.<br />![20220217001612.png](./assets/1648298721391-71350fe3-57e3-47ed-a828-f774a636d15e.png)
+Ingress 就是**入口**的意思, 那么 Ingress Controller 就是 入口控制器了. 它为了解决 Kubernetes 集群上同一入口的负载均衡. Ingress Controller 有不同的实现方式, 云原生的 traefik 或者是传统的 nginx. 这里我个人更加倾向于 Ingress-nginx, 因为我个人更加熟悉 nginx 配置文件.<br />![20220217001612.png](./../assets/1648298721391-71350fe3-57e3-47ed-a828-f774a636d15e.png)
 <a name="s30le"></a>
 ## Nginx Ingress Controller 安装步骤
 

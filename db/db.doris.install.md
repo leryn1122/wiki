@@ -1,7 +1,7 @@
 <a name="9adcc7cb"></a>
 # Doris 安装手册
 
-![doris.png](./assets/1646199995737-e79ae83d-a868-49fc-a7c4-500ebb3604da.png)
+![doris.png](./../assets/1646199995737-e79ae83d-a868-49fc-a7c4-500ebb3604da.png)
 
 参考文档:
 
