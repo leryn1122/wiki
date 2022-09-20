@@ -35,30 +35,25 @@ docker run \
 
 - [https://github.com/minio/minio/tree/master/helm/minio](https://github.com/minio/minio/tree/master/helm/minio)
 ```bash
-helm install aws-s3 bitnami/minio -n aws-s3 \
-  --set auth.rootUser="admin" \
-  --set auth.rootPassword="admin" \
-  --set ingress.enabled="true" \
-  --set ingress.hostname="oss-adm.leryn.top" \
-  --set apiIngress.enabled="true" \
-  --set apiIngress.hostname="oss.leryn.top" \
-  --set persistence.enabled="false"
-  
-```
-```properties
-consoleIngress.enabled=true
-consoleIngress.hosts[0]=oss-console.leryn.top
-ingress.enabled=true
-ingress.hosts[0]=oss.dev.leryn.top
-mode=standalone
-networkPolicy.allowExternal=true
-persistence.existingClaim=minio-pvc
-persistence.size=5Gi
-replicas=1
-resources.requests.memory=128Mi
-rootPassword=
-rootUser=admin
-securityContext.fsGroup=0
-securityContext.runAsUser=0
-securityContext.runAsGroup=0
+helm repo add minio https://charts.min.io/
+helm repo update
+
+helm upgrade minio minio/minio -n oss \
+  --set consoleIngress.enabled=true                    \
+  --set consoleIngress.hosts={oss-console.leryn.top}   \
+  --set consoleIngress.ingressClassName=nginx          \
+  --set ingress.enabled=true                           \
+  --set ingress.hosts={oss.leryn.top}                  \
+  --set ingress.ingressClassName=nginx                 \
+  --set mode=standalone                                \
+  --set networkPolicy.allowExternal=true               \
+  --set persistence.existingClaim=oss-data-pvc         \
+  --set persistence.size=5Gi                           \
+  --set replicas=1                                     \
+  --set resources.requests.memory=128Mi                \
+  --set rootPassword=xxxxxxxxxx                        \
+  --set rootUser=admin                                 \
+  --set securityContext.fsGroup=0                      \
+  --set securityContext.runAsUser=0                    \
+  --set securityContext.runAsGroup=0
 ```

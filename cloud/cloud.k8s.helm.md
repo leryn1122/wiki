@@ -1,7 +1,7 @@
 
 <a name="xyGWN"></a>
 # Helm
-![](https://s3.leryn.top/website/image/helm.png#crop=0&crop=0&crop=1&crop=1&height=250&id=En2Xj&originHeight=2084&originWidth=2084&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=250)<br />参考文档: 
+参考文档: 
 
 - [Helm - 官网](https://docs.helm.sh/zh/docs/)
 
