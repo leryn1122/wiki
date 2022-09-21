@@ -66,10 +66,10 @@ docker pull maven:3.8.4-jdk-8-slim
 `mvnd` 是 apache/maven 的一个子项目, 它并不是一个全新的构建工具, 而是对 maven 的扩展. 它内置了 maven, 其实现原理是构建了一个或者多个 maven 守护进程来执行构建服务.
 
 1. mvnd 的目标是使用 Gradle 和 Takari 所知的技术提供更快的 Maven 构建. Gradle 是一个基于 Apache Ant 和 Apache Maven 概念的项目自动化建构工具. Gradle 构建脚本使用的是 Groovy 或 Kotlin 的特定领域语言来编写的, 而不是传统的 XML. Gradle 最大的优势就是比传统的 Maven 构建速度更快. Takari 是 maven-wrapper 核心, 大部分的开源项目都是提供 warpper 方便用户不安装 maven 的前提下快速构建项目的. 
-1. mvnd 内嵌了 Maven, 所以不需要单独安装 Maven 了. 
-1. 一个守护进程实例可以服务于来自 mvnd 客户端的多个连续请求. 
-1. mvnd 客户端使用 GraalVM 构建本地可执行文件, 与启动传统 JVM 相比, 它启动得更快, 占用的内存更少. 
-1. 如果 mvnd 没有空闲守护进程来服务一个构建请求, 可以并行地生成多个守护进程.
+2. mvnd 内嵌了 Maven, 所以不需要单独安装 Maven 了. 
+3. 一个守护进程实例可以服务于来自 mvnd 客户端的多个连续请求. 
+4. mvnd 客户端使用 GraalVM 构建本地可执行文件, 与启动传统 JVM 相比, 它启动得更快, 占用的内存更少. 
+5. 如果 mvnd 没有空闲守护进程来服务一个构建请求, 可以并行地生成多个守护进程.
 
 <a name="le1XO"></a>
 ## 二进制安装

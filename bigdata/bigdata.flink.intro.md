@@ -396,8 +396,8 @@ bin/flink run -s /path/to/savepoint your_flink.jar
 
 
 1. 前提是开启了 checkpoint 才会调用重启策略
-1. 如果开启了 checkpoint, 但未配置任何重启策略, 则无限自动重启
-1. 重启策略可以在 `flink-conf.yaml` 中配置, 也可以在代码中配置 (为单独作业)
+2. 如果开启了 checkpoint, 但未配置任何重启策略, 则无限自动重启
+3. 重启策略可以在 `flink-conf.yaml` 中配置, 也可以在代码中配置 (为单独作业)
 
 `flink-conf.yaml`
 

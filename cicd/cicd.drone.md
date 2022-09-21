@@ -167,6 +167,6 @@ volumes:
 我们增加几步优化:
 
 1. 把流水线所需要的镜像变成内网镜像(例如`plugins/docker`), 包括流水线本身和应用打包用到的镜像, 这样不会每次重复的向外网拉取镜像.
-1. DNS: 由于我是单机节点, 直接配置`/etc/host`将域名指向到`localhost`.
-1. 挂载`/var/run/docker.sock`到内部, 这需要是 Drone Runner 挂载这个 socket 并且将仓库设置`Trusted`. 这可以使与 Docker 传输加快.
-1. 优化 Dockerfile: 利用 Dockerfile 缓存.
+2. DNS: 由于我是单机节点, 直接配置`/etc/host`将域名指向到`localhost`.
+3. 挂载`/var/run/docker.sock`到内部, 这需要是 Drone Runner 挂载这个 socket 并且将仓库设置`Trusted`. 这可以使与 Docker 传输加快.
+4. 优化 Dockerfile: 利用 Dockerfile 缓存.

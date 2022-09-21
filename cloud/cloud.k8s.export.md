@@ -45,7 +45,7 @@ GKE 上用 [L7 HTTP Load Balancer](https://cloud.google.com/compute/docs/load-ba
 #### 何时使用这种方式？
 
 1. 由于某些原因，你需要调试你的服务，或者需要直接通过笔记本电脑去访问它们。
-1. 容许内部通信，展示内部仪表盘等。
+2. 容许内部通信，展示内部仪表盘等。
 <a name="tvKmJ"></a>
 ### NodePort
 [![image.png](./../assets/58174ac44fdbacbbc89cec648260fcdf.png)<br />apiVersion: v1 kind: Service metadata:   name: my-nodeport-service selector:     app: my-app spec: type: NodePort ports:   - name: http port: 80 targetPort: 80 nodePort: 30036 protocol: TCP 
@@ -53,8 +53,8 @@ GKE 上用 [L7 HTTP Load Balancer](https://cloud.google.com/compute/docs/load-ba
 #### 何时使用这种方式？
 
 1. 每个端口只能是一种服务
-1. 端口范围只能是 30000-32767
-1. 如果节点/VM 的 IP 地址发生变化，你需要能处理这种情况。
+2. 端口范围只能是 30000-32767
+3. 如果节点/VM 的 IP 地址发生变化，你需要能处理这种情况。
 <a name="n8Px0"></a>
 ### LoadBalancer
 [![image.png](./../assets/d8631b315a7acdd6926ec5405ed1043f.png)

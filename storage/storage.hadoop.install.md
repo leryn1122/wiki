@@ -252,7 +252,7 @@ localhost
 ```
 
 5. 修改`hadoop-env.sh`配置文件, 与单节点节点相同.
-5. 修改`workers`配置文件, 写入 hadoop 各节点的主机名.
+6. 修改`workers`配置文件, 写入 hadoop 各节点的主机名.
 ```
 hadoop001
 hadoop002

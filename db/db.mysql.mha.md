@@ -6,16 +6,16 @@
 这是我司 DBA 的发现目前最好的解决方案<br />优点.
 
 1. 可以基于 gtid 的复制模式;
-1. mha 在进行故障转移时更不易产生数据丢失, 因为主库一旦发生故障了, 如果主库还能 ping 通, MHA 会在主库的/tmp(由参数 remote_workdir 设置)保存主库最后的 binlog, 同时会将该 binlog 传到 manager 节点的/etc/masterha/app1(由参数 manager_workdir 设置)中进行保存. mha 配置 mysql 的半同步复制更能降低数据丢失的概率;
-1. 同一个监控节点可以监控多个集群;
+2. mha 在进行故障转移时更不易产生数据丢失, 因为主库一旦发生故障了, 如果主库还能 ping 通, MHA 会在主库的/tmp(由参数 remote_workdir 设置)保存主库最后的 binlog, 同时会将该 binlog 传到 manager 节点的/etc/masterha/app1(由参数 manager_workdir 设置)中进行保存. mha 配置 mysql 的半同步复制更能降低数据丢失的概率;
+3. 同一个监控节点可以监控多个集群;
 
 缺点.
 
 1. mha 只对主数据库进行监控, 也只有主服务器有 vip;
-1. 基于 ssh 免认证配置, 存在一定的安全隐患;
-1. 没有提供从服务器的负载均衡;
-1. 配置过程比较复杂;
-1. 无法避免, 如果监控节点和主库网络出现波动;
+2. 基于 ssh 免认证配置, 存在一定的安全隐患;
+3. 没有提供从服务器的负载均衡;
+4. 配置过程比较复杂;
+5. 无法避免, 如果监控节点和主库网络出现波动;
 <a name="OVyoz"></a>
 ## 环境准备
 原有的一主二从的 MySQL 集群:<br />node1 10.xxx.xxx.70 主库 提供写服务<br />node2 10.xxx.xxx.71 从库 提供读服务<br />node3 10.xxx.xxx.72 从库 提供读服务<br />新增一个管理节点:<br />manager 10.xxx.xxx.73 管理 管理集群<br />vip 10.xxx.xxx.74 虚拟 IP
@@ -72,8 +72,8 @@ ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
 **管理节点**上: 创建三个 perl 脚本
 
 1. [master_ip_failover](https://www.yuque.com/attachments/yuque/0/2022//26002940/1643083451270-c294db80-57b4-4fa4-b978-f64d1308591b.): 修改 34 行的 ip 地址`my $vip = 'xxx.xxx.xxx.xxx';`
-1. [master_ip_online_change](https://www.yuque.com/attachments/yuque/0/2022//26002940/1643083451345-52ecca95-8725-4a3e-b658-dd4427b5e685.): 修改 34 行的 ip 地址`my $vip = 'xxx.xxx.xxx.xxx';`
-1. [send_master_failover_mail](https://www.yuque.com/attachments/yuque/0/2022//26002940/1643083451415-4a95aec1-7f97-4009-a911-5e6ae2705798.): 修改 29-33 行的邮箱
+2. [master_ip_online_change](https://www.yuque.com/attachments/yuque/0/2022//26002940/1643083451345-52ecca95-8725-4a3e-b658-dd4427b5e685.): 修改 34 行的 ip 地址`my $vip = 'xxx.xxx.xxx.xxx';`
+3. [send_master_failover_mail](https://www.yuque.com/attachments/yuque/0/2022//26002940/1643083451415-4a95aec1-7f97-4009-a911-5e6ae2705798.): 修改 29-33 行的邮箱
 ```bash
 ln -s ~/master_ip_failover        /usr/local/bin/master_ip_failover
 ln -s ~/master_ip_online_change   /usr/local/bin/master_ip_online_change
