@@ -38,7 +38,7 @@ docker run \
 helm repo add minio https://charts.min.io/
 helm repo update
 
-helm upgrade minio minio/minio -n oss \
+helm install minio minio/minio -n oss \
   --set consoleIngress.enabled=true                    \
   --set consoleIngress.hosts={oss-console.leryn.top}   \
   --set consoleIngress.ingressClassName=nginx          \
