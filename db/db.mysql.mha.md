@@ -1,15 +1,17 @@
 <a name="i7Ofr"></a>
 # MySQL MHA 安装
-- Mysql - 高可用方案之 MHAMH - 博客园
-- [mha4mysql-manager - wiki](https://github.com/yoshinorim/mha4mysql-manager/wiki/)
+- [https://www.cnblogs.com/linux-186/p/15245747.html](https://www.cnblogs.com/linux-186/p/15245747.html)
+- [https://github.com/yoshinorim/mha4mysql-manager/wiki/](https://github.com/yoshinorim/mha4mysql-manager/wiki/)
 
-这是我司 DBA 的发现目前最好的解决方案<br />优点.
+这是我司 DBA 的发现目前最好的解决方案
+
+优点:
 
 1. 可以基于 gtid 的复制模式;
-2. mha 在进行故障转移时更不易产生数据丢失, 因为主库一旦发生故障了, 如果主库还能 ping 通, MHA 会在主库的/tmp(由参数 remote_workdir 设置)保存主库最后的 binlog, 同时会将该 binlog 传到 manager 节点的/etc/masterha/app1(由参数 manager_workdir 设置)中进行保存. mha 配置 mysql 的半同步复制更能降低数据丢失的概率;
+2. mha 在进行故障转移时更不易产生数据丢失, 因为主库一旦发生故障了, 如果主库还能 ping 通, MHA 会在主库的/tmp(由参数 remote_workdir 设置)保存主库最后的 binlog, 同时会将该 binlog 传到 manager 节点的 `/etc/masterha/app1` (由参数 manager_workdir 设置)中进行保存. mha 配置 mysql 的半同步复制更能降低数据丢失的概率;
 3. 同一个监控节点可以监控多个集群;
 
-缺点.
+缺点:
 
 1. mha 只对主数据库进行监控, 也只有主服务器有 vip;
 2. 基于 ssh 免认证配置, 存在一定的安全隐患;
