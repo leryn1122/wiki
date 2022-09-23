@@ -23,7 +23,7 @@ acme.sh --register-account -m pinktin@sina.com
 安装过程中会自动为你创建 cronjob, 每天 0:00 点自动检测所有的证书, 如果快过期了, 需要更新, 则会自动更新证书. 在该脚本的安装过程不会污染已有的系统任何功能和文件, 所有的修改都限制在安装目录中:`~/.acme.sh/`
 
 ```bash
-acme.sh --issue --dns -d leryn.top -d '*.leryn.top' \
+acme.sh --issue --dns -d 'leryn.top' -d '*.leryn.top' \
   --yes-I-know-dns-manual-mode-enough-go-ahead-please --force
 ```
 
@@ -33,7 +33,7 @@ acme.sh --issue --dns -d leryn.top -d '*.leryn.top' \
 
 
 ```bash
-acme.sh --issue --dns -d leryn.top -d '*.leryn.top' \
+acme.sh --issue --dns -d 'leryn.top' -d '*.leryn.top' \
   --yes-I-know-dns-manual-mode-enough-go-ahead-please --force --renew
 ```
 
