@@ -1,7 +1,5 @@
 <a name="a23ae0bf"></a>
 # TiDB 安装手册
-![tidb.svg](./../assets/1646200276133-1f5ee205-7258-452f-a7ad-770cdd9a5d4b.svg)
-
 参考文档:
 
 - [TiDB 官方文档](https://docs.pingcap.com/zh/tidb/stable)

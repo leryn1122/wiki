@@ -1,8 +1,5 @@
 <a name="9adcc7cb"></a>
 # Doris 安装手册
-
-![doris.png](./../assets/1646199995737-e79ae83d-a868-49fc-a7c4-500ebb3604da.png)
-
 参考文档:
 
 - [源码编译 - Apache Doris 中文文档](https://doris.apache.org/zh-CN/installing/compilation.html)
