@@ -68,6 +68,7 @@ Helm 没有自带 push 操作, 使用 helm-push 插件 (github 有概率安装�
 ```bash
 # 安装插件
 helm plugin install git://github.com/chartmuseum/helm-push.git
+helm plugin install https://ghproxy.com/https://github.com/chartmuseum/helm-push.git
 
 # 上传
 helm push test-0.1.0.tgz yourrepo
