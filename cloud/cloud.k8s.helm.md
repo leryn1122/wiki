@@ -63,19 +63,14 @@ helm repo list
 <a name="JuyYW"></a>
 ## 安装插件
 
-Helm 没有自带 push 操作, 使用 helm-push 插件 (github 有概率安装失败, 这很正常):
+Helm 高于 v3.7.0, 加入了 `helm push` 取代了原有 Chartmuseum 提供的 `helm-push` 插件. 因此改为 `helm cm-push`.
 
 ```bash
 # 安装插件
-helm plugin install git://github.com/chartmuseum/helm-push.git
+helm plugin install https://github.com/chartmuseum/helm-push.git
 helm plugin install https://ghproxy.com/https://github.com/chartmuseum/helm-push.git
 
-# 上传
-helm push test-0.1.0.tgz yourrepo
-
-helm repo upgrade
-
-helm search repo yourrepo
+helm push sample-0.1.0.tgz mychartrepo
 ```
 <a name="wXw7X"></a>
 # Helm Chart
