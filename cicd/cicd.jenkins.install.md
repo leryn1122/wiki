@@ -141,7 +141,28 @@ java -jar jenkins-cli.jar -s https://jenkins.leryn.top/ -auth admin:1159a750229c
 Jenkins Crumb 实际上相当于其他 Web 服务中的 Token. 它用于防止 CSRF 攻击.<br />以下方式生产 Crumb:
 ```bash
 curl -XGET http://jenkins.domain.com/crumbIssuer/api/json --user admin:admin
+# 或者
+curl -XGET https://jenkins.leryn.top/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb) --user admin:admin
 ```
 ```json
 {"_class":"hudson.security.csrf.DefaultCrumbIssuer","crumb":"xxxxxx","crumbRequestField":"Jenkins-Crumb"}
+# 或者
+Jenkins-Crumb:xxxx
+```
+使用然后使用 Crumb + Authorization 触发流水线:
+```bash
+# 无参
+curl -XPOST https://jenkins.domain.com/job/$PROJECT/job/$PIPELINE/build \
+  -H 'Jenkins-Crumb:xxxx' \
+  -u admin:admin
+
+# 或者用表单提交参数
+curl -XPOST https://jenkins.domain.com/job/$PROJECT/job/$PIPELINE/buildWithParameters \
+  -H 'Jenkins-Crumb:xxxx' \
+  -u admin:admin \
+  -form xxxx
+```
+ 这个请求不会返回任何 Body, 但是响应的 Header 上 `Location` 中会返回唯一的 Queue ID.
+```bash
+http://jenkins.leryn.top/queue/item/313/
 ```
