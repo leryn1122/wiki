@@ -70,7 +70,7 @@ Helm 高于 v3.7.0, 加入了 `helm push` 取代了原有 Chartmuseum 提供的 
 helm plugin install https://github.com/chartmuseum/helm-push.git
 helm plugin install https://ghproxy.com/https://github.com/chartmuseum/helm-push.git
 
-helm push sample-0.1.0.tgz mychartrepo
+helm push sample-0.1.0.tgz devchartrepo
 ```
 <a name="wXw7X"></a>
 # Helm Chart

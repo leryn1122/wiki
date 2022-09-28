@@ -42,7 +42,7 @@ docker exec jenkins \
 ```
 安装插件, 可能由于网络问题安装失败, 失败也可以在之后手动安装. 后续安装界面提示操作即可.
 <a name="OLwyH"></a>
-## Helm 安装
+## Helm 安装 (云环境推荐)
 参考文档:
 
 - [https://github.com/jenkinsci/helm-charts](https://github.com/jenkinsci/helm-charts)
@@ -78,7 +78,7 @@ git config --global url."https://ghproxy.com/https://github.com/".insteadOf "htt
 
 - [https://www.jenkins.io/doc/tutorials/build-a-java-app-with-maven/#run-jenkins-in-docker](https://www.jenkins.io/doc/tutorials/build-a-java-app-with-maven/#run-jenkins-in-docker)
 
-如果需要容器化部署 Jenkins 同时在 Pipeline 中调用 Docker 命令等等, 请按照以上文档中的步骤构建自己的 Jenkins-docker 镜像. 
+如果需要容器化部署 Jenkins 同时在 Pipeline 中调用 Docker 命令等等, 请按照以上文档中的步骤构建自己的 Jenkins-docker 镜像.
 ```bash
 docker build . -f Dockerfile -t harbor.leryn.top/infra/jenkins-docker:2.365-jdk11
 ```
@@ -129,8 +129,19 @@ USER jenkins
 
 ENTRYPOINT [ "/usr/local/bin/jenkins-agent" ]
 ```
+<a name="S75dd"></a>
+# 访问 Jenkins
 <a name="YyHxK"></a>
 ## Jenkins CLI
 ```bash
 java -jar jenkins-cli.jar -s https://jenkins.leryn.top/ -auth admin:1159a750229c40a61247baaff72f75b9b5 -webSocket help
+```
+<a name="R0yo2"></a>
+## Jenkins Crumb
+Jenkins Crumb 实际上相当于其他 Web 服务中的 Token. 它用于防止 CSRF 攻击.<br />以下方式生产 Crumb:
+```bash
+curl -XGET http://jenkins.domain.com/crumbIssuer/api/json --user admin:admin
+```
+```json
+{"_class":"hudson.security.csrf.DefaultCrumbIssuer","crumb":"xxxxxx","crumbRequestField":"Jenkins-Crumb"}
 ```
