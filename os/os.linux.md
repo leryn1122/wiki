@@ -1,35 +1,34 @@
 <a name="PGhuW"></a>
 # Linux 常见命令
-针对 Ubuntu, 原因提到过很多次:
+针对 Ubuntu, 原因提到过很多次：
 
-- 很多软件开发者都以 Ubuntu 作为开发机;
--  Linux 内核会为 OCI 让路, CentOS 发布模式跟不上内核修改的频率;
-- CentOS 的时代已经过去了;
+- 很多软件开发者都以 Ubuntu 作为开发机；
+-  Linux 内核会为 OCI 让路，CentOS 发布模式跟不上内核修改的频率；
+- CentOS 的时代已经过去了；
 
-如果你是用 Arch 等等资深用户, 请当以上放屁.
+如果你是用 Arch 等等资深用户，请当以上放屁。
 <a name="eqbyb"></a>
 ## 切换 oh-my-zsh
 
-oh-my-zsh 是一个预配置的 zsh , 性能比 zsh 差. 但好在免配置, zsh 手动配置比较复杂.
+oh-my-zsh 是一个预配置的 zsh，性能比 zsh 差。但好在免配置，zsh 手动配置比较复杂。
 <a name="ZOeHe"></a>
 ### 命令行安装
 
-1. 需要先安装 zsh:
+1. 需要先安装 zsh：
 ```bash
 apt update && apt install -y zsh
 ```
 
-2. 网络不通的话可以直接下载这个 shell 脚本的内容, 再执行:
+2. 网络不通的话可以直接下载这个 shell 脚本的内容，再执行：
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-3. 修改 `.zshrc`:
+3. 修改 `.zshrc`：
 ```bash
 ZSH_THEME="half-life"
 ```
-
-下面是搜罗的比较好看的主题, 加入到 `.zshrc` 末尾:
+下面是搜罗的比较好看的主题, 加入到 `.zshrc` 末尾：
 ```bash
 PROMPT=$'%{$purple%}%n%{$reset_color%} in %{$limegreen%}%~%{$reset_color%}$(ruby_prompt_info " with%{$fg[red]%} " v g "%{$reset_color%}")$vcs_info_msg_0_%{$orange%}%{$reset_color%} at %{$hotpink%}%* %{$orange%}λ%{$reset_color%} '
 ```
@@ -46,12 +45,11 @@ PROMPT=$'%{$purple%}%n%{$reset_color%} in %{$limegreen%}%~%{$reset_color%}$(ruby
 <a name="tslMZ"></a>
 ### Nerd 字体
 
-首先需要安装一套 Nerd 字体给 Terminal, 目的是为了能够显示特殊符号.
-
+首先需要安装一套 Nerd 字体给 Terminal，目的是为了能够显示特殊符号。
 <a name="xtUCf"></a>
 ### 安装 starship
 
-各种系统都提供了对应的安装方式, 我这里选择 Linux 默认:
+各种系统都提供了对应的安装方式，我这里选择 Linux 默认：
 ```bash
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 ```
@@ -59,7 +57,7 @@ sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 <a name="FIaAg"></a>
 ### 为指定 shell 启动 starship
 
-这是使用 bash 或者 zsh:
+这是使用 bash 或者 zsh：
 ```bash
 # ~/.bashrc
 eval "$(starship init bash)"
@@ -82,7 +80,7 @@ vim ~/.config/starship.toml
 
 - [nushell - GitHub](https://github.com/nushell/nushell)
 
-nushell 是一个 GitHub 开源的新式 shell, 基于 rust 编写. 目前还不能像其他 shell 一样通用.
+nushell 是一个 GitHub 开源的新式 shell，基于 rust 编写。目前还不能像其他 shell 一样通用。
 
 <a name="w9H08"></a>
 ### 命令行安装
@@ -102,13 +100,13 @@ chsh -s /usr/bin/nu
 
 适用**非生产环境**:
 
-清理`journalctl`的日志, 这块通常不会很大, 但是如果 daemon 服务经常报错, 那么会有占一部分空间:
+清理`journalctl`的日志，这块通常不会很大，但是如果 daemon 服务经常报错，那么会有占一部分空间：
 
 ```
 journalctl --vacuum-size=50M
 ```
 
-**非生产环境**推荐使用开源命令行工具. 在 TB 级别时, 请结合 `du -sh`再跳往较小的子目录上使用:
+**非生产环境**推荐使用开源命令行工具。在 TB 级别时，请结合 `du -sh`再跳往较小的子目录上使用：
 
 ```
 sudo ncdu /
@@ -118,7 +116,7 @@ sudo ncdu /
 <a name="vBngf"></a>
 ### 临时占用端口
 
-用于临时占用端口, 测试端口是否通.
+用于临时占用端口，测试端口是否通。
 
 ```bash
 nc -l <Port>
@@ -140,7 +138,7 @@ netplan apply
 <a name="Rh0Wz"></a>
 #### Centos 修改网卡
 
-如果使用克隆虚拟机的方式, 需要将 IP 地址改为静态 IP, 需要改两个配置文件. `ifcfg-eth0`的结尾应当和网络名保持一致, 这里以`eth0`为例. 需要保证同一子网中, MAC 地址和 UUID 应当是唯一的.
+如果使用克隆虚拟机的方式，需要将 IP 地址改为静态 IP，需要改两个配置文件。`ifcfg-eth0`的结尾应当和网络名保持一致，这里以`eth0`为例。需要保证同一子网中，MAC 地址和 UUID 应当是唯一的。
 
 ```bash
 # 文件名取决于网卡名
@@ -176,7 +174,7 @@ sudo vim /etc/udev/rules.d/70-persistent-net.rules
 SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:0c:29:db:22:a1", ATTR{type}=="1", KERNEL=="eth*", NAME="eth0"
 ```
 
-重启网卡服务, 如果有问题就重启, 如果仍然不能上网, 请确认配置是否正确.
+重启网卡服务，如果有问题就重启，如果仍然不能上网，请确认配置是否正确。
 
 ```bash
 service network restart
@@ -185,15 +183,15 @@ service network restart
 <a name="sdpdQ"></a>
 ## 磁盘扩容
 
-扩展服务器硬盘容量, 以超融合虚拟机为例, 操作系统为 CentOS 7, 其他操作系统或实体机可能不适用.
+扩展服务器硬盘容量，以超融合虚拟机为例，操作系统为 CentOS 7，其他操作系统或实体机可能不适用。
 <a name="E8MUM"></a>
 ### 准备
 
-扩展前先查看修改前的初始状态, 命令的意义后面会有解释.
+扩展前先查看修改前的初始状态，命令的意义后面会有解释。
 <a name="JUrlv"></a>
 ### 方式一: 现有磁盘扩容
 
-注意: 分区至多 3 块. 大于 3 则需要增加硬盘的方式.
+注意：分区至多 3 块。大于 3 则需要增加硬盘的方式。
 
 ```bash
 # 先看目前的分区情况
@@ -260,7 +258,7 @@ xfs_growfs /dev/mapper/centos-root
 <a name="ioMWr"></a>
 ## 定时任务
 
-Ubuntu 似乎没有默认配置邮件系统, 因此 crontab 报错时无法得到可靠错误信息. 安装 sendmail 即可:
+Ubuntu 似乎没有默认配置邮件系统，因此 crontab 报错时无法得到可靠错误信息。安装 sendmail 即可：
 ```bash
 # 安装 sendmail
 apt install -y sendmail
@@ -268,7 +266,7 @@ apt install -y sendmail
 # 查看 cron 日志
 tail -f /var/spool/mail/$(whoami)
 ```
-不推荐做以下内容, 你可能无法获得任何有效信息
+不推荐做以下内容，你可能无法获得任何有效信息。
 ```bash
 # 修改 rsyslog
 vim /etc/rsyslog.d/50-default.conf
@@ -285,13 +283,13 @@ tail -f /var/log/cron.log
 <a name="ubPDs"></a>
 ## XShell SSH 以外的数据包
 
-XShell 用 SSH 连接服务器出现:
+XShell 用 SSH 连接服务器出现：
 > 服务器发送了一个意外的数据包.
 > received:3,expected:20
 
 **解决方法**
 
-在`/etc/ssh/sshd_config`结尾添加一行记录, 然后重启 sshd
+在`/etc/ssh/sshd_config`结尾添加一行记录，然后重启 sshd
 
 ```bash
 sudo vim /etc/ssh/sshd_config
@@ -307,7 +305,7 @@ systemctl restart sshd
 <a name="tUlEF"></a>
 ## sshwifty - 开源 Web SSH
 
-开源的 Web SSH 应用.
+开源的 Web SSH 应用。
 
 ```bash
 openssl req \

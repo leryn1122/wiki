@@ -7,11 +7,11 @@
 <a name="goppM"></a>
 ## 安装方式的选择
 
-- 可以使用 docker 安装, 但不是很推荐, 因为 docker 容器中没有对应的工具链. 你可以使用 Dockerfile 构造含有相应工具链的开发环境, 但如果需要比较多的工具时, 不是非常方便. 我本人需要多语言开发环境, 同时需要 debug 调试
-- 可以使用 debian 或者 rpm 安装, 但是我的网速优先安装不成功.
-- 因此使用了二进制安装, 并 Systemd 的方式启动.
+- 可以使用 docker 安装，但不是很推荐，因为 docker 容器中没有对应的工具链. 你可以使用 Dockerfile 构造含有相应工具链的开发环境，但如果需要比较多的工具时，不是非常方便. 我本人需要多语言开发环境，同时需要 debug 调试。
+- 可以使用 debian 或者 rpm 安装，但是我的网速优先安装不成功。
+- 因此使用了二进制安装，并 Systemd 的方式启动。
 
-目前有安全隐患~~ (~~`~~root~~`~~ 开启终端直接进入本地, 这是隐患不是 bug) ~~还没时间解决, 官方也建议使用非 `root` 来运行这个 Code Server.
+目前有安全隐患~~ (~~`~~root~~`~~ 开启终端直接进入本地，这是隐患不是 bug) ~~还没时间解决，官方也建议使用非 `root` 来运行这个 Code Server。
 <a name="EX3VV"></a>
 ## Docker 安装
 ```bash
@@ -43,7 +43,7 @@ docker run \
   --volume=/opt/project:/opt/project \
   harbor.leryn.top/infra/code-server:nightly
 ```
-Dockerfile 例子, 构造一个含有多语言工具链的镜像, 镜像体积可能会比较大.
+Dockerfile 例子，构造一个含有多语言工具链的镜像，镜像体积可能会比较大。
 ```dockerfile
 FROM codercom/code-server:latest
 
