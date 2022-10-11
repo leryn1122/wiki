@@ -1,7 +1,7 @@
 
 参考文档：
 
-- [https://prometheus.io/docs/alerting/latest/configuration/#webhook_config](https://prometheus.io/docs/alerting/latest/configuration/#webhook_config)
+- [AlertManager Webhook Configuration - Prometheus 官网](https://prometheus.io/docs/alerting/latest/configuration/#webhook_config)
 <a name="aAk6M"></a>
 ## AlertManager Webhook
 AlertManager 推送的告警 JOSN 格式：

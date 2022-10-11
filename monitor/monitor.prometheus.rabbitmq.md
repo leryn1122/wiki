@@ -2,8 +2,8 @@
 # RabbitMQ Prometheus 监控
 参考文档:
 
-- [https://www.rabbitmq.com/prometheus.html](https://www.rabbitmq.com/prometheus.html)
-- [https://grafana.com/grafana/dashboards/10991-rabbitmq-overview/](https://grafana.com/grafana/dashboards/10991-rabbitmq-overview/)
+- [RabbitMQ Prometheus 插件 - RabbitMQ 官网](https://www.rabbitmq.com/prometheus.html)
+- [RabbitMQ Dashboard - Grafana 官网](https://grafana.com/grafana/dashboards/10991-rabbitmq-overview/)
 <a name="dL2Pm"></a>
 ## 监控插件安装
 RabbitMQ 已经内置了 Prometheus 插件，所以直接通过命令行开启，无需其他的 Exporter。<br />在 RabbitMQ 集群上所有服务器执行以下指令，开启 RabbitMQ 自带的 Prometheus 监控插件：

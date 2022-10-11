@@ -2,8 +2,8 @@
 # Redis Exporter Prometheus 监控<br />![](https://cloud.drone.io/api/badges/oliver006/redis_exporter/status.svg#crop=0&crop=0&crop=1&crop=1&id=eBwiq&originHeight=20&originWidth=91&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://coveralls.io/repos/github/oliver006/redis_exporter/badge.svg?branch=master#crop=0&crop=0&crop=1&crop=1&id=d7dDD&originHeight=20&originWidth=99&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://codecov.io/gh/oliver006/redis_exporter/branch/master/graph/badge.svg#crop=0&crop=0&crop=1&crop=1&id=EFE0h&originHeight=20&originWidth=112&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/docker/pulls/oliver006/redis_exporter.svg#crop=0&crop=0&crop=1&crop=1&id=zUskV&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 参考文档:
 
-- [https://github.com/oliver006/redis_exporter](https://github.com/oliver006/redis_exporter)
-- [https://grafana.com/grafana/dashboards/11835-redis-dashboard-for-prometheus-redis-exporter-helm-stable-redis-ha](https://grafana.com/grafana/dashboards/11835-redis-dashboard-for-prometheus-redis-exporter-helm-stable-redis-ha)
+- [oliver006/redis_exporter - GitHub](https://github.com/oliver006/redis_exporter)
+- [Redis Export Dashboard - Grafana 官网](https://grafana.com/grafana/dashboards/11835-redis-dashboard-for-prometheus-redis-exporter-helm-stable-redis-ha)
 
 这个 Exporter 已经被 Prometheus 官方采纳了，并作为官网解决方案了：<br />新建配置文件：`/etc/redis_exporter/redis_exporter.conf`
 ```toml
