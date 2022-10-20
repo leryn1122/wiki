@@ -1,10 +1,8 @@
-
-![](https://s3.leryn.top/website/image/minikube.png#crop=0&crop=0&crop=1&crop=1&height=243&id=vyoa5&originHeight=1552&originWidth=1600&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=250)
 <a name="THAKk"></a>
 # Minikube - Kubernetes 集群部署
-Minikube 是一个单机 Kubernetes 的解决方案, 以下称为`minikube`.
+Minikube 是一个单机 Kubernetes 的解决方案，以下称为`minikube`。
 
-参考文档:
+参考文档：
 
 - [Minikube - 官方入门文档](https://minikube.sigs.k8s.io/docs/start/)
 <a name="zGwrq"></a>
@@ -12,7 +10,7 @@ Minikube 是一个单机 Kubernetes 的解决方案, 以下称为`minikube`.
 <a name="h9h1t"></a>
 ### 安装 kubectl
 
-`kubectl` 这个命令在`minikube`中是可选的, 这里默认选择安装. 如果不安装的话, 后续可以使用复杂的命令代替. 这里顺便把三个客户端工具`kubectl`, `kubelet`, `kubeadm`都安装上.<br />参考[K8S - 官方文档](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin)
+`kubectl` 这个命令在`minikube`中是可选的，这里默认选择安装。如果不安装的话，后续可以使用复杂的命令代替。这里顺便把三个客户端工具`kubectl`，`kubelet`，`kubeadm`都安装上。<br />参考[K8S - 官方文档](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin)
 
 ```bash
 # 添加apt key
