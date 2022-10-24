@@ -17,8 +17,9 @@ echo "Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/x86_64" >> msys6
 ```bash
 pacman -Sy
 pacman -Su
-pacman -S mingw64/mingw-w64-x86_64-make \
-          mingw64/mingw-w64-x86_64-gdb \
-          mingw64/mingw-w64-x86_64-clang
+pacman -S \
+  mingw64/mingw-w64-x86_64-make \
+  mingw64/mingw-w64-x86_64-gdb \
+  mingw64/mingw-w64-x86_64-clang
 ```
 
