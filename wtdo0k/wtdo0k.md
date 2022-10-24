@@ -1,11 +1,11 @@
 <a name="FaUlf"></a>
-# Rust
+# Rust 环境安装
 参考文档：
 
-- [Rust - 官网](https://www.rust-lang.org)
-- [Rust 下载界面 - 官网](https://www.rust-lang.org/tools/install)
-- [Rust 安装 - 官网](https://forge.rust-lang.org/infra/other-installation-methods.html)
-- [更换 cargo 源 - Rust 中文文档](https://cargo.budshome.com/reference/source-replacement.html)
+- [https://www.rust-lang.org](https://www.rust-lang.org)
+- [https://www.rust-lang.org/tools/install](https://www.rust-lang.org/tools/install)
+- [https://forge.rust-lang.org/infra/other-installation-methods.html](https://forge.rust-lang.org/infra/other-installation-methods.html)
+- [https://cargo.budshome.com/reference/source-replacement.html](https://cargo.budshome.com/reference/source-replacement.html)
 <a name="HTbvx"></a>
 ## 安装包安装
 Rust 官方提供了最简单的下载安装方式，一键安装 Rust 环境（Rust 的非常**干净**）。打开 rust 官网会自动检测浏览器当前的系统，提供对应系统上的命令：
@@ -62,7 +62,7 @@ rustup self uninstall
 - [Visual Studio - MS官网下载](https://visualstudio.microsoft.com/downloads/)
 - [msys2 - 官网](https://www.msys2.org/)
 
-有两种模式：msvc 模式和 gnu 模式。<br />前者按照官网的指示下载 Microsoft 的 Cpp 工具即可。大约需要 8 ~ 9G 硬盘空间。后者需要安装 mingw 或者 mysy2 然后根据一下的步骤配置切换工具链即可，切换工具链时，会自动重新下载对应的工具链。<br />如果无法使用可以配置环境变量：
+有两种模式：MVSC 模式和 gnu 模式。<br />前者按照官网的指示下载 Microsoft 的 C++ 工具即可。大约需要 8 ~ 9G 硬盘空间。后者需要安装 MinGW 或者 mysy2 然后根据一下的步骤配置切换工具链即可，切换工具链时，会自动重新下载对应的工具链。<br />如果无法使用可以配置环境变量：
 ```bash
 cat <<\EOF >> ~/.bashrc
 PATH=~/.cargo/bin:$PATH
@@ -106,34 +106,4 @@ registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
 # rustcc社区
 [source.rustcc]
 registry = "https://code.aliyun.com/rustcc/crates.io-index.git"
-```
-<a name="a81eZ"></a>
-## 二进制手动安装
-如果需要问题复杂化，可以使用如下安装方式。部署准备, 安装前需要准备如下材料：
-
-- Rust 安装包
-<a name="PJlT9"></a>
-### 前置准备
-```bash
-wget https://static.rust-lang.org/dist/rust-1.51.0-x86_64-unknown-linux-gnu.tar.gz
-```
-<a name="KZbZ7"></a>
-### 安装步骤
-配置 Rust 环境变量，并使其生效。
-```bash
-# Set Rust environment.
-export RUST_HOME=/opt/module/rust-1.51.0
-export PATH=${PATH}:${RUST_HOME}/rustc/bin
-```
-解压安装包到指定路径。
-```bash
-tar -xf rust-1.51.0-x86_64-unknown-linux-gnu.tar.gz
-mv rust-1.51.0-x86_64-unknown-linux-gnu ${RUST_HOME}
-```
-验证 Rust 是否安装成功，使用命令查看版本，如果可以正确显示版本信息则安装成功。
-```bash
-rustc --version
-```
-```
-rustc 1.51.0 (2fd73fabe 2021-03-23)
 ```
