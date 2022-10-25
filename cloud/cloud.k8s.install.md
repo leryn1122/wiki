@@ -5,7 +5,7 @@
 前置准备：
 
 - 安装前置依赖
-- 安装 Docker，或者其他容器运行时
+- 安装 Docker，或者其他容器运行时（个人目前使用 Docker）
 
 安装前置依赖：
 ```bash
@@ -196,6 +196,12 @@ kubeadm reset
 systemctl daemon-reload
 systemctl restart kubelet
 ```
+初始化进群后，根据提示生产配置文件：
+```bash
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
 如果超过 24 小时，Token 会自动过期，用以下命令生成新的 Token：
 ```bash
 kubeadm token create --print-join-command
@@ -204,11 +210,12 @@ kubeadm token create --print-join-command
 ```bash
 # APIServer 开启8080端口 所有master节点都修改
 vim /etc/kubernetes/manifests/kube-apiserver.yaml
-# --insecure-port=8080 
+# 修改内容: --insecure-port=8080 
 
-# kubectl get cs 状态是 unhealthy, 删除下面文件的配置 port=0 这一行
+# kubectl get cs 状态是 unhealthy
 vim /etc/kubernetes/manifests/kube-scheduler.yaml
 vim /etc/kubernetes/manifests/kube-controller-manager.yaml
+# 删除下面文件的配置 port=0 这一行
 
 #  集群开放 30000 以下的端口, 需要手动修改 kubelet 的配置文件
 vim /etc/kubernetes/manifests/kube-apiserver.yaml 
@@ -217,9 +224,15 @@ vim /etc/kubernetes/manifests/kube-apiserver.yaml
 安装 CNI 网络插件：
 
 - 虽然不安装网络插件无法让 Kubernetes 集群通讯，但是 Kubernetes 官方认为 CNI 不是它的范围，也没有提供默认的网络设施。
-- CNI 网络插件实现非常多：Weave，Flannel，Calico 等等。这里安装 Weave，因为我司用的 Weave，但它不是目前最好的实现。
+- CNI 网络插件实现非常多：weave，flannel，calico 等等。这里安装 Weave，因为我司用的 Weave，但它不是目前最好的实现。
+
+weave：[https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#-installation](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#-installation)<br />flannel：[https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml](https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml)<br />calico：[https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart](https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart)
 ```bash
+# 这个地址似乎近期失效了
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+
+# 也可以用以下地址下载对应版本
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 ```
 安装完成后，验证集群：
 ```bash
