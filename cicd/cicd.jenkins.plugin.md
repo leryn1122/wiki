@@ -43,3 +43,11 @@
 - 上图中挑个色号填入下文链接中的 `{{your-color-name}}` ，保存到上文配置处。
 > https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-{{your-color-name}}.css
 
+
+```yaml
+unclassified:
+  simple-theme-plugin:
+    elements:
+    - cssUrl:
+        url: "https://cdn.jsdelivr.net/gh/afonsof/jenkins-material-theme@gh-pages/dist/material-amber.css"
+```
