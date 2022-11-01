@@ -44,7 +44,7 @@ Windows 安装直接下载对应的二进制安装程序 `rustup-init.exe` 即�
 安装完后测试命令：
 ```bash
 rustc --version
-cargo versuib
+cargo version
 ```
 卸载和升级也非常的方便：
 ```bash
