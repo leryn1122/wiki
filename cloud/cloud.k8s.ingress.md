@@ -148,12 +148,28 @@ kubectl apply -f leryn.top.yaml
 ```
 更新 Ingress-controller：
 ```bash
-helm install gateway bitnami/nginx-ingress-controller -n gateway \
+helm install gateway bitnami/nginx-ingress-controller -n ingress-nginx \
+  --set extraArgs.ingress-class="nginx" \
   --set extraArgs.default-ssl-certificate="default/leryn.top" \
   --set config.use-gzip="true" \
   --set config.gzip-level="6" \
   --set config.gzip-min-length="1k" \
+  --set config.client-body-buffer-size="1G" \
   --set defaultBackend.enabled="false"
+```
+```yaml
+ingressClassResource:
+  default: true
+extraArgs:
+  default-ssl-certificate: "default/leryn.top"
+  ingress-class: nginx
+config:
+  use-gzip: "true"
+  gzip-level: "6"
+  gzip-min-length: "1k"
+  client-body-buffer-size: "1G"
+defaultBackend:
+  enabled: "false"
 ```
 <a name="gdDAi"></a>
 ### 路由规则
