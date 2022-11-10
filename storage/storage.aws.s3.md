@@ -10,12 +10,12 @@ OSS 完全符合 Amazon S3 的规范，所有文档参考 Amazon S3 文档即可
 ## 介绍
 界面上配置 S3 用户，之后会拿到两个密钥：访问密钥（Access Key）和安全密钥（Secret Key），需要妥善保存，有点类似于 Oauth2 中的 ClientId 和 ClientSecret。<br />存储桶是 S3 中的对象容器，通俗的话可以理解成文件系统的驱动器（C 盘，D 盘）。存储桶名是全局唯一的，不能重复创建。桶之间的对象是隔离的，除非你明确转移桶内的资源存储桶中的对象。<br />对象用存储桶名和本身键名唯一确定。键名可以是一个类似于文件路径的字符串。
 <a name="J1tNW"></a>
-## 目录挂载
+## FUSE
 参考文档：
 
 - [https://github.com/s3fs-fuse/s3fs-fuse](https://github.com/s3fs-fuse/s3fs-fuse)
 
-介绍 SDK 前，我们先来用命令行感受一下，过程会像 nfsmount 一样，先安装客户端：
+介绍 SDK 前，我们先来用 FUSE 的命令行感受一下，过程会像 nfsmount 一样，先安装客户端：
 ```bash
 # Debain/Ubuntu
 apt install s3fs
