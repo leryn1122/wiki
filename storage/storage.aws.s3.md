@@ -26,7 +26,7 @@ yum install -y s3fs-fuse
 ```
 然后执行命令挂载存储桶：
 ```bash
-# 必须是
+# 必须是600权限
 echo ACCESS_KEY_ID:SECRET_ACCESS_KEY > /etc/passwd-s3fs
 chmod 600 /etc/passwd-s3fs
 
