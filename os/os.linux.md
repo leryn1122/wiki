@@ -111,8 +111,8 @@ journalctl --vacuum-size=50M
 ```
 sudo ncdu /
 ```
-<a name="x9Vk3"></a>
-# 网络有关
+<a name="diLbG"></a>
+## 网络有关
 <a name="vBngf"></a>
 ### 临时占用端口
 
