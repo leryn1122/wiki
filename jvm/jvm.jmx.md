@@ -1,4 +1,3 @@
-
 <a name="UXnj4"></a>
 ## JVM 原生工具
 
@@ -51,7 +50,7 @@ env:
 
 - 把 `jmx_prometheus_javaagent-0.16.1.jar` 用 PV 挂载到 `/usr/local/jmx/`
 - 把 `jmx-config.yaml` 用 ConfigMap 挂载到 `/opt/jmx-config.yaml`
-
+- SpringBoot Web 项目在配置文件中开启 `server.tomcat.mbeanregistry.enabled=true` 启用 Tomcat 的监控配置
 ```yaml
           volumeMounts:
             - name: jmx-exporter-volume
