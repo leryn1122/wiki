@@ -10,7 +10,7 @@
 <a name="rNTp5"></a>
 ### 安装步骤
 ```bash
-apt-get update && apt-get install -y \
+apt update && apt install -y \
   apt-transport-https ca-certificates curl software-properties-common gnupg2
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
@@ -20,7 +20,7 @@ add-apt-repository \
 $(lsb_release -cs) \
 stable"
 
-apt-get update && apt-get install -y \
+apt update && apt install -y \
   containerd.io docker-ce docker-ce-cli
 
 cat > /etc/docker/daemon.json <<EOF
@@ -30,9 +30,6 @@ cat > /etc/docker/daemon.json <<EOF
     "https://registry.docker-cn.com",
     "https://hub-mirror.c.163.com",
     "https://harbor.leryn.top"
-  ],
-  "insecure-registry": [
-    "121.196.30.39"
   ],
   "exec-opts": ["native.cgroupdriver=systemd"],
   "log-driver": "json-file",

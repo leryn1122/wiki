@@ -1,31 +1,24 @@
-![](https://s3.leryn.top/website/image/nodejs.svg#crop=0&crop=0&crop=1&crop=1&height=150&id=bDu7i&originHeight=2500&originWidth=2270&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=136)![](https://nodejs.org/static/images/logo.svg#crop=0&crop=0&crop=1&crop=1&height=150&id=obydF&originHeight=361&originWidth=590&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=245)
 <a name="rUR6U"></a>
 # Node.js 安装手册
-
-参考文档:
+参考文档：
 
 - [Node.js - 官网](https://nodejs.org/en/)
 - [如何在 Ubuntu 20.04 上安装 Node.js - DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
-
 <a name="QOtgg"></a>
 ## 包管理器安装（推荐）
 <a name="qx7nu"></a>
 ### 安装步骤
-
 如果你使用默认存储库安装带有 Apt 的 Node.js, 下载的版本会比较古老. 所以请使用 NodeSource PPA 安装带有 Apt 的 Node.js. PPA 拥有比官方 ubuntu 存储库更多的 Node.js 版本.
-
 ```bash
 curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 sudo apt update
 sudo apt install -y nodejs
 ```
-
 ```bash
 # nodejs包包含node二进制和npm
 node -v
 ```
-
 <a name="RHkt8"></a>
 ## 二进制安装（不推荐）
 <a name="KOQKX"></a>

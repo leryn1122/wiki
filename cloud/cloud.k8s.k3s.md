@@ -17,9 +17,9 @@ K3S 是 Rancher 官方提出的轻量级 Kubernetes，阉割或降级了很多 K
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik" sh -s - --docker
 
 # 国内加速使用
-curl -sfL http://rancher-mirror.cnrancher.com/k3s/k3s-install.sh | \
+curl -sfL https://rancher-mirror.oss-cn-beijing.aliyuncs.com/k3s/k3s-install.sh | \
   INSTALL_K3S_MIRROR=cn \
-  INSTALL_K3S_EXEC="--no-deploy traefik " sh -s - --docker
+  INSTALL_K3S_EXEC="--disable traefik " sh -s - --docker
 ```
 
 如果失败了, `journactl -xe` 提示：

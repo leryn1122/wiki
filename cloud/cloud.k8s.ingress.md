@@ -148,7 +148,7 @@ kubectl apply -f leryn.top.yaml
 ```
 更新 Ingress-controller：
 ```bash
-helm install gateway bitnami/nginx-ingress-controller -n ingress-nginx \
+helm install ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx \
   --set extraArgs.ingress-class="nginx" \
   --set extraArgs.default-ssl-certificate="default/leryn.top" \
   --set config.use-gzip="true" \
