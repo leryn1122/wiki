@@ -121,33 +121,33 @@ spec:
 ```bash
 # 登录并保存 cookie
 curl -ik -XPOST \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
--d '{"auth": "admin", "password": "cangetin"}' \
-http://ansible.mydomain.com/api/auth/login
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -d '{"auth": "admin", "password": "cangetin"}' \
+  http://ansible.mydomain.com/api/auth/login
 
 # 带 cookie 生成永久 token
 curl -ik -XPOST \
--b /tmp/semaphore-cookie \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
-http://ansible.mydomain.com/api/user/tokens
+  -b /tmp/semaphore-cookie \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  http://ansible.mydomain.com/api/user/tokens
 # id 就是 token
 # {"id":"rqxvmlutifi-yfxphq2k0vf3t-xxxxxxxxxxxxx","created":"2022-09-06T08:10:11Z","expired":false,"user_id":1}
 
 # 之后的请求 Basic Auth 带上 Token 即可
 # 查看 Project 下的 Task
 curl -ik -XGET \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
--H 'Authorization: Bearer rqxvmlutifi-yfxphq2k0vf3t-xxxxxxxxxxxxx' \
-http://ansible.mydomain.com/api/projects
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer rqxvmlutifi-yfxphq2k0vf3t-xxxxxxxxxxxxx' \
+  http://ansible.mydomain.com/api/projects
 
 # 启动一个 Task
 curl -ik -XPOST \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
--H 'Authorization: Bearer rqxvmlutifi-yfxphq2k0vf3t-xxxxxxxxxxxxx' \
--d '{"template_id": 3}' \
-http://ansible.mydomain.com/api/project/1/tasks
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer rqxvmlutifi-yfxphq2k0vf3t-xxxxxxxxxxxxx' \
+  -d '{"template_id": 3}' \
+  http://ansible.mydomain.com/api/project/1/tasks
 ```
