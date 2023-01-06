@@ -153,3 +153,60 @@ URL url = amazonS3.generatePresignedUrl(bucketName, objectKeyName, expiration);
 
 amazonS3.shutdown();
 ```
+<a name="CUiAn"></a>
+## Kubernetes CSI
+需要安装：
+
+- Kubernetes 1.16+以上版本；
+- s3fs FUSE；
+- 允许特权容器；
+- Docker daemon 开启 Systemd flag `MountFlags=shared`；
+```bash
+sudo apt install s3fs
+
+# 检查是否是 MountFlags=shared
+sudo systemctl show --property=MountFlags docker.service
+
+# 如果结果请在docker.service中的Service下添加, 并重启docker daemon
+[Service]
+MountFlags=shared
+
+sudo systemctl daemon-reload
+sudo systemctl restart docker.service
+```
+按照 [https://github.com/majst01/csi-driver-s3/tree/master/deploy/kubernetes](https://github.com/majst01/csi-driver-s3/tree/master/deploy/kubernetes) 这个项目目录下安装所有的 YAML，需要按照需求来创建 Secret。
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: csi-driver-s3-secret
+  namespace: kube-system
+stringData:
+  accessKeyID: <YOUR_ACCESS_KEY_ID>
+  secretAccessKey: <YOUR_SECRET_ACCES_KEY>
+  # For AWS set it to "https://s3.<region>.amazonaws.com"
+  endpoint: https://s3.eu-central-1.amazonaws.com
+  # If not on S3, set it to ""
+  region: <S3_REGION>
+```
+然后按照自己的需求创建 PVC，StorageClass 指定为 `csi-driver-s3`，它会自动为你创建对应的对象存储桶和 PV，并绑定PV。
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-driver-s3-pvc
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: csi-driver-s3
+```
+<a name="XaUHo"></a>
+### 注意事项
+
+- 如果删除 PVC，那么数据桶内的资源会保存。但新建同名 PVC 时，会重新创建新的数据桶。
+- 数据桶创建时无法修改是否开启版本控制等选项。
+- 数据桶创建文件默认为 `application/octet-stream`，有些 S3 服务中可能会与预期的行为不一致。
