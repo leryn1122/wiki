@@ -64,7 +64,7 @@ s3fs mybucket /path/to/mount -o passwd_file=/etc/passwd-s3fs -o url=https://oss.
 ```
 <a name="58e6667b"></a>
 #### 常见的 SDK
-如果需要自学可以低价开通阿里云 OSS 服务，使用阿里云的 SDK，和 AmazonS3 基本大同小异，大部分情况只是换个包名。
+如果需要自学可以低价开通阿里云 OSS 服务，使用阿里云的 SDK，和 AmazonS3 基本大同小异，大部分情况只是换个包名和类名。
 ```xml
 <mirrors>
     <mirror>
@@ -157,7 +157,7 @@ amazonS3.shutdown();
 ## Kubernetes CSI
 需要安装：
 
-- Kubernetes 1.16+以上版本；
+- Kubernetes 1.16+ 以上版本；
 - s3fs FUSE；
 - 允许特权容器；
 - Docker daemon 开启 Systemd flag `MountFlags=shared`；
