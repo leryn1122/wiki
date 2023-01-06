@@ -103,3 +103,13 @@ KillMode=process
 WantedBy=multi-user.target
 ```
 ![image.png](./../assets/1655637697308-ce727a7b-22cf-4ee1-9105-f0ed83a12435.png)
+<a name="KovwN"></a>
+# Opensumi
+```bash
+docker run -itd \
+           --publish=8001:8000/tcp \
+           --memory=256m \
+           --name=opensumi \
+           --volume=/opt/opensumi:/workspace \
+           ghcr.io/opensumi/opensumi-web:latest
+```
