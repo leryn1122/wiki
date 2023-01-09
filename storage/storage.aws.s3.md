@@ -36,7 +36,10 @@ mkdir /path/to/mount
 s3fs mybucket /path/to/mount -o passwd_file=/etc/passwd-s3fs
 
 # 如果是非 AWS 实现需要加 URL 和 use_path_request_style
-s3fs mybucket /path/to/mount -o passwd_file=/etc/passwd-s3fs -o url=https://oss.leryn.top/ -o use_path_request_style
+s3fs mybucket /path/to/mount \
+  -o passwd_file=/etc/passwd-s3fs \
+  -o url=https://oss.leryn.top/ \
+  -o use_path_request_style
 ```
 <a name="SDK"></a>
 ## SDK
