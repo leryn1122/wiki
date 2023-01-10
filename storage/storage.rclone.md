@@ -21,7 +21,7 @@ sudo -v ; curl https://rclone.org/install.sh | sudo bash
 <a name="eHbGd"></a>
 ### FUSE（Linux）
 Linux 下安装文件协议对应的 FUSE 即可。
-```vbnet
+```bash
 sudo apt install -y nfs-common s3fs
 ```
 <a name="I649Z"></a>

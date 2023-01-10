@@ -34,11 +34,14 @@ docker run \
 参考文档：
 
 - [https://github.com/minio/minio/tree/master/helm/minio](https://github.com/minio/minio/tree/master/helm/minio)
+
+较新的 MinIO 调整了网关，暂时使用老版本的 Chart。
 ```bash
 helm repo add minio https://charts.min.io/
 helm repo update
 
 helm install minio minio/minio -n oss \
+  --version 4.0.14 \
   --set consoleIngress.enabled=true                    \
   --set consoleIngress.hosts={oss-console.leryn.top}   \
   --set consoleIngress.ingressClassName=nginx          \

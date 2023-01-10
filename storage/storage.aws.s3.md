@@ -2,8 +2,8 @@
 # Amazon S3 对象存储
 参考文档：
 
-- 
-- 
+- [https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/Welcome.html](https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/Welcome.html)
+- [https://help.aliyun.com/document_detail/32007.html](https://help.aliyun.com/document_detail/32007.html)
 
 OSS 完全符合 Amazon S3 的规范，所有文档参考 Amazon S3 文档即可。<br />S3 适合维护了一个扁平化的索引，不存在传统意义上的文件夹的概念。适合大量小文件的存储以及读多写少的场景。
 <a name="61a3ec66"></a>
@@ -38,7 +38,7 @@ s3fs mybucket /path/to/mount -o passwd_file=/etc/passwd-s3fs
 # 如果是非 AWS 实现需要加 URL 和 use_path_request_style
 s3fs mybucket /path/to/mount \
   -o passwd_file=/etc/passwd-s3fs \
-  -o url=https://oss.leryn.top/ \
+  -o url=https://oss.domain.com/ \
   -o use_path_request_style
 ```
 <a name="SDK"></a>
@@ -170,7 +170,7 @@ sudo apt install s3fs
 # 检查是否是 MountFlags=shared
 sudo systemctl show --property=MountFlags docker.service
 
-# 如果结果请在docker.service中的Service下添加, 并重启docker daemon
+# 如果结果不为空, 请在docker.service中的Service下添加, 并重启docker daemon
 [Service]
 MountFlags=shared
 
@@ -213,3 +213,5 @@ spec:
 - 如果删除 PVC，那么数据桶内的资源会保存。但新建同名 PVC 时，会重新创建新的数据桶。
 - 数据桶创建时无法修改是否开启版本控制等选项。
 - 数据桶创建文件默认为 `application/octet-stream`，有些 S3 服务中可能会与预期的行为不一致。
+
+
