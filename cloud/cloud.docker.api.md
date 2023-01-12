@@ -43,6 +43,8 @@ docker container prune --filter "until=24h"
 docker volume prune
 # 删除无用的网络
 docker network prune
+# 
+docker builder prune
 ```
 <a name="jHTDC"></a>
 ### 手动清除

@@ -15,5 +15,13 @@ docker run \
   --publish=8200:8200 \
   --hostname=vault \
   --name=vault \
-  vault server
+  vault:1.12.2 server
+
+docker run \
+  --cap-add=IPC_LOCK \
+  --detach=true \
+  --publish=8200:8200 \
+  --hostname=vault \
+  --name=vault \
+  vault:1.12.2 server
 ```
