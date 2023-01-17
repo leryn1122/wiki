@@ -10,7 +10,7 @@ sudo apt install nfs-kernel-server
 **CentOS 系统**
 ```bash
 sudo yum install nfs-utils rpcbind
-sudp systemctl start nfs-server.service
+sudo systemctl start nfs-server.service
 ```
 <a name="jkqL9"></a>
 ## 客户端安装
