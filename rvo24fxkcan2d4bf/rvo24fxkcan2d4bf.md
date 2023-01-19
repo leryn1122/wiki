@@ -39,7 +39,7 @@ fio -filename=/mnt/s3/perf.txt -rw=read \
 - `bs=4k` 单次io的块文件大小为 4k；
 - `size=5G` 本次的测试文件大小为 5g，以每次 4k 的 IO 进行测试；
 - `numjobs=8` 测试线程为 8；（需要根据测试的cpu线程数做对应修改）
-- `name=job` 一个任务的名字，重复了也没关系；
+- `name=job` 一个任务的名字，重复了也没关系； 
 - `thread` 使用 pthread_create 创建线程，另一种是 fork 创建进程。进程的开销比线程要大，一般都采用thread测试；
 - `group_reporting` 关于显示结果的，汇总每个进程的信息；
 - `runtime=120` 测试时间为 120 秒，如果不写则一直将 5g 文件分 4k 每次写完为止；
