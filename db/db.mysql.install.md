@@ -1,6 +1,6 @@
 <a name="WQvJl"></a>
 # MySQL
-![](https://img.shields.io/static/v1?label=MySQL&message=2.7.0&color=blue&style=plastic&logo=MySQL&logoColor=white?longCache=true#crop=0&crop=0&crop=1&crop=1&id=EjlTS&originHeight=18&originWidth=105&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />Reference:
+![](https://img.shields.io/static/v1?label=MySQL&message=2.7.0&color=blue&style=plastic&logo=MySQL&logoColor=white?longCache=true#id=EjlTS&originHeight=18&originWidth=105&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />Reference:
 
 - [MySQL - 官网](https://www.mysql.com/)
 - Mysql5.7 - 一键安装脚本 - cnblogs - 作者: 小豹子加油

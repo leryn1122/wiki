@@ -1,4 +1,4 @@
-![](https://s3.leryn.top/website/image/portainer.svg#crop=0&crop=0&crop=1&crop=1&height=201&id=xQbLD&originHeight=731&originWidth=2500&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=687)
+![](https://s3.leryn.top/website/image/portainer.svg#height=201&id=xQbLD&originHeight=731&originWidth=2500&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=687)
 <a name="lRq53"></a>
 # Portainer 安装手册
 参考文档:

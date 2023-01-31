@@ -4,7 +4,7 @@
 <a name="MoZPj"></a>
 ## CI/CD 流程
 
-![](https://cdn.mirantis.com/wp-content/uploads/2020/01/cicd.png#crop=0&crop=0&crop=1&crop=1&id=ugeMe&originHeight=902&originWidth=1600&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://miao-blog-md.oss-cn-qingdao.aliyuncs.com/img/ae6987f7e22871a3e891fbbf6468096f.png#crop=0&crop=0&crop=1&crop=1&id=SITf2&originHeight=668&originWidth=890&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />实践下来, 目前 rancher 是最简单的解决方案. 可惜暂时不支持 gitee 或 gitea, 仅仅支持 gitlab 和 github.<br />helm 目前是一个比较难上手的 yaml 模板渲染工具, 使用架构师已经写好的 template 定制化公司内部的框架开发.
+![](https://cdn.mirantis.com/wp-content/uploads/2020/01/cicd.png#id=ugeMe&originHeight=902&originWidth=1600&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://miao-blog-md.oss-cn-qingdao.aliyuncs.com/img/ae6987f7e22871a3e891fbbf6468096f.png#id=SITf2&originHeight=668&originWidth=890&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />实践下来, 目前 rancher 是最简单的解决方案. 可惜暂时不支持 gitee 或 gitea, 仅仅支持 gitlab 和 github.<br />helm 目前是一个比较难上手的 yaml 模板渲染工具, 使用架构师已经写好的 template 定制化公司内部的框架开发.
 
 我司的 CI/CD 流程:
 

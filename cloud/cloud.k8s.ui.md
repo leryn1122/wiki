@@ -23,7 +23,7 @@ k9s
 <a name="Jmipg"></a>
 # Rancher 
 <a name="RtgXw"></a>
-# ![](https://s3.leryn.top/website/image/rancher.svg#clientId=u9017040e-6af7-4&crop=0&crop=0&crop=1&crop=1&height=235&id=srr4t&originHeight=150&originWidth=295&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u99dbd0a2-23c9-49e1-9347-027e47648a8&title=&width=462)
+# ![](https://s3.leryn.top/website/image/rancher.svg#clientId=u9017040e-6af7-4&height=235&id=srr4t&originHeight=150&originWidth=295&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u99dbd0a2-23c9-49e1-9347-027e47648a8&title=&width=462)
 参考文档:
 
 - [Rancher - 官网](https://docs.rancher.cn/docs/rke/%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/_index)

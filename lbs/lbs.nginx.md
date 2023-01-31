@@ -1,4 +1,4 @@
-![](http://nginx.org/nginx.png#crop=0&crop=0&crop=1&crop=1&id=XbNaU&originHeight=72&originWidth=352&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![](http://nginx.org/nginx.png#id=XbNaU&originHeight=72&originWidth=352&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 <a name="p3D5W"></a>
 # Nginx 安装手册
 

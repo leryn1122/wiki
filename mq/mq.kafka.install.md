@@ -1,13 +1,13 @@
 <a name="HaErR"></a>
 # Kafka 安装手册
-[![](https://img.shields.io/static/v1?label=kafka&message=2.7.0&color=black&style=plastic&logo=Apache%20Kafka&logoColor=white?longCache=true#crop=0&crop=0&crop=1&crop=1&id=xtNgh&originHeight=18&originWidth=97&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)](https://img.shields.io/static/v1?label=kafka&message=2.7.0&color=black&style=plastic&logo=Apache%20Kafka&logoColor=white?longCache=true)<br />参考文档:
+[![](https://img.shields.io/static/v1?label=kafka&message=2.7.0&color=black&style=plastic&logo=Apache%20Kafka&logoColor=white?longCache=true#id=xtNgh&originHeight=18&originWidth=97&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)](https://img.shields.io/static/v1?label=kafka&message=2.7.0&color=black&style=plastic&logo=Apache%20Kafka&logoColor=white?longCache=true)<br />参考文档:
 
 - [Kafka - 官网](https://kafka.apache.org/)
 <a name="sCAmV"></a>
 ## Docker 安装
 很遗憾, Kafka 没有官方镜像, 以下是推荐的镜像.
 > **wurstmeister/kafka**
-> ![](https://img.shields.io/docker/pulls/wurstmeister/kafka.svg#crop=0&crop=0&crop=1&crop=1&id=d8ycN&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)  [![](https://img.shields.io/docker/stars/wurstmeister/kafka.svg#crop=0&crop=0&crop=1&crop=1&id=tckZo&originHeight=20&originWidth=112&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)](https://img.shields.io/docker/stars/wurstmeister/kafka.svg)
+> ![](https://img.shields.io/docker/pulls/wurstmeister/kafka.svg#id=d8ycN&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)  [![](https://img.shields.io/docker/stars/wurstmeister/kafka.svg#id=tckZo&originHeight=20&originWidth=112&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)](https://img.shields.io/docker/stars/wurstmeister/kafka.svg)
 > 只包含了 Kafka, 因此需要另行提供 ZooKeeper, 推荐使用同一作者提交的 wurstmeister/zookeeper
 > 
 > **landoop/fast-data-dev**
