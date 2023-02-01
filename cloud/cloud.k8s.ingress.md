@@ -31,17 +31,13 @@ Ingress 就是**入口**的意思，那么 Ingress Controller 就是入口控制
 
 使用 Helm 安装 Ingress Controller，注意安装后的提示信息。
 ```bash
-helm search repo nginx-ingress
+helm repo add https://kubernetes.github.io/ingress-nginx
+helm search repo ingress-nginx
 
 kubectl create ns ingress-nginx
 
 # 默认安装
-helm install gateway bitnami/nginx-ingress-controller -n ingress-nginx
-
-# 如果需要改动默认配置需要下载并改动values.yaml
-helm pull bitnami/nginx-ingress-controller
-tar -xf *.gz
-helm install ingress-nginx nginx-ingress-controller -n ingress-nginx
+helm install ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx
 ```
 安装后会打印一段信息，提示如何安装示例：
 ```yaml
@@ -128,9 +124,9 @@ kubectl create secret tls leryn.top -n ingress-nginx \
 **方法2**
 ```bash
 # tls.crt
-cat '/root/.acme.sh/*.leryn.top/fullchain.cer'   | base64 -w 0
+cat '/etc/tls/leryn.top/fullchain.cer' | base64 -w 0
 # tls.key
-cat '/root/.acme.sh/*.leryn.top/*.leryn.top.key' | base64 -w 0
+cat '/etc/tls/leryn.top/leryn.top.key' | base64 -w 0
 ```
 将上面的 `tls.crt`和 `tls.key`填入一下 yaml：
 ```bash
@@ -149,26 +145,23 @@ kubectl apply -f leryn.top.yaml
 更新 Ingress-controller，注意 configmap 的字段应当用重引号引用，确保值以字符串的类型传递，而不是在 bash 阶段就脱去引号，导致不正确的类型。
 ```bash
 helm upgrade ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx \
-  --set extraArgs.ingress-class="nginx" \
   --set extraArgs.default-ssl-certificate="ingress-nginx/leryn.top" \
-  --set config.use-gzip='"true"' \
-  --set config.gzip-min-length="1k" \
-  --set config.use-forwarded-headers='"true"' \
+  --set extraArgs.ingress-class="nginx" \
+  --set config.gzip-min-length="\"1024\"" \
+  --set config.use-forwarded-headers="\"true\"" \
+  --set config.use-gzip="\"true\"" \
+  --set defaultBackend.enabled="false" \
+  --set ingressClassResource.default="true" \
+  --set service.nodePorts.http="30080" \
+  --set service.nodePorts.https="30443"
+
+helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx \
+  --set controller.extraArgs.ingress-class="nginx" \
+  --set controller.extraArgs.default-ssl-certificate="ingress-nginx/leryn.top" \
+  --set controller.config.use-gzip='"true"' \
+  --set controller.config.gzip-min-length="1k" \
+  --set controller.config.use-forwarded-headers='"true"' \
   --set defaultBackend.enabled="false"
-```
-```yaml
-ingressClassResource:
-  default: true
-extraArgs:
-  default-ssl-certificate: "default/leryn.top"
-  ingress-class: nginx
-config:
-  use-gzip: "true"
-  gzip-level: "6"
-  gzip-min-length: "1k"
-  client-body-buffer-size: "1G"
-defaultBackend:
-  enabled: "false"
 ```
 <a name="gdDAi"></a>
 ### 路由规则
