@@ -153,7 +153,8 @@ helm upgrade ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx \
   --set defaultBackend.enabled="false" \
   --set ingressClassResource.default="true" \
   --set service.nodePorts.http="30080" \
-  --set service.nodePorts.https="30443"
+  --set service.nodePorts.https="30443" \
+  --set service.type="NodePort"
 
 helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx \
   --set controller.extraArgs.ingress-class="nginx" \
