@@ -121,9 +121,9 @@ kubectl exec -it ingress-nginx-nginx-ingress-controller-57b6f9794f-zkzrj -n gate
 ### Https 证书
 需要配置 Https 证书。获得一下两个值,，这里是用 acme.sh 生成的自授权证书：<br />**方法1**
 ```bash
-kubectl create secret tls leryn.top \
-  --cert '/root/.acme.sh/*.leryn.top/fullchain.cer'   \
-  --key  '/root/.acme.sh/*.leryn.top/*.leryn.top.key'
+kubectl create secret tls leryn.top -n ingress-nginx \
+  --cert '/etc/tls/leryn.top/fullchain.cer'   \
+  --key  '/etc/tls/leryn.top/leryn.top.key'
 ```
 **方法2**
 ```bash
@@ -146,15 +146,14 @@ type: kubernetes.io/tls
 ```bash
 kubectl apply -f leryn.top.yaml
 ```
-更新 Ingress-controller：
+更新 Ingress-controller，注意 configmap 的字段应当用重引号引用，确保值以字符串的类型传递，而不是在 bash 阶段就脱去引号，导致不正确的类型。
 ```bash
-helm install ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx \
+helm upgrade ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx \
   --set extraArgs.ingress-class="nginx" \
-  --set extraArgs.default-ssl-certificate="default/leryn.top" \
-  --set config.use-gzip="true" \
-  --set config.gzip-level="6" \
+  --set extraArgs.default-ssl-certificate="ingress-nginx/leryn.top" \
+  --set config.use-gzip='"true"' \
   --set config.gzip-min-length="1k" \
-  --set config.client-body-buffer-size="1G" \
+  --set config.use-forwarded-headers='"true"' \
   --set defaultBackend.enabled="false"
 ```
 ```yaml
