@@ -145,6 +145,7 @@ kubectl apply -f leryn.top.yaml
 更新 Ingress-controller，注意 configmap 的字段应当用重引号引用，确保值以字符串的类型传递，而不是在 bash 阶段就脱去引号，导致不正确的类型。
 ```bash
 helm install ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx \
+  --create-namespace \
   --set extraArgs.default-ssl-certificate="ingress-nginx/leryn.top" \
   --set extraArgs.ingress-class="nginx" \
   --set-string config.gzip-min-length=1024 \
