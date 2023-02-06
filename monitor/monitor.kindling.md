@@ -59,7 +59,7 @@ helm install elasticsearch bitnami/elasticsearch -n elasticsearch \
 ```bash
 helm repo add skywalking https://apache.jfrog.io/artifactory/skywalking-helm
 helm repo update
-helm upgrade skywalking skywalking/skywalking -n skywalking \
+helm install skywalking skywalking/skywalking -n skywalking \
   --create-namespace \
   --set oap.image.tag=9.2.0 \
   --set oap.replicas=1 \
