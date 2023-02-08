@@ -1,6 +1,7 @@
 参考文档：
 
 - [一文读懂容器存储接口 CSI - 作者：阿里巴巴开源 - 知乎](https://zhuanlan.zhihu.com/p/364255271)
+- [https://kubernetes-csi.github.io/docs/introduction.html](https://kubernetes-csi.github.io/docs/introduction.html)
 <a name="yRxdd"></a>
 ## CSI Sidecar 组件介绍
 <a name="nynJL"></a>
