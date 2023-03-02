@@ -1,0 +1,22 @@
+
+安装 Kubebuilder 脚手架
+
+- Go 环境
+- Make
+```bash
+# 下载安装
+curl -L -o kubebuilder https://go.kubebuilder.io/dl/latest/$(go env GOOS)/$(go env GOARCH)
+chmod u+x kubebuilder && mv kubebuilder /usr/local/bin/
+
+# 源码编译安装
+git clone git@github.com:kubernetes-sigs/kubebuilder.git -b v3.9.0 --depth 1
+make build 
+mv bin/kubebuilder /usr/local/bin/kubebuilder
+
+kubebuilder --help
+
+mkdir kreutzer-operator
+cd kreutzer-operator
+go mod init github.com/leryn1122/kreutzer-operator/v2
+kubebuilder init --domain leryn.github.io --owner leryn
+```
