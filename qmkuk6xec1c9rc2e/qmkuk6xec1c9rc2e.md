@@ -19,4 +19,8 @@ mkdir kreutzer-operator
 cd kreutzer-operator
 go mod init github.com/leryn1122/kreutzer-operator/v2
 kubebuilder init --domain leryn.github.io --owner leryn
+
+kubebuilder create api --group kreutzer --version v1 --kind Pipeline
+go mod tidy
+make generate
 ```
