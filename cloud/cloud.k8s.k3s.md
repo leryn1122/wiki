@@ -19,7 +19,8 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik" sh -s - --
 # 国内加速使用
 curl -sfL https://rancher-mirror.oss-cn-beijing.aliyuncs.com/k3s/k3s-install.sh | \
   INSTALL_K3S_MIRROR=cn \
-  INSTALL_K3S_EXEC="--disable traefik " sh -s - --docker --service-node-port-range=1-65535
+  INSTALL_K3S_EXEC="--disable traefik --flannel-backend=none --disable-network-policy " \
+  sh -s - --service-node-port-range=1-65535
 ```
 
 如果失败了, `journactl -xe` 提示：
@@ -55,7 +56,6 @@ sudo k3s kubectl get pods
 /usr/local/bin/k3s
 /usr/local/bin/k3s-killall.sh
 /usr/local/bin/k3s-uninstall.sh
-/usr/local/bin/k9s
 /usr/local/bin/kubectl -> k3s
 ```
 (可选) 配置一下别名调用 k3s 的 API。
