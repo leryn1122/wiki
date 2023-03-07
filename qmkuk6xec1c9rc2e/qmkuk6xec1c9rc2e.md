@@ -1,6 +1,7 @@
 参考文档：
 
 - [https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/extensible-admission-controllers/](https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/extensible-admission-controllers/)
+- [https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#service-v1-core](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#service-v1-core)
 
 安装 Kubebuilder 脚手架：
 
