@@ -1,5 +1,8 @@
+参考文档：
 
-安装 Kubebuilder 脚手架
+- [https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/extensible-admission-controllers/](https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/extensible-admission-controllers/)
+
+安装 Kubebuilder 脚手架：
 
 - Go 环境
 - Make

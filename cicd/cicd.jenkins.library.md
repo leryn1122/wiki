@@ -44,6 +44,5 @@
 /* Accessing multiple libraries with one statement */
 @Library(['jekins-shared-lib', 'otherlib@abc1234']) _
 ```
-<a name="rJPaC"></a>
-## 创建项目
+
 
