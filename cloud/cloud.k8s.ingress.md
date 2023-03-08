@@ -170,7 +170,7 @@ helm install ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx \
 如果一个集群上可以安装多个 Ingress Controller，例如通过不同的 Ingress Class 来区分不同的渠道：Admin Ingress，Internal Ingress等等，不同的渠道的认证、转发规则都不尽相同，内部认证可能基于 Cookies，外部认证基于 Token。<br />当创建新的 Ingress 时，可以通过为其指定 Ingress Class 的方式将其注入到预期的 Ingress Controller 中。如果不显式指定 Ingress Class，且集群中只有一个 Ingress Class 标记为默认，那么会自动应用到 Ingress 上。<br />早期版本使用注解来标记默认 Ingress Class，现在请使用 `spec.ingressClassName: "name"` 来指定。另外在 IngressClass 使用注解 `ingressclass.kubernetes.io/is-default-class: true` 来指定默认 Ingress Class。
 <a name="emeOz"></a>
 ### 发布策略
-参考文档:
+参考文档：
 
 - [k8s-deployment-strategies - Github](https://github.com/ContainerSolutions/k8s-deployment-strategies)
 - [NGINX Ingress Controller Annotations for Canary - NGINX Ingress Controller 官网](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary)
