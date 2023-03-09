@@ -50,7 +50,6 @@ helm install minio minio/minio -n oss \
   --set ingress.ingressClassName=nginx                 \
   --set-string ingress.annotations."nginx.ingress.kubernetes.io/proxy-body-size"=0 \
   --set-string consoleIngress.annotations."nginx.ingress.kubernetes.io/proxy-body-size"=0 \
-  --set-string inress.annotations."nginx."
   --set mode=standalone                                \
   --set networkPolicy.allowExternal=true               \
   --set persistence.existingClaim=oss-data-pvc         \
