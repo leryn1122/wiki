@@ -3,7 +3,7 @@
 参考文档：
 
 - [https://docs.min.io/](https://docs.min.io/)
-- [http://docs.minio.org.cn/docs/](http://docs.minio.org.cn/docs/)
+- [https://docs.minio.org.cn/docs/](https://docs.minio.org.cn/docs/)
 <a name="Q3xXj"></a>
 ## Docker 安装
 这里：
