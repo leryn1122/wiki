@@ -60,7 +60,8 @@ helm install deepflow-agent -n deepflow deepflow/deepflow-agent --create-namespa
 ```
 <a name="mKmoM"></a>
 #### 常见问题
-目前测试多网卡设配时，deepflow 会默认选择第一块网卡。如果需要调整网卡，请修改这几个表中的 IP，并重启 server 和 agent。
+
+1. 目前测试多网卡设配时，deepflow 会默认选择第一块网卡。如果需要调整网卡，请修改这几个表中的 IP，并重启 server 和 agent。
 ```sql
 select * from controller;
 select * from analyzer;
@@ -68,3 +69,5 @@ select * from az_controller_connection;
 select * from az_analyzer_connection;
 select * from vtap;
 ```
+
+2. 数据清理
