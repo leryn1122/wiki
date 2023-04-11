@@ -1,6 +1,8 @@
 <a name="wnBSI"></a>
 # NFS
-NFS (Network File System) 表示层协议。<br />需要开通网络权限的请注意：<br />NFS 网络默认使用了 111 和 2049 端口的 TCP/UDP 协议，并且 UDP 是双向的。请同时开通**两个端口**的 TCP 以及**双向 UDP**。
+NFS（Network File System）表示层协议。<br />需要开通网络权限的请注意：
+
+- NFS 网络默认使用了 111 和 2049 端口的 TCP/UDP 协议，并且 UDP 是双向的。请同时开通**两个端口**的 TCP 以及**双向 UDP**。
 <a name="Y8koD"></a>
 ## 服务端安装
 **Ubuntu 系统**
@@ -31,7 +33,7 @@ sudo systemctl start nfs-server.service
 ```bash
 vim /etc/exports
 
-/path/to/mnt 121.196.30.0/24(rw,sync,insecure,no_subtree_check,no_all_squash,no_root_squash)
+/path/to/mnt 196.168.0.0/24(rw,sync,insecure,no_subtree_check,no_all_squash,no_root_squash)
 
 # 重新加载配置，不会导致已有挂载断开
 exportfs -rv
@@ -60,9 +62,9 @@ sudo mount -t nfs -o vers=3,tcp,nolock,async,mountproto=tcp,rsize=1048576,wsize=
 - [https://jingyan.baidu.com/article/9faa7231c9e061473d28cb65.html](https://jingyan.baidu.com/article/9faa7231c9e061473d28cb65.html)
 - [https://www.52sanmiao.com/xitongyw/49.html](https://www.52sanmiao.com/xitongyw/49.html)
 <a name="c6006f86"></a>
-#### 第二步：配置 windows 系统 nfs 客户端
+#### 第二步：配置 Windows 系统 NFS 客户端服务
 
-1. 启动 windows Nfs 客户端服务：
+1. 启动 Windows NFS 客户端服务：
 > - 打开【控制面板】→【程序】→【打开或关闭 Windows 功能】→【NFS 客户端】
 > - 勾选 NFS 客户端，即开启 Windows NFS 客户端服务
 > - 在 Windows Server 2012 中，NFS 客户端在【文件和存储服务】→【文件和 ISCSI 服务】下，点击安装即可
@@ -71,9 +73,9 @@ sudo mount -t nfs -o vers=3,tcp,nolock,async,mountproto=tcp,rsize=1048576,wsize=
 ```bash
 mount ***.***.***.***:/path/to/mnt X:
 ```
-成功挂载，打开我的电脑，可以在网络位置看到 X：盘了
+成功挂载，打开我的电脑，可以在网络位置看到 `X:` 盘了
 
-3. 取消挂载<br />直接在【我的电脑】里面鼠标点击取消映射网络驱动器 X:
+3. 取消挂载<br />直接在【我的电脑】里面鼠标点击取消映射网络驱动器 `X:`
 ```bash
 umount X:
 
@@ -82,16 +84,16 @@ umount -a
 ```
 <a name="hBevZ"></a>
 ### 常见问题
-**Windows Server 2016 nfs 挂载成功后，没有写权限**
+**Windows Server 2016 NFS 挂载成功后，没有写权限**
 
-1. 点击挂载虚拟盘，打开属性，查看 nfs 装载选项，uid 和 gid 为-2 时，修改注册表，跳转到`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ClientForNFS\CurrentVersion\Default` 目录下新建两个 DWORD 值 ，名称为：`AnonymousGid` 和 `AnonymousUid`，数据值为 0 2。确认数据都保存以后，系统重启。
+1. 点击挂载虚拟盘，打开属性，查看 nfs 装载选项，uid 和 gid 为 -2 时，修改注册表，跳转到`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ClientForNFS\CurrentVersion\Default` 目录下新建两个 DWORD 值 ，名称为：`AnonymousGid` 和 `AnonymousUid`，数据值为 0 和 2。确认数据都保存以后，系统重启。
 ```bash
 # 管理员权限下开启命令行, 执行如下两个命令并重启机器
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ClientForNFS\CurrentVersion\Default\ /v AnonymousUid /d 0 /t REG_DWORD /f
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ClientForNFS\CurrentVersion\Default\ /v AnonymousGid /d 0 /t REG_DWORD /f
 ```
-**Windows 10 nfs 挂载成功后，没有写权限**<br />Win10 系统就是修改 `/etc/export` 文件中的数据，添加 anongid 与 anonuid
+**Windows 10 NFS 挂载成功后，没有写权限**<br />Win10 系统就是修改 `/etc/export` 文件中的数据，添加 anongid 与 anonuid
 ```bash
-/export/nfs 121.196.30.**/24(rw,sync,insecure,no_subtree_check,all_squash,anonuid=0,anongid=0)
+/path/to/mnt 196.168.0.0/24(rw,sync,insecure,no_subtree_check,all_squash,anonuid=0,anongid=0)
 ```
 
