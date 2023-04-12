@@ -47,9 +47,7 @@ EOF
 #### 
 <a name="XH88e"></a>
 #### 开启 docker 远程调试端口
-
-在 systemctl 的文件中配置端口, 追加一句 `-H tcp://0.0.0.0:12375`(目前我的 docker 服务尚未配置 TLS 安全证书):
-
+在 systemctl 的文件中配置端口, 追加一句 `-H tcp://0.0.0.0:12375`（目前我的 docker 服务尚未配置 TLS 安全证书）：
 ```bash
 sudo vim /usr/lib/systemd/system/docker.service
 ```
@@ -59,7 +57,7 @@ sudo vim /usr/lib/systemd/system/docker.service
 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock -H tcp://0.0.0.0:12375
 ```
 
-重启 docker 服务.
+重启 docker 服务。
 
 ```bash
 systemctl daemon-reload
