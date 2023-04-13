@@ -41,14 +41,6 @@ sudo k3s kubectl get pods
 /usr/local/bin/k3s-uninstall.sh
 /usr/local/bin/kubectl -> k3s
 ```
-（可选）配置一下别名调用 k3s 的 API。<br />（可选）kubeconfig 会安装在 `/etc/rancher/k3s/k3s.yaml`：
-```bash
-cat <<EOF | sudo tee /etc/profile.d/env-k3s.sh
-#!/usr/bin/env bash
-export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-alias kubectl='sudo k3s kubectl '
-EOF
-```
 <a name="z9vzn"></a>
 ## 安装 CNI
 安装 Cilium 作为 CNI。Cilium
