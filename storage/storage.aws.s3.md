@@ -125,6 +125,14 @@ AmazonS3 amazonS3 = AmazonS3ClientBuilder.standard()
   .withPathStyleAccessEnabled(true)
   .build();
 ```
+公有云使用虚拟主机方式，而私有云一般不使用：
+```bash
+# withPathStyleAccessEnabled(true)
+oss-cn-shenzhen.aliyuncs.com:/mybucket/myfile
+
+# withPathStyleAccessEnabled(false)
+mybucket.oss-cn-shenzhen.aliyuncs.com/myfile
+```
 简单的上传下载查询：
 ```java
 // 查询
