@@ -20,7 +20,7 @@ mkdir -p /etc/clash
 cat <<EOF> /etc/clash/clash.env
 https_proxy=http://127.0.0.1:7890
 http_proxy=http://127.0.0.1:7890
-all_proxy=soks5://127.0.0.1:7891
+all_proxy=socks5://127.0.0.1:7890
 EOF
 ```
 创建 Systemd 文件，并设置开启自启动。
