@@ -5,7 +5,16 @@
 - [Kafka - 官网](https://kafka.apache.org/)
 <a name="sCAmV"></a>
 ## Docker 安装
-很遗憾，Kafka 没有官方镜像，以下是推荐的镜像。
+**以下是两点更新：**
+
+- 随着 Kafka 3.x 发布，不需要依赖外部的 Zookeeper 了
+- 转用 `bitnami/kafka:3.4` 官方的镜像
+
+很遗憾，Kafka 没有官方镜像，以下是推荐的镜像：
+> **bitnami/kafka:3.4**
+> 最新镜像，一行启动：
+> docker run -itd -p 9092:9092 -e ALLOW_PLAINTEXT_LISTENER=yes -v /data/kafka:/bitnami docker.io/bitnami/kafka:3.4
+> <br />
 > **wurstmeister/kafka**
 > ![](https://img.shields.io/docker/pulls/wurstmeister/kafka.svg#id=d8ycN&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)  [![](https://img.shields.io/docker/stars/wurstmeister/kafka.svg#id=tckZo&originHeight=20&originWidth=112&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)](https://img.shields.io/docker/stars/wurstmeister/kafka.svg)
 > 只包含了 Kafka，因此需要另行提供 ZooKeeper，推荐使用同一作者提交的 wurstmeister/zookeeper
@@ -13,6 +22,7 @@
 > **landoop/fast-data-dev**
 > 提供了一整套包括 Kafka、ZooKeeper、Schema Registry、Kafka-Connect 等在内的多种开发工具和 Web UI 监视系统。基本上是我见过的最强大的开发环境，尤其是对于 Kafka。
 > Connect 的支持，包含了 MongoDB，ElasticSearch，Twitter 等超过 20 种 Connector，并且提供了通过 REST API 提交 Connector 配置的 Web UI。
+
 
 这里选择`wurstmeister/kafka`镜像，这里假设已经拥有了一个可用的外部 Zookeeper:
 ```bash
