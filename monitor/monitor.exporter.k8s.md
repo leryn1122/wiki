@@ -8,7 +8,7 @@
 - [opsgenie/kubernetes-event-exporter - GitHub](https://github.com/opsgenie/kubernetes-event-exporter)
 - [resmoio/kubernetes-event-exporter - GitHub](https://github.com/resmoio/kubernetes-event-exporter)
 
-这个插件可以采集 Kubernetes 中的积压的事件，相当于：
+这个插件可以采集 Kubernetes 中的积压的事件，因为 Kubernetes 事件堆积大约 15 分钟后就会被清理，因此要追溯问题非常复杂。<br />它相当于：
 ```bash
 kubectl get events -A
 ```
@@ -19,50 +19,85 @@ kubectl get events -A
 
 我们直接使用 Prometheus 对应的 `serviceaccount`，对应的 `clusterrole` 的 RBAC 权限如下：
 ```yaml
-- apiGroups:
-  - ""
-  resources:
-  - nodes
-  - services
-  - endpoints
-  - pods
-  - nodes/proxy
-  - events
-  - replicasets
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - extensions
-  - networking.k8s.io
-  resources:
-  - ingresses
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - ""
-  resources:
-  - configmaps
-  - nodes/metrics
-  verbs:
-  - get
-- nonResourceURLs:
-  - /metrics
-  verbs:
-  - get
-- apiGroups:
-  - apps
-  resources:
-  - services
-  - replicasets
-  - deployments
-  verbs:
-  - get
-  - list
-  - watch
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: event-exporter
+  namespace: monitoring
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: event-exporter
+  namespace: monitoring
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - nodes
+      - services
+      - endpoints
+      - pods
+      - nodes/proxy
+      - events
+      - replicasets
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - extensions
+      - networking.k8s.io
+    resources:
+      - ingresses
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+      - nodes/metrics
+    verbs:
+      - get
+  - nonResourceURLs:
+      - /metrics
+    verbs:
+      - get
+  - apiGroups:
+      - apps
+    resources:
+      - services
+      - replicasets
+      - deployments
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - policy
+    resources:
+      - poddisruptionbudgets
+    verbs:
+      - get
+      - list
+      - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: event-exporter
+  namespace: monitoring
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: event-exporter
+subjects:
+  - kind: ServiceAccount
+    name: event-exporter
+    namespace: monitoring
 ```
 我比较推荐使用该方库下的 YAML 直接在集群内部署. 因为我的集群里已经拥有了 Prometheus 以及他对应的 RBAC。所以删除 `00-roles.yaml`，并且修改 `02-deployment.yaml`里的 `serviceAccoutName` ,直接运行以下脚本：
 ```bash

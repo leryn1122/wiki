@@ -2,7 +2,7 @@
 ## Hadoop
 Reference:
 
-- 
+- [Apache Hadoop](http://hadoop.apache.org)
 <a name="FlcIY"></a>
 ### 前置准备
 部署准备, 安装前需要准备如下材料.
