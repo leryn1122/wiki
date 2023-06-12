@@ -252,16 +252,20 @@ kubectl get cs
 ```bash
 kubeadm alpha certs renew all
 ```
-注意此时kubenetes组件 api-server，scheduler 以及 controller manager 镜像内部的证书未更新（可能是kubernetes 1.18版本bug）<br />我们需要重新启动镜像：
+注意此时 Kubenetes 组件 api-server，scheduler 以及 controller manager 镜像内部的证书未更新（可能是kubernetes 1.18版本bug）<br />我们需要重新启动镜像：
 ```bash
 docker ps | grep -E 'k8s_kube-apiserver|k8s_kube-controller-manager|k8s_kube-scheduler' | awk -F ' ' '{print $1}' | xargs docker restart
 ```
-如果未重启，此后证书过期，将导致Pod调度等问题。此时通过docker logs命令可观察到上述容器报告以下错误：
+如果未重启，此后证书过期，将导致 Pod 调度等问题。此时通过docker logs命令可观察到上述容器报告以下错误：
 > Unable to authenticate the request due to an error: x509: certificate has expired or is not yet valid
 
+再次检查证书：
+```bash
+kubeadm alpha certs check-expiration
+```
 <a name="pBVQr"></a>
 ### 强制删除 namespace
-有时候 `kubectl` 删除 namespace 时，namespace 一直处于 **terminating**. 这分两种场景：
+有时候 `kubectl` 删除 namespace 时，namespace 一直处于 **terminating**。这分两种场景：
 
 - 有时是 namespace 资源比较多，回收比较慢，这种情况只需要等待即可
 - 有时是卡死了，可以使用如下脚本删除
