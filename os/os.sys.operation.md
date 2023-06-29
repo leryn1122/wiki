@@ -1,6 +1,6 @@
 
 
-[https://www.cnblogs.com/sjli-blog/p/15076966.html](https://www.cnblogs.com/sjli-blog/p/15076966.html)<br />![](./../assets/1658283408767-9ad25804-7a6c-4fbe-8d48-e09e23892d05.png)
+[Linux常见的内存分析工具 - 士子 - 博客园](https://www.cnblogs.com/sjli-blog/p/15076966.html)<br />![](./../assets/1658283408767-9ad25804-7a6c-4fbe-8d48-e09e23892d05.png)
 
 ![image.png](./../assets/1658283586848-c707de08-0b09-494e-a666-26468e1ec7d8.png)
 

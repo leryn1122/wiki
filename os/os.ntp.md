@@ -3,9 +3,9 @@
 
 参考文档:
 
-- [https://www.cnblogs.com/kerrycode/p/4744804.html](https://www.cnblogs.com/kerrycode/p/4744804.html)
-- [https://www.cnblogs.com/zhangdongyu/p/15674265.html](https://www.cnblogs.com/zhangdongyu/p/15674265.html)
-- [https://blog.minirplus.com/8808/](https://blog.minirplus.com/8808/)
+- [Linux的NTP配置总结 - 潇湘隐者 - 博客园](https://www.cnblogs.com/kerrycode/p/4744804.html)
+- [windows时间同步设置 - Dark_Elf - 博客园](https://www.cnblogs.com/zhangdongyu/p/15674265.html)
+- [如何在Windows10上安装NTP客户端更精确的校准系统时间](https://blog.minirplus.com/8808/)
 <a name="mlMxK"></a>
 ## 简介
 > 下面是网上关于 ntpd 与 ntpdate 区别的相关资料。如下所示所示。
