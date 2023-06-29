@@ -1,7 +1,7 @@
 <a name="6bac8ca7"></a>
-# ElasticSearch 认证功能
+# Elasticsearch 认证功能
 <a name="cOSDo"></a>
-## 修改 ElasticSearch 配置
+## 修改 Elasticsearch 配置
 <a name="VyDCo"></a>
 ### 新增配置
 编辑 `elasticsearch.yml` 文件, 每个集群节点都需要设置:
@@ -26,7 +26,7 @@ xpack.security.transport.ssl.truststore.path: elastic-certificates.p12
 将节点 1 上的证书依次拷贝到其他节点, **不要在各个节点上独自生成**.
 <a name="f3cc1075"></a>
 ### 重启 ES 集群
-EasticSearch 集群不重新启动, 下面的添加密码操作执行不了, 所以依次重启所有节点:
+Elasticsearch 集群不重新启动, 下面的添加密码操作执行不了, 所以依次重启所有节点:
 ```bash
 systemctl restart elasticsearch
 ```
@@ -69,17 +69,17 @@ Changed password for user [elastic]
 ```bash
 curl -XGET http://localhost:9200
 ```
-带上用户信息 curl 可以正常返回 ElasticSearch 信息:
+带上用户信息 curl 可以正常返回 Elasticsearch 信息:
 ```bash
 curl --user elastic http://localhost:9200
 ```
 <a name="S9DVS"></a>
 ## 修改 Kibana 配置
-如果 ElasticSearch 同时配套使用了 Kibana 的话, 请修改`kibana.yml`文件:
+如果 Elasticsearch 同时配套使用了 Kibana 的话, 请修改`kibana.yml`文件:
 ```bash
 vim /usr/share/kibana/config/kibana.yml
 ```
-添加上 ElasticSearch 集群的用户名和密码:
+添加上 Elasticsearch 集群的用户名和密码:
 ```yaml
 elasticsearch.username: "kibana_system"
 elasticsearch.password: "密码"
