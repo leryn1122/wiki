@@ -14,7 +14,7 @@ Reference:
 
 从 Hadoop 官网下载源文件安装包.
 ```bash
-wget https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-src.tar.gz
+wget https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-bin.tar.gz
 ```
 <a name="ty025"></a>
 ### 安装步骤
