@@ -5,6 +5,11 @@ JDK 提供了一个查看堆栈的工具 jstack：
 ```bash
 ps -ef | grep java | grep -v grep | awk '{print $2}' | xargs jstack
 ```
+jmap 可以 dump 出一份 hprof 的文件：
+```properties
+jmap -dump:format=b,file=/Users/xxxx/Desktop/testdump.hprof <PID>
+```
+需要先安装 [VisualVM](https://visualvm.github.io/)，JDK 8 早版本或者是 Windows 版本会在安装时一同安装这个应用，其他系统需要单独安装。然后拖到 VisualVM里，即可：<br />![image.png](./../assets/1689581980334-b38f9d23-d844-4de5-bf0c-39bee1f59c2d.png)
 <a name="oo8gO"></a>
 ## JMX Exporter
 参考文档：
@@ -60,7 +65,7 @@ env:
           configMap:
             name: jmx-configmap
 ```
-其中 `jmx-config` 就是配置文件的对应的 ConfigMap, 具体的指标采集模式可以参考 `jconsole` 中的 MBean (MBean 看下文介绍) ：
+其中 `jmx-config` 就是配置文件的对应的 ConfigMap，具体的指标采集模式可以参考 `jconsole` 中的 MBean (MBean 看下文介绍) ：
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -114,13 +119,15 @@ curl -XGET http://localhost:8081/metrics
 - [cjmx/cjmx - GitHub](https://github.com/cjmx/cjmx)
 - [cjmx_2.12-2.8.1-app.jar - 下载地址](https://search.maven.org/remotecontent?filepath=com/github/cjmx/cjmx_2.12/2.8.1/cjmx_2.12-2.8.1-app.jar)
 
-`jconsole` 需要 GUI 才能运行, 否则命令行会无反应。
+`jconsole` 需要 GUI 才能运行，否则命令行会无反应。
 ```bash
 jconsole <PID> | <HOST>:<PORT> | <JMX_SERVICE_URL>
 
 jps | grep YourApplicationName  | awk '{print $1}' | xargs jconsole
 ```
-![image.png](./../assets/1652436159116-a7c1c860-e154-4312-9530-4bdbe524274b.png)<br />如果你在线服务器没有 GUI, 事实上绝大数情况都是这样, 那可以使用这个 cjmx 的 jar 包来运行命令行风格的 jconsole：
+
+
+如果你在线服务器没有 GUI，事实上绝大数情况都是这样，那可以使用这个 cjmx 的 jar 包来运行命令行风格的 jconsole：
 ```bash
 java -cp /usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/root/cjmx_2.12-2.8.1-app.jar cjmx.Main <PID>
 
@@ -128,4 +135,4 @@ java -cp /usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/root/cjmx_2.12-2.8.1-a
 
 PID=$(jps | grep XXX | awk '{print $1}') && java -cp /usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/root/cjmx_2.12-2.8.1-app.jar cjmx.Main $PID
 ```
-
+![image.png](./../assets/1689582242225-abb63246-dd1a-4509-9ee9-66f4ced93471.png)
