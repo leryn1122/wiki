@@ -13,6 +13,7 @@ docker run \
   --detach=true \
   --env=VAULT_LOCAL_CONFIG='{"backend": {"file": {"path": "/vault/file"}}, "default_lease_ttl": "168h", "max_lease_ttl": "720h"}' \
   --publish=8200:8200 \
+  --publish=8201:8201 \
   --hostname=vault \
   --name=vault \
   vault:1.12.2 server
@@ -23,5 +24,7 @@ docker run \
   --publish=8200:8200 \
   --hostname=vault \
   --name=vault \
-  vault:1.12.2 server
+  --volume=/data/vault/config:/vault/config \
+  --volume=/data/valut/data:/vault/file \
+  hashicorp/vault:1.12.2 server -config /vault/config/config.hcl
 ```
