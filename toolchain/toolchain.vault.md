@@ -16,7 +16,8 @@ docker run \
   --publish=8201:8201 \
   --hostname=vault \
   --name=vault \
-  vault:1.12.2 server
+  --volume=/data/valut/data:/vault/file \
+  hashicorp/vault:1.12.2 server -dev
 
 docker run \
   --cap-add=IPC_LOCK \
