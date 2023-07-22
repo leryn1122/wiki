@@ -12,10 +12,8 @@ docker run \
   --env=POSTGRES_PASSWORD=oHjkz821MkhfAd33 \
   --env=PGDATA=/var/lib/postgresql/data/pgdata \
   --publish=15432:5432 \
-  --volume=/conf/postgres:/etc/postgresql/ \
   --volume=/data/postgres:/var/lib/postgresql/data \
-  postgres:14.1 \
-    -c 'config_file=/etc/postgresql/postgresql.conf'
+  postgres:15.1-alpine
 ```
 
 用连接工具连接可能会报错:
