@@ -16,7 +16,7 @@ docker run \
   --publish=8201:8201 \
   --hostname=vault \
   --name=vault \
-  --volume=/data/valut/data:/vault/file \
+  --volume=/data/vault/data:/vault/file \
   hashicorp/vault:1.12.2 server -dev
 
 docker run \
@@ -26,6 +26,6 @@ docker run \
   --hostname=vault \
   --name=vault \
   --volume=/data/vault/config:/vault/config \
-  --volume=/data/valut/data:/vault/file \
+  --volume=/data/vault/data:/vault/file \
   hashicorp/vault:1.12.2 server -config /vault/config/config.hcl
 ```
