@@ -53,20 +53,8 @@ sudo vim /usr/lib/systemd/system/docker.service
 # 由于公网上默认端口2375比较容易收到攻击, 换个12375端口
 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock -H tcp://0.0.0.0:12375
 ```
-
 重启 docker 服务。
-
 ```bash
-systemctl daemon-reload
-systemctl restart docker
-```
-
-<a name="IsKlC"></a>
-### 启动与验证
-
-```bash
-## mkdir -p /etc/systemd/system/docker.service.d
-usermod -aG docker leryn
 systemctl daemon-reload
 systemctl restart docker
 ```
