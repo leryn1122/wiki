@@ -5,6 +5,9 @@ conda activate chatglm-6b
 ```
 退出 venv：
 ```bash
+# 关闭自动激活 conda
+conda config --set auto_activate_base false
+
 conda deactivate
 
 conda activate base
@@ -17,7 +20,7 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge 
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
 
-conda config --set show_channel_urls yes 
+conda config --set show_channel_urls yes
 ```
 查看 venv：
 ```bash
