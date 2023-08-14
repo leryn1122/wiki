@@ -1,6 +1,6 @@
 <a name="Fl6A5"></a>
 # RabbitMQ Prometheus 监控
-参考文档:
+参考文档：
 
 - [RabbitMQ Prometheus 插件 - RabbitMQ 官网](https://www.rabbitmq.com/prometheus.html)
 - [RabbitMQ Dashboard - Grafana 官网](https://grafana.com/grafana/dashboards/10991-rabbitmq-overview/)
