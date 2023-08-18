@@ -23,7 +23,6 @@ sudo apt install nfs-common
 **CentOS 系统**
 ```bash
 sudo yum install nfs-utils
-sudo systemctl start nfs-server.service
 ```
 <a name="czF0G"></a>
 ## 挂载
