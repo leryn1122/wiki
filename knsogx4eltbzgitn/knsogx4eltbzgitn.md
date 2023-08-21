@@ -16,7 +16,7 @@ Documentation=https://github.com/prometheus-community/elasticsearch_exporter/
 
 [Service]
 User=root
-ExecStart=/usr/bin/elasticsearch_exporter/elasticsearch_exporter \
+ExecStart=/opt/elasticsearch_exporter/elasticsearch_exporter \
           --es.all              \
           --es.indices          \
           --es.indices_settings \
@@ -55,5 +55,6 @@ Prometheus 配置：
       - targets:
           - xxx.xxx.xxx.xxx:9114
         labels:
+          env: "dev"
 ```
 导入安装包内的`dashboard.json`到 Grafana 即可。
