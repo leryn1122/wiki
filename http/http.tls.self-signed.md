@@ -36,7 +36,7 @@ cd /etc/tls/leryn.top
 ln -s '/root/.acme.sh/*.leryn.top/fullchain.cer'   fullchain.cer
 ln -s '/root/.acme.sh/*.leryn.top/*.leryn.top.key' leryn.top.key
 ```
-<a name="EcMre"></a>
+
 ### dns_api
 各大 DNS 供应商 API 请参照：
 

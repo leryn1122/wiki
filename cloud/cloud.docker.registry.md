@@ -3,7 +3,7 @@
 - [Registry API文档 - 官网](https://docs.docker.com/registry/spec/api/)
 - [docker-registry-frontend - DockerHub](https://registry.hub.docker.com/r/konradkleine/docker-registry-frontend)
 
-<a name="B4zC2"></a>
+
 # DockerHub
 DockerHub 是 Docker 官方提供的镜像仓库. 纵使 Docker 有种种问题, Kubernetes 也改用 containerd 作为默认 OCI 了, Dockerhub 生态使得 Docker 经久不衰.<br />DockerHub 任何人都可以注册免费账户, 并享有一个私有仓库, 以及每天 50 次免费 docker pull 请求. 基本够用, 在没有私有 registry 的情况下也足够开发者使用了. 不过由于下行宽带, 传输速度会比较慢, 这个时候镜像大小至关重要.<br />由于只有一个私有仓库, 所以我们规划一个映射, 使用 <image>-<tag> 拼接为最终的 tag: 
 
@@ -12,7 +12,7 @@ docker tag docker.leryn.top/<image>:<tag> leryn/app:<image>-<tag>
 docker push leryn/app:<image>-<tag>
 ```
 
-<a name="n9d5a"></a>
+
 ## Docker Resgisty (已过时)
 
 Registry:
@@ -55,7 +55,7 @@ vim /etc/docker/daemon.json
 }
 ```
 
-<a name="Ty0Ho"></a>
+
 ### Docker 命令行上传镜像
 
 标记带有 registry 域名的 tag, 然后 push 即可:
@@ -64,7 +64,7 @@ docker tag openjdk:17-oracle docker.leryn.top/openjdk:17-oracle
 docker push docker.leryn.top/openjdk:17-oracle
 ```
 
-<a name="wawPK"></a>
+
 ### HTTP API
 
 最常用的两个 API:
@@ -93,7 +93,7 @@ GET /v2/openjdk/tags/list
 }
 ```
 
-<a name="jm722"></a>
+
 ## Docker Resgisty Frontend
 
 参考文档:

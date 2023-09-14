@@ -1,12 +1,11 @@
-<a name="d9952270"></a>
+
 # ElasticSearch 安装手册
-<a name="NeGVI"></a>
+
 ## Debian 包管理器安装（推荐）
 参考文档:
 
 - [Elastic Search - Elastic 官网](https://www.elastic.co/cn/elasticsearch/)
 - [Install Elastic Search with Debian Package - Elastic 官网](https://www.elastic.co/guide/en/elasticsearch/reference/7.3/deb.html#deb-repo)
-
 ```bash
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
 sudo apt-get install apt-transport-https

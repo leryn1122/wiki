@@ -1,9 +1,9 @@
-<a name="r4qtk"></a>
+
 ## Hadoop
 Reference:
 
 - [Apache Hadoop](http://hadoop.apache.org)
-<a name="FlcIY"></a>
+
 ### 前置准备
 部署准备, 安装前需要准备如下材料.
 
@@ -16,7 +16,7 @@ Reference:
 ```bash
 wget https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-bin.tar.gz
 ```
-<a name="ty025"></a>
+
 ### 安装步骤
 配置 Hadoop 环境变量, 并使其生效.
 ```bash
@@ -258,7 +258,7 @@ hadoop001
 hadoop002
 hadoop003
 ```
-<a name="odnhV"></a>
+
 ### Boot
 **启动 HDFS**<br />验证 Hadoop 是否安装成功, 使用命令查看版本, 如果可以正确显示版本信息则安装成功.
 ```bash

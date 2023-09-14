@@ -1,12 +1,12 @@
-<a name="hMiR7"></a>
+
 # C++ 环境安装
-<a name="IQEfK"></a>
+
 ## Linux 安装 Clang
 ```bash
 sudo apt update
 sudo apt install -y clang
 ```
-<a name="QEBlr"></a>
+
 ## Windows 安装 Clang
 先用安装包安装 msys64，再安装 Clang
 ```bash

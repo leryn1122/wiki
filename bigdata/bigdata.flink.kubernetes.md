@@ -1,13 +1,13 @@
-<a name="fhYsl"></a>
+
 # Flink on Kubernetes 配置文件
 
 参考文档:
 
 - [Kubernetes Setup - Flink 官网](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/resource-providers/standalone/kubernetes/)
 
-<a name="eKWqS"></a>
+
 ## Common cluster resource definitions
-<a name="VYmP1"></a>
+
 ### flink-configuration-configmap.yaml
 ```yaml
 apiVersion: v1
@@ -73,7 +73,7 @@ data:
     logger.netty.name = org.apache.flink.shaded.akka.org.jboss.netty.channel.DefaultChannelPipeline
     logger.netty.level = OFF
 ```
-<a name="TUDg2"></a>
+
 ### flink-reactive-mode-configuration-configmap.yaml
 ```yaml
 apiVersion: v1
@@ -141,7 +141,7 @@ data:
     logger.netty.name = org.apache.flink.shaded.akka.org.jboss.netty.channel.DefaultChannelPipeline
     logger.netty.level = OFF
 ```
-<a name="Ppsgd"></a>
+
 ### jobmanager-service.yaml
 Optional service, which is only necessary for non-HA mode.
 ```yaml
@@ -162,7 +162,7 @@ spec:
     app: flink
     component: jobmanager
 ```
-<a name="aTko3"></a>
+
 ### jobmanager-rest-service.yaml
 Optional service, that exposes the jobmanager rest port as public Kubernetes node's port.
 ```yaml
@@ -181,7 +181,7 @@ spec:
     app: flink
     component: jobmanager
 ```
-<a name="GZ5oz"></a>
+
 ### taskmanager-query-state-service.yaml
 Optional service, that exposes the TaskManager port to access the queryable state as a public Kubernetes node's port.
 ```yaml
@@ -200,7 +200,7 @@ spec:
     app: flink
     component: taskmanager
 ```
-<a name="Bp09z"></a>
+
 ### taskmanager-job-deployment.yaml
 ```yaml
 apiVersion: apps/v1

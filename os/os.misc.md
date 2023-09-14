@@ -1,7 +1,7 @@
 
 记录了一些零碎而奇怪的问题, 避免其他文档过于零碎, 全部集中在这里.
 
-<a name="vLW3I"></a>
+
 ### 破解 Beyond Compare
 
 破解 Beyond Compare, 定期执行这个命令即可:
@@ -10,7 +10,7 @@
 reg delete "HKEY_CURRENT_USER\Software\Scooter Software\Beyond Compare 4" /v CacheID /f
 ```
 
-<a name="aXxYO"></a>
+
 ### Windows 远程桌面无法连接
 
 Windows 远程桌面如果无法连接参考如下解决方案.

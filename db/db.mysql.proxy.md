@@ -1,7 +1,7 @@
-<a name="A7K9a"></a>
+
 # MySQL-Proxy 安装手册
 MySQL Proxy 是调研 MySQL 高可用时, 发现的一个 MySQL 代理. 它是 MySQL 的官方实践, 但似乎还处于 **alpha** 版本.<br />它仅支持 MySQL 5.x, 如果是更高的版本, 请忽略这个中间件.<br />它中间使用了 Lua 脚本来管理节点以及读写分离, 据说延迟仅有 400ms, QPS 能到 2400+.
-<a name="Jxwbe"></a>
+
 ## 二进制安装
 下载安装包并解压:
 ```bash
@@ -29,7 +29,7 @@ keepalive=1
 mkdir -p /usr/local/mysql-proxy/logs
 touch /usr/local/mysql-proxy/logs/mysql-proxy.log
 ```
-<a name="XEKE2"></a>
+
 ## 启动与验证
 启动 MySQL Proxy
 ```bash

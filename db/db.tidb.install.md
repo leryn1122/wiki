@@ -1,4 +1,4 @@
-<a name="a23ae0bf"></a>
+
 # TiDB 安装手册
 参考文档:
 
@@ -8,7 +8,7 @@
 - [TiDB 环境与系统配置检查 - TiDB 官方文档](https://docs.pingcap.com/zh/tidb/v4.0/check-before-deployment)
 - [安装与启动 - TiDB 官方文档](https://docs.pingcap.com/zh/tidb/v4.0/production-deployment-using-tiup)
 
-<a name="f64719cf"></a>
+
 ## 前置步骤
 
 **_这一块 tuning 有关的内容开发环境安装时都没有做, 不做不会导致安装失败, 但根据文档可能会影响性能._**
@@ -63,7 +63,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub 10.0.1.1
 yum -y install numactl
 ```
 
-<a name="699fb63f"></a>
+
 ## 安装步骤
 
 完成按步骤之后,
@@ -243,7 +243,7 @@ mysql -u root -h <YOUR_IP_ADDRESS> -P 4000
 ```
 
 
-<a name="HNKaV"></a>
+
 # 备份数据
 
 ```bash

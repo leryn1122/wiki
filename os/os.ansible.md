@@ -1,10 +1,10 @@
-<a name="JPshA"></a>
+
 # Ansible
 Ansible 在我的工作内容中有两个用途：
 
 - 批量操作服务器：例如一个非常真实的场景是网络安全组要求为某个网段的服务器加装安全探针、升级内核等等，一个 Ansible 脚本可以完成数百台服务器的安装；
 - 监控系统时更加接近 Shell 命令的内容，例如 ping 我们会用 REST API 调用 Ansible Semaphore 来完成。
-<a name="McX3m"></a>
+
 ## Ansible
 Ansible 基于 ssh 和 Python<br />Ansible 很重要的特性是所有操作的都具备幂等性。
 ```bash
@@ -12,7 +12,7 @@ ansible -i hosts -m ping
 
 ansible-playbook -i hosts main.yaml
 ```
-<a name="LsvN0"></a>
+
 ## Semaphore - Ansible 控制台
 参考文档：
 
@@ -115,7 +115,7 @@ spec:
               port: http
       restartPolicy: Always
 ```
-<a name="rLeea"></a>
+
 ## 常用 API
 域名使用 `ansible.mydomain.com`，由于是集群内部可以直接用 Kubernetes Service 的名字 `ansible.ansible`。
 ```bash

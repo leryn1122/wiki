@@ -1,5 +1,5 @@
 ![](http://nginx.org/nginx.png#id=XbNaU&originHeight=72&originWidth=352&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
-<a name="p3D5W"></a>
+
 # Nginx 安装手册
 
 参考手册:
@@ -10,9 +10,9 @@
 - [Nginx 安装 - oschina - 作者: staybug](https://my.oschina.net/staybug/blog/4254456?hmsr=kaifa_aladdin)
 
 Nginx 强烈不推荐使用源码编译的方式安装
-<a name="P9CZi"></a>
+
 ## 包管理器
-<a name="XVdu0"></a>
+
 ### 安装步骤
 
 ```bash
@@ -20,13 +20,13 @@ sudo apt update -y
 sudo apt install -y nginx
 ```
 
-<a name="pjk1Q"></a>
+
 ### 启动与验证
 
 ```bash
 sudo systemctl restart nginx
 ```
-<a name="dYlzA"></a>
+
 ## Docker 安装
 
 ```bash
@@ -42,7 +42,7 @@ docker run \
 ```
 
 
-<a name="GUgc2"></a>
+
 # Nginx
 
 参考文档:

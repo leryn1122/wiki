@@ -1,10 +1,10 @@
-<a name="inzxR"></a>
+
 # Cloudreve 安装手册
 参考文档:
 
 - [Cloudreve - 官方文档](https://docs.cloudreve.org/getting-started/config)
 - [Cloudreve 镜像 - DockerHub](https://hub.docker.com/r/xavierniu/cloudreve)
-<a name="rssnu"></a>
+
 ## 获取 PUID 和 PGID
 
 为什么要使用 PUID 和 PGID 参见[Understanding PUID and PGID](https://docs.linuxserver.io/general/understanding-puid-and-pgid). 假设当前登陆用户为 root, 则执行`id root`就会得到类似于下面的一段代码:
@@ -21,7 +21,7 @@ mkdir -p /data/cloudreve/config     # 配置文件夹
 mkdir -p /data/cloudreve/db         # 数据库文件夹, 如
 mkdir -p /data/cloudreve/avatar     # 头像文件夹
 ```
-<a name="Pq4sU"></a>
+
 ## 创建配置文件
 
 创建配置文件(该配置文件针对 SQLite 数据库, 如需使用 MySQL 等数据库, 请参见[Cloudreve - 官方文档](https://docs.cloudreve.org/getting-started/config))
@@ -43,7 +43,7 @@ mkdir -p /data/cloudreve/config
 mkdir -p /data/cloudreve/db
 mkdir -p /data/cloudreve/avatar
 ```
-<a name="x82SK"></a>
+
 ## Docker 启动
 ```bash
 docker run \

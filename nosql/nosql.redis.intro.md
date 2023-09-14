@@ -1,5 +1,5 @@
 
-<a name="Avt9V"></a>
+
 #### maxmemory <bytes>
 
 我们可以通过配置 `redis.conf` 中的 maxmemory 这个值来开启内存淘汰功能. maxmemory 为 0 的时候表示我们对 Redis 的内存使用没有限制
@@ -16,7 +16,7 @@ Redis提供了下面几种淘汰策略供用户选择, 其中默认的策略为 
 | volatile-random | 在设置了过期时间的键空间中, 随机移除某个 key |
 | volatile-ttl | 在设置了过期时间的键空间中, 具有更早过期时间的 key 优先移除 |
 
-<a name="TPL9M"></a>
+
 #### maxmemory-policy noeviction
 
 Redis 也支持 Runtime 修改淘汰策略, 这使得我们无需重启 Redis 实例而实时的调整内存淘汰策略<br />下面看看几种策略的适用场景:

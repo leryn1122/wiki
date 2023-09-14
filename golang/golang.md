@@ -1,4 +1,4 @@
-<a name="numG0"></a>
+
 # Golang
 参考文档:
 

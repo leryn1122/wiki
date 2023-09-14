@@ -1,11 +1,11 @@
-<a name="OduFi"></a>
+
 # Flink 介绍
 参考文档:
 
 - [Kubernetes Setup - Flink 官网](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/resource-providers/standalone/kubernetes/)
 
 本文采用版本 `flink:1.13.6-scala_2.12-java8` , 也可以采用最新的.
-<a name="LGQeW"></a>
+
 ## 运行模式
 
 |  | Session | PerJob |
@@ -14,7 +14,7 @@
 | 提交作业 | 启动后朝 Web UI 中提交 | 提前将 jar 包构建进镜像 |
 | 任务和隔离性 | 所有 Job 都在一起 | 每个 Job 都在资源隔离 |
 
-<a name="z2Ct1"></a>
+
 ## Flink native on Kubernetes
 
 [https://nightlies.apache.org/flink/flink-docs-master/docs/deployment/resource-providers/native_kubernetes/](https://nightlies.apache.org/flink/flink-docs-master/docs/deployment/resource-providers/native_kubernetes/)
@@ -38,7 +38,7 @@
 - [fabric8io/kubernetes-client 配置参数 - GitHub](https://github.com/fabric8io/kubernetes-client#configuring-the-client)
 - [Flink native 配置参数 - Flink 官网](https://nightlies.apache.org/flink/flink-docs-master/docs/deployment/config/#kubernetes)
 
-<a name="qeDyM"></a>
+
 ### 安装步骤
 
 下载二进制包：
@@ -97,9 +97,9 @@ bin/flink run-application \
     
 ```
 
-<a name="OUITs"></a>
+
 ### 常见问题
-<a name="K2kBd"></a>
+
 #### 启动报 Kubernetes 没有权限
 
 检查 `~/.kube/config` 正确：
@@ -120,7 +120,7 @@ kubectl create clusterrolebinding flink-role-binding-flink-native \
   --serviceaccount=flink-native:flink-native
 ```
 
-<a name="KB5Rc"></a>
+
 #### BouncyCastle 依赖不存在
 
 如果报如下报错：
@@ -146,7 +146,7 @@ io.fabric8.kubernetes.client.KubernetesClientException: JcaPEMKeyConverter is pr
 </dependency>
 ```
 
-<a name="kTyn0"></a>
+
 #### 找不到主类或者依赖
 
 请在项目中引用如下 maven 插件，然后重新 `mvn package`，然后我们需要使用 Fat Jar 来部署：
@@ -226,7 +226,7 @@ echo 'stop' | bin/kubernetes-session.sh \
     -Dexecution.attached=true
 ```
 
-<a name="PjUOH"></a>
+
 ### kubernetes.pod-template-file
 
 如果以上参数都不能覆盖所需的需求的话，可以使用 `-Dkubernetes.pod-template-file=pod-template.yaml` 来指定需要使用的 pod 文件：
@@ -337,14 +337,14 @@ spec:
       emptyDir: { }
 ```
 
-<a name="N6evB"></a>
+
 ### 测试
 
 未开启 checkpoint 情形<br />kill taskmanager 服务将停止<br />kill jobmanager 服务将重新拉起 taskmanager 大约 15 ~ 20 s
 
-<a name="sZMYq"></a>
+
 ## 连接器
-<a name="OTBw7"></a>
+
 ### 调试 Kafka Connector
 
 ```bash
@@ -357,9 +357,9 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic slowquery_loc
 # Time: 2022-04-13T04:00:02.179540Z|# User@Host: root[root] @ localhost []  Id: 35408|# Query_time: 0.003405  Lock_time: 0.001458 Rows_sent: 0  Rows_examined: 159|SET timestamp=1649822402;|SELECT 1 FROM dual; --k8s测试
 ```
 
-<a name="EVxH1"></a>
+
 ## Checkpoint & Savepoint
-<a name="aADYc"></a>
+
 ### 区别
 |  | Checkpoint | Savepoint |
 | --- | --- | --- |
@@ -386,7 +386,7 @@ env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
 ```bash
 bin/flink run -s /path/to/savepoint your_flink.jar
 ```
-<a name="c5Smm"></a>
+
 ### 重启策略
 | **重启策略** | **具体策略** |
 | --- | --- |
@@ -432,7 +432,7 @@ env.setRestartStrategy(RestartStrategies.failureRateRestart(3, Time.of(5, TimeUn
 env.setRestartStrategy(RestartStrategies.noRestart());
 ```
 
-<a name="frna1"></a>
+
 ### 恢复策略
 | 恢复策略 | **具体策略** |
 | --- | --- |

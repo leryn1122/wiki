@@ -1,6 +1,6 @@
-<a name="gOvo8"></a>
+
 # HAProxy + KeepAlived
-<a name="jHzRQ"></a>
+
 ## 介绍
 HAProxy 与 Nginx 都可以用做负载均衡和 Web 服务器。
 
@@ -11,18 +11,18 @@ KeepAlived 工作在 L3-5 协议，使用了 Linux 内核中的 LVS 和 VRRP 技
 
 - VRRP（Virtual Router Redundancy Protocol 虚拟路由器冗余协议）出现的目的就是为了解决静态路由单点故障问题的，它能够保证当个别节点宕机时，整个网络可以不间断地运行。
 - 内部通过选举协议来选择主备，来动态的将路由任务交给 LAN 中虚拟路由器中的某台VRRP路由器。
-<a name="mKXlK"></a>
+
 ## 例子
 以代理 Kubernetes 集群的 Master 和 Worker 为例子：<br />两个 KeepAlived 代理一个 VIP 地址，HAProxy 通过四层代理将 6443 端口和 80/443 端口的流量分别转发到 K8S Master 的 API Server 和 K8S Worker 的服务端口上<br />![](./../assets/1681180519902-d846857a-b7d7-4988-aaaa-4f42e51172a5.jpeg)
-<a name="wOtUW"></a>
+
 ## 包管理器安装
-<a name="Bt8QB"></a>
+
 ### 环境准备
 HAProxy 的环境准备：
 
 - 至少需要两台服务器
 - 一个额外可分配的空闲 IP
-<a name="AnflW"></a>
+
 ### 安装 HAProxy
 用包管理器下载安装 HAProxy：
 ```bash
@@ -113,7 +113,7 @@ systemctl enable haproxy
 systemctl start  haproxy
 systemctl status haproxy
 ```
-<a name="Rvbax"></a>
+
 ### 安装 KeepAlived
 用包管理器下载安装 KeepAlived：
 ```bash
@@ -152,7 +152,7 @@ systemctl enable keepalived
 systemctl start  keepalived
 systemctl status keepalived
 ```
-<a name="Xljvm"></a>
+
 ## 高可用测试
 HAProxy 和 KeepAlived 都启动后，`ip a`查看 IP 地址，某节点会占用漂移地址，且`ping`IP 地址可以`ping`通。
 ```bash
@@ -175,7 +175,7 @@ reboot
 ip a | grep inet
 ping <漂移地址>
 ```
-<a name="yYo3b"></a>
+
 ## 注意点
 之前发生了一个悲惨的故事，发现一台 KeepAlived 服务器上的 DNS 配置有问题，于是重启了网卡，发现 KeepAlived 默默的挂了，重启 KeepAlived 服务即可：
 ```bash
@@ -188,7 +188,7 @@ service network restart
 # 重启KeepAlived
 systemctl restart keepalived
 ```
-<a name="E4NCQ"></a>
+
 ## Docker 安装
 用于单机模拟和调试 HAProxy。<br />由于 HAProxy 官方不提供任何默认配置（官方认为不存在任何通用的转发配置），所以必须自己编写配置文件 `haproxy.cfg`，没有则无法启动，可以通过如下命令启动并检查：
 ```bash

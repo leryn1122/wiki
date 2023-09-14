@@ -1,4 +1,4 @@
-<a name="x2QMA"></a>
+
 # Kubernetes Ingress Controller
 参考文档：
 
@@ -21,7 +21,7 @@ Ingress 就是**入口**的意思，那么 Ingress Controller 就是入口控制
 | Service | iptables 或者 ipvs |
 
 可以看下面的插图，解释的很非常通俗易懂：<br />![20220217001612.png](./../assets/1648298721391-71350fe3-57e3-47ed-a828-f774a636d15e.png)
-<a name="s30le"></a>
+
 ## Nginx Ingress Controller 安装步骤
 参考文档：
 
@@ -110,10 +110,10 @@ kubectl get pods -n ingress-nginx
 kubectl exec -it ingress-nginx-nginx-ingress-controller-57b6f9794f-zkzrj -n gateway \
   -- bash -c "cat /etc/nginx/nginx.conf"
 ```
-<a name="bjIt3"></a>
+
 ## 相关配置
 安装的时候已经介绍了一下 Ingress Controller 和其上匹配的默认配置，下面是 Ingress 的 YAML 中可配置的参数。
-<a name="uoBy6"></a>
+
 ### Https 证书
 需要配置 Https 证书。获得一下两个值,，这里是用 acme.sh 生成的自授权证书：<br />**方法1**
 ```bash
@@ -157,7 +157,7 @@ helm install ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx \
   --set service.nodePorts.https="30443" \
   --set service.type="NodePort"
 ```
-<a name="gdDAi"></a>
+
 ### 路由规则
 路由规则可以以 `annotations` 的方式添加到 Ingress 中：
 
@@ -165,10 +165,10 @@ helm install ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx \
 - `nginx.ingress.kubernetes.io/proxy-body-size`: 1G，代理转发的请求体大小
 - `nginx.ingress.kubernetes.io/ssl-redirect`: true，是否开启 SSL 重定向
 - `nginx.ingress.kubernetes.io/rewrite-target`: `/$1`，如何重写转发路径
-<a name="xeND1"></a>
+
 ### Ingress Class
 如果一个集群上可以安装多个 Ingress Controller，例如通过不同的 Ingress Class 来区分不同的渠道：Admin Ingress，Internal Ingress等等，不同的渠道的认证、转发规则都不尽相同，内部认证可能基于 Cookies，外部认证基于 Token。<br />当创建新的 Ingress 时，可以通过为其指定 Ingress Class 的方式将其注入到预期的 Ingress Controller 中。如果不显式指定 Ingress Class，且集群中只有一个 Ingress Class 标记为默认，那么会自动应用到 Ingress 上。<br />早期版本使用注解来标记默认 Ingress Class，现在请使用 `spec.ingressClassName: "name"` 来指定。另外在 IngressClass 使用注解 `ingressclass.kubernetes.io/is-default-class: true` 来指定默认 Ingress Class。
-<a name="emeOz"></a>
+
 ### 发布策略
 参考文档：
 

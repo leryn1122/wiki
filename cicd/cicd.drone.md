@@ -1,5 +1,5 @@
 本流水线由于存在bug，已经卸载
-<a name="VZrAF"></a>
+
 # drone 安装手册
 参考文档：
 
@@ -8,9 +8,9 @@
 - [https://plugins.drone.io/](https://plugins.drone.io/)
 
 不同的 git 产品对接方式各不相同，请在官方文档中找到相应的对接方式，这里只有 gitee。
-<a name="Xjfkg"></a>
+
 ## Gitee
-<a name="B1r7f"></a>
+
 ### OAuth 应用
 在 Gitee 上创建 OAuth 应用程序<br />需要正确的应用主页和回调地址：
 
@@ -24,7 +24,7 @@
 - pull_requests
 - notes
 - hook
-<a name="x9BwG"></a>
+
 ### 创建共享密钥
 ```bash
 openssl rand -hex 16
@@ -32,7 +32,7 @@ openssl rand -hex 16
 ```
 2ff35a69ef0f5c60c781a8775e8db5a2
 ```
-<a name="al0Kw"></a>
+
 ### Docker 安装 server
 ```bash
 # Postgres
@@ -79,7 +79,7 @@ docker run \
 - DRONE_RPC_SECRET<br />必需的字符串值提供在上一步中生成的共享机密。这用于验证服务器和运行程序之间的 rpc 连接。必须为服务器和运行程序提供相同的秘密值。
 - DRONE_SERVER_HOST<br />必需的字符串值提供您的外部主机名或 IP 地址。如果使用 IP 地址，您可以包含端口。例如 drone.domain.com
 - DRONE_SERVER_PROTO<br />必需的字符串值提供您的外部协议方案。此值应设置为 http 或 https。如果您配置 ssl 或 acme，则此字段默认为 https
-<a name="h6CTV"></a>
+
 ### Docker 安装 runner
 Drone runner 是一个守护进程，它在临时 docker 容器内执行管道步骤。您可以安装单个 docker 运行器，或在多台机器上安装 docker 运行器来创建您自己的构建集群。
 ```bash
@@ -105,10 +105,10 @@ INFO[0000] starting the server                           addr=":3000"
 INFO[0000] successfully pinged the remote server
 INFO[0000] polling the remote server                     arch=amd64 capacity=2 endpoint="https://drone.leryn.top" kind=pipeline os=linux type=docker
 ```
-<a name="nAvQD"></a>
+
 ## 流水线
 搭建好 drone 后，登录 OAuth2 认证。点击`Activate Repository`激活仓库，然后配置在仓库提交`.drone.yml`作为流水线配置即可启动流水线。
-<a name="r0wwi"></a>
+
 ### 示例 .drone.yml
 ```yaml
 kind: pipeline
@@ -162,7 +162,7 @@ volumes:
     host:
       path: /var/run/docker.sock
 ```
-<a name="dzosl"></a>
+
 ### 流水线优化
 我们增加几步优化：
 

@@ -1,11 +1,11 @@
-<a name="CXuxx"></a>
+
 # Confluence
 参考文档:
 
 - [Conflunce - 官网](https://www.atlassian.com/zh/software/confluence)
-<a name="JgNCK"></a>
+
 ## Docker 安装
-<a name="tvHzu"></a>
+
 ### Docker 镜像安装
 
 官方镜像提供了镜像 [atlassian/confluence-server](https://hub.docker.com/r/atlassian/confluence-server), 提供了完善的配置和解决方案.<br />我们使用一个热门的第三方 [haxqer/confluence](https://hub.docker.com/r/haxqer/confluence).
@@ -23,7 +23,7 @@ docker run \
 ```
 
 容器启动成功后进入对应的界面, 根据界面提示操作即可. 有两步需要额外的服务端操作.
-<a name="wHr4b"></a>
+
 ### 生成序列号
 
 如果需要生成序列号, 可以使用如下命令生成序列号.
@@ -40,7 +40,7 @@ docker exec confluence \
   -s B0YY-DP3U-WMSM-9HVK
 ```
 
-<a name="NsbUo"></a>
+
 ### 创建数据库
 
 创建数据库, 这里选择 MySQL:
@@ -60,7 +60,7 @@ FLUSH PRIVILEGES;
 jdbc:mysql://leryn.top:3306/confluence?sessionVariables=transaction_isolation='READ-COMMITTED'&useSSL=false&allowPublicKeyRetrieval=true
 ```
 
-<a name="GcEYF"></a>
+
 ### 修改 JVM 内存限制(可选)
 
 默认的 JVM 内存限制最大最小内存都是 1024M. 4G 贫民服务器需要降低内存才能正常工作.
@@ -71,7 +71,7 @@ docker exec confluence \
 docker restart confluence
 ```
 
-<a name="yXXez"></a>
+
 ### 设置 Base Url
 
 如果使用域名访问需要把 Base URL 设置成域名, 而不是 IP 地址加端口的形式. 或者再一开始生成序列号的时候就填写域名.<br />参考官方文档:
@@ -112,14 +112,14 @@ vim server.xml
 docker cp ./server.xml confluence:/opt/confluence/conf/server.xml
 docker restart confluence
 ```
-<a name="FEXbd"></a>
+
 ## <br />二进制安装
 
 参考文档:
 
 - [Confluence Server 7.6 Archive 方式安装文档 - Atlassian 官网](https://confluence.atlassian.com/conf76/installing-confluence-on-linux-from-archive-file-1018769978.html)
 
-<a name="c1Dsu"></a>
+
 ### 前置准备
 
 - Confluence: 7.6.2, 绑定的 Tomcat 版本 9.0.33
@@ -185,7 +185,7 @@ GRANT ALL PRIVILEGES ON confluence .* TO ''@'localhost' IDENTIFIED BY '';
 8.  启动confluence：<br />/opt/confluence/bin/start-confluence.sh<br />初始化启动之前建议打快照 
 9.  登录到confluence 进行初始化：[https://confluence.atlassian.com/conf76/installing-confluence-on-linux-from-archive-file-1018769978.html](https://confluence.atlassian.com/conf76/installing-confluence-on-linux-from-archive-file-1018769978.html) 
 
-<a name="aeEOj"></a>
+
 ### 生成序列号
 
 ```bash
@@ -213,7 +213,7 @@ java -jar /var/agent/atlassian-agent.jar -p conf \
 
 4.  配置日志轮替<br />$>cat /etc/logrotate.d/confluence<br />/opt/confluence/logs/catalina.out<br />/var/confluence/logs/atlassian-confluence.log<br />/var/confluence/logs/atlassian-synchrony.log<br />/var/confluence/logs/atlassian-diagnostics.log<br />{<br />missingok<br />daily<br />rotate 14<br />missingok<br />dateext<br />notifempty<br />copytruncate<br />} 
 
-<a name="PyQxU"></a>
+
 ## 集成 Jira
 
 参考官方文档:
@@ -221,7 +221,7 @@ java -jar /var/agent/atlassian-agent.jar -p conf \
 - [在设置向导中配置 Jira 集成 - 官方文档](https://confluence.atlassian.com/doc/configuring-jira-integration-in-the-setup-wizard-242255467.html)
 
 需要 Jira 管理员权限, 根据提示操作.
-<a name="NJ2Ib"></a>
+
 ## 备份与恢复
 
 参考官方文档:
@@ -230,7 +230,7 @@ java -jar /var/agent/atlassian-agent.jar -p conf \
 - [手动备份站点 - 官方文档](https://confluence.atlassian.com/conf76/migrating-to-another-database-1018769689.html)
 
 虽然 Confluence 提供了预定的 XML 备份, 但这种备份方式只适用于**小型站点**, 以及除了数据库和**目录**备份**之外**的备份.
-<a name="qjKWM"></a>
+
 ### 数据库备份策略
 
 我们建议建立一个健壮的数据库备份策略:
@@ -239,7 +239,7 @@ java -jar /var/agent/atlassian-agent.jar -p conf \
 - 如果您的数据库不支持在线备份，您需要在执行此操作时停止 Confluence;
 - 创建主目录的文件系统备份(本地主目录和数据中心的共享主目录)
 
-<a name="ZS9hk"></a>
+
 ### 需要备份的文件
 
 备份整个主目录是最安全的选择，但是大多数文件和目录在启动时填充，可以忽略。至少， 必须 备份这些文件/目录：<br />以下 `${CONF_HOME}` 为 confluence 数据的根目录, 当前 docker 容器中为`/data/cofluence:/var/confluence`.
@@ -258,11 +258,11 @@ java -jar /var/agent/atlassian-agent.jar -p conf \
 
 - **${CONF_HOME}/thumbnails**
 - **${CONF_HOME}/viewfile**
-<a name="fitQR"></a>
+
 ### 备份
 
 - [生产备份策略 - 官方文档](https://confluence.atlassian.com/conf76/production-backup-strategy-1018769697.html)
-<a name="GAX2h"></a>
+
 ### 从备份恢复
 
 - [手动备份站点 - 官方文档](https://confluence.atlassian.com/conf76/migrating-to-another-database-1018769689.html)

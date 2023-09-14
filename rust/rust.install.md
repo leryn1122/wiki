@@ -1,4 +1,4 @@
-<a name="FaUlf"></a>
+
 # Rust 环境安装
 参考文档：
 
@@ -6,7 +6,7 @@
 - [https://www.rust-lang.org/tools/install](https://www.rust-lang.org/tools/install)
 - [https://forge.rust-lang.org/infra/other-installation-methods.html](https://forge.rust-lang.org/infra/other-installation-methods.html)
 - [https://cargo.budshome.com/reference/source-replacement.html](https://cargo.budshome.com/reference/source-replacement.html)
-<a name="HTbvx"></a>
+
 ## 安装包安装
 Rust 官方提供了最简单的下载安装方式，一键安装 Rust 环境（Rust 的非常**干净**）。打开 rust 官网会自动检测浏览器当前的系统，提供对应系统上的命令：
 ```bash
@@ -54,7 +54,7 @@ rustup update
 # 卸载
 rustup self uninstall
 ```
-<a name="cb3Ya"></a>
+
 ## 配置 C++ 环境
 参考文档:
 
@@ -75,7 +75,7 @@ source ~/.bashrc
 rustup toolchain install stable-x86_64-pc-windows-gnu
 rustup default stable-x86_64-pc-windows-gnu
 ```
-<a name="CzmFZ"></a>
+
 ## 更换 cargo 源
 编辑用户目录下的 `~/.cargo/config`即可。
 ```bash

@@ -1,10 +1,10 @@
 
-<a name="o8ndc"></a>
+
 # Lua 脚本
 参考文档:
 
 - [Lua: download](https://www.lua.org/download.html)
-<a name="oJ09O"></a>
+
 ## 源码编译安装
 
 ```bash

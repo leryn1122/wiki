@@ -1,18 +1,18 @@
-<a name="zSc23"></a>
+
 # RabbitMQ 安装手册
 参考文档：
 
 - [https://www.erlang.org/downloads](https://www.erlang.org/downloads)
 - [https://www.rabbitmq.com/](https://www.rabbitmq.com/)
 - [https://github.com/rabbitmq/rabbitmq-delayed-message-exchange](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange)
-<a name="OC3TN"></a>
+
 ## 安装 Erlang
 ```bash
 wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
 echo "deb https://packages.erlang-solutions.com/ubuntu bionic contrib" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
 apt update & apt install -y erlang
 ```
-<a name="yvF6a"></a>
+
 ## 安装 RabbitMQ
 ```bash
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.deb.sh | sudo bash
@@ -32,7 +32,7 @@ rabbitmq-plugins enable rabbitmq_management
 mv rabbitmq_delayed_message_exchange-3.8.0.ez /usr/lib/rabbitmq/lib/rabbitmq_server-3.8.11/plugins/
 rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 ```
-<a name="yPfke"></a>
+
 ## 搭建集群
 配置主机名和本地域名解析：
 ```bash
@@ -59,7 +59,7 @@ rabbitmqctl start_app
 
 rabbitmqctl cluster_status
 ```
-<a name="IPIRu"></a>
+
 ## 设置高可用策略
 高可用可配置所有节点存储副本或 n 节点存储副本。在管理端的 Admin -> Policy 处可以看到。官方建议副本数设置为 （2/N + 1）。<br />根据测试结果，3 节点设置所有节点存储副本模式下，挂一台就处于不可用状态。
 ```bash

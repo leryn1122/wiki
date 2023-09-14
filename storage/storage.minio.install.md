@@ -1,10 +1,10 @@
-<a name="mKUb8"></a>
+
 # MinIO 安装手册
 参考文档：
 
 - [https://docs.min.io/](https://docs.min.io/)
 - [https://docs.minio.org.cn/docs/](https://docs.minio.org.cn/docs/)
-<a name="Q3xXj"></a>
+
 ## Docker 安装
 这里：
 
@@ -29,7 +29,7 @@ docker run \
   --env="MINIO_ACCESS_KEY=admin" \
   --env="MINIO_SECRET_KEY=admin" \
 ```
-<a name="OjoQs"></a>
+
 ## Helm 安装
 参考文档：
 

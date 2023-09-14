@@ -1,15 +1,15 @@
-<a name="jx9ov"></a>
+
 # MySQL 升级方案
 参考文档:
 
 - [https://dev.mysql.com/doc/relnotes/mysql/8.0/en/](https://dev.mysql.com/doc/relnotes/mysql/8.0/en/)
-<a name="hiFIZ"></a>
+
 ## 禁用预编译语句
 
 1. 检查jdbc连接，如有设置 `useServerPrepStmts=true`，将其改为 `false`。重启应用。（所需时间最短）
 
 JDBC 连接将绑定变量功能开启：数据库 general_log 显示 prepare 字样，就表示使用了绑定变量<br />JDBC 连接将绑定变量功能关闭：数据库 general_log 不会显示 prepare 字样，就表示没有使用绑定变量
-<a name="KzL0s"></a>
+
 ## 对 MySQL 就地升级
 
 1. 对原 mysql 进行备份，并将备份拷贝到远程服务器，以防升级误操作删除备份。
@@ -58,7 +58,7 @@ tail -f error.log
 ```sql
 select version();
 ```
-<a name="BwdSe"></a>
+
 ## 重新安装 MySQL
 
 1. 对原 mysql 进行备份，并将备份拷贝到远程服务器，以防升级误操作删除备份。

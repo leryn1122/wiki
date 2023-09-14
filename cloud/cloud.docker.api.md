@@ -4,11 +4,11 @@
 - [非官方SDK - 官网](https://docs.docker.com/engine/api/sdk/#unofficial-libraries)
 
 很不幸, docker 官方只提供了 go, python 和 HTTP 三种官方接口. 但是他罗列了一些非官方 SDK.
-<a name="mc8mc"></a>
+
 # Docker API 接口
-<a name="RfbTE"></a>
+
 ## Docker 命令行
-<a name="dzZvh"></a>
+
 ### 查看 docker 存储空间
 
 ```bash
@@ -18,7 +18,7 @@ docker system df
 # 命令可以进一步查看空间占用细节, 以确定是哪个镜像、容器或本地卷占用过高空间
 docker system df -v
 ```
-<a name="DDtB9"></a>
+
 ### 清理空间
 
 - 已停止的容器: 指所有已被容器 (包括 stop 的) 关联的镜像, 也就是 docker ps -a 所看到的所有容器对应的 image
@@ -46,7 +46,7 @@ docker network prune
 # 
 docker builder prune
 ```
-<a name="jHTDC"></a>
+
 ### 手动清除
 
 对于悬空镜像和未使用镜像可以使用手动进行个别删除:
@@ -67,7 +67,7 @@ docker rm -v $(docker ps -aq -f status=exited)
 # 删除所有状态为 dead 的容器
 docker rm -v $(docker ps -aq -f status=dead)
 ```
-<a name="pHuLb"></a>
+
 ### 批量操作
 
 ```bash
@@ -80,11 +80,11 @@ docker images --format "{{.Repository}}:{{.Tag}}" | xargs -L1 docker pull
 # 强制删除空镜像
 docker images | awk '$1=="<none>"||$2=="<none>"{print $3}' | xargs -r docker rmi --force
 ```
-<a name="ICNj9"></a>
+
 ## Docker HTTP 接口
 
 出于安全性考虑, 本人不推荐在没有配置 TLS 前暴露 HTTP 接口.
-<a name="E4Bm4"></a>
+
 ### 远程构建镜像
 
 需要将本地项目打包成 tar 包, 再使用 HTTP 工具发送到远端. tar 包解压出的文件夹将作为 docker 构建的上下文路径. 甚至可以将这个方法包装为前端项目的构建脚本, 而不用流水线.
@@ -95,7 +95,7 @@ curl -XPOST 'http://xxx.xxx.xxx.xxx:2375/build?t=image:tag' \
      --data-binary @app.tar.gz
 ```
 
-<a name="Ax22t"></a>
+
 # Docker Registry API 接口
 简易版
 ```bash

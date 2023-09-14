@@ -1,4 +1,4 @@
-<a name="eGF8q"></a>
+
 # MySQL 监控
 参考文献：
 

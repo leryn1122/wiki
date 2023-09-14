@@ -1,4 +1,4 @@
-<a name="BvtpI"></a>
+
 # K3S 部署
 参考文档：
 
@@ -6,7 +6,7 @@
 - [https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default/](https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default/)
 
 K3S 是 Rancher 官方提出的轻量级 Kubernetes，阉割或降级了很多 Kubernetes 的配置，例如用 SQLite 来替换 Etcd，但它仍然满足 Kubernetes 的所有 API。性能上，资源占用比 Minikube 更小，是 Kubernetes 开发机最合适的产品实现。<br />CNI 改用 cilium 而不是 flannel 等。
-<a name="fm1SD"></a>
+
 ## 安装步骤
 运行以下命令即可一键安装，在这之前解释一下参数的意义：
 
@@ -41,7 +41,7 @@ sudo k3s kubectl get pods
 /usr/local/bin/k3s-uninstall.sh
 /usr/local/bin/kubectl -> k3s
 ```
-<a name="z9vzn"></a>
+
 ## 安装 CNI
 安装 Cilium 作为 CNI。Cilium
 
@@ -63,7 +63,7 @@ cilium status --wait
 # (可选) 开启 Web UI
 cilium ui enable
 ```
-<a name="kTSex"></a>
+
 ## 配置文件
 一些常用的文件路径：
 ```bash
@@ -79,7 +79,7 @@ cilium ui enable
 # SQLite 持久化文件, 及时备份
 /var/lib/rancher/k3s/server/db/state.db
 ```
-<a name="FnBl8"></a>
+
 ## 卸载 K3S
 如果您使用安装脚本安装了k3s，那么在安装过程中会生成一个卸载 k3s 的脚本。卸载 k3s 会删除集群数据和所有脚本。要使用不同的安装选项重新启动集群，请使用不同的标志重新运行安装脚本。<br />要从 server 节点卸载 k3s，请运行：
 ```bash
@@ -89,23 +89,23 @@ cilium ui enable
 ```bash
 /usr/local/bin/k3s-agent-uninstall.sh
 ```
-<a name="yFW58"></a>
+
 ## Helm支持
 正常安装 K3S 无法直接使用 Helm：
 ```bash
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 ```
 
-<a name="THAKk"></a>
+
 # Minikube
 Minikube 是一个单机 Kubernetes 的解决方案，以下称为`minikube`。
 
 参考文档：
 
 - [Minikube - 官方入门文档](https://minikube.sigs.k8s.io/docs/start/)
-<a name="zGwrq"></a>
+
 ## 二进制安装
-<a name="h9h1t"></a>
+
 ### 安装 kubectl
 
 `kubectl` 这个命令在`minikube`中是可选的，这里默认选择安装。如果不安装的话，后续可以使用复杂的命令代替。这里顺便把三个客户端工具`kubectl`，`kubelet`，`kubeadm`都安装上。<br />参考[K8S - 官方文档](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin)
@@ -133,7 +133,7 @@ sudo apt-get update
 sudo apt install -y kubectl kubelet kubeadm
 ```
 
-<a name="ocw6G"></a>
+
 ### 前置准备
 
 - Linux 环境
@@ -143,7 +143,7 @@ sudo apt install -y kubectl kubelet kubeadm
 - 网络连接
 - 虚拟化容器/虚拟机: Docker, Hyperkit, Hyper-V, KVM, Parallels, Podman, VirtualBox, or VMWare
 
-<a name="B01tV"></a>
+
 ### 安装步骤
 
 ```bash

@@ -1,9 +1,9 @@
-<a name="wnBSI"></a>
+
 # NFS
 NFS（Network File System）表示层协议。<br />需要开通网络权限的请注意：
 
 - NFS 网络默认使用了 111 和 2049 端口的 TCP/UDP 协议，并且 UDP 是双向的。请同时开通**两个端口**的 TCP 以及**双向 UDP**。
-<a name="Y8koD"></a>
+
 ## 服务端安装
 **Ubuntu 系统**
 ```bash
@@ -14,7 +14,7 @@ sudo apt install nfs-kernel-server
 sudo yum install nfs-utils rpcbind
 sudo systemctl start nfs-server.service
 ```
-<a name="jkqL9"></a>
+
 ## 客户端安装
 **Ubuntu 系统**
 ```bash
@@ -24,7 +24,7 @@ sudo apt install nfs-common
 ```bash
 sudo yum install nfs-utils
 ```
-<a name="czF0G"></a>
+
 ## 挂载
 首先需要在服务端配置：
 
@@ -45,9 +45,9 @@ mkdir -p /mnt/path
 # 用NFS挂载
 sudo mount -t nfs -o vers=3,tcp,nolock,async,mountproto=tcp,rsize=1048576,wsize=1048576  121.196.30.0:/path/to/mnt /mnt/path
 ```
-<a name="ffY9M"></a>
+
 ## Windows 客户端支持
-<a name="0a26c4f7"></a>
+
 #### 第一步：配置远程桌面服务
 
 1. 打开【服务器管理器】，点击【添加角色和功能】
@@ -60,7 +60,7 @@ sudo mount -t nfs -o vers=3,tcp,nolock,async,mountproto=tcp,rsize=1048576,wsize=
 - [https://jingyan.baidu.com/article/22fe7ced1e696d7102617ff5.html](https://jingyan.baidu.com/article/22fe7ced1e696d7102617ff5.html)
 - [https://jingyan.baidu.com/article/9faa7231c9e061473d28cb65.html](https://jingyan.baidu.com/article/9faa7231c9e061473d28cb65.html)
 - [https://www.52sanmiao.com/xitongyw/49.html](https://www.52sanmiao.com/xitongyw/49.html)
-<a name="c6006f86"></a>
+
 #### 第二步：配置 Windows 系统 NFS 客户端服务
 
 1. 启动 Windows NFS 客户端服务：
@@ -81,7 +81,7 @@ umount X:
 # 或者取消所有网络驱动器
 umount -a
 ```
-<a name="hBevZ"></a>
+
 ### 常见问题
 **Windows Server 2016 NFS 挂载成功后，没有写权限**
 

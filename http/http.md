@@ -1,16 +1,16 @@
-<a name="QFCuu"></a>
+
 # HTTP 浏览器相关知识
 HTTP 和浏览器有关的知识都在这里
 
-<a name="e5GGs"></a>
+
 ## 浏览器安全策略
 
 浏览器的安全机制包括 **网页安全模型** 和 **沙箱模型**.
-<a name="KGQe8"></a>
+
 ### CORS 跨源资源共享
 
 - [CORS - MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS)
-<a name="xMbil"></a>
+
 #### 原因
 
 产生原因: 跨域产生的原因是由于前端地址与后台接口不是同源, 从而导致 Ajax 不能发送<br />非同源产生的问题
@@ -45,7 +45,7 @@ Content-Type 的值仅限于下列三者之一:
 - text/plain
 - multipart/form-data
 - application/x-www-form-urlencoded
-<a name="h1UeY"></a>
+
 #### 解决方式
 
 
@@ -64,7 +64,7 @@ Content-Type 的值仅限于下列三者之一:
 
 注意只需要一个地方增加跨域支持就可以, 重复增加会导致浏览器报重复的 CORS 请求头的错误.
 
-<a name="cbggy"></a>
+
 #### 解决方式: Java 后端
 
 后端的解决方法其实很多, 这里只需要在后端增加几个请求头就 OK:
@@ -108,7 +108,7 @@ public class GlobalCorsConfiguration {
 }
 ```
 
-<a name="ox1jC"></a>
+
 #### 解决方式: nginx 转发请求
 
 既然同源策略是浏览器安全策略, 那么直接让 nginx 代理来发起请求就不会产生跨域问题了.
@@ -138,11 +138,11 @@ server {
 }
 ```
 
-<a name="ERwZB"></a>
+
 ## XSS
 
 // TODO
-<a name="lzZbj"></a>
+
 ## CSP 内容安全策略
 
 参考文档:

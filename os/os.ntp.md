@@ -1,4 +1,4 @@
-<a name="p2EQp"></a>
+
 # NTP 服务
 
 参考文档:
@@ -6,7 +6,7 @@
 - [Linux的NTP配置总结 - 潇湘隐者 - 博客园](https://www.cnblogs.com/kerrycode/p/4744804.html)
 - [windows时间同步设置 - Dark_Elf - 博客园](https://www.cnblogs.com/zhangdongyu/p/15674265.html)
 - [如何在Windows10上安装NTP客户端更精确的校准系统时间](https://blog.minirplus.com/8808/)
-<a name="mlMxK"></a>
+
 ## 简介
 > 下面是网上关于 ntpd 与 ntpdate 区别的相关资料。如下所示所示。
 > 使用之前得弄清楚一个问题，ntpd 与 ntpdate 在更新时间时有什么区别。`ntpd` 不仅仅是时间同步服务器，它还可以做客户端与标准时间服务器进行同步时间，而且是平滑同步，并非 ntpdate 立即同步，在生产环境中慎用 ntpdate，也正如此两者不可同时运行。
@@ -17,14 +17,14 @@
 > 
 ntpd 在和时间服务器的同步过程中，会把 BIOS 计时器的振荡频率偏差——或者说 Local Clock 的自然漂移(drift)——记录下来。这样即使网络有问题，本机仍然能维持一个相当精确的走时。
 
-<a name="wP83I"></a>
+
 ## 安装前的注意点
 注意点：
 
 - `ntp`和`ntpdate`都占用了`123`端口，如果`ntp`的 daemon 进程启动时, 无法使用`ntpdate`。
 - Ubuntu 默认安装了`chrony`服务，服务器重启后会默认启用这个服务，导致 NTP 无法自启动。虽然`chrony`比`ntp`更加先进，但很多公司仍然在使用 ntp。
 - `ntp`使用了双向 UDP 协议校时，网络权限需要放开 UDP 协议。
-<a name="TuDL6"></a>
+
 ## 包管理器安装
 安装 NTP 服务：
 ```bash

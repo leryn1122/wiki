@@ -1,9 +1,9 @@
-<a name="HaErR"></a>
+
 # Kafka 安装手册
 [![](https://img.shields.io/static/v1?label=kafka&message=2.7.0&color=black&style=plastic&logo=Apache%20Kafka&logoColor=white?longCache=true#id=xtNgh&originHeight=18&originWidth=97&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)](https://img.shields.io/static/v1?label=kafka&message=2.7.0&color=black&style=plastic&logo=Apache%20Kafka&logoColor=white?longCache=true)<br />参考文档:
 
 - [Kafka - 官网](https://kafka.apache.org/)
-<a name="sCAmV"></a>
+
 ## Docker 安装
 **以下是两点更新：**
 
@@ -40,9 +40,9 @@ docker run \
   --hostname=kafka \
   wurstmeister/kafka:2.13-2.8.1
 ```
-<a name="gKzja"></a>
+
 ## 二进制安装
-<a name="zz3rh"></a>
+
 ### 前置准备
 
 部署准备，安装前需要准备如下材料：
@@ -57,7 +57,7 @@ docker run \
 wget https://www.apache.org/dyn/closer.cgi?path=/kafka/2.7.0/kafka_2.13-2.7.0.tgz
 wget https://mirrors.bfsu.edu.cn/apache/kafka/2.7.0/kafka_2.13-2.7.0.tgz
 ```
-<a name="qf4aO"></a>
+
 ### 安装步骤
 配置环境变量，并使其生效：
 ```bash
@@ -95,7 +95,7 @@ log.dirs=/tmp/kafka-logs
 zookeeper.connect=localhost:2181
 ```
 
-<a name="dKc29"></a>
+
 ### 启动与验证
 启动 Kafka：与其他的中间件不同，Kafka 必须要显示的指定配置文件才能正常启动：
 ```bash
@@ -113,7 +113,7 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test_jmx
 # 另一个会话中, 开启消费者, 接受消息
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test_jmx --from-beginning
 ```
-<a name="hZ4aS"></a>
+
 ## Systemd
 生产通常实体机部署而非 Docker，自己写了 systemd 文件：
 ```toml
@@ -154,7 +154,7 @@ ExecStop=/opt/kafka/bin/kafka-server-stop.sh
 [Install]
 WantedBy=multi-user.target
 ```
-<a name="xMOQC"></a>
+
 # Kafka Exporter
 
 参考文档：
@@ -166,7 +166,7 @@ WantedBy=multi-user.target
 
 - `jmx_exporter` 监控 jvm
 - `kafka_exporter` 监控 kafka，尤其是这个 exporter 有一个指标表征了 consumer，topic，partition 对应的 offset 和 lag
-<a name="jHRTw"></a>
+
 ## Systemd 文件
 `/etc/kafka_exporter/kafka_exporter.conf` 写好所有的配置：
 
@@ -190,7 +190,7 @@ ExecStart=/opt/kafka_exporter/kafka_exporter $OPTIONS
 [Install]
 WantedBy=multi-user.target
 ```
-<a name="avSOk"></a>
+
 # KafkaTools 安装手册
 
 - [https://www.kafkatool.com/download.html](https://www.kafkatool.com/download.html)

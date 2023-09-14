@@ -1,4 +1,4 @@
-<a name="ETtiD"></a>
+
 # Jenkins 安装手册
 参考文档:
 
@@ -6,7 +6,7 @@
 - [https://wiki.eryajf.net/pages/2415.html](https://wiki.eryajf.net/pages/2415.html)
 
 Jenkins 是最受欢迎的自动化构建工具, 有丰富的扩展和插件. 许多流水线工具都内置 Jenkins 来实现自动化构建.<br />在云原生中, Jenkins 迎来了升级版 Jenkins X.<br />最新的消息中 Jenkins 已经开始了 JDK 17 版本的预览, 在不远的将来会全面迁移到 JDK 17.
-<a name="lCMVr"></a>
+
 ## Docker 安装
 Dockerhub 上 **jenkins** 和 **jenkinsci/jenkins** 的镜像已经 deprecated 了, 改用官方 [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins) 镜像.<br />版本
 
@@ -41,7 +41,7 @@ docker exec jenkins \
   cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 安装插件, 可能由于网络问题安装失败, 失败也可以在之后手动安装. 后续安装界面提示操作即可.
-<a name="OLwyH"></a>
+
 ## Helm 安装 (云环境推荐)
 参考文档:
 
@@ -63,16 +63,16 @@ controller.ingress.hostName=jenkins.domain.com
 persistence.enabled=true
 persistence.existingClaim=jenkins-pvc
 ```
-<a name="eqm6H"></a>
+
 ## 配置
-<a name="MA9wl"></a>
+
 ### GitHub Proxy 代理
 加速 GitHub clone 的代理设置:
 ```bash
 git config --global protocol.https.allow always
 git config --global url."https://ghproxy.com/https://github.com/".insteadOf "https://github.com/"
 ```
-<a name="lCboJ"></a>
+
 ## Jenkins Docker
 参考文档:
 
@@ -129,14 +129,14 @@ USER jenkins
 
 ENTRYPOINT [ "/usr/local/bin/jenkins-agent" ]
 ```
-<a name="S75dd"></a>
+
 # 访问 Jenkins
-<a name="YyHxK"></a>
+
 ## Jenkins CLI
 ```bash
 java -jar jenkins-cli.jar -s https://jenkins.leryn.top/ -auth admin:1159a750229c40a61247baaff72f75b9b5 -webSocket help
 ```
-<a name="R0yo2"></a>
+
 ## Jenkins Crumb
 Jenkins Crumb 实际上相当于其他 Web 服务中的 Token. 它用于防止 CSRF 攻击.<br />以下方式生产 Crumb:
 ```bash
@@ -166,10 +166,10 @@ curl -XPOST https://jenkins.domain.com/job/$PROJECT/job/$PIPELINE/buildWithParam
 ```bash
 http://jenkins.leryn.top/queue/item/313/
 ```
-<a name="CzzK8"></a>
+
 # Jenkins 插件
 本文会列举常用插件的用法，主要是 JCasC。之后插件的配置都会以 JCasC 的 YAML 配置为基础。如果 Jenkins 可配置化后，一切部署和调用都可以实现自动化了。
-<a name="iIWlU"></a>
+
 ## JCasC - Jenkins Configuration as Code
 参考文档：
 
@@ -177,7 +177,7 @@ http://jenkins.leryn.top/queue/item/313/
 > `JCasC = Jenkins Configuration as Code`
 
 它允许用户用可读的、声明式的 YAML 配置各种参数，而不是在页面上点击按钮添加配置。<br />如果你需要通过命令行启动 Jenkins Docker 容器，那么它会自动初始化 Jenkins 实例。
-<a name="JORDZ"></a>
+
 ### 配置方式
 它查找 `CASC_JENKINS_CONFIG` 环境变量或者 `casc.jenkins.config` Java 参数 (逗号分隔) :
 
@@ -186,14 +186,14 @@ http://jenkins.leryn.top/queue/item/313/
 - 指向网络 URL。例 `https://acme.org/jenkins.yaml`
 
 如果 `CASC_JENKINS_CONFIG` 指向文件夹, 将递归遍历 `.yml`, `.yaml`, `.YAML`, `.YML` 后缀文件<br />默认地址是 `$JENKINS_HOME/jenkins.yaml`。
-<a name="eycHR"></a>
+
 ### 刷新配置
 更新配置后，需要调用 Jenkins 重新加载配置的 RESTful API。<br />如果使用的是 Helm 的安装方式，那么 Jenkins 的 StatefulSet 下会有个名为 `config-reload` 的 SideCar 用于解决这个问题。它会自动监听 JCasC 对应的 ConfigMap 的变化，如果数据更新自动调用重新加载的接口。
-<a name="XVR3G"></a>
+
 ## Kubernetes
 
 
-<a name="EJELY"></a>
+
 ## Simple Themes
 下载后 [Simple Theme](https://wiki.jenkins-ci.org/display/JENKINS/Simple+Theme+Plugin) 插件后，
 

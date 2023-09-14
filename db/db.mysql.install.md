@@ -1,11 +1,11 @@
-<a name="WQvJl"></a>
+
 # MySQL
 ![](https://img.shields.io/static/v1?label=MySQL&message=2.7.0&color=blue&style=plastic&logo=MySQL&logoColor=white?longCache=true#id=EjlTS&originHeight=18&originWidth=105&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />Reference:
 
 - [MySQL - 官网](https://www.mysql.com/)
 - Mysql5.7 - 一键安装脚本 - cnblogs - 作者: 小豹子加油
 - Mysql8.0 - 一键安装脚本 - cnblogs - 作者: 小豹子加油
-<a name="S3Nc5"></a>
+
 ## 包管理器
 
 这很简单..
@@ -13,7 +13,7 @@
 sudo apt update
 sudo apt install -y mysql-server-8.0 mysql-client-8.0
 ```
-<a name="zwZCf"></a>
+
 ## Docker
 
 使用 dockerhub 上的官方镜像.
@@ -33,9 +33,9 @@ docker run \
   --hostname=mysql \
   mysql:8.0.26
 ```
-<a name="JiePv"></a>
+
 ## 二进制安装
-<a name="ffj44"></a>
+
 ### 前置准备
 部署准备, 安装前需要准备如下材料:
 
@@ -68,7 +68,7 @@ sudo usermod -a -G mysql leryn
 sudo rpm -qa | grep -i mysql   | grep -v libs | xargs rpm -ev --nodeps
 sudo rpm -qa | grep -i mariadb | grep -v libs | xargs rpm -ev --nodeps
 ```
-<a name="ZW2xg"></a>
+
 ### 安装步骤
 先做一些 MySQL 在 Linux 系统层面的参数配置.<br />配置 MySQL 资源限制配置文件:
 ```bash
@@ -258,7 +258,7 @@ mysql -uroot -p
 mysql> shutdown;
 mysql> exit;
 ```
-<a name="XaeOh"></a>
+
 ### Boot
 启动或停止服务:
 ```bash

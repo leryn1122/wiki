@@ -1,18 +1,18 @@
-<a name="X248G"></a>
+
 # Maven 安装手册
-<a name="sIIXd"></a>
+
 ## 包管理器
 
 很简单一句命令即可, 但是可能缺少 protobuff 并无法使用
-<a name="uaNNi"></a>
+
 ### 安装步骤
 
 ```bash
 sudo apt install -y maven
 ```
-<a name="yfFwF"></a>
+
 ## 二进制安装
-<a name="HdVOW"></a>
+
 ### 前置准备
 
 下载二进制安装包:
@@ -20,7 +20,7 @@ sudo apt install -y maven
 ```bash
 wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
 ```
-<a name="kIrrm"></a>
+
 ### 安装步骤
 
 解压安装包到指定路径, 并配置环境变量
@@ -38,7 +38,7 @@ export PATH=${MAVEN_HOME}/bin;${PATH}
 ```
 
 通常都会再修改默认的 maven 配置, 位置在`${MAVEN_HOME}/conf/settings.xml`
-<a name="Ae05Y"></a>
+
 ### 启动与验证
 
 ```bash
@@ -52,14 +52,14 @@ Java version: 17, vendor: Private Build, runtime: /usr/lib/jvm/java-17-openjdk-a
 Default locale: en_US, platform encoding: UTF-8
 OS name: "linux", version: "5.4.0-77-generic", arch: "amd64", family: "unix"
 ```
-<a name="M5WkK"></a>
+
 ## Docker
 
 ```bash
 docker pull maven:3.8.4-openjdk-17-slim
 docker pull maven:3.8.4-jdk-8-slim
 ```
-<a name="KIvi1"></a>
+
 # Maven-Daemon
 
 `mvnd` 是 apache/maven 的一个子项目, 它并不是一个全新的构建工具, 而是对 maven 的扩展. 它内置了 maven, 其实现原理是构建了一个或者多个 maven 守护进程来执行构建服务.
@@ -70,16 +70,16 @@ docker pull maven:3.8.4-jdk-8-slim
 4. mvnd 客户端使用 GraalVM 构建本地可执行文件, 与启动传统 JVM 相比, 它启动得更快, 占用的内存更少. 
 5. 如果 mvnd 没有空闲守护进程来服务一个构建请求, 可以并行地生成多个守护进程.
 
-<a name="le1XO"></a>
+
 ## 二进制安装
-<a name="OwkQt"></a>
+
 ## 构建镜像
 目前还没有官方镜像, 但是目前构建完镜像使用仍然有点问题. 构建镜像, 需要以下文件:
 
 - `Dockerfile`
 - `settings-docker.xml`
 - `mvn-entrypoint.sh`
-<a name="e4xs2"></a>
+
 ### `Dockerfile`
 ```dockerfile
 FROM docker.leryn.top/openjdk:17-oracle
@@ -105,7 +105,7 @@ COPY settings-docker.xml /usr/share/maven/ref/
 ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
 CMD ["mvnd"]
 ```
-<a name="SV7KN"></a>
+
 ### `settings-docker.xml`
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
@@ -115,7 +115,7 @@ CMD ["mvnd"]
   <localRepository>/usr/share/maven/ref/repository</localRepository>
 </settings>
 ```
-<a name="buKG3"></a>
+
 ### `mvn-entrypoint.sh`
 ```bash
 #! /bin/sh -eu

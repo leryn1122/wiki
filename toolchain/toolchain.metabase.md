@@ -1,4 +1,4 @@
-<a name="eqT9l"></a>
+
 # Metabase 安装手册
 参考文档：
 

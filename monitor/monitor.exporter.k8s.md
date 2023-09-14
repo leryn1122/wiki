@@ -1,6 +1,6 @@
-<a name="lDKgy"></a>
+
 # Kubernetes 监控
-<a name="X8wyC"></a>
+
 ## Kubernetes Event Exporter
 参考文档：
 

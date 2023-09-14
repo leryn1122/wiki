@@ -1,12 +1,12 @@
-<a name="NirVi"></a>
+
 # Elasticsearch SQL
 
 参考文档:
 
 - [SQL access | Elasticsearch Guide [7.6] | Elastic - ElasticSearch 官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/7.6/xpack-sql.html)
-<a name="O1ITg"></a>
+
 ## Elasticsearch SQL API
-<a name="zGcfo"></a>
+
 ### SQL 介绍
 
 Elasticsearch SQL 是 Elasticsearch 官方 XPack 提供的一系列 DSL 的 API, 可以使用 SQL 的方式访问 Elasticsearch 中的数据, 而不是去拼接原生的 Elasticsearch JSON 查询接口 (即使有 SDK 也很麻烦).
@@ -42,7 +42,7 @@ SHOW TABLES;
 SHOW FUNCTIONS;
 ```
 
-<a name="nPWFW"></a>
+
 ### API 接口
 
 有两个核心接口:
@@ -77,11 +77,11 @@ curl -XPOST https://elasticsearch:9200/_xpack/sql?format=json \
      -d '{"query": "select * from \"my-index*\" where @timestamp > ? limit 10", "params": ["2022-07-26T00:00:00Z"]}'
 ```
 
-<a name="d9GrU"></a>
+
 ### 局限性
 
 - 仅只是 SELECT 语句和一部分 SHOW 语句, 完全不支持 INSERT, DELETE, UPDATE 语句
-<a name="gani7"></a>
+
 ## Elasticsearch JDBC
 
 Elasticsearch 也提供 JDBC 的 Jar 包, 但需要白金版 License 或者~~破解~~.

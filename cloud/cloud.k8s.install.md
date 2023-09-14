@@ -1,6 +1,6 @@
-<a name="kk8cA"></a>
+
 # Kubernetes 安装手册
-<a name="m2I7s"></a>
+
 ## 前置准备
 前置准备：
 
@@ -12,7 +12,7 @@
 sudo apt update && sudo apt install -y \
   apt-transport-https ca-certificates curl gnupg2 software-properties-common
 ```
-<a name="RSOJA"></a>
+
 ## 安装应用
 添加 Kubernetes 源：
 ```bash
@@ -52,7 +52,7 @@ swapoff -a
 edit /etc/fstab
 # 注释掉 swap 分区
 ```
-<a name="lYKDx"></a>
+
 ## 高可用集群安装
 如果一个 Kubernetes 要满足高可用，那么建议保证集群有：
 
@@ -60,7 +60,7 @@ edit /etc/fstab
 - 至少 3 个 worker 节点
 - 至少 2 个HAProxy 和至少 2 个KeepAlived，建议和节点分离部署
 - 一个额外的空闲 IP
-<a name="YBZKZ"></a>
+
 ### HAProxy 安装
 ```bash
 sudo apt update && sudo apt install -y \
@@ -139,7 +139,7 @@ systemctl enable haproxy
 systemctl restart haproxy
 systemctl status haproxy
 ```
-<a name="B8MYl"></a>
+
 ### KeepAlived 安装
 KeepAlived 用于占用 VIP（虚拟IP），不需要实际的服务器，但要占用一个空闲 IP。KeepAlived 会轮流占用这个 VIP，如果当前 KeepAlived 宕机，那么 VIP 会漂移到另一个 KeepAlived 之上，实现高可用。
 ```bash
@@ -176,7 +176,7 @@ systemctl restart keepalived
 systemctl status keepalived
 ```
 然后我们初始化集群之前要将 Controll Plane 域名解析指向这个 VIP 的地址。
-<a name="LWZVp"></a>
+
 ## 初始化集群
 初始化集群：如果执行成功，控制台会打印 `kubeadm join` 命令，依次在对应的节点上运行：
 
@@ -242,11 +242,11 @@ kubectl get nodes
 # 查看集群健康状况
 kubectl get cs
 ```
-<a name="vyPba"></a>
+
 # Kubernetes 运维
-<a name="QzB7H"></a>
+
 ## Kubernetes 运维常见场景
-<a name="w7OfI"></a>
+
 ### 集群证书问题
 目前 Kubernetes 是由 `kubeadm` 安装的 1.18 版本，默认证书有效期是1年<br />通过以下命令统一更新由 `kubeadm` 管理的所有证书：
 ```bash
@@ -263,7 +263,7 @@ docker ps | grep -E 'k8s_kube-apiserver|k8s_kube-controller-manager|k8s_kube-sch
 ```bash
 kubeadm alpha certs check-expiration
 ```
-<a name="pBVQr"></a>
+
 ### 强制删除 namespace
 有时候 `kubectl` 删除 namespace 时，namespace 一直处于 **terminating**。这分两种场景：
 
@@ -283,7 +283,7 @@ kubectl proxy --port=8081
 curl -k -H "Content-Type: application/json" \
   -XPUT --data-binary @xxxx.json http://127.0.0.1:8081/api/v1/namespaces/xxxx/finalize
 ```
-<a name="lqEpO"></a>
+
 ### 操作 Etcd
 ```bash
 export ETCDCTL_API=3

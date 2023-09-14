@@ -1,7 +1,7 @@
-<a name="x0xAr"></a>
+
 # Clash 安装手册
 本文只介绍如何将 Clash 部署到服务端，实现上网。
-<a name="SINyW"></a>
+
 ## Clash 手动安装手册
 安装客户端：
 ```bash

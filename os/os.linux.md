@@ -1,4 +1,4 @@
-<a name="PGhuW"></a>
+
 # Linux 常见命令
 针对 Ubuntu, 原因提到过很多次：
 
@@ -7,11 +7,11 @@
 - CentOS 的时代已经过去了；
 
 如果你是用 Arch 等等资深用户，请当以上放屁。
-<a name="eqbyb"></a>
+
 ## 切换 oh-my-zsh
 
 oh-my-zsh 是一个预配置的 zsh，性能比 zsh 差。但好在免配置，zsh 手动配置比较复杂。
-<a name="ZOeHe"></a>
+
 ### 命令行安装
 
 1. 需要先安装 zsh：
@@ -34,7 +34,7 @@ PROMPT=$'%{$purple%}%n%{$reset_color%} in %{$limegreen%}%~%{$reset_color%}$(ruby
 ```
 
 ![20220210142804.png](./../assets/1644474513988-4cdf2936-e4b8-48a1-a5ee-6031fafe3c0a.png)
-<a name="FMmLf"></a>
+
 ## Starship
 
 参考文档:
@@ -42,11 +42,11 @@ PROMPT=$'%{$purple%}%n%{$reset_color%} in %{$limegreen%}%~%{$reset_color%}$(ruby
 - [Starship - 官网](https://starship.rs/)
 - [Starship - GitHub](https://github.com/starship/starship)
 - [Nerd 字体下载](https://www.nerdfonts.com/font-downloads)
-<a name="tslMZ"></a>
+
 ### Nerd 字体
 
 首先需要安装一套 Nerd 字体给 Terminal，目的是为了能够显示特殊符号。
-<a name="xtUCf"></a>
+
 ### 安装 starship
 
 各种系统都提供了对应的安装方式，我这里选择 Linux 默认：
@@ -54,7 +54,7 @@ PROMPT=$'%{$purple%}%n%{$reset_color%} in %{$limegreen%}%~%{$reset_color%}$(ruby
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 ```
 
-<a name="FIaAg"></a>
+
 ### 为指定 shell 启动 starship
 
 这是使用 bash 或者 zsh：
@@ -66,14 +66,14 @@ eval "$(starship init bash)"
 eval "$(starship init zsh)"
 ```
 
-<a name="JRqlZ"></a>
+
 ### 配置 starship
 
 ```bash
 vim ~/.config/starship.toml
 ```
 
-<a name="pXZwj"></a>
+
 ## 切换 nushell
 
 参考文档:
@@ -82,7 +82,7 @@ vim ~/.config/starship.toml
 
 nushell 是一个 GitHub 开源的新式 shell，基于 rust 编写。目前还不能像其他 shell 一样通用。
 
-<a name="w9H08"></a>
+
 ### 命令行安装
 
 切换为默认 shell
@@ -95,7 +95,7 @@ chsh -s /usr/bin/nu
 
 [![nushell-autocomplete5.gif](./../assets/1644061818678-f339b725-36d0-4ac5-b0da-bc236cc844a2.gif)
 
-<a name="XgoLR"></a>
+
 ## 清理空间
 
 适用**非生产环境**:
@@ -111,9 +111,9 @@ journalctl --vacuum-size=50M
 ```
 sudo ncdu /
 ```
-<a name="diLbG"></a>
+
 ## 网络有关
-<a name="vBngf"></a>
+
 ### 临时占用端口
 
 用于临时占用端口，测试端口是否通。
@@ -122,9 +122,9 @@ sudo ncdu /
 nc -l <Port>
 ```
 
-<a name="tL4E4"></a>
+
 ### 修改网卡
-<a name="ht9Lr"></a>
+
 #### Ubuntu 修改网卡
 
 ```bash
@@ -135,7 +135,7 @@ vim /etc/netplan/*.yaml
 netplan apply
 ```
 
-<a name="Rh0Wz"></a>
+
 #### Centos 修改网卡
 
 如果使用克隆虚拟机的方式，需要将 IP 地址改为静态 IP，需要改两个配置文件。`ifcfg-eth0`的结尾应当和网络名保持一致，这里以`eth0`为例。需要保证同一子网中，MAC 地址和 UUID 应当是唯一的。
@@ -180,15 +180,15 @@ SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:0c:29:db:22:a
 service network restart
 ```
 
-<a name="sdpdQ"></a>
+
 ## 磁盘扩容
 
 扩展服务器硬盘容量，以超融合虚拟机为例，操作系统为 CentOS 7，其他操作系统或实体机可能不适用。
-<a name="E8MUM"></a>
+
 ### 准备
 
 扩展前先查看修改前的初始状态，命令的意义后面会有解释。
-<a name="JUrlv"></a>
+
 ### 方式一: 现有磁盘扩容
 
 注意：分区至多 3 块。大于 3 则需要增加硬盘的方式。
@@ -226,7 +226,7 @@ lvextend -l +100%free /dev/mapper/centos-root
 xfs_growfs /dev/mapper/centos-root
 ```
 
-<a name="udgvU"></a>
+
 ### 方式二: 新增一块硬盘扩容
 
 ```bash
@@ -255,7 +255,7 @@ lvextend -l +100%free /dev/mapper/centos-root
 # 调整文件系统大小. 针对xfs格式. 如果有报错, 参考后文的ext格式扩容.
 xfs_growfs /dev/mapper/centos-root
 ```
-<a name="ioMWr"></a>
+
 ## 定时任务
 
 Ubuntu 似乎没有默认配置邮件系统，因此 crontab 报错时无法得到可靠错误信息。安装 sendmail 即可：
@@ -280,7 +280,7 @@ systemctl restart rsyslog.service
 # 查看日志
 tail -f /var/log/cron.log
 ```
-<a name="ubPDs"></a>
+
 ## XShell SSH 以外的数据包
 
 XShell 用 SSH 连接服务器出现：
@@ -300,9 +300,9 @@ KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384
 ```bash
 systemctl restart sshd
 ```
-<a name="K1vfr"></a>
+
 # Linux 开源软件
-<a name="tUlEF"></a>
+
 ## sshwifty - 开源 Web SSH
 
 开源的 Web SSH 应用。

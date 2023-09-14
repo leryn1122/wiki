@@ -1,4 +1,4 @@
-<a name="UXnj4"></a>
+
 ## JVM 原生工具
 
 JDK 提供了一个查看堆栈的工具 jstack：
@@ -10,7 +10,7 @@ jmap 可以 dump 出一份 hprof 的文件：
 jmap -dump:format=b,file=/Users/xxxx/Desktop/testdump.hprof <PID>
 ```
 需要先安装 [VisualVM](https://visualvm.github.io/)，JDK 8 早版本或者是 Windows 版本会在安装时一同安装这个应用，其他系统需要单独安装。然后拖到 VisualVM里，即可：<br />![image.png](./../assets/1689581980334-b38f9d23-d844-4de5-bf0c-39bee1f59c2d.png)
-<a name="oo8gO"></a>
+
 ## JMX Exporter
 参考文档：
 
@@ -22,7 +22,7 @@ java \
   -javaagent:/usr/local/jmx/jmx_prometheus_javaagent-0.16.1.jar=8081:/opt/jmx-config.yaml
   -jar app.jar
 ```
-<a name="sl0vl"></a>
+
 ### Kubernetes 非侵入性方案
 我们在 Kubernetes 运维的时候有一个非侵入性的解决方案：
 
@@ -110,7 +110,7 @@ data:
 ```bash
 curl -XGET http://localhost:8081/metrics
 ```
-<a name="Cd9AS"></a>
+
 ## jconsole & cjmx
 参考文档：
 

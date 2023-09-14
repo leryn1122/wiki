@@ -1,16 +1,16 @@
-<a name="f9WWV"></a>
+
 # MySQL 主从搭建手册
 参考文档.
 
 - [https://www.cnblogs.com/ddzj01/p/10678296.html](https://www.cnblogs.com/ddzj01/p/10678296.html)
 - [https://www.cnblogs.com/ddzj01/p/14397698.html](https://www.cnblogs.com/ddzj01/p/14397698.html)
-<a name="LaveP"></a>
+
 ## 环境准备
 
 准备至少两台已安装 MySQL 的服务器，且保证两台服务器能够互通。
-<a name="CIjYf"></a>
+
 ## 主从搭建
-<a name="ZKYDJ"></a>
+
 ### 修改配置文件
 在从库中修改配置文件，修改 MySQL 配置文件。
 ```bash
@@ -35,7 +35,7 @@ service mysql start
 ```bash
 mysql -uroot -p
 ```
-<a name="vuxyR"></a>
+
 ### 备份主库 && 导入主库备份文件
 查看**主库**的`binlog`
 ```bash
@@ -65,7 +65,7 @@ mysql -uroot -p
 ```sql
 mysql> show databases;
 ```
-<a name="rngbz"></a>
+
 ### 建立主从关系
 在**主库**中创建一个用户专门用于复制数据：
 ```sql
@@ -121,7 +121,7 @@ mysql> set global super_read_only = 1;
 | transaction_read_only | OFF   |
 +-----------------------+-------+
 ```
-<a name="czkhO"></a>
+
 ## 常见问题
 **repl 用户认证**<br />检查用户认真方式是否为`mysql_native_password`：
 ```sql

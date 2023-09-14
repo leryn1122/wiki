@@ -1,10 +1,10 @@
-<a name="PKhLX"></a>
+
 # Istio - 服务网格
 参考文档:
 
 - [https://istio.io/latest/docs/setup/install/helm/](https://istio.io/latest/docs/setup/install/helm/)
 - [https://istio.io/latest/docs/setup/install/istioctl/](https://istio.io/latest/docs/setup/install/istioctl/)
-<a name="KEIBP"></a>
+
 ### 安装 Istio
 官方提供 `istioctl` 和 `Helm` 两种方式安装, 推荐使用 `Helm`.
 ```bash
@@ -22,7 +22,7 @@ helm install istiod istio/istiod -n istio-system --wait
 # Verfication
 helm status istiod -n istio-system
 ```
-<a name="jPWca"></a>
+
 ### 开启 Istio
 开启 Istio 的方式很简单, 在所处 namespace 上加上 `istio-injection=enabled`的 label, 再重启 Deployment, Statefulset, DaemonSet 即可.
 ```bash

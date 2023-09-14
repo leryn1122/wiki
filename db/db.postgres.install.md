@@ -1,7 +1,7 @@
-<a name="eDKM2"></a>
+
 # Postgres 安装手册
 
-<a name="wXab1"></a>
+
 ## Docker 安装
 
 ```bash

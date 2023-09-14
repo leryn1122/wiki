@@ -1,4 +1,4 @@
-<a name="ZD5Li"></a>
+
 ## Kubectl 通用命令
 Kubectl 很多命令和 docker 是通用的, 无非是增加 `-n <namespace>` 这个参数:
 ```bash
@@ -44,5 +44,5 @@ kubectl get secret -A  -o go-template-file='./go-template-file.tpl' > secrets.tx
 
 
 ![20211119211339.jpg](./../assets/1645168735400-7705f3f6-64a7-4bc3-a9e2-e8068f49d5f8.jpeg)
-<a name="gzIoo"></a>
+
 ## 

@@ -1,4 +1,5 @@
 
+# Deepflow 监控
 参考文档：
 
 - [https://deepflow.io/docs/zh/about/overview/](https://deepflow.io/docs/zh/about/overview/)
@@ -10,7 +11,7 @@
 
 Deepflow 架构图：<br />![image.png](./../assets/1678691417859-7daba259-251d-40f1-bbdc-c34c8d3c33fd.png)
 
-<a name="Q1g0P"></a>
+
 ## 单集群
 需要一个 MySQL，一个 Clickhouse
 ```bash
@@ -31,7 +32,7 @@ helm install deepflow -n deepflow deepflow/deepflow --create-namespace \
 curl -o /usr/bin/deepflow-ctl https://deepflow-ce.oss-cn-beijing.aliyuncs.com/bin/ctl/stable/linux/$(arch | sed 's|x86_64|amd64|' | sed 's|aarch64|arm64|')/deepflow-ctl
 chmod a+x /usr/bin/deepflow-ctl
 ```
-<a name="dsh1W"></a>
+
 ## 跨集群
 部署 agent
 ```bash
@@ -58,7 +59,7 @@ helm repo update deepflow # use `helm repo update` when helm < 3.7.0
 helm install deepflow-agent -n deepflow deepflow/deepflow-agent --create-namespace \
     -f values-custom.yaml
 ```
-<a name="mKmoM"></a>
+
 #### 常见问题
 
 1. 目前测试多网卡设配时，deepflow 会默认选择第一块网卡。如果需要调整网卡，请修改这几个表中的 IP，并重启 server 和 agent。

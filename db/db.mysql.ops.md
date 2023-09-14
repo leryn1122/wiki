@@ -1,4 +1,4 @@
-<a name="748df1c9"></a>
+
 ## MySQL 生产备份
 备份服务器不需要安装mysql数据库, 但需要有mysql的安装包 (需要用到 `mysqldump` 命令).
 ```bash
@@ -54,7 +54,7 @@ crontab -e        # 添加定时任务
 - mysqldump 备份全库数据 (刷新binlog)
 - 压缩备份数据
 - 删除 14 天以外的备份数据
-<a name="6bd39b9c"></a>
+
 ## 数据文件更换目录
 用于将数据文件的目录迁移到别的挂载盘的目录:
 ```bash
@@ -90,7 +90,7 @@ start slave;
 show slave status;
 ```
 配套修改其他的数据库有关的组件, 例如备份脚本和监控平台中的路径.<br />一段时间后删除原来的数据可文件.
-<a name="f30d6457"></a>
+
 ## 从生产远程同步数据到仿真环境
 同样需要先创建对应同步数据的用户
 
@@ -124,7 +124,7 @@ mysqldump -u用户名 -p密码    \
 
 mysql -u用户名 -p密码 -D数据库名 < 数据库名.sql
 ```
-<a name="bf316264"></a>
+
 ## 常用脚本
 导出MySQL指定表的记录（根据where子句）
 ```bash
@@ -147,9 +147,9 @@ mysqlbinlog \
   --stop-datetime='2021-06-08 00:00:00'  \
   --base64-output=decode-rows -vv > mysql_history_20210607.log
 ```
-<a name="jeG0z"></a>
+
 ## 重置 root 密码
-<a name="dgx7g"></a>
+
 ### MySQL 8.0
 ```bash
 vim /etc/my.cnf
@@ -178,7 +178,7 @@ mysql -uroot -p
 ```sql
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'; 
 ```
-<a name="WaPB2"></a>
+
 ## 运维参数
 计算缓存命中率:
 ```sql
