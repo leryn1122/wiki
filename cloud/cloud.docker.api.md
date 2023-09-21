@@ -5,7 +5,7 @@
 
 很不幸, docker 官方只提供了 go, python 和 HTTP 三种官方接口. 但是他罗列了一些非官方 SDK.
 
-# Docker API 接口
+# Docker Registry API 接口
 
 ## Docker 命令行
 
