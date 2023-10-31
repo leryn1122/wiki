@@ -58,7 +58,7 @@ edit /etc/fstab
 
 - 至少 3 个 master 节点
 - 至少 3 个 worker 节点
-- 至少 2 个HAProxy 和至少 2 个KeepAlived，建议和节点分离部署
+- 至少 2 个 HAProxy 和至少 2 个KeepAlived，建议和节点分离部署
 - 一个额外的空闲 IP
 
 ### HAProxy 安装
