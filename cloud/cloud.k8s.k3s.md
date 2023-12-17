@@ -10,7 +10,7 @@ K3S 是 Rancher 官方提出的轻量级 Kubernetes，阉割或降级了很多 K
 ## 安装步骤
 运行以下命令即可一键安装，在这之前解释一下参数的意义：
 
-- 参数`INSTALL_K3S_EXEC="--no-deploy traefik "`表示禁用安装默认的 traefik 网关。之后我们会用 ingress-nginx-controller 来代替 traefik。如果你更熟悉 traefik，可以继续使用，但本人更加熟悉 nginx
+- 参数`INSTALL_K3S_EXEC="--no-deploy traefik "`表示禁用安装默认的 traefik 网关。之后我们会用 ingress-nginx-controller 来代替 traefik。如果你更熟悉 traefik，可以继续使用，但本人更加熟悉 nginx。**新版本**中已经被替换为参数 `INSTALL_K3S_EXEC="--disable traefik --disable servicelb"`了
 - 默认使用 containerd 作为容器运行时，如果需要使用 docker 作为容器运行时，在 `sh -s - ` 后加上 `--docker` 参数
 - 参数`INSTALL_K3S_EXEC="--flannel-backend=none --disable-network-policy "`表示禁用 flannel 作为集群的 CNI 插件，如果需要安装其他 CNI 时则需要禁用这两项
 - `--service-node-port-range=1-65535` 表示开放默认 Service NodePort 端口范围到任意端口
@@ -21,7 +21,7 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik" sh -s - --
 # 国内加速使用
 curl -sfL https://rancher-mirror.oss-cn-beijing.aliyuncs.com/k3s/k3s-install.sh | \
   INSTALL_K3S_MIRROR=cn \
-  INSTALL_K3S_EXEC="--disable traefik --flannel-backend=none --disable-network-policy " \
+  INSTALL_K3S_EXEC="--disable traefik --disable servicelb --flannel-backend=none --disable-network-policy " \
   sh -s - --service-node-port-range=1-65535
 ```
 ```bash
