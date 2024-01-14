@@ -1,9 +1,13 @@
 
 # Kind - Kubernetes in Docker
+参考文档：
+
+- [https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries)
+
 Kind (Kubernetes IN Docker) 是一个用于快速创建测试的 Kubernetes，仅仅需要安装 docker 或者 podman 即可。
 
 ## 安装步骤
-前置条件
+前置条件：
 
 - 需要额外安装 docker 或者 podman
 
@@ -16,4 +20,12 @@ Kind (Kubernetes IN Docker) 是一个用于快速创建测试的 Kubernetes，�
 
 chmod +x ./kind
 sudo mv ./kind /usr/local/bin/kind
+```
+如下命令，即可创建一个默认集群：
+```bash
+kind create cluster
+```
+加载本地 docker 镜像：
+```bash
+kind load docker-image debian:latest
 ```
