@@ -387,17 +387,17 @@ env.setRestartStrategy(RestartStrategies.noRestart());
 | 重启所有故障恢复策略 | 重新启动作业中所有任务以从失败任务中恢复 |
 | 重启流水线区域故障恢复策略 | 该策略会将作业中的所有 Task 划分为几个 Region. 当有 Task 发生故障时, 它会尝试找出进行故障恢复需要重启的最小 Region 集合. |
 
-Region 是指以 Pipelined 形式进行数据交换的 Task 集合. 也就是说, Batch 形式的数据交换会构成 Region 的边界
+Region 是指以 Pipelined 形式进行数据交换的 Task 集合。也就是说，Batch 形式的数据交换会构成 Region 的边界
 
 - DataStream 和 流式 Table/SQL 作业的所有数据交换都是 Pipelined 形式
 - 批处理式 Table/SQL 作业的所有数据交换默认都是 Batch 形式的
 - DataSet 作业中的数据交换形式会根据 ExecutionConfig 中配置的 ExecutionMode 决定
 
-需要重启的 Region 的判断逻辑如下:
+需要重启的 Region 的判断逻辑如下：
 
 - 出错 Task 所在 Region 需要重启
-- 如果要重启的 Region 需要消费的数据有部分无法访问（丢失或损坏）, 产出该部分数据的 Region 也需要重启
-- 需要重启的 Region 的下游 Region 也需要重启. 这是出于保障数据一致性的考虑, 因为一些非确定性的计算或者分发会导致同一个 Result Partition 每次产生时包含的数据都不相同
+- 如果要重启的 Region 需要消费的数据有部分无法访问（丢失或损坏），产出该部分数据的 Region 也需要重启
+- 需要重启的 Region 的下游 Region 也需要重启。这是出于保障数据一致性的考虑，因为一些非确定性的计算或者分发会导致同一个 Result Partition 每次产生时包含的数据都不相同
 ```yaml
 jobmanager.execution.failover-strategy: full
 
