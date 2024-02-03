@@ -1,5 +1,5 @@
 
-# MySQL 监控
+# MySQL Prometheus 监控
 参考文献：
 
 - [https://github.com/prometheus/mysqld_exporter](https://github.com/prometheus/mysqld_exporter)

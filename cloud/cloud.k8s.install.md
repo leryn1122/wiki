@@ -70,7 +70,7 @@ sudo apt update && sudo apt install -y \
 ```bash
 vim /etc/haproxy/haproxy.cfg
 ```
-在默认配置后面追加 master:6443, worker:80/443 的高可用：
+在默认配置后面追加 master:6443，worker:80/443 的高可用：
 ```
   ...
 

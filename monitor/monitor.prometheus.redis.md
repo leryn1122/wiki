@@ -1,6 +1,6 @@
 
-# Redis Exporter Prometheus 监控<br />![](https://cloud.drone.io/api/badges/oliver006/redis_exporter/status.svg#id=eBwiq&originHeight=20&originWidth=91&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://coveralls.io/repos/github/oliver006/redis_exporter/badge.svg?branch=master#id=d7dDD&originHeight=20&originWidth=99&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://codecov.io/gh/oliver006/redis_exporter/branch/master/graph/badge.svg#id=EFE0h&originHeight=20&originWidth=112&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/docker/pulls/oliver006/redis_exporter.svg#id=zUskV&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
-参考文档:
+# Redis Exporter Prometheus 监控
+<br />![](https://cloud.drone.io/api/badges/oliver006/redis_exporter/status.svg#id=eBwiq&originHeight=20&originWidth=91&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://coveralls.io/repos/github/oliver006/redis_exporter/badge.svg?branch=master#id=d7dDD&originHeight=20&originWidth=99&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://codecov.io/gh/oliver006/redis_exporter/branch/master/graph/badge.svg#id=EFE0h&originHeight=20&originWidth=112&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/docker/pulls/oliver006/redis_exporter.svg#id=zUskV&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />参考文档：
 
 - [oliver006/redis_exporter - GitHub](https://github.com/oliver006/redis_exporter)
 - [Redis Export Dashboard - Grafana 官网](https://grafana.com/grafana/dashboards/11835-redis-dashboard-for-prometheus-redis-exporter-helm-stable-redis-ha)
@@ -9,7 +9,7 @@
 ```toml
 OPTIONS="-redis.addr=xxx.xxx.xxx.xxx:6379/26379 -redis.password='PASSWORD'"
 ```
-创建 `/lib/systemd/system/redis-exporter.service` ：
+创建 `/lib/systemd/system/redis-exporter.service`：
 ```toml
 [Unit]
 Description=Redis Exporter
@@ -83,8 +83,8 @@ cp -a ./redis_exporter         /opt/redis_exporter
 cp -a ./redis_exporter.conf    /etc/redis_exporter/redis_exporter.conf
 cp -a ./redis-exporter.service /lib/systemd/system/redis-exporter.service
 
-systemctl start  redis-exporter
-systemctl enable redis-exporter
+sudo systemctl start  redis-exporter
+sudo systemctl enable redis-exporter
 
 curl -XGET http://localhost:9121/metrics
 ```
