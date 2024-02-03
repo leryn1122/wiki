@@ -36,7 +36,7 @@ set global innodb_fast_shutdown = 0;
 shutdown
 ```
 
-4. 解压最新 MySQL 安装包到 /usr/local
+4. 解压最新 MySQL 安装包到 `/usr/local`
 ```sql
 tar -xvf mysql-8.0.28-linux-glibc2.12-x86_64.tar.xz -C /usr/local 
 ```
@@ -78,7 +78,7 @@ rm -rf /opt/mydata /usr/local/mysql
 ```
 
 3. 安装新版本数据库
-4. 解压最新 MySQL 安装包到 /usr/local
+4. 解压最新 MySQL 安装包到 `/usr/local`
 ```sql
 tar -xvf mysql-8.0.28-linux-glibc2.12-x86_64.tar.xz -C /usr/local 
 ```

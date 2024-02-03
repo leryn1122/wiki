@@ -1,8 +1,6 @@
-![](http://nginx.org/nginx.png#id=XbNaU&originHeight=72&originWidth=352&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 # Nginx 安装手册
-
-参考手册:
+![](./../assets/1706973752886-351af435-9e51-49bc-b5e6-10cdfe5ada32.png)<br />参考手册：
 
 - [Nginx 下载 - 官网](http://nginx.org/en/download.html)
 - [Nginx 安装配置 - Runoob](https://www.runoob.com/linux/nginx-install-setup.html)
@@ -14,21 +12,17 @@ Nginx 强烈不推荐使用源码编译的方式安装
 ## 包管理器
 
 ### 安装步骤
-
 ```bash
 sudo apt update -y
 sudo apt install -y nginx
 ```
 
-
 ### 启动与验证
-
 ```bash
 sudo systemctl restart nginx
 ```
 
 ## Docker 安装
-
 ```bash
 docker run \
   --detach=true \
@@ -41,15 +35,10 @@ docker run \
   nginx:latest
 ```
 
-
-
 # Nginx
-
 参考文档:
 
 - [nginx 编译动态模块 - 官网](https://www.nginx.com/blog/compiling-dynamic-modules-nginx-plus/)
-- <br />
-
 ```bash
 # 下载对应版本的源码包
 nginx -v
@@ -60,5 +49,4 @@ wget https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
 tar -xzvf nginx-*.tar.gz
 
 git clone https://github.com/perusio/nginx-hello-world-module.git
-
 ```

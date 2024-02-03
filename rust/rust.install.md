@@ -56,7 +56,7 @@ rustup self uninstall
 ```
 
 ## 配置 C++ 环境
-参考文档:
+参考文档：
 
 - [Visual Cpp Build Tools - MS官网下载](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
 - [Visual Studio - MS官网下载](https://visualstudio.microsoft.com/downloads/)

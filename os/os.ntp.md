@@ -1,6 +1,5 @@
 
-# NTP 服务
-
+# NTP - 网络时间协议
 参考文档:
 
 - [Linux的NTP配置总结 - 潇湘隐者 - 博客园](https://www.cnblogs.com/kerrycode/p/4744804.html)
@@ -76,7 +75,7 @@ synchronised to NTP server (xxx.xxx.xxx.xxx) at stratum .
    time correct to within 26 ms
    polling server every 64 s
 ```
-`ntpq`查看同步上层状态信息
+`ntpq`查看同步上层状态信息：
 ```bash
 # 查看同步主机
 ntpq -p

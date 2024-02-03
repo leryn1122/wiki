@@ -1,6 +1,6 @@
 
 # Jmeter 压力测试
-每次发起请求都会占用一个 Windows 压测机的本地端口，所有端口都被占用后 Jmeter 将报 `Address already in use` 的错误，因为所有端口都被占用而没有规划给操作系统。调整 Windows 注册表两个参数，MaxUserPort 和 TCPTimedWaitDelay
+每次发起请求都会占用一个 Windows 压测机的本地端口，所有端口都被占用后 Jmeter 将报 `Address already in use` 的错误，因为所有端口都被占用而没有规划给操作系统。调整 Windows 注册表两个参数，MaxUserPort 和 TCPTimedWaitDelay：
 
 1. 新建 DWORD，名字为 `MaxUserPort`，输入数值 65534（十进制），确保所有端口都可以启用。
 2. 新建 DWORD，名字为 `TCPTimedWaitDelay`，输入数值 30（十进制，单位秒，最小只能是 30 秒），确定 TCP/IP 可释放已关闭连接并重用其资源前，必须经过的时间，默认 240 秒。

@@ -35,7 +35,7 @@ version = 2
 
 [plugins]
 
-	[plugins."io.containerd.gc.v1.scheduler"]
+  [plugins."io.containerd.gc.v1.scheduler"]
     deletion_threshold = 0
     mutation_threshold = 100
     pause_threshold = 0.02

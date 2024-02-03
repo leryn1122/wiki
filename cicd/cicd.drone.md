@@ -1,6 +1,8 @@
+
+# Drone - 轻量级流水线
 本流水线由于存在bug，已经卸载
 
-# drone 安装手册
+## drone 安装手册
 参考文档：
 
 - [https://docs.drone.io](https://docs.drone.io)

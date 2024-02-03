@@ -34,7 +34,7 @@
 ### 使用库
 在 Jenkins 配置全局共享库 (文件夹共享库也是可以的) :
 > Manage Jenkins » Configure System » Global Pipeline Libraries
-> aka https://<jenkins.url>/manage/configure
+> aka https://jenkins.mydomain.com/manage/configure
 
 标记为 Load implicitly 的共享库允许流水线立即使用任何此库定义的类或全局变量. 为了访问其他共享库, Jenkinsfile 需要使用 `@Library` 注解, 指定库的名字:
 ```groovy

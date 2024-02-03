@@ -1,6 +1,6 @@
 
 
-#### maxmemory <bytes>
+#### maxmemory
 
 我们可以通过配置 `redis.conf` 中的 maxmemory 这个值来开启内存淘汰功能. maxmemory 为 0 的时候表示我们对 Redis 的内存使用没有限制
 

@@ -1,3 +1,5 @@
+
+# SMBIOS
 参考资料：
 
 - [https://www.dmtf.org/standards/smbios](https://www.dmtf.org/standards/smbios)
@@ -11,9 +13,9 @@
 
 在 Linux 平台下读取以下三个文件（通常是前两个）可以获得 SMBIOS 数据。
 
-- /sys/firmware/dmi/tables/smbios_entry_point （SMBIOS entrypoint）
-- /sys/firmware/dmi/tables/DMI（SMBIOS table data）
-- /dev/mem（FreeBSD）
+- `/sys/firmware/dmi/tables/smbios_entry_point`（SMBIOS entrypoint）
+- `/sys/firmware/dmi/tables/DMI`（SMBIOS table data）
+- `/dev/mem`（FreeBSD）
 
 ## 命令行
 使用命令行接口：
@@ -64,8 +66,8 @@ dmidecode -t xxx
 可以通过第三方库，访问 SMBIOS：
 
 - Rust
-   - smbios-lib
-   - dmidecode-rs
+   - `smbios-lib`
+   - `dmidecode-rs`
 - Golang
-   - github.com/siderolabs/go-smbios/smbios
-   - github.com/digitalocean/go-smbios/smbios
+   - `github.com/siderolabs/go-smbios/smbios`
+   - `github.com/digitalocean/go-smbios/smbios`

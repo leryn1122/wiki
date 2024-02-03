@@ -1,16 +1,15 @@
-参考文档:
+
+# Docker API 接口
+参考文档：
 
 - [API文档 - 官网](https://docs.docker.com/engine/api/)
 - [非官方SDK - 官网](https://docs.docker.com/engine/api/sdk/#unofficial-libraries)
 
 很不幸，docker 官方只提供了 go、python 和 HTTP 三种官方接口。但是他罗列了一些非官方 SDK。
 
-# Docker Registry API 接口
-
 ## Docker 命令行
 
 ### 查看 docker 存储空间
-
 ```bash
 # 查看空间
 docker system df
@@ -48,9 +47,7 @@ docker builder prune
 ```
 
 ### 手动清除
-
 对于悬空镜像和未使用镜像可以使用手动进行个别删除：
-
 ```bash
 # 删除所有悬空镜像, 不删除未使用镜像:
 docker rmi $(docker images -f "dangling=true" -q)
@@ -69,7 +66,6 @@ docker rm -v $(docker ps -aq -f status=dead)
 ```
 
 ### 批量操作
-
 ```bash
 # 更新所有latest镜像
 docker images --format "{{.Repository}}:{{.Tag}}" | grep ':latest' | xargs -L1 docker pull
@@ -82,13 +78,10 @@ docker images | awk '$1=="<none>"||$2=="<none>"{print $3}' | xargs -r docker rmi
 ```
 
 ## Docker HTTP 接口
-
 出于安全性考虑，本人不推荐在没有配置 TLS 前暴露 HTTP 接口。
 
 ### 远程构建镜像
-
 需要将本地项目打包成 tar 包，再使用 HTTP 工具发送到远端。tar 包解压出的文件夹将作为 docker 构建的上下文路径，甚至可以将这个方法包装为前端项目的构建脚本，而不用流水线。
-
 ```bash
 curl -XPOST 'http://xxx.xxx.xxx.xxx:2375/build?t=image:tag' \
      -H 'application/x-tar' \

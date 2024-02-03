@@ -80,7 +80,7 @@ git config --global url."https://ghproxy.com/https://github.com/".insteadOf "htt
 
 如果需要容器化部署 Jenkins 同时在 Pipeline 中调用 Docker 命令等等, 请按照以上文档中的步骤构建自己的 Jenkins-docker 镜像.
 ```bash
-docker build . -f Dockerfile -t harbor.leryn.top/infra/jenkins-docker:2.365-jdk11
+docker build . -f Dockerfile -t harbor.mydomain.com/infra/jenkins-docker:2.365-jdk11
 ```
 ```dockerfile
 FROM jenkins/jenkins:2.365-jdk11 AS base
@@ -134,7 +134,7 @@ ENTRYPOINT [ "/usr/local/bin/jenkins-agent" ]
 
 ## Jenkins CLI
 ```bash
-java -jar jenkins-cli.jar -s https://jenkins.leryn.top/ -auth admin:1159a750229c40a61247baaff72f75b9b5 -webSocket help
+java -jar jenkins-cli.jar -s https://jenkins.mydomain.com/ -auth admin:1159a750229c40a61247baaff72f75b9b5 -webSocket help
 ```
 
 ## Jenkins Crumb
@@ -164,7 +164,7 @@ curl -XPOST https://jenkins.domain.com/job/$PROJECT/job/$PIPELINE/buildWithParam
 ```
  这个请求不会返回任何 Body, 但是响应的 Header 上 `Location` 中会返回唯一的 Queue ID.
 ```bash
-http://jenkins.leryn.top/queue/item/313/
+http://jenkins.mydomain.com/queue/item/313/
 ```
 
 # Jenkins 插件
