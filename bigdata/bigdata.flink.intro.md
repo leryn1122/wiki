@@ -1,6 +1,6 @@
 
 # Flink 介绍
-参考文档:
+参考文档：
 
 - [Kubernetes Setup - Flink 官网](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/resource-providers/standalone/kubernetes/)
 

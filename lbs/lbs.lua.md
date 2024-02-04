@@ -12,7 +12,7 @@ cd lua-5.4.4
 make all test
 
 cd src
-ln -s $PWD/lua /usr/local/bin/lua
+ln -s $PWD/lua  /usr/local/bin/lua
 ln -s $PWD/luac /usr/local/bin/luac 
 ```
 或者直接下载二进制：

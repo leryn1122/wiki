@@ -109,9 +109,9 @@ haproxy -vv
 ```
 设置开机启动并启动服务：
 ```bash
-systemctl enable haproxy
-systemctl start  haproxy
-systemctl status haproxy
+sudo systemctl enable haproxy
+sudo systemctl start  haproxy
+sudo systemctl status haproxy
 ```
 
 ### 安装 KeepAlived
@@ -148,9 +148,9 @@ keepalived -v
 ```
 设置开机启动并启动服务。
 ```bash
-systemctl enable keepalived
-systemctl start  keepalived
-systemctl status keepalived
+sudo systemctl enable keepalived
+sudo systemctl start  keepalived
+sudo systemctl status keepalived
 ```
 
 ## 高可用测试
@@ -183,10 +183,10 @@ ping <漂移地址>
 cat /etc/resolv.conf
 
 # 重启网卡
-service network restart
+sudo service network restart
 
 # 重启KeepAlived
-systemctl restart keepalived
+sudo systemctl restart keepalived
 ```
 
 ## Docker 安装
@@ -201,7 +201,7 @@ docker run -it --rm \
 docker run \
   --detach=true \
   --sysctl net.ipv4.ip_unprivileged_port_start=0 \
-  --volume=/conf/haproxy:/usr/local/etc/haproxy:ro \
+  --volume=/etc/haproxy:/usr/local/etc/haproxy:ro \
   --name=haproxy \
   --hostname=haproxy \
   haproxy
