@@ -1,4 +1,8 @@
-Axios 请求时: 后端 Spring 注解`@RequestBody`, `@RequestParam`对应的用法
+
+# Axios
+Axios 基于 XHR API（XMLHttpRequest）
+
+Axios 请求时：后端 Spring 注解`@RequestBody`，`@RequestParam`对应的用法。
 ```javascript
 let data = {
   username: "root",
@@ -10,7 +14,6 @@ axios
     console.log(response);
   });
 ```
-
 ```javascript
 let data = {
   username: "root",
