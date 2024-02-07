@@ -1,4 +1,6 @@
-创建 venv：
+
+# Anaconda
+Anaconda 是一款常用的 python 虚拟环境管理工具。<br />创建 venv：
 ```bash
 conda create -n chatglm-6b
 conda activate chatglm-6b
