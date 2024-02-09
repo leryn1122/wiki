@@ -27,8 +27,10 @@ ntpd 在和时间服务器的同步过程中，会把 BIOS 计时器的振荡频
 ## 包管理器安装
 安装 NTP 服务：
 ```bash
+# CenrOS / REHL
 sudo rpm -qa | grep ntp
 
+# Ubuntu / Debian
 sudo apt install -y ntp ntpstat
 ```
 修改 NTP 的配置文件：
@@ -70,6 +72,7 @@ ntpstat
 unsynchronised
   time server re-starting
    polling server every 8 s
+
 # 说明同步已经完成
 synchronised to NTP server (xxx.xxx.xxx.xxx) at stratum .
    time correct to within 26 ms
@@ -89,14 +92,14 @@ remote           refid      st t when poll reach   delay   offset  jitter
 ```
 | 表头字段名 | 含义 |
 | --- | --- |
-| remote | 用于同步的远程节点或服务器. “LOCAL”表示本机 (当没有远程服务器可用时会出现) |
+| remote | 用于同步的远程节点或服务器。“LOCAL”表示本机（当没有远程服务器可用时会出现） |
 | refid | 远程的服务器进行同步的更高一级服务器 |
-| st | 远程节点或服务器的 Stratum(级别, NTP 时间同步是分层的) |
-| t | 类型 (u: unicast(单播) 或 manycast(选播) 客户端, b: broadcast(广播) 或 multicast(多播) 客户端, l: 本地时钟, s: 对称节点(用于备份), A: 选播服务器, B: 广播服务器, M: 多播服务器, 参见“Automatic Server Discovery“) |
-| when | 最后一次同步到现在的时间 (默认单位为秒, “h”表示小时, “d”表示天) |
-| poll | 同步的频率: RFC 5905 建议在 NTPv4 中这个值的范围在 4 (16 秒) 至 17 (36 小时) 之间(即 2 的指数次秒), 然而观察发现这个值的实际大小在一个小的多的范围内 : 64 (26 )秒 至 1024 (210 )秒 |
-| reach | 一个 8 位的左移移位寄存器值, 用来测试能否和服务器连接, 每成功连接一次它的值就会增加, 以 8 进制显示 |
-| delay | 从本地到远程节点或服务器通信的往返时间(毫秒) |
-| offset | 主机与远程节点或服务器时间源的时间偏移量, offset 越接近于 0, 主机和 NTP 服务器的时间越接近(以方均根表示, 单位为毫秒) |
-| jitter | 与远程节点同步的时间源的平均偏差(多个时间样本中的 offset 的偏差, 单位是毫秒), 这个数值的绝对值越小, 主机的时间就越精确 |
+| st | 远程节点或服务器的 Stratum（级别，NTP 时间同步是分层的） |
+| t | 类型（u: unicast单播 或 manycast选播 客户端，b: broadcast广播 或 multicast多播 客户端，l: 本地时钟, s: 对称节点（用于备份），A：选播服务器，B：广播服务器，M：多播服务器, 参见 Automatic Server Discovery） |
+| when | 最后一次同步到现在的时间（默认单位为秒，h表示小时, d 表示天） |
+| poll | 同步的频率：RFC 5905 建议在 NTPv4 中这个值的范围在 4（16 秒）至 17（36 小时）之间（即 2 的指数次秒），然而观察发现这个值的实际大小在一个小的多的范围内：64（26）秒 至 1024（210）秒 |
+| reach | 一个 8 位的左移移位寄存器值，用来测试能否和服务器连接，每成功连接一次它的值就会增加，以 8 进制显示 |
+| delay | 从本地到远程节点或服务器通信的往返时间（单位：毫秒） |
+| offset | 主机与远程节点或服务器时间源的时间偏移量，offset 越接近于 0，主机和 NTP 服务器的时间越接近（以方均根表示，单位：毫秒） |
+| jitter | 与远程节点同步的时间源的平均偏差（多个时间样本中的 offset 的偏差，单位：毫秒），这个数值的绝对值越小，主机的时间就越精确 |
 
