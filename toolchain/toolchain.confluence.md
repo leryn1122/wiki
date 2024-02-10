@@ -31,7 +31,7 @@ docker exec confluence \
   -p conf \
   -m haxqer666@gmail.com \
   -n haxqer666@gmail.com \
-  -o https://confluence.leryn.top \
+  -o https://confluence.mydomain.com \
   -s B0YY-DP3U-WMSM-9HVK
 ```
 
@@ -45,7 +45,7 @@ FLUSH PRIVILEGES;
 ```
 利用 JDBC URL 设置事务隔离等级。
 ```
-jdbc:mysql://leryn.top:3306/confluence?sessionVariables=transaction_isolation='READ-COMMITTED'&useSSL=false&allowPublicKeyRetrieval=true
+jdbc:mysql://mysql.mydomain.com:3306/confluence?sessionVariables=transaction_isolation='READ-COMMITTED'&useSSL=false&allowPublicKeyRetrieval=true
 ```
 
 ### 修改 JVM 内存限制（可选）
@@ -56,7 +56,7 @@ docker exec confluence \
 docker restart confluence
 ```
 
-### 设置 Base Url
+### 设置 Base URL
 如果使用域名访问需要把 Base URL 设置成域名，而不是 IP 地址加端口的形式。或者再一开始生成序列号的时候就填写域名。<br />参考官方文档：
 
 - [更多关于服务器基础 URL - 官方文档](https://confluence.atlassian.com/conf76/configuring-the-server-base-url-1018769760.html)
@@ -71,17 +71,17 @@ vim server.xml
 注释以下部分：
 ```xml
 <Connector port="8090" connectionTimeout="20000" redirectPort="8443"
-            maxThreads="48" minSpareThreads="10"
-            enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
-            protocol="org.apache.coyote.http11.Http11NioProtocol"/>
+           maxThreads="48" minSpareThreads="10"
+           enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
+           protocol="org.apache.coyote.http11.Http11NioProtocol"/>
 ```
 并取消注释以下部分，并修改 Base URL：
 ```xml
 <Connector port="8090" connectionTimeout="20000" redirectPort="8443"
-                   maxThreads="48" minSpareThreads="10"
-                   enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
-                   protocol="org.apache.coyote.http11.Http11NioProtocol"
-                   scheme="https" secure="true" proxyName="<subdomain>.<domain>.com" proxyPort="443"/>
+           maxThreads="48" minSpareThreads="10"
+           enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
+           protocol="org.apache.coyote.http11.Http11NioProtocol"
+           scheme="https" secure="true" proxyName="<subdomain>.<domain>.com" proxyPort="443"/>
 ```
 保存并重启 Confluence：
 ```bash
@@ -176,7 +176,7 @@ line 67: CATALINA_OPTS="-javaagent:/var/agent/atlassian-agent.jar ${CATALINA_OPT
 
 java -jar /var/agent/atlassian-agent.jar -p conf \
   -m haxqer666@gmail.com -n haxqer666@gmail.com \
-  -o https://confluence.leryn.top -s <your system id>
+  -o https://confluence.mydomain.com -s <your system id>
 
 注意每次初始化system id均不同, 若初始化过程中关闭confluence进程会导致confluence再次启动失败
 
