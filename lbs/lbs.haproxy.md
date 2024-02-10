@@ -31,7 +31,7 @@ sudo apt install -y haproxy
 ```
 修改 HAProxy 的配置文件：
 ```bash
-vim /etc/haproxy/haproxy.cfg
+sudo vim /etc/haproxy/haproxy.cfg
 ```
 ```
 # 追加到 haproxy.cfg 默认配置之后
@@ -99,13 +99,13 @@ backend example-k8s-worker-https
 
 ```bash
 # 检查配置文件语法
-haproxy -c -f /etc/haproxy/haproxy.cfg
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
 
 # 启动调试功能, 将显示所有连接和处理信息在屏幕
-haproxy -d -f /etc/haproxy/haproxy.cfg
+sudo haproxy -d -f /etc/haproxy/haproxy.cfg
 
 # 显示haproxy编译和启动信息
-haproxy -vv
+sudo haproxy -vv
 ```
 设置开机启动并启动服务：
 ```bash
@@ -122,7 +122,7 @@ sudo apt install -y keepalived
 ```
 修改 KeepAlived 的配置文件，根据实际的网卡名修改 `interface` 的名称：
 ```bash
-vim /etc/keepalived/keepalived.conf
+sudo vim /etc/keepalived/keepalived.conf
 ```
 ```
 ! Configuration File for keepalived
@@ -136,14 +136,13 @@ vrrp_instance VI_1 {
         auth_type PASS
         auth_pass 1111
     }
-    # notify_master /etc/keepalived/notify_master_mysql.sh
     virtual_ipaddress {
         漂移IP地址/24
     }
 }
 ```
 ```bash
-# 显示KeepAlived版本
+# 显示 KeepAlived 版本
 keepalived -v
 ```
 设置开机启动并启动服务。
@@ -157,6 +156,7 @@ sudo systemctl status keepalived
 HAProxy 和 KeepAlived 都启动后，`ip a`查看 IP 地址，某节点会占用漂移地址，且`ping`IP 地址可以`ping`通。
 ```bash
 ip a | grep inet
+
 ping <漂移地址>
 ```
 其中一台 HAProxy 关机或禁用网卡模拟断电，另一台机器将占用虚拟 IP 实现高可用。将断电机器重新启动后，关闭另一台机器，其他 HAProxy 节点将占用虚拟 IP（两节点的话虚拟 IP 漂移到原主机上）。
@@ -177,7 +177,7 @@ ping <漂移地址>
 ```
 
 ## 注意点
-之前发生了一个悲惨的故事，发现一台 KeepAlived 服务器上的 DNS 配置有问题，于是重启了网卡，发现 KeepAlived 默默的挂了，重启 KeepAlived 服务即可：
+之前发生了一个悲惨的故事，发现一台 KeepAlived 服务器上的 DNS 配置有问题，于是重启了网卡。<br />此时发现 KeepAlived 默默的挂了，重启 KeepAlived 服务即可：
 ```bash
 # 发现DNS配置有问题
 cat /etc/resolv.conf
@@ -190,7 +190,7 @@ sudo systemctl restart keepalived
 ```
 
 ## Docker 安装
-用于单机模拟和调试 HAProxy。<br />由于 HAProxy 官方不提供任何默认配置（官方认为不存在任何通用的转发配置），所以必须自己编写配置文件 `haproxy.cfg`，没有则无法启动，可以通过如下命令启动并检查：
+用于单机模拟和调试 HAProxy。<br />由于 HAProxy 官方不提供任何默认配置（官方理由是其认为不存在任何通用的转发配置），所以必须自己编写配置文件 `haproxy.cfg`，否则无法启动。<br />编写配置文件后，可以通过如下命令启动并检查：
 ```bash
 docker run -it --rm \
   --name haproxy-syntax-check \
@@ -202,7 +202,5 @@ docker run \
   --detach=true \
   --sysctl net.ipv4.ip_unprivileged_port_start=0 \
   --volume=/etc/haproxy:/usr/local/etc/haproxy:ro \
-  --name=haproxy \
-  --hostname=haproxy \
   haproxy
 ```

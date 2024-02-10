@@ -4,7 +4,7 @@
 
 - [https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries)
 
-Kind (Kubernetes IN Docker) 是一个用于快速创建测试的 Kubernetes，仅仅需要安装 docker 或者 podman 即可。
+Kind（Kubernetes IN Docker）是一个用于快速创建测试的 Kubernetes，仅仅需要安装 docker 或者 podman 即可。非常适合在本地搭建集群进行 e2e 测试。
 
 ## 安装步骤
 前置条件：
@@ -30,8 +30,45 @@ kind create cluster
 kind load docker-image debian:latest
 ```
 
+## 创建集群
+如果需要创建一个定制化的集群，那么可以用过编写配置文件，例如：
+
+- 需要 1 个 master 和 1 个 worker 节点
+- 需要 1 个节点标记成 CPU 计算节点，另一个节点标记成 GPU 节点
+- 通过 hostPort 访问集群内的 ingress 的 30080/30443 端口
+
+你还可以禁用 kind 默认的 CNI 插件等等，这里不举例了。
+```yaml
+apiVersion: kind.x-k8s.io/v1alpha4
+kind: Cluster
+name: kind
+nodes:
+- role: control-plane
+  labels:
+    node-type: cpu
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 30080
+    hostPort: 30080
+    protocol: TCP
+  - containerPort: 30443
+    hostPort: 30443
+    protocol: TCP
+- role: worker
+  labels:
+    node-type: gpu
+```
+```yaml
+kind create cluster --config cluster-config.yaml
+```
+
 ## 原理
-Kind 用 container 来模拟节点，在节点里跑 systemd 用其托管 containerd 和 kubelet，再由 kubelet 调起 api-server，etcd，cni 等等。<br />镜像分为 node 镜像和 base 镜像。
+最后介绍一下 Kind 的核心原理：<br />Kind 用 container 来模拟节点，在节点里跑 systemd 用其托管 containerd 和 kubelet，再由 kubelet 调起 api-server，etcd，cni 等等。<br />镜像分为 node 镜像和 base 镜像。
 
 ### node 镜像
 node 镜像的构建比较复杂，需要通过运行 base 镜像，并在 base 镜像内执行操作，再保存此容器内容为镜像的方式来完成构建。它包含的操作有：

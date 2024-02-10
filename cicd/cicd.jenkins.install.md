@@ -2,13 +2,20 @@
 # Jenkins 安装手册
 参考文档：
 
-- [https://www.jenkins.io/](https://www.jenkins.io/)
-- [https://wiki.eryajf.net/pages/2415.html](https://wiki.eryajf.net/pages/2415.html)
+- [Jenkins](https://www.jenkins.io/)
+- [Jenkins入门系列笔记汇总整理](https://wiki.eryajf.net/pages/2415.html)
 
-Jenkins 是最受欢迎的自动化构建工具，有丰富的扩展和插件。许多流水线工具都内置 Jenkins 来实现自动化构建。<br />在云原生中，Jenkins 迎来了升级版 Jenkins X。<br />最新的消息中 Jenkins 已经开始了 JDK 17 版本的预览，在不远的将来会全面迁移到 JDK 17。
+Jenkins 是最受欢迎的自动化构建工具，有丰富的扩展和插件。许多流水线工具都内置 Jenkins 来实现自动化构建。<br />在云原生中，Jenkins 迎来了升级版 Jenkins X，他是 Jenkins 用 Golang 的云原生重构版本，本文不涉及 Jenkins X。<br />最新的消息中 Jenkins 已经开始了 JDK 17 版本的预览，在不远的将来会全面迁移到 JDK 17。
+
+Jenkins 本身也不是完美无缺，甚至还有点笨重和过时，但很多存量的 CI/CD 系统仍然在使用 Jenkins，例如金融行业和制造业仍然在使用 Jenkins。Jenkins 有以下缺点：
+
+- 版本混乱：Jenkins 生态依赖丰富的插件，但插件市场版本非常混乱，可能有存在版本兼容性问题。
+- 文件系统：Jenkins 的配置文件和工作目录都依赖本地的文件系统，使用 XML 来管理，而不是数据库。
+- 云原生：Jenkins 可以使用 Kubernetes 插件接入云原生，但 JNLP 本身效率低下。
+- 内存占用：Jenkins 内存占用极大。
 
 ## Docker 安装
-Dockerhub 上 **jenkins** 和 **jenkinsci/jenkins** 的镜像已经 deprecated 了，改用官方 [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins) 镜像。<br />版本
+Dockerhub 上 **jenkins** 和 **jenkinsci/jenkins** 的镜像已经 deprecated 了，改用官方 [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins) 镜像。<br />版本：
 
 - `jenkins/jenkins:lts-jdk11`：每周的 latest 版本 `lts-jdk11`
 - `jenkins/jenkins:jdk11`：最新版本 `jdk11`
@@ -70,7 +77,7 @@ persistence.existingClaim=jenkins-pvc
 加速 GitHub clone 的代理设置：
 ```bash
 git config --global protocol.https.allow always
-git config --global url."https://ghproxy.com/https://github.com/".insteadOf "https://github.com/"
+git config --global url."https://mirror.ghproxy.com/https://github.com/".insteadOf "https://github.com/"
 ```
 
 ## Jenkins Docker
@@ -105,7 +112,7 @@ USER jenkins
 RUN jenkins-plugin-cli --plugins "blueocean:1.25.6 docker-workflow:1.29"
 ```
 ```bash
-docker build . -f Dockerfile -t harbor.leryn.top/infra/jenkins-agent-docker:4.10-3-jdk11
+docker build . -f Dockerfile -t harbor.mydomain.com/infra/jenkins-agent-docker:4.10-3-jdk11
 ```
 ```dockerfile
 FROM jenkins/inbound-agent:4.10-3-jdk11 AS base
@@ -172,26 +179,22 @@ http://jenkins.mydomain.com/queue/item/313/
 ## JCasC - Jenkins Configuration as Code
 参考文档：
 
-- [https://plugins.jenkins.io/configuration-as-code/](https://plugins.jenkins.io/configuration-as-code/)
-> `JCasC = Jenkins Configuration as Code`
+- [Configuration as Code](https://plugins.jenkins.io/configuration-as-code/)
+> **JCasC = Jenkins Configuration as Code**
 
 它允许用户用可读的、声明式的 YAML 配置各种参数，而不是在页面上点击按钮添加配置。<br />如果你需要通过命令行启动 Jenkins Docker 容器，那么它会自动初始化 Jenkins 实例。
 
 ### 配置方式
 它查找 `CASC_JENKINS_CONFIG` 环境变量或者 `casc.jenkins.config` Java 参数 (逗号分隔) :
 
-- 包含一组配置文件的文件夹的路径。例 `/var/jenkins_home/casc_configs`
-- 单个文件路径。例 `/var/jenkins_home/casc_configs/jenkins.yaml`
-- 指向网络 URL。例 `https://acme.org/jenkins.yaml`
+- 包含一组配置文件的文件夹的路径：例 `/var/jenkins_home/casc_configs`
+- 单个文件路径：例 `/var/jenkins_home/casc_configs/jenkins.yaml`
+- 指向网络 URL：例 `https://acme.org/jenkins.yaml`
 
-如果 `CASC_JENKINS_CONFIG` 指向文件夹, 将递归遍历 `.yml`, `.yaml`, `.YAML`, `.YML` 后缀文件<br />默认地址是 `$JENKINS_HOME/jenkins.yaml`。
+如果 `CASC_JENKINS_CONFIG` 指向文件夹，将递归遍历 `.yml`, `.yaml`, `.YAML`, `.YML` 后缀文件<br />默认地址是 `$JENKINS_HOME/jenkins.yaml`。
 
 ### 刷新配置
 更新配置后，需要调用 Jenkins 重新加载配置的 RESTful API。<br />如果使用的是 Helm 的安装方式，那么 Jenkins 的 StatefulSet 下会有个名为 `config-reload` 的 SideCar 用于解决这个问题。它会自动监听 JCasC 对应的 ConfigMap 的变化，如果数据更新自动调用重新加载的接口。
-
-## Kubernetes
-
-
 
 ## Simple Themes
 下载后 [Simple Theme](https://wiki.jenkins-ci.org/display/JENKINS/Simple+Theme+Plugin) 插件后，

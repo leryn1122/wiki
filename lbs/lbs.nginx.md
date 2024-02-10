@@ -1,28 +1,28 @@
 
-# Nginx 安装手册
-![](./../assets/1706973752886-351af435-9e51-49bc-b5e6-10cdfe5ada32.png)<br />参考手册：
+# Nginx
+![](./../assets/1706973752886-351af435-9e51-49bc-b5e6-10cdfe5ada32.png)
 
-- [Nginx 下载 - 官网](http://nginx.org/en/download.html)
-- [Nginx 安装配置 - Runoob](https://www.runoob.com/linux/nginx-install-setup.html)
-- [Nginx 安装及其配置详细教程 - cnblogs - 作者: lywJee](https://www.cnblogs.com/lywJ/p/10710361.html)
-- [Nginx 安装 - oschina - 作者: staybug](https://my.oschina.net/staybug/blog/4254456?hmsr=kaifa_aladdin)
+## 安装手册
+参考手册：
 
-Nginx 强烈不推荐使用源码编译的方式安装
+- [nginx: download](http://nginx.org/en/download.html)
+- [GitHub - nginx/nginx: An official read-only mirror of http://hg.nginx.org/nginx/ which is updated hourly. Pull requests on GitHub cannot be accepted and will be automatically closed. The proper way to submit changes to nginx is via the nginx development mailing list, see http://nginx.org/en/docs/contributing_changes.html](https://github.com/nginx/nginx)
+- [Nginx 安装配置 | 菜鸟教程](https://www.runoob.com/linux/nginx-install-setup.html)
+- [nginx安装及其配置详细教程 - 博客园](https://www.cnblogs.com/lywJ/p/10710361.html)
 
-## 包管理器
+Nginx 强烈不推荐使用源码编译的方式安装，除非需要额外的模块。
 
-### 安装步骤
+### 包管理器
 ```bash
 sudo apt update -y
 sudo apt install -y nginx
-```
 
-### 启动与验证
-```bash
 sudo systemctl restart nginx
+sudo systemctl status  nginx
+sudo systemctl enable  nginx
 ```
 
-## Docker 安装
+### Docker 安装
 ```bash
 docker run \
   --detach=true \
@@ -30,15 +30,13 @@ docker run \
   --publish=443:443 \
   --volume=/etc/nginx/ssl:/etc/nginx/ssl:ro \
   --volume=/etc/nginx/sites-enabled:/etc/nginx/sites-enabled:ro \
-  --name=nginx \
-  --hostname=nginx \
-  nginx:latest
+  nginxinc/nginx-unprivileged:1.24-bullseye
 ```
 
-# Nginx
-参考文档:
+### Nginx 动态模块
+参考文档：
 
-- [nginx 编译动态模块 - 官网](https://www.nginx.com/blog/compiling-dynamic-modules-nginx-plus/)
+- [How to Compile Dynamic Modules for NGINX and NGINX Plus](https://www.nginx.com/blog/compiling-dynamic-modules-nginx-plus/)
 ```bash
 # 下载对应版本的源码包
 nginx -v
@@ -50,3 +48,10 @@ tar -xzvf nginx-*.tar.gz
 
 git clone https://github.com/perusio/nginx-hello-world-module.git
 ```
+
+## Nginx 配置
+参考文档：
+
+- [NGINXConfig | DigitalOcean](https://www.digitalocean.com/community/tools/nginx?global.app.lang=zhCN)
+
+推荐以上网站可以在线模块化生成 nginx 配置文件。

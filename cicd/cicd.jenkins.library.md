@@ -9,7 +9,7 @@
 ## 安装扩展库
 
 ### 创建仓库
-创建一个 Groovy 的 git 项目，暂时叫 `jekins-shared-lib`。目录结构是：
+创建一个 Groovy 的 git 项目，暂时叫 `jenkins-shared-lib`。目录结构是：
 ```
 (root)
 +- src                     # Groovy source files

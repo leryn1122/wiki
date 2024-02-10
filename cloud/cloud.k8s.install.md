@@ -5,7 +5,7 @@
 前置准备：
 
 - 安装前置依赖
-- 安装 Docker，或者其他容器运行时（个人目前使用 Docker）
+- 安装 Docker，或者其他容器运行时（个人目前使用 Docker，即使上 Kubernetes 已经将 containerd 作为默认运行时了）
 
 安装前置依赖：
 ```bash
@@ -43,12 +43,14 @@ EOF
 ```
 ```bash
 sudo sysctl --system
+
 modprobe br_netfilter
 lsmod | grep br_netfilter
 ```
-关闭 swap 分区。如果开启 swap 分区，当OOM时内存被交换到磁盘上时，这个节点可能会挂住，而且没有任何报错信息提示，甚至无法使用物理终端访问，最后只能硬重启整个节点。所以请关闭 swap 分区。
+关闭 swap 分区。<br />如果开启 swap 分区，当节点 OOM 时内存被交换到磁盘上时，这个节点可能会 hang up，而且没有任何报错信息提示，甚至无法使用物理终端访问，最后只能硬重启整个节点。所以 kubelet 启动时会检测 swap 是否关闭，如果没有关闭则会启动失败。
 ```bash
 swapoff -a
+
 edit /etc/fstab
 # 注释掉 swap 分区
 ```
@@ -58,8 +60,13 @@ edit /etc/fstab
 
 - 至少 3 个 master 节点
 - 至少 3 个 worker 节点
-- 至少 2 个 HAProxy 和至少 2 个KeepAlived，建议和节点分离部署
-- 一个额外的空闲 IP
+- 外部的 SLB：例如 HAProxy + KeepAlived：
+   - 至少 2 个 HAProxy 和至少 2 个 KeepAlived，建议和节点分离部署
+   - 一个额外的空闲 IP
+
+参考文档：
+
+- [HAProxy & KeepAlived](https://www.yuque.com/leryn/wiki/lbs.haproxy?view=doc_embed)
 
 ### HAProxy 安装
 ```bash
@@ -70,7 +77,7 @@ sudo apt update && sudo apt install -y \
 ```bash
 vim /etc/haproxy/haproxy.cfg
 ```
-在默认配置后面追加 master:6443，worker:80/443 的高可用：
+在默认配置后面追加 `master:6443`，`worker:80/443` 的高可用：
 ```
   ...
 
