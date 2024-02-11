@@ -15,8 +15,8 @@ mv mysql-proxy-0.8.5-linux-debian6.0-x86-64bit /usr/local/mysql-proxy
 admin-username=scott
 admin-password=tiger
 proxy-address=0.0.0.0:4040
-proxy-read-only-backend-addresses=121.196.30.39:3307
-proxy-backend-addresses=121.196.30.39:3306
+proxy-read-only-backend-addresses=xxx.xxx.xxx.xxx:3307
+proxy-backend-addresses=xxx.xxx.xxx.xxx:3306
 proxy-lua-script=/usr/local/mysql-proxy/share/doc/mysql-proxy/rw-splitting.lua
 admin-lua-script=/usr/local/mysql-proxy/share/doc/mysql-proxy/admin-sql.lua
 log-file=/usr/local/mysql-proxy/logs/mysql-proxy.log

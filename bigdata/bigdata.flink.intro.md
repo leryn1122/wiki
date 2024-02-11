@@ -231,7 +231,7 @@ spec:
     storage: 1G
   nfs:
     path: /export/mid-devops/flink
-    server: 10.65.63.19
+    server: 10.65.xxx.xxx
   persistentVolumeReclaimPolicy: Retain
   storageClassName: ""
   volumeMode: Filesystem

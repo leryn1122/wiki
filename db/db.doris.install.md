@@ -183,34 +183,30 @@ FE 分为 **Leader**，**Follower** 和 **Observer** 三种角色。默认一个
 - Follower（包括 Leader）必须是奇数个（官方建议 3 个即可），Observer 可以任意地堆
 
 在主 FE 的 MySQL 客户端中执行以下语句，其中 Host 地址为**新加入 FE 的地址**，端口为各自的 `grep edit_log_port fe/conf/fe.conf`对应的端口。
-```bash
-ALTER SYSTEM ADD FOLLOWER "10.65.62.118:9010";
-ALTER SYSTEM ADD FOLLOWER "10.65.62.119:9010";
-ALTER SYSTEM ADD FOLLOWER "10.65.62.120:9010";
-ALTER SYSTEM ADD OBSERVER "10.65.62.121:9010";
+```sql
+ALTER SYSTEM ADD FOLLOWER "10.65.xxx.xxx:9010";
+ALTER SYSTEM ADD OBSERVER "10.65.xxx.xxx:9010";
 ```
 首次启动 Follower 和 Observer 时需要使用以下命令，之后就是用正常启动的命令即可。其中 Host 地址是当**前主 FE 的地址**，端口为 Leader 的 `grep edit_log_port fe/conf/fe.conf`对应的端口。
 ```bash
-bin/start_fe.sh --helper "10.65.62.118:9010" --daemon
+bin/start_fe.sh --helper "10.65.xxx.xxx:9010" --daemon
 ```
 回到 MySQL 客户端中查看进程：
-```bash
+```sql
 SHOW PROC '/frontends';
 ```
 
 ### 后端扩容
 在主 FE 的 MySQL 客户端中执行以下语句，其中 MySQL 执行语句端口是 `grep heartbeat_service_port be/conf/be.conf`的端口：
 ```sql
-ALTER SYSTEM ADD BACKEND "10.65.62.119:9050";
-ALTER SYSTEM ADD BACKEND "10.65.62.120:9050";
-ALTER SYSTEM ADD BACKEND "10.65.62.121:9050";
+ALTER SYSTEM ADD BACKEND "10.65.xxx.xxx:9050";
 ```
 正常启动后端：
 ```bash
 bin/start_be.sh --daemon
 ```
 回到 MySQL 客户端中查看进程：
-```bash
+```sql
 SHOW PROC '/backends';
 ```
 
