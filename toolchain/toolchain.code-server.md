@@ -1,13 +1,13 @@
 
 # Code Server - VS Code 网页版
-参考文档:
+参考文档：
 
 - [https://github.com/coder/code-server](https://github.com/coder/code-server)
 - [https://coder.com/docs/code-server/latest/guide](https://coder.com/docs/code-server/latest/guide)
 
 ## 安装方式的选择
 
-- 可以使用 docker 安装，但不是很推荐，因为 docker 容器中没有对应的工具链. 你可以使用 Dockerfile 构造含有相应工具链的开发环境，但如果需要比较多的工具时，不是非常方便. 我本人需要多语言开发环境，同时需要 debug 调试；
+- 可以使用 docker 安装，但不是很推荐，因为 docker 容器中没有对应的工具链。你可以使用 Dockerfile 构造含有相应工具链的开发环境，但如果需要比较多的工具时，不是非常方便. 我本人需要多语言开发环境，同时需要 debug 调试；
 - 可以使用 debian 或者 rpm 安装，但是我的网速优先安装不成功；
 - 因此使用了二进制安装，并 Systemd 的方式启动。
 
@@ -41,7 +41,7 @@ docker run \
   --hostname=vscode \
   --volume=$HOME:/root \
   --volume=/opt/project:/opt/project \
-  harbor.leryn.top/infra/code-server:nightly
+  harbor.mydomain.com/infra/code-server:nightly
 ```
 Dockerfile 例子，构造一个含有多语言工具链的镜像，镜像体积可能会比较大。
 ```dockerfile

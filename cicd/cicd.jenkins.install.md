@@ -66,7 +66,7 @@ helm install jenkins jenkinsci/jenkins -n jenkins
 ```
 ```properties
 controller.ingress.enabled=true
-controller.ingress.hostName=jenkins.domain.com
+controller.ingress.hostName=jenkins.mydomain.com
 persistence.enabled=true
 persistence.existingClaim=jenkins-pvc
 ```
@@ -146,9 +146,9 @@ java -jar jenkins-cli.jar -s https://jenkins.mydomain.com/ -auth admin:1159a7502
 ## Jenkins Crumb
 Jenkins Crumb 实际上相当于其他 Web 服务中的 Token。它用于防止 CSRF 攻击。<br />以下方式生产 Crumb：
 ```bash
-curl -XGET http://jenkins.domain.com/crumbIssuer/api/json --user admin:admin
+curl -XGET http://jenkins.mydomain.com/crumbIssuer/api/json --user admin:admin
 # 或者
-curl -XGET https://jenkins.leryn.top/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb) --user admin:admin
+curl -XGET https://jenkins.mydomain.com/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb) --user admin:admin
 ```
 ```json
 {"_class":"hudson.security.csrf.DefaultCrumbIssuer","crumb":"xxxxxx","crumbRequestField":"Jenkins-Crumb"}
@@ -158,12 +158,12 @@ Jenkins-Crumb:xxxx
 使用然后使用 Crumb + Authorization 触发流水线：
 ```bash
 # 无参
-curl -XPOST https://jenkins.domain.com/job/$PROJECT/job/$PIPELINE/build \
+curl -XPOST https://jenkins.mydomain.com/job/$PROJECT/job/$PIPELINE/build \
   -H 'Jenkins-Crumb:xxxx' \
   -u admin:admin
 
 # 或者用表单提交参数
-curl -XPOST https://jenkins.domain.com/job/$PROJECT/job/$PIPELINE/buildWithParameters \
+curl -XPOST https://jenkins.mydomain.com/job/$PROJECT/job/$PIPELINE/buildWithParameters \
   -H 'Jenkins-Crumb:xxxx' \
   -u admin:admin \
   -form xxxx

@@ -16,8 +16,8 @@
 ### OAuth 应用
 在 Gitee 上创建 OAuth 应用程序<br />需要正确的应用主页和回调地址：
 
-- 主页: [https://drone.leryn.top](https://drone.leryn.top)
-- 回调: [https://drone.leryn.top/login](https://drone.leryn.top/login)
+- 主页：https://drone.mydomain.com
+- 回调：https://drone.mydomain.com/login
 
 权限需要:
 
@@ -43,7 +43,7 @@ docker run \
   --env=DRONE_GITEE_CLIENT_ID=e59a0170ca8a5058aea083e5c9dfc3bc0640df1c0ca2f94d5cabc9994dc21d30 \
   --env=DRONE_GITEE_CLIENT_SECRET=a38039d4fb9d3424adfd93398672ad965264c97dabd00469e4370ab7354ef890 \
   --env=DRONE_RPC_SECRET=2ff35a69ef0f5c60c781a8775e8db5a2 \
-  --env=DRONE_SERVER_HOST=drone.leryn.top \
+  --env=DRONE_SERVER_HOST=drone.mydomain.com \
   --env=DRONE_SERVER_PROTO=https \
   --env=DRONE_USER_CREATE=username:leryn,admin:true \
   --env=DRONE_DATABASE_DRIVER=postgres \
@@ -61,7 +61,7 @@ docker run \
   --env=DRONE_GITEE_CLIENT_ID=e59a0170ca8a5058aea083e5c9dfc3bc0640df1c0ca2f94d5cabc9994dc21d30 \
   --env=DRONE_GITEE_CLIENT_SECRET=a38039d4fb9d3424adfd93398672ad965264c97dabd00469e4370ab7354ef890 \
   --env=DRONE_RPC_SECRET=2ff35a69ef0f5c60c781a8775e8db5a2 \
-  --env=DRONE_SERVER_HOST=drone.leryn.top \
+  --env=DRONE_SERVER_HOST=drone.mydomain.com \
   --env=DRONE_SERVER_PROTO=https \
   --env=DRONE_USER_CREATE=username:leryn,admin:true \
   --env=DRONE_DATABASE_DRIVER=mysql \
@@ -79,7 +79,7 @@ docker run \
 - **DRONE_GITEE_SERVER**<br />可选的 URL 值提供 Gitee 服务器地址。默认值为 gitee.com 服务器地址`https://gitee.com`。
 - **DRONE_GITEE_API_SERVER**<br />可选字符串值提供 Gitee api 服务器地址。默认值为 [https://gitee.com/api/v5](https://gitee.com/api/v5)
 - **DRONE_RPC_SECRET**<br />必需的字符串值提供在上一步中生成的共享机密。这用于验证服务器和运行程序之间的 rpc 连接。必须为服务器和运行程序提供相同的秘密值。
-- **DRONE_SERVER_HOST**<br />必需的字符串值提供您的外部主机名或 IP 地址。如果使用 IP 地址，您可以包含端口，例如 `drone.domain.com`。
+- **DRONE_SERVER_HOST**<br />必需的字符串值提供您的外部主机名或 IP 地址。如果使用 IP 地址，您可以包含端口，例如 `drone.mydomain.com`。
 - **DRONE_SERVER_PROTO**<br />必需的字符串值提供您的外部协议方案。此值应设置为 http 或 https。如果您配置 ssl 或 acme，则此字段默认为 https。
 
 ### Docker 安装 runner
@@ -88,7 +88,7 @@ Drone runner 是一个守护进程，它在临时 docker 容器内执行管道�
 docker run \
   --detach=true \
   --env=DRONE_RPC_PROTO=https \
-  --env=DRONE_RPC_HOST=drone.leryn.top \
+  --env=DRONE_RPC_HOST=drone.mydomain.com \
   --env=DRONE_RPC_SECRET=2ff35a69ef0f5c60c781a8775e8db5a2 \
   --env=DRONE_RUNNER_CAPACITY=2 \
   --env=DRONE_RUNNER_NAME=drone-runner \
@@ -105,7 +105,7 @@ docker logs drone-runner
 ```
 INFO[0000] starting the server                           addr=":3000"
 INFO[0000] successfully pinged the remote server
-INFO[0000] polling the remote server                     arch=amd64 capacity=2 endpoint="https://drone.leryn.top" kind=pipeline os=linux type=docker
+INFO[0000] polling the remote server                     arch=amd64 capacity=2 endpoint="https://drone.mydomain.com" kind=pipeline os=linux type=docker
 ```
 
 ## 流水线
@@ -121,8 +121,8 @@ steps:
   - name: build-on-commit-nightly
     image: plugins/docker
     settings:
-      registry: docker.leryn.top
-      repo: docker.leryn.top/leryn/image-name
+      registry: docker.mydomain.com
+      repo: docker.mydomain.com/leryn/image-name
       tags: [nightly]
     volumes:
       - name: docker-socket
@@ -135,8 +135,8 @@ steps:
   - name: build-on-commit-latest
     image: plugins/docker
     settings:
-      registry: docker.leryn.top
-      repo: docker.leryn.top/leryn/image-name
+      registry: docker.mydomain.com
+      repo: docker.mydomain.com/leryn/image-name
       tags: latest
     volumes:
       - name: docker-socket
@@ -149,8 +149,8 @@ steps:
   - name: build-on-tag
     image: plugins/docker
     settings:
-      registry: docker.leryn.top
-      repo: docker.leryn.top/leryn/image-name
+      registry: docker.mydomain.com
+      repo: docker.mydomain.comleryn/image-name
       tags: stable
     volumes:
       - name: docker-socket

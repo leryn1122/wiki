@@ -136,12 +136,12 @@ version = 2
            endpoint = ["https://ustc-edu-cn.mirrors.aliyuncs.com"]
       
         [plugins."io.containerd.grpc.v1.cri".registry."harbor.leryn.top"]
-          endpoint = ["https://harbor.leryn.top"]
+          endpoint = ["https://harbor.mydomain.com"]
         [plugins."io.containerd.grpc.v1.cri".registry.configs]
           
           [plugins."io.containerd.grpc.v1.cri".registry.configs."harbor.leryn.top".tls]
             insecure_skip_verify = true
-          [plugins."io.containerd.grpc.v1.cri".registry.configs."harbor.leryn.top".auth]
+          [plugins."io.containerd.grpc.v1.cri".registry.configs."harbor.mydomain.com".auth]
             username = "******"
             password = "******"
     

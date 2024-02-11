@@ -141,7 +141,7 @@ Content-Security-Policy: default-src 'self' *.trusted.com
 ```
 实际开发中，我们更倾向于在前端 pod 对应的 ingress（云原生环境下）中或对应的 nginx 中（非云原生环境）添加，这不会对前端原有代码产生侵入式改动。<br />添加不同资源类型：
 ```http
-Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval' *.leryn.top *.qq.com *.baidu.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.leryn.top *.qq.com *.baidu.com; img-src 'self' *.leryn.top data: *.qq.com; frame-src 'self' *.leryn.top webcompt: data: *.qq.com; connect-src 'self' *.leryn.top *.leryn.top:30333; font-src 'self' *.alicdn.com data:;
+Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval' *.mydomain.com *.qq.com *.baidu.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.lmydomain.com *.qq.com *.baidu.com; img-src 'self' *.leryn.top data: *.qq.com; frame-src 'self' *.leryn.top webcompt: data: *.qq.com; connect-src 'self' *.leryn.top *.leryn.top:30333; font-src 'self' *.alicdn.com data:;
 ```
 如果有安全策略，那么他会报错：
 ```

@@ -59,7 +59,7 @@ docker logs rancher 2>&1 | grep "Bootstrap Password:"
 ```bash
 helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
-  --set hostname=rancher.leryn.top \
+  --set hostname=rancher.mydomain.com \
   --set ingress.tls.source=secret \
   --set replicas=1
 ```

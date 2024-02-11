@@ -178,9 +178,9 @@ vrrp_instance VI_1 {
 ```
 启动 KeepAlived：
 ```bash
-systemctl enable keepalived
+systemctl enable  keepalived
 systemctl restart keepalived
-systemctl status keepalived
+systemctl status  keepalived
 ```
 然后我们初始化集群之前要将 Controll Plane 域名解析指向这个 VIP 的地址。
 
@@ -191,7 +191,7 @@ systemctl status keepalived
 - 第二条是加入 worker 节点使用的
 ```bash
 kubeadm init \
-  --control-plane-endpoint xxx-k8s-master.domain.com \
+  --control-plane-endpoint xxx-k8s-master.mydomain.com \
   --image-repository k8s.gcr.io/google_containers \
   --upload-certs \
   --pod-network-cidr=172.24.0.0/16 \

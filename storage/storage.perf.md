@@ -14,7 +14,7 @@ mkdir -p /mnt/{local,s3,nfs}
 
 s3fs performance-test /mnt/s3 \
   -o passwd_file=/etc/passwd-s3fs \
-  -o url=https://oss.domain.com \
+  -o url=https://oss.mydomain.com \
   -o endpoint='',allow_other,retries=5 \
   -o use_path_request_style
 
