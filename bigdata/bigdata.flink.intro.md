@@ -2,7 +2,7 @@
 # Flink 介绍
 参考文档：
 
-- [Kubernetes Setup - Flink 官网](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/resource-providers/standalone/kubernetes/)
+- [Kubernetes](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/resource-providers/standalone/kubernetes/)
 
 本文采用版本`flink:1.13.6-scala_2.12-java8`，也可以采用最新的。
 

@@ -2,9 +2,9 @@
 # Jenkins 扩展共享库
 参考文档：
 
-- [https://www.jenkins.io/zh/doc/book/pipeline/shared-libraries/](https://www.jenkins.io/zh/doc/book/pipeline/shared-libraries/)
-- [https://www.jenkins.io/doc/pipeline/steps/](https://www.jenkins.io/doc/pipeline/steps/)
-- [https://www.jianshu.com/p/a248dc7e80ea](https://www.jianshu.com/p/a248dc7e80ea)
+- [扩展共享库](https://www.jenkins.io/zh/doc/book/pipeline/shared-libraries/)
+- [Pipeline Steps Reference](https://www.jenkins.io/doc/pipeline/steps/)
+- [Jenkins Shared Libraries](https://www.jianshu.com/p/a248dc7e80ea)
 
 ## 安装扩展库
 

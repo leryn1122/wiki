@@ -5,9 +5,9 @@
 ## drone 安装手册
 参考文档：
 
-- [https://docs.drone.io](https://docs.drone.io)
-- [https://docs.drone.io/server/provider/gitee/](https://docs.drone.io/server/provider/gitee/)
-- [https://plugins.drone.io/](https://plugins.drone.io/)
+- [Drone CI / CD | Drone](https://docs.drone.io)
+- [Gitee | Drone](https://docs.drone.io/server/provider/gitee/)
+- [Drone Plugins](https://plugins.drone.io/)
 
 不同的 git 产品对接方式各不相同，请在官方文档中找到相应的对接方式，这里只有 gitee。
 
