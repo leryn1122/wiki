@@ -5,21 +5,31 @@
 - Docker
 - Containerd
 - Podman
-- Kata-containerd
+- Kata-container
 - NVIDIA Containerd （GPU 特供）
 
 但是常提还是特指 Docker 和 Containerd
 
-
 ## nerdctl & buildkit
+nerdctl 旨在为 containerd 提供那些从 docker 中裁剪掉的功能。本身 runc 的 ctr 和 containerd 的 crictl 非常难使用，因为它们只提供了最基本的功能。nerdctl 的出现解决了这点。<br />如果需要完全替代 docker，nerdctl 还需要能构建镜像。但是 crictl 和 nerdctl 本身不支持构建，需要再额外安装一个 buildkitd 来作为 daemon 服务提供构建镜像的能力。<br />安装 nerdctl：
+```bash
+VERSION=1.7.3
+wget https://github.com/containerd/nerdctl/releases/download/v${VERSION}/nerdctl-${VERSION}-linux-amd64.tar.gz
+
+tar -xf nerdctl-${VERSION}-linux-amd64.tar.gz
+
+sudo mv nerdctl /usr/local/bin/nerdctl
+sudo chmod a+x /usr/local/bin/nerdctl
+```
 ```bash
 alias docker='nerdctl --namespace=k8s.io  --address=unix:///run/k3s/containerd/containerd.sock '
 ```
 安装 buildkit 和 buildkitd：
 ```bash
-wget https://github.com/moby/buildkit/releases/download/v0.12.5/buildkit-v0.12.5.linux-amd64.tar.gz
+VERSION=v0.12.5
+wget https://github.com/moby/buildkit/releases/download/${VERSION}/buildkit-${VERSION}.linux-amd64.tar.gz
 
-tar -xf buildkit-v0.12.5.linux-amd64.tar.gz
+tar -xf buildkit-${VERSION}.linux-amd64.tar.gz
 
 sudo mv bin/* /usr/local/bin/
 sudo chmod a+x /usr/local/bin/build*
