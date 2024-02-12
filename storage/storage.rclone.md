@@ -16,7 +16,7 @@ Windows 下载安装包即可，只包含一个可执行文件。<br />Linux / m
 sudo -v ; curl https://rclone.org/install.sh | sudo bash
 ```
 
-### WinFsp (Windows)
+### WinFsp（Windows）
 仅安装 Rclone 本身并不能支持各种复杂的文件系统协议，Windows 下需要安装 WinFsp（Windows File System Proxy），它来实现各个协议的对接。下载[安装包](https://winfsp.dev/rel/)安装即可。
 
 ### FUSE（Linux）
@@ -46,7 +46,7 @@ rclone mount remote:path /path/to/mount
 [aliyun-oss]
 type = s3
 access_key_id = admin
-endpoint = https://oss.leryn.top/
+endpoint = https://oss.mydomain.com/
 secret_access_key = xxxxx
 ```
 注意 Windows 不支持 Daemon 模式后台运行，如果命令行窗口退出，那么诸如挂载的行为也会终止。可以借用下面这个方法写一个 Visual Basic 脚本来后台运行。例如将阿里云下的 web 对象桶挂载成为本地的 Y 盘：

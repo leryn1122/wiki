@@ -2,11 +2,9 @@
 # Maven 安装手册
 
 ## 包管理器
-
-很简单一句命令即可, 但是可能缺少 protobuff 并无法使用
+很简单一句命令即可，但是可能缺少 protobuff 并无法使用：
 
 ### 安装步骤
-
 ```bash
 sudo apt install -y maven
 ```
@@ -14,17 +12,13 @@ sudo apt install -y maven
 ## 二进制安装
 
 ### 前置准备
-
-下载二进制安装包:
-
+下载二进制安装包：
 ```bash
 wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
 ```
 
 ### 安装步骤
-
-解压安装包到指定路径, 并配置环境变量
-
+解压安装包到指定路径，并配置环境变量
 ```
 tar -xf apache-maven-3.8.4-bin.tar.gz -C /path/to/maven
 ```
@@ -36,15 +30,12 @@ export MAVEN_HOME=/path/to/maven
 export M2_HOME=${}
 export PATH=${MAVEN_HOME}/bin;${PATH}
 ```
-
-通常都会再修改默认的 maven 配置, 位置在`${MAVEN_HOME}/conf/settings.xml`
+通常都会再修改默认的 maven 配置，位置在`${MAVEN_HOME}/conf/settings.xml`
 
 ### 启动与验证
-
 ```bash
 mvn -v
 ```
-
 ```
 Apache Maven 3.8.4 (9b656c72d54e5bacbed989b64718c159fe39b537)
 Maven home: /opt/module/apache-maven-3.8.4
@@ -54,14 +45,12 @@ OS name: "linux", version: "5.4.0-77-generic", arch: "amd64", family: "unix"
 ```
 
 ## Docker
-
 ```bash
 docker pull maven:3.8.4-openjdk-17-slim
 docker pull maven:3.8.4-jdk-8-slim
 ```
 
 # Maven-Daemon
-
 `mvnd` 是 apache/maven 的一个子项目, 它并不是一个全新的构建工具, 而是对 maven 的扩展. 它内置了 maven, 其实现原理是构建了一个或者多个 maven 守护进程来执行构建服务.
 
 1. mvnd 的目标是使用 Gradle 和 Takari 所知的技术提供更快的 Maven 构建. Gradle 是一个基于 Apache Ant 和 Apache Maven 概念的项目自动化建构工具. Gradle 构建脚本使用的是 Groovy 或 Kotlin 的特定领域语言来编写的, 而不是传统的 XML. Gradle 最大的优势就是比传统的 Maven 构建速度更快. Takari 是 maven-wrapper 核心, 大部分的开源项目都是提供 warpper 方便用户不安装 maven 的前提下快速构建项目的. 
@@ -69,9 +58,6 @@ docker pull maven:3.8.4-jdk-8-slim
 3. 一个守护进程实例可以服务于来自 mvnd 客户端的多个连续请求. 
 4. mvnd 客户端使用 GraalVM 构建本地可执行文件, 与启动传统 JVM 相比, 它启动得更快, 占用的内存更少. 
 5. 如果 mvnd 没有空闲守护进程来服务一个构建请求, 可以并行地生成多个守护进程.
-
-
-## 二进制安装
 
 ## 构建镜像
 目前还没有官方镜像, 但是目前构建完镜像使用仍然有点问题. 构建镜像, 需要以下文件:
@@ -82,7 +68,7 @@ docker pull maven:3.8.4-jdk-8-slim
 
 ### `Dockerfile`
 ```dockerfile
-FROM docker.leryn.top/openjdk:17-oracle
+FROM docker.mydomain.com/openjdk:17-oracle
 ARG MAVEN_VERSION=0.7.1
 ARG USER_HOME_DIR="/root"
 ARG SHA=ac0b276d4d7472d042ddaf3ad46170e5fcb9350981af91af6c5c13e602a07393

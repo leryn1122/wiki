@@ -43,10 +43,10 @@ helm repo update
 helm install minio minio/minio -n oss \
   --version 4.0.14 \
   --set consoleIngress.enabled=true                    \
-  --set consoleIngress.hosts={oss-console.leryn.top}   \
+  --set consoleIngress.hosts={oss-console.mydomain.com}   \
   --set consoleIngress.ingressClassName=nginx          \
   --set ingress.enabled=true                           \
-  --set ingress.hosts={oss.leryn.top}                  \
+  --set ingress.hosts={oss.mydomain.com}                  \
   --set ingress.ingressClassName=nginx                 \
   --set-string ingress.annotations."nginx.ingress.kubernetes.io/proxy-body-size"=0 \
   --set-string consoleIngress.annotations."nginx.ingress.kubernetes.io/proxy-body-size"=0 \

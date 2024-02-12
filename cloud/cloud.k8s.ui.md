@@ -21,10 +21,8 @@ k9s
 ```
 K9S 也非常适合二次开发，你可以为你常用的功能编写插件，或者 fork 仓库二次开发。例如，我为 K9S 增加了管理 Harbor 实例和项目的功能，可以查找 Harbor 上的镜像和 Chart。<br />![image.png](./../assets/1645719540088-85e908a6-9371-44c1-bf68-53dfab5c817e.png)
 
-## Rancher 
-
-# ![](https://s3.leryn.top/website/image/rancher.svg#clientId=u9017040e-6af7-4&height=235&id=srr4t&originHeight=150&originWidth=295&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u99dbd0a2-23c9-49e1-9347-027e47648a8&title=&width=462)
-参考文档：
+## Rancher
+![](https://s3.leryn.top/website/image/rancher.svg#clientId=u514d560a-276c-4&height=235&id=xdtB4&originHeight=150&originWidth=295&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=udfc56624-9bd4-4e07-9bd9-e7c1b713cd9&title=&width=462)<br />参考文档：
 
 - [Rancher文档 | K8S文档 | Rancher | Rancher文档](https://docs.rancher.cn/docs/rke/%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/_index)
 
@@ -33,7 +31,7 @@ Rancher 自带了一套 k3s 单机。实际使用下来，性能要求略高于�
 ### 安装步骤 using Docker
 安装 rancher 镜像，然后打开网页初始化 Rancher
 
-- v2.3.1 // 公司生产版本
+- v2.3.1  // 公司生产版本
 - v2.5.11 // 当前比较新的稳定版本
 - v2.6.2 // 2.6 版本的全新
 ```bash
@@ -64,8 +62,8 @@ helm install rancher rancher-stable/rancher \
   --set replicas=1
 ```
 
-### Rancher导入集群
-打开 rancher 界面，点击 `import generic`，设定好集群名，Rancher 临时生成一段 YAML。这段 YAML 在待托管的 Kubernetes master 节点上执行即可，它会为新集群安装 Rancher 的探针和 Agent。<br />导入集群：
+### Rancher 导入集群
+打开 Rancher 界面，点击 `import generic` 并设定好集群名，Rancher 临时生成一段 YAML。这段 YAML 在待托管的 Kubernetes master 节点上执行即可，它会为新集群安装 Rancher 的探针和 Agent。<br />导入集群：
 ```bash
 kubectl apply -f https://xxx.xxx.xxx.xxx:8443/v3/import/2fc8tn8vw7ccf96mqx5tcjkjb6wbt7kpgvmlslrjqx9w4x5k5z85h9_c-m-fpgbd5zd.yaml
 ```
