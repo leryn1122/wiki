@@ -23,16 +23,16 @@ xpack.security.transport.ssl.truststore.path: elastic-certificates.p12
 ```bash
 /usr/share/elasticsearch/bin/elasticsearch-certutil cert -out /etc/elasticsearch/elastic-certificates.p12 -pass ""
 ```
-将节点 1 上的证书依次拷贝到其他节点, **不要在各个节点上独自生成**.
+将节点 1 上的证书依次拷贝到其他节点，**不要在各个节点上独自生成**。
 
 ### 重启 ES 集群
-Elasticsearch 集群不重新启动, 下面的添加密码操作执行不了, 所以依次重启所有节点:
+Elasticsearch 集群不重新启动，下面的添加密码操作执行不了，所以依次重启所有节点：
 ```bash
 systemctl restart elasticsearch
 ```
 
 ### 创建 Elasticsearch 集群密码
-在一个节点上执行如下命令, 设置用户密码. 设置完之后, 数据会自动同步到其他节点:
+在一个节点上执行如下命令，设置用户密码。设置完之后, 数据会自动同步到其他节点：
 ```bash
 /usr/share/elasticsearch/bin/elasticsearch-setup-passwords interactive
 ```
@@ -62,20 +62,20 @@ Changed password for user [beats_system]
 Changed password for user [remote_monitoring_user]
 Changed password for user [elastic]
 ```
-依次填写上面系统的密码, 记住 Kibana 系统的名称 (可能是`kibana_system`), 后面修改 Kibana 配置要用到.
+依次填写上面系统的密码, 记住 Kibana 系统的名称（可能是`kibana_system`），后面修改 Kibana 配置要用到。
 
 ### 访问验证
-执行完上述操作后就已经加上了密码，此时直接 curl 会报错:
+执行完上述操作后就已经加上了密码，此时直接 curl 会报错：
 ```bash
 curl -XGET http://localhost:9200
 ```
-带上用户信息 curl 可以正常返回 Elasticsearch 信息:
+带上用户信息 curl 可以正常返回 Elasticsearch 信息：
 ```bash
 curl --user elastic http://localhost:9200
 ```
 
 ## 修改 Kibana 配置
-如果 Elasticsearch 同时配套使用了 Kibana 的话, 请修改`kibana.yml`文件:
+如果 Elasticsearch 同时配套使用了 Kibana 的话，请修改`kibana.yml`文件:
 ```bash
 vim /usr/share/kibana/config/kibana.yml
 ```
@@ -84,7 +84,7 @@ vim /usr/share/kibana/config/kibana.yml
 elasticsearch.username: "kibana_system"
 elasticsearch.password: "密码"
 ```
-重启 Kibana 即可:
+重启 Kibana 即可：
 ```bash
 systemctl restart kibana
 ```

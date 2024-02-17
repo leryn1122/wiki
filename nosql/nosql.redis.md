@@ -2,8 +2,8 @@
 # Redis 安装手册
 参考文档：
 
-- [Redis - 官网](https://redis.io/)
-- [Redis 集群模式介绍](http://www.zzvips.com/article/142376.html)
+- [Redis](https://redis.io/)
+- [Redis 三种集群模式，你还傻傻分不清吗？_Redis_服务器之家](http://www.zzvips.com/article/142376.html)
 
 ## 包管理器
 直接使用默认源 apt 不能下载到最新的 redis，先更新 apt 的源：<br />**方法一**<br />将如下链接添加到`/etc/apt/sources.list`中：
