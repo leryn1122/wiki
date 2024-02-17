@@ -7,7 +7,15 @@
 - [一文读懂容器存储接口 CSI](https://zhuanlan.zhihu.com/p/364255271)
 
 ## 简介
-开始前介绍几个概念：
+开始前介绍一下，Kubernetes 原生支持一些存储类型，比如 NFS、HostPath、CephFS 等等，这些代码在 Kubernetes 仓库中维护，因此称之为 in-tree。但这带来一些问题：
+
+- 更改 in-tree 存储代码，必须更新 Kubernetes 组件
+- in-tree 存储代码引发的 bug 引起 Kubernetes 不稳定
+- in-tree 存储代码和 Kubernetes 有同等的特权，存在安全隐患
+- 需要 Kubernetes 社区来维护 in-tree 存储代码
+- 三方存储开发者必须遵循 Kubernetes 社区的规则开发 in-tree 类型存储代码
+
+以此为由头，Kubernetes 和其他的容器平台厂商联合推出了 CSI（Container Storage Interface）让 Kubernetes 代码和存储代码解耦，第三方存储厂商只需要遵守 CSI 开发存储驱动即可以。<br />所以有了几个概念：
 
 - CO（Container Orchestrator）：容器编排系统，它不单单指 Kubernetes，也可以是 Mesos 等等
 - Node：指运行的工作负载的主机
