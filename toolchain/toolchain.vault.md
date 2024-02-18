@@ -5,7 +5,7 @@
 
 - [https://github.com/hashicorp/vault](https://github.com/hashicorp/vault)
 - [https://hub.docker.com/_/vault](https://hub.docker.com/_/vault)
-- [http://t.zoukankan.com/kirito-c-p-14327708.html](http://t.zoukankan.com/kirito-c-p-14327708.html)
+- [secrets 管理工具 Vault 的介绍、安装及使用 - 走看看](http://t.zoukankan.com/kirito-c-p-14327708.html)
 
 ```bash
 docker run \
