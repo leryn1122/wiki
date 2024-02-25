@@ -1,5 +1,9 @@
 
 # 容器运行时
+参考文档：
+
+- [梳理一下 Windows 的 Hyper-V、Hypervisor](https://zhuanlan.zhihu.com/p/381969738)
+
 广义的容器运行时有很多，包括但不限于以下：
 
 - Docker
@@ -8,7 +12,7 @@
 - Kata-container
 - NVIDIA Containerd （GPU 特供）
 
-但是常提还是特指 Docker 和 Containerd
+但是常提还是特指 Docker 和 Containerd<br />随着 OCI 的提出和厂商对隔离性的要求，除了用宿主机的进程隔离策略，现在有厂商提供基于虚拟机的容器方案，例如 Podman 在 MacOS 上提供基于 QEMU 的容器，Google 提出的 gVisor 等等。
 
 ## nerdctl & buildkit
 nerdctl 旨在为 containerd 提供那些从 docker 中裁剪掉的功能。本身 runc 的 ctr 和 containerd 的 crictl 非常难使用，因为它们只提供了最基本的功能。nerdctl 的出现解决了这点。<br />如果需要完全替代 docker，nerdctl 还需要能构建镜像。但是 crictl 和 nerdctl 本身不支持构建，需要再额外安装一个 buildkitd 来作为 daemon 服务提供构建镜像的能力。<br />安装 nerdctl：
