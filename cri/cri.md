@@ -4,7 +4,25 @@
 
 - [梳理一下 Windows 的 Hyper-V、Hypervisor](https://zhuanlan.zhihu.com/p/381969738)
 
-广义的容器运行时有很多，包括但不限于以下：
+容器运行时，有两个概念 OCI 和 CRI：
+
+### OCI：Low-level 容器运行时
+OCI（Open Container Initiative）是开发容器标准。它是由各个容器公司倡议形成的开放的行业标准，可以底层实现不同的平台、不同的操作系统上运行容器，但需要遵守行业标准。<br />OCI 涵盖了三个标准：
+
+- runtime-spec：
+- image-spec：
+- distribution-spec：
+
+它主要负责容器如何创建和运行、如何和宿主机交互。<br />主要有这几种：
+
+- runc：轻量级低级容器运行时，由 go 语言实现，docker 底层的运行时
+- runv：轻量级虚拟机
+- cri-o：
+- crun：用纯 C 实现的 runc
+- gVisor：拥有自己的内核，运行时模拟出 linux 内核
+
+### CRI：High-level 容器运行时
+CRI（Container Runtime Interface）是 Kubernetes 官方提出的接口标准，<br />广义的容器运行时有很多，包括但不限于以下：
 
 - Docker
 - Containerd
