@@ -124,6 +124,7 @@ curl -ik -XPOST \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -d '{"auth": "admin", "password": "cangetin"}' \
+  -c /tmp/semaphore-cookie \
   http://ansible.mydomain.com/api/auth/login
 
 # 带 cookie 生成永久 token
