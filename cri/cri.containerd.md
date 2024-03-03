@@ -17,7 +17,7 @@ version = 2
 [debug]
   address = ""
   format = ""
-	uid = 0
+  uid = 0
   gid = 0
   level = ""
 
@@ -111,7 +111,7 @@ version = 2
           runtime_type = "io.containerd.runc.v1"
           
           [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia.options]
-    	      BinaryName = "/usr/bin/nvidia-container-runtime"
+            BinaryName = "/usr/bin/nvidia-container-runtime"
             SystemdCgroup = true
           
         [plugins."io.containerd.grpc.v1.cri".containerd.untrust_workdload_runtime]
@@ -175,25 +175,25 @@ version = 2
     default = ["walking"]
   
   [plugins."io.containerd.snapshotter.v1.aufs"]
-  	root_path = ""
+    root_path = ""
   
   [plugins."io.containerd.snapshotter.v1.btrfs"]
-  	root_path = ""
+    root_path = ""
   
   [plugins."io.containerd.snapshotter.v1.devmapper"]
-  	root_path = ""
+    root_path = ""
     base_image_size = ""
     pool_name = ""
     async_remove = true
   
   [plugins."io.containerd.snapshotter.v1.native"]
-  	root_path = ""
+    root_path = ""
   
   [plugins."io.containerd.snapshotter.v1.overlayfs"]
-  	root_path = ""
+    root_path = ""
   
   [plugins."io.containerd.snapshotter.v1.zfs"]
-  	root_path = ""
+    root_path = ""
 
 [proxy_plugins]
 

@@ -17,6 +17,8 @@
 - `/sys/firmware/dmi/tables/DMI`（SMBIOS table data）
 - `/dev/mem`（FreeBSD）
 
+SMBIOS 只能获得板载设备，例如集成显卡、板载网卡。如果插在插槽上的，例如独立显卡、独立网卡，只能获得插槽口上的信息，而不能获得所有详细的设备信息。
+
 ## 命令行
 使用命令行接口：
 ```bash

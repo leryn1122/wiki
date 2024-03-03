@@ -82,58 +82,58 @@ vim /etc/haproxy/haproxy.cfg
   ...
 
 frontend my-k8s-master
-	bind 0.0.0.0:6443
-	mode tcp
-	option tcplog
-	timeout client 30000
-	default_backend my-k8s-master
+  bind 0.0.0.0:6443
+  mode tcp
+  option tcplog
+  timeout client 30000
+  default_backend my-k8s-master
 
 backend my-k8s-master
-	mode tcp
-	option tcplog
-	option tcp-check
-	timeout server 30000
-	balance roundrobin
-	default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
-		server apiserver1 k8s-master-IP地址:6443 check
-		server apiserver2 k8s-master-IP地址:6443 check
-		server apiserver3 k8s-master-IP地址:6443 check
+  mode tcp
+  option tcplog
+  option tcp-check
+  timeout server 30000
+  balance roundrobin
+  default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+    server apiserver1 k8s-master-IP地址:6443 check
+    server apiserver2 k8s-master-IP地址:6443 check
+    server apiserver3 k8s-master-IP地址:6443 check
 
 frontend my-k8s-worker-http
-	bind 0.0.0.0:80
-	mode tcp
-	option tcplog
-	timeout client 30000
-	default_backend my-k8s-worker-http
+  bind 0.0.0.0:80
+  mode tcp
+  option tcplog
+  timeout client 30000
+  default_backend my-k8s-worker-http
 
 backend my-k8s-worker-http
-	mode tcp
-	option tcplog
-	option tcp-check
-		timeout server 30000
-	balance roundrobin
-	default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
-		server worker1 k8s-worker-IP地址:80 check
-		server worker2 k8s-worker-IP地址:80 check
-		server worker3 k8s-worker-IP地址:80 check
+  mode tcp
+  option tcplog
+  option tcp-check
+    timeout server 30000
+  balance roundrobin
+  default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+    server worker1 k8s-worker-IP地址:80 check
+    server worker2 k8s-worker-IP地址:80 check
+    server worker3 k8s-worker-IP地址:80 check
 
 frontend my-k8s-worker-https
-	bind 0.0.0.0:443
-	mode tcp
-	option tcplog
-	timeout client 30000
-	default_backend my-k8s-worker-https
+  bind 0.0.0.0:443
+  mode tcp
+  option tcplog
+  timeout client 30000
+  default_backend my-k8s-worker-https
 
 backend my-k8s-worker-https
-	mode tcp
-	option tcplog
-	option tcp-check
-		timeout server 30000
-	balance roundrobin
-	default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
-		server worker1 k8s-worker-IP地址:443 check
-		server worker2 k8s-worker-IP地址:443 check
-		server worker3 k8s-worker-IP地址:443 check
+  mode tcp
+  option tcplog
+  option tcp-check
+    timeout server 30000
+  balance roundrobin
+  default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+    server worker1 k8s-worker-IP地址:443 check
+    server worker2 k8s-worker-IP地址:443 check
+    server worker3 k8s-worker-IP地址:443 check
 
 ```
 启动 HAProxy：
@@ -162,18 +162,18 @@ vim /etc/keepalived/keepalived.conf
 
 # 多网卡服务器请写多个 Instance, 并注意更换 ID, 网卡名, IP 地址
 vrrp_instance VI_1 {
-	state BACKUP             
-	interface ens6
-	virtual_router_id 61
-	priority 90
-	advert_int 1
-	authentication {
-		auth_type PASS
-		auth_pass 1111
-	}
-	virtual_ipaddress {
-		漂移IP地址-前置网段/24
-	}
+  state BACKUP             
+  interface ens6
+  virtual_router_id 61
+  priority 90
+  advert_int 1
+  authentication {
+    auth_type PASS
+    auth_pass 1111
+  }
+  virtual_ipaddress {
+    漂移IP地址-前置网段/24
+  }
 }
 ```
 启动 KeepAlived：

@@ -16,10 +16,10 @@ ansible-playbook -i hosts main.yaml
 ## Semaphore - Ansible 控制台
 参考文档：
 
-- [https://docs.ansible-semaphore.com/](https://docs.ansible-semaphore.com/)
-- [https://demo.ansible-semaphore.com/](https://demo.ansible-semaphore.com/)
-- [https://ansible-semaphore.com/api/](https://ansible-semaphore.com/api/)
-- [https://github.com/fiftin/ansible-semaphore-deploy-demo](https://github.com/fiftin/ansible-semaphore-deploy-demo)
+- [Introduction - Semaphore Docs](https://docs.ansible-semaphore.com/)
+- [Ansible Semaphore](https://demo.ansible-semaphore.com/)
+- [API - Ansible Semaphore](https://www.semui.co/api-docs/)
+- [Build software better, together](https://github.com/fiftin/ansible-semaphore-deploy-demo)
 
 基于 Golang 开发的 Ansible 控制台，对外暴露 REST API，搭配数据库持久化操作记录。<br />以下用 Kubernetes 部署一个 Ansible Semaphore：
 ```bash
@@ -37,7 +37,7 @@ kubectl create secret generic ansible-secret -n ansible \
   --from-literal=SEMAPHORE_ACCESS_KEY_ENCRYPTION=gs72mPntFATGJs9qK0pQ0rKtfidlexiMjYCH9gWKhTU=
 ```
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ansible
@@ -49,9 +49,10 @@ spec:
     - host: ansible.mydomain.com
       http:
         paths:
-          - backend:
-              serviceName: ansible
-              servicePort: 80
+          - service:
+              name: ansible
+              port:
+                number: 80
             path: /
             pathType: ImplementationSpecific
 ---
@@ -94,7 +95,7 @@ spec:
     spec:
       containers:
         -
-        	name: ansible
+          name: ansible
           env:
             - name: TZ
               value: Asia/Shanghai
