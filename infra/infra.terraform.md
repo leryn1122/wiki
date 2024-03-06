@@ -2,7 +2,7 @@
 # Terraform
 
 ## 介绍
-Terraform 有 Hashicorp 公司开发，可以通过第三方厂商提供的插件，结合 HCL 配置文件来自动化部署基础设施。这里的基础设施可以是：云服务器、操作系统、Kubernetes 资源、中间件等等。<br />常见的云厂商都有提供自己平台的插件：
+Terraform 有 Hashicorp 公司开发，可以通过第三方厂商提供的插件，结合 HCL 配置文件来声明式的自动化部署基础设施。这里的基础设施可以是：云服务器、操作系统、存储、 Kubernetes 资源、中间件等等。<br />常见的云厂商都有提供自己平台的插件：
 
 - 国内公有云：阿里云、腾讯云
 - 国外公有云：AWS、Google Cloud、Azure
@@ -42,6 +42,7 @@ project
 - [GitHub - hashicorp/terraform-plugin-sdk: Terraform Plugin SDK enables building plugins (providers) to manage any service providers or custom in-house solutions](https://github.com/hashicorp/terraform-plugin-sdk)
 - [GitHub - hashicorp/terraform-plugin-framework: A next-generation framework for building Terraform providers.](https://github.com/hashicorp/terraform-plugin-framework)
 - [Implement a provider with the Terraform Plugin Framework | Terraform | HashiCorp Developer](https://developer.hashicorp.com/terraform/tutorials/providers-plugin-framework/providers-plugin-framework-provider)
+- [Plugin Development - Debugging Providers | Terraform | HashiCorp Developer](https://developer.hashicorp.com/terraform/plugin/debugging)
 
 如果需要集成一个新的的 Terraform Provider，使用 Terraform Plugin SDK 套件来开发，有两个可选套件，选择其一即可：
 
