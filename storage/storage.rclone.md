@@ -6,12 +6,14 @@
 - [GitHub - rclone/rclone: “rsync for cloud storage” - Google Drive, S3, Dropbox, Backblaze B2, One Drive, Swift, Hubic, Wasabi, Google Cloud Storage, Yandex Files](https://github.com/rclone/rclone)
 - [Download · WinFsp](https://winfsp.dev/rel/)
 
-Rclone 是一款支持超过 40 种云存储的命令行工具，包括（NFS、S3 对象存储）。命令与 Unix 下相似，支持 Shell 管道。跨平台支持操作系统 Windows、macOS、linux 和 FreeBSD。同时能够实现挂载云存储到本地盘。<br />开发语言：golang 和前端界面使用 React
+Rclone 是一款支持超过 40 种云存储的命令行工具，包括（NFS、S3 对象存储）。命令与 Unix 下相似，支持 Shell 管道。跨平台支持操作系统 Windows、macOS、linux 和 FreeBSD。同时能够实现挂载云存储到本地盘。
+开发语言：golang 和前端界面使用 React
 
 ## 安装
 
 ### Rclone
-Windows 下载安装包即可，只包含一个可执行文件。<br />Linux / macOS / BSD 用户请这样安装：
+Windows 下载安装包即可，只包含一个可执行文件。
+Linux / macOS / BSD 用户请这样安装：
 ```bash
 sudo -v ; curl https://rclone.org/install.sh | sudo bash
 ```

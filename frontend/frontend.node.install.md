@@ -77,7 +77,8 @@ node hello_world.js
 ```
 
 ## 安装全局插件
-这里比较建议使用 pnpm 作为包管理器，pnpm 安装依赖时不会重复安装依赖，该改用硬链接的方式指向了统一的依赖。因此它的下载速度更快，磁盘占用更小。<br />先用 npm 手动安装 pnpm，之后在用 pnpm 安装所有的全局依赖。
+这里比较建议使用 pnpm 作为包管理器，pnpm 安装依赖时不会重复安装依赖，该改用硬链接的方式指向了统一的依赖。因此它的下载速度更快，磁盘占用更小。
+先用 npm 手动安装 pnpm，之后在用 pnpm 安装所有的全局依赖。
 ```bash
 # 包管理 && 构建工具
 sudo npm install -g pnpm --registry=https://registry.npm.taobao.org

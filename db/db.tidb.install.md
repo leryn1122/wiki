@@ -56,7 +56,8 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub 10.0.1.1
 
 5. 安装 numactl 工具
 
-> 在生产环境中，因为硬件机器配置往往高于需求，为了更合理规划资源，会考虑单机多实例部署 TiDB 或者 TiKV。<br />NUMA 绑核工具的使用，主要为了防止 CPU 资源的争抢，引发性能衰退。NUMA 绑核是用来隔离 CPU 资源的一种方法，适合高配置物理机环境部署多实例使用。
+> 在生产环境中，因为硬件机器配置往往高于需求，为了更合理规划资源，会考虑单机多实例部署 TiDB 或者 TiKV。
+NUMA 绑核工具的使用，主要为了防止 CPU 资源的争抢，引发性能衰退。NUMA 绑核是用来隔离 CPU 资源的一种方法，适合高配置物理机环境部署多实例使用。
 
 
 ```bash
@@ -222,7 +223,8 @@ tiup cluster deploy tidb-test v4.0.16 ./topology.yaml --user root
 - 初始化配置文件为 `topology.yaml`
 - `--user root`: 通过 root 用户登录到目标主机完成集群部署, 该用户需要有 ssh 到目标机器的权限, 并且在目标机器有 sudo 权限. 也可以用其他有 ssh 和 sudo 权限的用户完成部署.
 
-预期日志结尾输出会有 `Deployed cluster`tidb-test`successfully` 关键词, 表示部署成功.<br />
+预期日志结尾输出会有 `Deployed cluster`tidb-test`successfully` 关键词, 表示部署成功.
+
 
 4. 启动集群并初始化数据库, 初始化成功后会显示, 初始 root 密码, 密码请**务必**保存, 只会出现一次.
 

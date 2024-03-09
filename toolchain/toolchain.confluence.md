@@ -7,7 +7,8 @@
 ## Docker 安装
 
 ### Docker 镜像安装
-官方镜像提供了镜像 [atlassian/confluence-server](https://hub.docker.com/r/atlassian/confluence-server)，提供了完善的配置和解决方案。<br />我们使用一个热门的第三方 [haxqer/confluence](https://hub.docker.com/r/haxqer/confluence)。
+官方镜像提供了镜像 [atlassian/confluence-server](https://hub.docker.com/r/atlassian/confluence-server)，提供了完善的配置和解决方案。
+我们使用一个热门的第三方 [haxqer/confluence](https://hub.docker.com/r/haxqer/confluence)。
 ```bash
 docker run \
   --detach=true \
@@ -36,7 +37,9 @@ docker exec confluence \
 ```
 
 ### 创建数据库
-创建数据库，这里选择 MySQL：<br />注意 confluence 对字符集和事务隔离等级有要求。<br />创建数据库，注意要指定字符集`utf8`和排序字符集`utf8_bin`，其他都是常规操作。
+创建数据库，这里选择 MySQL：
+注意 confluence 对字符集和事务隔离等级有要求。
+创建数据库，注意要指定字符集`utf8`和排序字符集`utf8_bin`，其他都是常规操作。
 ```sql
 CREATE USER confluence@'%' IDENTIFIED BY 'confluence@123' WITH GRANT OPTION;
 CREATE DATABASE IF NOT EXISTS confluence DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
@@ -57,7 +60,8 @@ docker restart confluence
 ```
 
 ### 设置 Base URL
-如果使用域名访问需要把 Base URL 设置成域名，而不是 IP 地址加端口的形式。或者再一开始生成序列号的时候就填写域名。<br />参考官方文档：
+如果使用域名访问需要把 Base URL 设置成域名，而不是 IP 地址加端口的形式。或者再一开始生成序列号的时候就填写域名。
+参考官方文档：
 
 - [更多关于服务器基础 URL - 官方文档](https://confluence.atlassian.com/conf76/configuring-the-server-base-url-1018769760.html)
 - [在 Confluence 6.6 或更高版本中无法检查基本 URL 警告 - 官方文档](https://confluence.atlassian.com/confkb/can-t-check-base-url-warning-in-confluence-6-6-or-later-939718433.html)
@@ -235,7 +239,8 @@ copytruncate
 - 创建主目录的文件系统备份（本地主目录和数据中心的共享主目录）
 
 ### 需要备份的文件
-备份整个主目录是最安全的选择，但是大多数文件和目录在启动时填充，可以忽略。至少必须备份这些文件/目录：<br />以下 `${CONF_HOME}` 为 confluence 数据的根目录，当前 docker 容器中为`/data/cofluence:/var/confluence`。
+备份整个主目录是最安全的选择，但是大多数文件和目录在启动时填充，可以忽略。至少必须备份这些文件/目录：
+以下 `${CONF_HOME}` 为 confluence 数据的根目录，当前 docker 容器中为`/data/cofluence:/var/confluence`。
 
 - `**${CONF_HOME}/confluence.cfg.xml**`配置文件
 - `**${CONF_HOME}/attachment**`附件

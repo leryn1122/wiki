@@ -8,7 +8,8 @@
 - [opsgenie/kubernetes-event-exporter - GitHub](https://github.com/opsgenie/kubernetes-event-exporter)
 - [resmoio/kubernetes-event-exporter - GitHub](https://github.com/resmoio/kubernetes-event-exporter)
 
-这个插件可以采集 Kubernetes 中的积压的事件，因为 Kubernetes 事件堆积大约 15 分钟后就会被清理，因此要追溯问题非常复杂。<br />它相当于：
+这个插件可以采集 Kubernetes 中的积压的事件，因为 Kubernetes 事件堆积大约 15 分钟后就会被清理，因此要追溯问题非常复杂。
+它相当于：
 ```bash
 kubectl get events -A
 ```

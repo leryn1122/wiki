@@ -91,7 +91,8 @@ service mysql start
 start slave;
 show slave status;
 ```
-配套修改其他的数据库有关的组件，例如备份脚本和监控平台中的路径。<br />一段时间后删除原来的数据可文件/
+配套修改其他的数据库有关的组件，例如备份脚本和监控平台中的路径。
+一段时间后删除原来的数据可文件/
 
 ## 从生产远程同步数据到仿真环境
 同样需要先创建对应同步数据的用户：
@@ -186,7 +187,8 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
 ```sql
 show global status like 'innodb%read%';
 ```
-![](https://cdn.nlark.com/yuque/__latex/8006547ca5422f8253214655e6bf236a.svg#card=math&code=Hit%5C%25%20%3D%20%5Cfrac%7BInnodb%5C_buffer%5C_pool%5C_read%5C_requests%7D%7BInnodb%5C_buffer%5C_pool%5C_read%5C_requests%20%2B%20Innodb%5C_buffer%5C_pool%5C_reads%20%2B%20Innodb%5C_buffer%5C_pool%5C_read%5C_ahead%7D&id=Ubgyw)
+![](./../assets/8006547ca5422f8253214655e6bf236a.svg)
+
 ```
 Hit% = Innodb_buffer_pool_read_requests/ (Innodb_buffer_pool_read_requests + Innodb_buffer_pool_reads + Innodb_buffer_pool_read_ahead)
 ```

@@ -1,6 +1,6 @@
 
 # MySQL
-![](https://img.shields.io/static/v1?label=MySQL&message=2.7.0&color=blue&style=plastic&logo=MySQL&logoColor=white?longCache=true#id=EjlTS&originHeight=18&originWidth=105&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />Reference:
+Reference:
 
 - [MySQL - 官网](https://www.mysql.com/)
 - Mysql5.7 - 一键安装脚本 - cnblogs - 作者: 小豹子加油
@@ -70,7 +70,8 @@ sudo rpm -qa | grep -i mariadb | grep -v libs | xargs rpm -ev --nodeps
 ```
 
 ### 安装步骤
-先做一些 MySQL 在 Linux 系统层面的参数配置.<br />配置 MySQL 资源限制配置文件:
+先做一些 MySQL 在 Linux 系统层面的参数配置.
+配置 MySQL 资源限制配置文件:
 ```bash
 cat <<\EOF | sudo tee -a /etc/security/limits.conf
 mysql    soft    nproc    16384
@@ -85,7 +86,8 @@ EOF
 ```bash
 sudo sysctl -w vm.swappiness=5
 ```
-**正式安装**<br />配置 MySQL 环境变量, 并使其生效:
+**正式安装**
+配置 MySQL 环境变量, 并使其生效:
 ```bash
 #!/usr/bin/env bash
 # Set MySQL environment.

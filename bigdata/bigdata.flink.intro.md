@@ -21,7 +21,9 @@
 > Flink 的原生 Kubernetes 集成允许您直接将 Flink 部署在正在运行的 Kubernetes 集群上。
 > 此外，Flink 能够根据所需资源动态分配和取消分配 TaskManager，因为它可以直接与 Kubernetes 对话。
 
-![](./../assets/1652684764990-d0d0bc8d-4217-4e37-b6dc-b132d6ed84fd.webp)<br />要求：
+![](./../assets/1652684764990-d0d0bc8d-4217-4e37-b6dc-b132d6ed84fd.webp)
+
+要求：
 
 - Kubernetes >= 1.9
 - 可通过`~/.kube/config`访问 Kubernetes 和操作 Pod
@@ -300,7 +302,9 @@ spec:
 ```
 
 ### 测试
-未开启 checkpoint 情形<br />kill taskmanager 服务将停止<br />kill jobmanager 服务将重新拉起 taskmanager 大约 15~20 s
+未开启 checkpoint 情形
+kill taskmanager 服务将停止
+kill jobmanager 服务将重新拉起 taskmanager 大约 15~20 s
 
 ## 连接器
 
@@ -335,7 +339,8 @@ env.getCheckpointConfig().setCheckpointStorage(checkpointDirectory);
 env.getCheckpointConfig().enableExternalizedCheckpoints(ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
 env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
 ```
-推荐使用 HDFS 作为 HA 的 FS。<br />Savepoint 命令行，注意这个 jar 需要 MANIFEST.MF 里有 Main-Class：
+推荐使用 HDFS 作为 HA 的 FS。
+Savepoint 命令行，注意这个 jar 需要 MANIFEST.MF 里有 Main-Class：
 ```bash
 bin/flink run -s /path/to/savepoint your_flink.jar
 ```
@@ -343,8 +348,10 @@ bin/flink run -s /path/to/savepoint your_flink.jar
 ### 重启策略
 | **重启策略** | **具体策略** |
 | --- | --- |
-| 固定间隔重启 | 固定间隔时间重启, 尝试指定次数.<br />若仍然失败, 则最终失败. |
-| 失败率重启 | 失败后重启, 重启后等待一段时间.<br />每个时间区间内失败次数超过指定次数时, 最终失败. |
+| 固定间隔重启 | 固定间隔时间重启, 尝试指定次数.
+若仍然失败, 则最终失败. |
+| 失败率重启 | 失败后重启, 重启后等待一段时间.
+每个时间区间内失败次数超过指定次数时, 最终失败. |
 | 不重启 | 直接失败, 永不重启. |
 
 1. 前提是开启了 checkpoint 才会调用重启策略

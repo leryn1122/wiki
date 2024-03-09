@@ -10,7 +10,10 @@
 ## 源码编译
 
 ### 使用 Docker 开发镜像编译（推荐）
-针对不同的 Doris 版本，需要下载对应的镜像版本。从 Apache Doris 0.15 版本起，后续镜像版本号将与 Doris 版本号统一。比如可以使用 `apache/incubator-doris:build-env-for-0.15.0` 来编译 0.15.0 版本。<br />`apache/incubator-doris:build-env-ldb-toolchain-latest` 用于编译最新主干版本代码，会随主干版本不断更新。可以查看 docker/README.md 中的更新时间。<br />从 build-env-1.3.1 的 docker 镜像起，同时包含了 OpenJDK 8 和 OpenJDK 11，并且默认使用 OpenJDK 11 编译。请确保编译使用的 JDK 版本和运行时使用的 JDK 版本一致，否则会导致非预期的运行错误。你可以使用在进入编译镜像的容器后，使用以下命令切换默认 JDK 版本：<br />**切换到 JDK 8：**
+针对不同的 Doris 版本，需要下载对应的镜像版本。从 Apache Doris 0.15 版本起，后续镜像版本号将与 Doris 版本号统一。比如可以使用 `apache/incubator-doris:build-env-for-0.15.0` 来编译 0.15.0 版本。
+`apache/incubator-doris:build-env-ldb-toolchain-latest` 用于编译最新主干版本代码，会随主干版本不断更新。可以查看 docker/README.md 中的更新时间。
+从 build-env-1.3.1 的 docker 镜像起，同时包含了 OpenJDK 8 和 OpenJDK 11，并且默认使用 OpenJDK 11 编译。请确保编译使用的 JDK 版本和运行时使用的 JDK 版本一致，否则会导致非预期的运行错误。你可以使用在进入编译镜像的容器后，使用以下命令切换默认 JDK 版本：
+**切换到 JDK 8：**
 ```bash
 alternatives --set java java-1.8.0-openjdk.x86_64
 alternatives --set javac java-1.8.0-openjdk.x86_64
@@ -81,7 +84,8 @@ sysctl -p
 ```
 
 ### 配置文件
-**IP 绑定（重要）**<br />多网卡时配置参数来让 Doris 根据参数来识别对应的网卡，如果网卡 IP 不正确，无法建立集群。**前后端**都需要修改。
+**IP 绑定（重要）**
+多网卡时配置参数来让 Doris 根据参数来识别对应的网卡，如果网卡 IP 不正确，无法建立集群。**前后端**都需要修改。
 ```bash
 priority_networks = 10.65.xxx.xxx/24
 ```
@@ -101,11 +105,15 @@ JAVA_OPTS_FOR_JDK_9='...'
 
 - 数据文件路径
 
-默认 `${DORIS_HOME}/storage`，建议指定外部 SSD<br />可以指定多路径用 `;` 分割，`.SSD` 和 `.HDD` 区分刺配类型，`,10` 表示限制最大容量 GB<br />例如：<br />`storage_root_path=/home/disk1/doris.HDD,50;/home/disk2/doris.SSD,10;/home/disk2/doris`
+默认 `${DORIS_HOME}/storage`，建议指定外部 SSD
+可以指定多路径用 `;` 分割，`.SSD` 和 `.HDD` 区分刺配类型，`,10` 表示限制最大容量 GB
+例如：
+`storage_root_path=/home/disk1/doris.HDD,50;/home/disk2/doris.SSD,10;/home/disk2/doris`
 
 - 表名大小写敏感性设置
 
-默认为表名大小写敏感, 如有表名大小写不敏感的需求需在集群初始化时进行设置.<br />表名大小写敏感性在集群初始化完成后**不可再修改**。
+默认为表名大小写敏感, 如有表名大小写不敏感的需求需在集群初始化时进行设置.
+表名大小写敏感性在集群初始化完成后**不可再修改**。
 ```properties
 # 路径根据实际自行调节
 storage_root_path = /data/storage
@@ -211,7 +219,8 @@ SHOW PROC '/backends';
 ```
 
 ### 前端缩容
-FE 缩容必须始终保证剩余的 Follower (包括 Leader) 为**奇数个**。<br />在主 FE 的 MySQL 客户端中执行以下语句：
+FE 缩容必须始终保证剩余的 Follower (包括 Leader) 为**奇数个**。
+在主 FE 的 MySQL 客户端中执行以下语句：
 ```sql
 ALTER SYSTEM DROP FOLLOWER "fe_host:edit_log_port";
 ALTER SYSTEM DROP OBSERVER "fe_host:edit_log_port";

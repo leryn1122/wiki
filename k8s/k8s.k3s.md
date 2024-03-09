@@ -5,7 +5,8 @@
 - [K3S 安装文档 - 官方](https://docs.rancher.cn/docs/k3s/installation/install-options/_index)
 - [https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default/](https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default/)
 
-K3S 是 Rancher 官方提出的轻量级 Kubernetes，阉割或降级了很多 Kubernetes 的配置，例如用 SQLite 来替换 Etcd，但它仍然满足 Kubernetes 的所有 API。性能上，资源占用比 Minikube 更小，是 Kubernetes 开发机最合适的产品实现。<br />CNI 改用 cilium 而不是 flannel 等。
+K3S 是 Rancher 官方提出的轻量级 Kubernetes，阉割或降级了很多 Kubernetes 的配置，例如用 SQLite 来替换 Etcd，但它仍然满足 Kubernetes 的所有 API。性能上，资源占用比 Minikube 更小，是 Kubernetes 开发机最合适的产品实现。
+CNI 改用 cilium 而不是 flannel 等。
 
 ## 安装步骤
 运行以下命令即可一键安装，在这之前解释一下参数的意义：
@@ -79,7 +80,8 @@ cilium ui enable
 ```
 
 ## 卸载 K3S
-如果您使用安装脚本安装了k3s，那么在安装过程中会生成一个卸载 k3s 的脚本。卸载 k3s 会删除集群数据和所有脚本。要使用不同的安装选项重新启动集群，请使用不同的标志重新运行安装脚本。<br />要从 server 节点卸载 k3s，请运行：
+如果您使用安装脚本安装了k3s，那么在安装过程中会生成一个卸载 k3s 的脚本。卸载 k3s 会删除集群数据和所有脚本。要使用不同的安装选项重新启动集群，请使用不同的标志重新运行安装脚本。
+要从 server 节点卸载 k3s，请运行：
 ```bash
 /usr/local/bin/k3s-uninstall.sh
 ```
@@ -106,7 +108,8 @@ Minikube 是一个单机 Kubernetes 的解决方案，以下称为`minikube`。
 
 ### 安装 kubectl
 
-`kubectl` 这个命令在`minikube`中是可选的，这里默认选择安装。如果不安装的话，后续可以使用复杂的命令代替。这里顺便把三个客户端工具`kubectl`，`kubelet`，`kubeadm`都安装上。<br />参考[K8S - 官方文档](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin)
+`kubectl` 这个命令在`minikube`中是可选的，这里默认选择安装。如果不安装的话，后续可以使用复杂的命令代替。这里顺便把三个客户端工具`kubectl`，`kubelet`，`kubeadm`都安装上。
+参考[K8S - 官方文档](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin)
 
 ```bash
 # 添加apt key
@@ -124,7 +127,8 @@ deb https://mirrors.cloud.tencent.com/kubernetes/apt kubernetes-xenial main
 EOF
 ```
 
-如果`apt-get update`报错, 无法信任阿里云和腾讯云的 apt-key<br />只需要将第一句命令的最后的密钥换成报错信息中提示缺少的密钥即可, 然后重新 update
+如果`apt-get update`报错, 无法信任阿里云和腾讯云的 apt-key
+只需要将第一句命令的最后的密钥换成报错信息中提示缺少的密钥即可, 然后重新 update
 
 ```bash
 sudo apt-get update

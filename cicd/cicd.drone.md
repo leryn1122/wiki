@@ -14,7 +14,8 @@
 ## Gitee
 
 ### OAuth 应用
-在 Gitee 上创建 OAuth 应用程序<br />需要正确的应用主页和回调地址：
+在 Gitee 上创建 OAuth 应用程序
+需要正确的应用主页和回调地址：
 
 - 主页：https://drone.mydomain.com
 - 回调：https://drone.mydomain.com/login
@@ -74,13 +75,20 @@ docker run \
   drone/drone:latest
 ```
 
-- **DRONE_GITEE_CLIENT_ID**<br />必需的字符串值提供您的 Gitee oauth 客户端 ID。
-- **DRONE_GITEE_CLIENT_SECRET**<br />必需的字符串值提供您的 Gitee oauth 客户端密钥。
-- **DRONE_GITEE_SERVER**<br />可选的 URL 值提供 Gitee 服务器地址。默认值为 gitee.com 服务器地址`https://gitee.com`。
-- **DRONE_GITEE_API_SERVER**<br />可选字符串值提供 Gitee api 服务器地址。默认值为 [https://gitee.com/api/v5](https://gitee.com/api/v5)
-- **DRONE_RPC_SECRET**<br />必需的字符串值提供在上一步中生成的共享机密。这用于验证服务器和运行程序之间的 rpc 连接。必须为服务器和运行程序提供相同的秘密值。
-- **DRONE_SERVER_HOST**<br />必需的字符串值提供您的外部主机名或 IP 地址。如果使用 IP 地址，您可以包含端口，例如 `drone.mydomain.com`。
-- **DRONE_SERVER_PROTO**<br />必需的字符串值提供您的外部协议方案。此值应设置为 http 或 https。如果您配置 ssl 或 acme，则此字段默认为 https。
+- **DRONE_GITEE_CLIENT_ID**
+必需的字符串值提供您的 Gitee oauth 客户端 ID。
+- **DRONE_GITEE_CLIENT_SECRET**
+必需的字符串值提供您的 Gitee oauth 客户端密钥。
+- **DRONE_GITEE_SERVER**
+可选的 URL 值提供 Gitee 服务器地址。默认值为 gitee.com 服务器地址`https://gitee.com`。
+- **DRONE_GITEE_API_SERVER**
+可选字符串值提供 Gitee api 服务器地址。默认值为 [https://gitee.com/api/v5](https://gitee.com/api/v5)
+- **DRONE_RPC_SECRET**
+必需的字符串值提供在上一步中生成的共享机密。这用于验证服务器和运行程序之间的 rpc 连接。必须为服务器和运行程序提供相同的秘密值。
+- **DRONE_SERVER_HOST**
+必需的字符串值提供您的外部主机名或 IP 地址。如果使用 IP 地址，您可以包含端口，例如 `drone.mydomain.com`。
+- **DRONE_SERVER_PROTO**
+必需的字符串值提供您的外部协议方案。此值应设置为 http 或 https。如果您配置 ssl 或 acme，则此字段默认为 https。
 
 ### Docker 安装 runner
 Drone runner 是一个守护进程，它在临时 docker 容器内执行管道步骤。您可以安装单个 docker 运行器，或在多台机器上安装 docker 运行器来创建您自己的构建集群。

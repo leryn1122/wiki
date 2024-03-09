@@ -82,7 +82,8 @@ docker network prune
 # 
 docker builder prune
 ```
-手动清除：<br />对于悬空镜像和未使用镜像可以使用手动进行个别删除：
+手动清除：
+对于悬空镜像和未使用镜像可以使用手动进行个别删除：
 ```bash
 # 删除所有悬空镜像, 不删除未使用镜像:
 docker rmi $(docker images -f "dangling=true" -q)
@@ -150,7 +151,8 @@ DockerHub 是 Docker 官方提供的镜像仓库。纵使 Docker 有种种问题
 - docker.mirrors.ustc.edu.cn
 - registry.docker-cn.com
 
-DockerHub 任何人都可以注册免费账户，并享有一个私有仓库，以及每天 50 次免费 docker pull 请求基本够用。在没有私有 registry 的情况下也足够开发者使用了。不过由于下行宽带，传输速度会比较慢，这个时候镜像大小至关重要。<br />由于只有一个私有仓库，所以我们规划一个映射，使用 `<image>-<tag>` 拼接为最终的 tag：
+DockerHub 任何人都可以注册免费账户，并享有一个私有仓库，以及每天 50 次免费 docker pull 请求基本够用。在没有私有 registry 的情况下也足够开发者使用了。不过由于下行宽带，传输速度会比较慢，这个时候镜像大小至关重要。
+由于只有一个私有仓库，所以我们规划一个映射，使用 `<image>-<tag>` 拼接为最终的 tag：
 ```bash
 docker tag docker.mydomain.com/<image>:<tag> leryn/app:<image>-<tag>
 docker push leryn/app:<image>-<tag>
@@ -254,7 +256,8 @@ docker run \
 - [Welcome - Portainer Documentation](https://docs.portainer.io/)
 - [https://hub.docker.com/r/portainer/portainer-ce](https://hub.docker.com/r/portainer/portainer-ce)
 
-Portainer 是一个管理 docker 容器的 UI 界面。尽管现在我们有了 Kubernetes 容器编排，但需要一些前置的基础设施。对于小型的开发机，Portainer 仍然是一个不错的选择。Portainer 社区版免费试用，注册账号使用商业版可以免费获得 5 个节点，这里仍然选用社区版。<br />这里安装后我们会以远程的方式连接服务器上的 Docker。如果需要直接管理本地 Docker，需要挂载 Docker 的`/var/dock/docker.sock`到容器内。
+Portainer 是一个管理 docker 容器的 UI 界面。尽管现在我们有了 Kubernetes 容器编排，但需要一些前置的基础设施。对于小型的开发机，Portainer 仍然是一个不错的选择。Portainer 社区版免费试用，注册账号使用商业版可以免费获得 5 个节点，这里仍然选用社区版。
+这里安装后我们会以远程的方式连接服务器上的 Docker。如果需要直接管理本地 Docker，需要挂载 Docker 的`/var/dock/docker.sock`到容器内。
 ```bash
 docker run \
   --detach=true \

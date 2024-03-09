@@ -68,7 +68,9 @@ kind create cluster --config cluster-config.yaml
 ```
 
 ## 原理
-最后介绍一下 Kind 的核心原理：<br />Kind 用 container 来模拟节点，在节点里跑 systemd 用其托管 containerd 和 kubelet，再由 kubelet 调起 api-server，etcd，cni 等等。<br />镜像分为 node 镜像和 base 镜像。
+最后介绍一下 Kind 的核心原理：
+Kind 用 container 来模拟节点，在节点里跑 systemd 用其托管 containerd 和 kubelet，再由 kubelet 调起 api-server，etcd，cni 等等。
+镜像分为 node 镜像和 base 镜像。
 
 ### node 镜像
 node 镜像的构建比较复杂，需要通过运行 base 镜像，并在 base 镜像内执行操作，再保存此容器内容为镜像的方式来完成构建。它包含的操作有：

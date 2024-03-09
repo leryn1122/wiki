@@ -1,5 +1,5 @@
 
-# Kafka 安装手册
+# Kafka
 参考文档：
 
 - [https://kafka.apache.org/](https://kafka.apache.org/)
@@ -72,7 +72,8 @@ VERSION=2.7.0
 tar -xf kafka_${SCALA_VERSION}-${VERSION}.tgz
 mv kafka_${SCALA_VERSION}-${VERSION} /opt/module/
 ```
-修改配置文件：<br />默认配置即可，需要注意的是必须配置 Kafka 和 ZooKeeper 监听的地址，且必须是实际路由地址，不能是`0.0.0.0`。如果需要暴露对外服务，请填写公网 IP 地址。
+修改配置文件：
+默认配置即可，需要注意的是必须配置 Kafka 和 ZooKeeper 监听的地址，且必须是实际路由地址，不能是`0.0.0.0`。如果需要暴露对外服务，请填写公网 IP 地址。
 ```properties
 # The address the socket server listens on. It will get the value returned from
 # java.net.InetAddress.getCanonicalHostName() if not configured.
@@ -100,7 +101,8 @@ bin/kafka-server-start.sh -daemon config/server.properties
 # 停止Kafka
 bin/kafka-server-stop.sh
 ```
-验证 Kafka 安装是否成功：<br />官方提供了控制台上调试的接口
+验证 Kafka 安装是否成功：
+官方提供了控制台上调试的接口
 ```bash
 # 创建topic
 bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic test_jmx --partitions 1 --replication-factor 1
@@ -188,4 +190,6 @@ WantedBy=multi-user.target
 
 - [Offset Explorer](https://www.kafkatool.com/download.html)
 
-下载对应版本，安装即可。页面如下：<br />![image.png](./../assets/1649832827449-1fb072b7-5c6b-4944-9f40-1ea94e2e7fcb.png)
+下载对应版本，安装即可。页面如下：
+![image.png](./../assets/1649832827449-1fb072b7-5c6b-4944-9f40-1ea94e2e7fcb.png)
+

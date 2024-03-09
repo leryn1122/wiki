@@ -47,7 +47,8 @@ sudo sysctl --system
 modprobe br_netfilter
 lsmod | grep br_netfilter
 ```
-关闭 swap 分区。<br />如果开启 swap 分区，当节点 OOM 时内存被交换到磁盘上时，这个节点可能会 hang up，而且没有任何报错信息提示，甚至无法使用物理终端访问，最后只能硬重启整个节点。所以 kubelet 启动时会检测 swap 是否关闭，如果没有关闭则会启动失败。
+关闭 swap 分区。
+如果开启 swap 分区，当节点 OOM 时内存被交换到磁盘上时，这个节点可能会 hang up，而且没有任何报错信息提示，甚至无法使用物理终端访问，最后只能硬重启整个节点。所以 kubelet 启动时会检测 swap 是否关闭，如果没有关闭则会启动失败。
 ```bash
 swapoff -a
 
@@ -233,7 +234,9 @@ vim /etc/kubernetes/manifests/kube-apiserver.yaml
 - 虽然不安装网络插件无法让 Kubernetes 集群通讯，但是 Kubernetes 官方认为 CNI 不是它的范围，也没有提供默认的网络设施。
 - CNI 网络插件实现非常多：weave，flannel，calico 等等。这里安装 Weave，因为我司用的 Weave，但它不是目前最好的实现。
 
-weave：[https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#-installation](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#-installation)<br />flannel：[https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml](https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml)<br />calico：[https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart](https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart)
+weave：[https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#-installation](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#-installation)
+flannel：[https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml](https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml)
+calico：[https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart](https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart)
 ```bash
 # 这个地址似乎近期失效了
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
@@ -255,11 +258,13 @@ kubectl get cs
 ## Kubernetes 运维常见场景
 
 ### 集群证书问题
-目前 Kubernetes 是由 `kubeadm` 安装的 1.18 版本，默认证书有效期是1年<br />通过以下命令统一更新由 `kubeadm` 管理的所有证书：
+目前 Kubernetes 是由 `kubeadm` 安装的 1.18 版本，默认证书有效期是1年
+通过以下命令统一更新由 `kubeadm` 管理的所有证书：
 ```bash
 kubeadm alpha certs renew all
 ```
-注意此时 Kubenetes 组件 api-server，scheduler 以及 controller manager 镜像内部的证书未更新（可能是kubernetes 1.18版本bug）<br />我们需要重新启动镜像：
+注意此时 Kubenetes 组件 api-server，scheduler 以及 controller manager 镜像内部的证书未更新（可能是kubernetes 1.18版本bug）
+我们需要重新启动镜像：
 ```bash
 docker ps | grep -E 'k8s_kube-apiserver|k8s_kube-controller-manager|k8s_kube-scheduler' | awk -F ' ' '{print $1}' | xargs docker restart
 ```

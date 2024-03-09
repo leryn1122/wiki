@@ -9,7 +9,8 @@
 - [https://sites.google.com/chromium.org/driver/downloads?authuser=0](https://sites.google.com/chromium.org/driver/downloads?authuser=0)
 - [Chrome for Testing availability](https://googlechromelabs.github.io/chrome-for-testing/)
 
-Selenium 是一款用于 Web 应用自动化测试的测试框架，可以利用浏览器驱动模拟用户在浏览器中的操作。<br />可以通过 Python 带来启动一个浏览器实例来自动化测试 Web 应用，对于 iOS 和 Android 移动端应用也可以很好的支持。同样也可以用于模拟 JS 运行环境来爬取 SPA 网页应用。
+Selenium 是一款用于 Web 应用自动化测试的测试框架，可以利用浏览器驱动模拟用户在浏览器中的操作。
+可以通过 Python 带来启动一个浏览器实例来自动化测试 Web 应用，对于 iOS 和 Android 移动端应用也可以很好的支持。同样也可以用于模拟 JS 运行环境来爬取 SPA 网页应用。
 ```bash
 pipenv install selenium
 ```

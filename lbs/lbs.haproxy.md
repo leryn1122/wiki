@@ -13,7 +13,10 @@ KeepAlived 工作在 L3-5 协议，使用了 Linux 内核中的 LVS 和 VRRP 技
 - 内部通过选举协议来选择主备，来动态的将路由任务交给 LAN 中虚拟路由器中的某台VRRP路由器。
 
 ## 例子
-以代理 Kubernetes 集群的 Master 和 Worker 为例子：<br />两个 KeepAlived 代理一个 VIP 地址，HAProxy 通过四层代理将 6443 端口和 80/443 端口的流量分别转发到 K8S Master 的 API Server 和 K8S Worker 的服务端口上<br />![](./../assets/1681180519902-d846857a-b7d7-4988-aaaa-4f42e51172a5.jpeg)
+以代理 Kubernetes 集群的 Master 和 Worker 为例子：
+两个 KeepAlived 代理一个 VIP 地址，HAProxy 通过四层代理将 6443 端口和 80/443 端口的流量分别转发到 K8S Master 的 API Server 和 K8S Worker 的服务端口上
+![](./../assets/1681180519902-d846857a-b7d7-4988-aaaa-4f42e51172a5.jpeg)
+
 
 ## 包管理器安装
 
@@ -177,7 +180,8 @@ ping <漂移地址>
 ```
 
 ## 注意点
-之前发生了一个悲惨的故事，发现一台 KeepAlived 服务器上的 DNS 配置有问题，于是重启了网卡。<br />此时发现 KeepAlived 默默的挂了，重启 KeepAlived 服务即可：
+之前发生了一个悲惨的故事，发现一台 KeepAlived 服务器上的 DNS 配置有问题，于是重启了网卡。
+此时发现 KeepAlived 默默的挂了，重启 KeepAlived 服务即可：
 ```bash
 # 发现DNS配置有问题
 cat /etc/resolv.conf
@@ -190,7 +194,9 @@ sudo systemctl restart keepalived
 ```
 
 ## Docker 安装
-用于单机模拟和调试 HAProxy。<br />由于 HAProxy 官方不提供任何默认配置（官方理由是其认为不存在任何通用的转发配置），所以必须自己编写配置文件 `haproxy.cfg`，否则无法启动。<br />编写配置文件后，可以通过如下命令启动并检查：
+用于单机模拟和调试 HAProxy。
+由于 HAProxy 官方不提供任何默认配置（官方理由是其认为不存在任何通用的转发配置），所以必须自己编写配置文件 `haproxy.cfg`，否则无法启动。
+编写配置文件后，可以通过如下命令启动并检查：
 ```bash
 docker run -it --rm \
   --name haproxy-syntax-check \

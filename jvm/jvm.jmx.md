@@ -10,7 +10,12 @@ jmap 可以 dump 出一份 hprof 的文件：
 ```properties
 jmap -dump:format=b,file=/Users/xxxx/Desktop/testdump.hprof <PID>
 ```
-需要先安装 [VisualVM](https://visualvm.github.io/)，JDK 8 早版本或者是 Windows 版本会在安装时一同安装这个应用，其他系统需要单独安装。然后拖到 VisualVM里，即可：<br />![image.png](./../assets/1689581980334-b38f9d23-d844-4de5-bf0c-39bee1f59c2d.png)
+需要先安装 [VisualVM](https://visualvm.github.io/)，JDK 8 早版本或者是 Windows 版本会在安装时一同安装这个应用，其他系统需要单独安装。然后拖到 VisualVM里，即可：
+![image.png](./../assets/1689581673739-6be4ced0-8a34-4ba0-9deb-cb18cb60a598.png)
+
+同事支持 OQL 和 JavaScript 查询当前内存对象：
+![image.png](./../assets/1689581980334-b38f9d23-d844-4de5-bf0c-39bee1f59c2d.png)
+
 
 ## JMX Exporter
 参考文档：
@@ -134,4 +139,7 @@ java -cp /usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/root/cjmx_2.12-2.8.1-a
 
 PID=$(jps | grep XXX | awk '{print $1}') && java -cp /usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/root/cjmx_2.12-2.8.1-app.jar cjmx.Main $PID
 ```
+![image.png](./../assets/1689582267192-148b334d-d189-4c00-a8dd-1ec368cfd4e5.png)
+
 ![image.png](./../assets/1689582242225-abb63246-dd1a-4509-9ee9-66f4ced93471.png)
+

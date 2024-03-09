@@ -33,6 +33,7 @@ PROMPT=$'%{$purple%}%n%{$reset_color%} in %{$limegreen%}%~%{$reset_color%}$(ruby
 ```
 ![20220210142804.png](./../assets/1644474513988-4cdf2936-e4b8-48a1-a5ee-6031fafe3c0a.png)
 
+
 ## Starship
 参考文档：
 
@@ -78,10 +79,10 @@ ln -s $PWD/nu /usr/bin/nu
 command -v nu | sudo tee -a /etc/shells
 chsh -s /usr/bin/nu
 ```
-[![nushell-autocomplete5.gif](./../assets/1644061818678-f339b725-36d0-4ac5-b0da-bc236cc844a2.gif)
 
 ## 清理空间
-适用**非生产环境**：<br />清理`journalctl`的日志，这块通常不会很大，但是如果 daemon 服务经常报错，那么会有占一部分空间：
+适用**非生产环境**：
+清理`journalctl`的日志，这块通常不会很大，但是如果 daemon 服务经常报错，那么会有占一部分空间：
 ```
 journalctl --vacuum-size=50M
 ```
@@ -244,7 +245,8 @@ XShell 用 SSH 连接服务器出现：
 > 服务器发送了一个意外的数据包.
 > received:3,expected:20
 
-**解决方法**<br />在`/etc/ssh/sshd_config`结尾添加一行记录，然后重启 sshd
+**解决方法**
+在`/etc/ssh/sshd_config`结尾添加一行记录，然后重启 sshd
 ```bash
 sudo vim /etc/ssh/sshd_config
 ```

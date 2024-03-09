@@ -37,7 +37,8 @@ java -version
 
 ## 环境变量
 
-可能需要配置环境变量(一旦配置了切换版本会比较麻烦). 有些版本可能需要额外指定 JRE 路径, 这里暂时没发现不配置的问题.<br />`JAVA_HOME`指向 JDK 安装目录, `PATH`指向`java`命令所在的目录, 参考[JDK 环境变量](https://www.yuque.com/attachments/yuque/0/2022/sh/26002940/1643083448140-5139c455-2ed3-40b8-9360-eb1382fdcfba.sh).
+可能需要配置环境变量(一旦配置了切换版本会比较麻烦). 有些版本可能需要额外指定 JRE 路径, 这里暂时没发现不配置的问题.
+`JAVA_HOME`指向 JDK 安装目录, `PATH`指向`java`命令所在的目录, 参考[JDK 环境变量](https://www.yuque.com/attachments/yuque/0/2022/sh/26002940/1643083448140-5139c455-2ed3-40b8-9360-eb1382fdcfba.sh).
 
 ```bash
 cat <<EOF | sudo tee /etc/profile.d/env-jdk.sh

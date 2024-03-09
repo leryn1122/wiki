@@ -1,11 +1,12 @@
 
 # Redis Exporter Prometheus 监控
-<br />![](https://cloud.drone.io/api/badges/oliver006/redis_exporter/status.svg#id=eBwiq&originHeight=20&originWidth=91&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://coveralls.io/repos/github/oliver006/redis_exporter/badge.svg?branch=master#id=d7dDD&originHeight=20&originWidth=99&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://codecov.io/gh/oliver006/redis_exporter/branch/master/graph/badge.svg#id=EFE0h&originHeight=20&originWidth=112&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![](https://img.shields.io/docker/pulls/oliver006/redis_exporter.svg#id=zUskV&originHeight=20&originWidth=118&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />参考文档：
+参考文档：
 
 - [oliver006/redis_exporter - GitHub](https://github.com/oliver006/redis_exporter)
 - [Redis Export Dashboard - Grafana 官网](https://grafana.com/grafana/dashboards/11835-redis-dashboard-for-prometheus-redis-exporter-helm-stable-redis-ha)
 
-这个 Exporter 已经被 Prometheus 官方采纳了，并作为官网解决方案了：<br />新建配置文件：`/etc/redis_exporter/redis_exporter.conf`
+这个 Exporter 已经被 Prometheus 官方采纳了，并作为官网解决方案了：
+新建配置文件：`/etc/redis_exporter/redis_exporter.conf`
 ```toml
 OPTIONS="-redis.addr=xxx.xxx.xxx.xxx:6379/26379 -redis.password='PASSWORD'"
 ```

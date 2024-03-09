@@ -2,9 +2,9 @@
 # RabbitMQ 安装手册
 参考文档：
 
-- [https://www.erlang.org/downloads](https://www.erlang.org/downloads)
-- [https://www.rabbitmq.com/](https://www.rabbitmq.com/)
-- [https://github.com/rabbitmq/rabbitmq-delayed-message-exchange](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange)
+- [Downloads - Erlang/OTP](https://www.erlang.org/downloads)
+- [RabbitMQ: One broker to queue them all | RabbitMQ](https://www.rabbitmq.com/)
+- [GitHub - rabbitmq/rabbitmq-delayed-message-exchange: Delayed Messaging for RabbitMQ](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange)
 
 ## 安装 Erlang
 ```bash
@@ -61,7 +61,8 @@ rabbitmqctl cluster_status
 ```
 
 ## 设置高可用策略
-高可用可配置所有节点存储副本或 n 节点存储副本。在管理端的 Admin -> Policy 处可以看到。官方建议副本数设置为 （2/N + 1）。<br />根据测试结果，3 节点设置所有节点存储副本模式下，挂一台就处于不可用状态。
+高可用可配置所有节点存储副本或 n 节点存储副本。在管理端的 Admin -> Policy 处可以看到。官方建议副本数设置为 （2/N + 1）。
+根据测试结果，3 节点设置所有节点存储副本模式下，挂一台就处于不可用状态。
 ```bash
 rabbitmqctl set_policy -p "/" \
   ha-two "^" '{"ha-mode":"exactly", "ha-params":2, "ha-sync-mode":"automatic"}'

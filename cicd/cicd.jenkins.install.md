@@ -5,7 +5,9 @@
 - [Jenkins](https://www.jenkins.io/)
 - [Jenkins入门系列笔记汇总整理](https://wiki.eryajf.net/pages/2415.html)
 
-Jenkins 是最受欢迎的自动化构建工具，有丰富的扩展和插件。许多流水线工具都内置 Jenkins 来实现自动化构建。<br />在云原生中，Jenkins 迎来了升级版 Jenkins X，他是 Jenkins 用 Golang 的云原生重构版本，本文不涉及 Jenkins X。<br />最新的消息中 Jenkins 已经开始了 JDK 17 版本的预览，在不远的将来会全面迁移到 JDK 17。
+Jenkins 是最受欢迎的自动化构建工具，有丰富的扩展和插件。许多流水线工具都内置 Jenkins 来实现自动化构建。
+在云原生中，Jenkins 迎来了升级版 Jenkins X，他是 Jenkins 用 Golang 的云原生重构版本，本文不涉及 Jenkins X。
+最新的消息中 Jenkins 已经开始了 JDK 17 版本的预览，在不远的将来会全面迁移到 JDK 17。
 
 Jenkins 本身也不是完美无缺，甚至还有点笨重和过时，但很多存量的 CI/CD 系统仍然在使用 Jenkins，例如金融行业和制造业仍然在使用 Jenkins。Jenkins 有以下缺点：
 
@@ -15,7 +17,8 @@ Jenkins 本身也不是完美无缺，甚至还有点笨重和过时，但很多
 - 内存占用：Jenkins 内存占用极大。
 
 ## Docker 安装
-Dockerhub 上 **jenkins** 和 **jenkinsci/jenkins** 的镜像已经 deprecated 了，改用官方 [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins) 镜像。<br />版本：
+Dockerhub 上 **jenkins** 和 **jenkinsci/jenkins** 的镜像已经 deprecated 了，改用官方 [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins) 镜像。
+版本：
 
 - `jenkins/jenkins:lts-jdk11`：每周的 latest 版本 `lts-jdk11`
 - `jenkins/jenkins:jdk11`：最新版本 `jdk11`
@@ -35,7 +38,8 @@ docker run \
   --hostname=jenkins \
   jenkins/jenkins:2.365-jdk11
 ```
-首次进入网页需要会自动初始化，如果初始化比较慢，是由于访问官网太慢。<br />下载对应版本的 [default.json](https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/dynamic-stable-2.346.1/update-center.json) 并执行如下命令生成新的 JSON 文件。把他挂到 nginx 上公网可以访问。可以更换源 `hudson.model.UpdateCenter.xml`。将其中的源更换为如上 nginx 的地址。重启 Jenkins。
+首次进入网页需要会自动初始化，如果初始化比较慢，是由于访问官网太慢。
+下载对应版本的 [default.json](https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/dynamic-stable-2.346.1/update-center.json) 并执行如下命令生成新的 JSON 文件。把他挂到 nginx 上公网可以访问。可以更换源 `hudson.model.UpdateCenter.xml`。将其中的源更换为如上 nginx 的地址。重启 Jenkins。
 ```bash
 wget -o default.json https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/dynamic-stable-2.346.1/update-center.json
 sed -i 's/https:\/\/updates.jenkins.io\/download/http:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g' default.json
@@ -144,7 +148,8 @@ java -jar jenkins-cli.jar -s https://jenkins.mydomain.com/ -auth admin:1159a7502
 ```
 
 ## Jenkins Crumb
-Jenkins Crumb 实际上相当于其他 Web 服务中的 Token。它用于防止 CSRF 攻击。<br />以下方式生产 Crumb：
+Jenkins Crumb 实际上相当于其他 Web 服务中的 Token。它用于防止 CSRF 攻击。
+以下方式生产 Crumb：
 ```bash
 curl -XGET http://jenkins.mydomain.com/crumbIssuer/api/json --user admin:admin
 # 或者
@@ -182,7 +187,8 @@ http://jenkins.mydomain.com/queue/item/313/
 - [Configuration as Code](https://plugins.jenkins.io/configuration-as-code/)
 > **JCasC = Jenkins Configuration as Code**
 
-它允许用户用可读的、声明式的 YAML 配置各种参数，而不是在页面上点击按钮添加配置。<br />如果你需要通过命令行启动 Jenkins Docker 容器，那么它会自动初始化 Jenkins 实例。
+它允许用户用可读的、声明式的 YAML 配置各种参数，而不是在页面上点击按钮添加配置。
+如果你需要通过命令行启动 Jenkins Docker 容器，那么它会自动初始化 Jenkins 实例。
 
 ### 配置方式
 它查找 `CASC_JENKINS_CONFIG` 环境变量或者 `casc.jenkins.config` Java 参数 (逗号分隔) :
@@ -191,10 +197,12 @@ http://jenkins.mydomain.com/queue/item/313/
 - 单个文件路径：例 `/var/jenkins_home/casc_configs/jenkins.yaml`
 - 指向网络 URL：例 `https://acme.org/jenkins.yaml`
 
-如果 `CASC_JENKINS_CONFIG` 指向文件夹，将递归遍历 `.yml`, `.yaml`, `.YAML`, `.YML` 后缀文件<br />默认地址是 `$JENKINS_HOME/jenkins.yaml`。
+如果 `CASC_JENKINS_CONFIG` 指向文件夹，将递归遍历 `.yml`, `.yaml`, `.YAML`, `.YML` 后缀文件
+默认地址是 `$JENKINS_HOME/jenkins.yaml`。
 
 ### 刷新配置
-更新配置后，需要调用 Jenkins 重新加载配置的 RESTful API。<br />如果使用的是 Helm 的安装方式，那么 Jenkins 的 StatefulSet 下会有个名为 `config-reload` 的 SideCar 用于解决这个问题。它会自动监听 JCasC 对应的 ConfigMap 的变化，如果数据更新自动调用重新加载的接口。
+更新配置后，需要调用 Jenkins 重新加载配置的 RESTful API。
+如果使用的是 Helm 的安装方式，那么 Jenkins 的 StatefulSet 下会有个名为 `config-reload` 的 SideCar 用于解决这个问题。它会自动监听 JCasC 对应的 ConfigMap 的变化，如果数据更新自动调用重新加载的接口。
 
 ## Simple Themes
 下载后 [Simple Theme](https://wiki.jenkins-ci.org/display/JENKINS/Simple+Theme+Plugin) 插件后，
@@ -204,11 +212,13 @@ http://jenkins.mydomain.com/queue/item/313/
 
 推荐使用以下 Github Star 最高的皮肤：
 
-- [https://github.com/afonsof/jenkins-material-theme](https://github.com/afonsof/jenkins-material-theme)
-- [https://github.com/jenkins-contrib-themes/jenkins-neo-theme](https://github.com/jenkins-contrib-themes/jenkins-neo-theme)
-- [https://github.com/djonsson/jenkins-atlassian-theme](https://github.com/djonsson/jenkins-atlassian-theme)
+- [GitHub - afonsof/jenkins-material-theme: Beautify your Jenkins with the Material Design theme!](https://github.com/afonsof/jenkins-material-theme)
+- [GitHub - jenkins-contrib-themes/jenkins-neo-theme: A modern flat theme for Jenkins](https://github.com/jenkins-contrib-themes/jenkins-neo-theme)
+- [GitHub - djonsson/jenkins-atlassian-theme: Jenkins improved UI - Atlassian style](https://github.com/djonsson/jenkins-atlassian-theme)
 
-**afonsof/jenkins-material-theme**<br />[![](./../assets/1667308184771-e0b162d8-593e-4253-ac51-2844b5f7193b.png)
+**afonsof/jenkins-material-theme**
+![image.png](./../assets/1709992298018-751003c1-bc4d-425f-8504-7b40e9803076.png)
+
 
 - 上图中挑个色号填入下文链接中的 `{{your-color-name}}`，保存到上文配置处。
 > https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-{{your-color-name}}.css

@@ -6,7 +6,8 @@
 - [RabbitMQ Dashboard - Grafana 官网](https://grafana.com/grafana/dashboards/10991-rabbitmq-overview/)
 
 ## 监控插件安装
-RabbitMQ 已经内置了 Prometheus 插件，所以直接通过命令行开启，无需其他的 Exporter。<br />在 RabbitMQ 集群上所有服务器执行以下指令，开启 RabbitMQ 自带的 Prometheus 监控插件：
+RabbitMQ 已经内置了 Prometheus 插件，所以直接通过命令行开启，无需其他的 Exporter。
+在 RabbitMQ 集群上所有服务器执行以下指令，开启 RabbitMQ 自带的 Prometheus 监控插件：
 ```bash
 rabbitmq-plugins enable rabbitmq_prometheus
 ```
@@ -49,3 +50,4 @@ kubectl apply -f additional-scrape-configs.yaml -n monitoring
 10991
 ```
 ![](./../assets/1657784846073-11f1ff62-4afc-475a-b13b-88afa47c50e9.png)
+

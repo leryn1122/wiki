@@ -8,7 +8,8 @@
 
 1. 检查jdbc连接，如有设置 `useServerPrepStmts=true`，将其改为 `false`。重启应用。（所需时间最短）
 
-JDBC 连接将绑定变量功能开启：数据库 general_log 显示 prepare 字样，就表示使用了绑定变量<br />JDBC 连接将绑定变量功能关闭：数据库 general_log 不会显示 prepare 字样，就表示没有使用绑定变量
+JDBC 连接将绑定变量功能开启：数据库 general_log 显示 prepare 字样，就表示使用了绑定变量
+JDBC 连接将绑定变量功能关闭：数据库 general_log 不会显示 prepare 字样，就表示没有使用绑定变量
 
 ## 对 MySQL 就地升级
 

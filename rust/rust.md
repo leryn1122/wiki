@@ -14,7 +14,8 @@ Rust 官方提供了最简单的下载安装方式，一键安装 Rust 环境（
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-Windows 安装直接下载对应的二进制安装程序 `rustup-init.exe` 即可。<br />Windows 环境下安装开始前会检测 C++ tools 环境。如果没有的话，之后的编译时会报错。我们先忽略，继续安装，后面会介绍安装 C++。
+Windows 安装直接下载对应的二进制安装程序 `rustup-init.exe` 即可。
+Windows 环境下安装开始前会检测 C++ tools 环境。如果没有的话，之后的编译时会报错。我们先忽略，继续安装，后面会介绍安装 C++。
 > Rust Visual C++ prerequisites
 > 
 > Rust requires the Microsoft C++ build tools for Visual Studio 2013 or
@@ -64,7 +65,9 @@ rustup self uninstall
 - [Visual Studio - MS官网下载](https://visualstudio.microsoft.com/downloads/)
 - [msys2 - 官网](https://www.msys2.org/)
 
-有两种模式：MVSC 模式和 gnu 模式。<br />前者按照官网的指示下载 Microsoft 的 C++ 工具即可。大约需要 8 ~ 9G 硬盘空间。后者需要安装 MinGW 或者 mysy2 然后根据一下的步骤配置切换工具链即可，切换工具链时，会自动重新下载对应的工具链。<br />如果无法使用可以配置环境变量：
+有两种模式：MVSC 模式和 gnu 模式。
+前者按照官网的指示下载 Microsoft 的 C++ 工具即可。大约需要 8 ~ 9G 硬盘空间。后者需要安装 MinGW 或者 mysy2 然后根据一下的步骤配置切换工具链即可，切换工具链时，会自动重新下载对应的工具链。
+如果无法使用可以配置环境变量：
 ```bash
 cat <<\EOF >> ~/.bashrc
 PATH=~/.cargo/bin:$PATH

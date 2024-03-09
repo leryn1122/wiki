@@ -4,12 +4,16 @@
 
 - [https://deepflow.io/docs/zh/about/overview/](https://deepflow.io/docs/zh/about/overview/)
 
-基于 eBPF 的监控全链路监控、无需插点，支持任何语言和协议。<br />Server 端必须在 Kubernetes 集群中，agent 可以在同一集群中、不同 Kubernetes 集群、物理机上，监控数据由 agent 向宿主机上报。<br />版本对比：
+基于 eBPF 的监控全链路监控、无需插点，支持任何语言和协议。
+Server 端必须在 Kubernetes 集群中，agent 可以在同一集群中、不同 Kubernetes 集群、物理机上，监控数据由 agent 向宿主机上报。
+版本对比：
 
 - 商业版和社区版的后端是一致的
 - 商业版的 UI 是独立的，社区版是基于 Grafana 的图表
 
-Deepflow 架构图：<br />![image.png](./../assets/1678691417859-7daba259-251d-40f1-bbdc-c34c8d3c33fd.png)
+Deepflow 架构图：
+![image.png](./../assets/1678691417859-7daba259-251d-40f1-bbdc-c34c8d3c33fd.png)
+
 
 
 ## 单集群

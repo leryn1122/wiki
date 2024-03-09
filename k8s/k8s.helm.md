@@ -5,7 +5,10 @@
 - [Helm - 官网](https://docs.helm.sh/zh/docs/)
 
 ## 简介
-Helm 是 Kubernetes 相关的另外一个项目，它提供了 Kubernetes 上应用包整合部署的一个解决方案。它已经成为了社区的事实标准，许多开源项目都会提供自己的 Chart 来部署应用。<br />Helm 仓库里面只有配置清单，镜像还是由镜像仓库来提供，比如 hub.docker.com。<br />Helm 提供了一个应用所需要的所有清单文件。比如部署一个 nginx，我们需要一份 deployment 的清单文件，一份service的清单文件，一个hpa的清单文件，把这三个文件打包到一起，就是一个应用程序的程序包，称之为Chart。<br />同类竞品还有：Kustomize 等。
+Helm 是 Kubernetes 相关的另外一个项目，它提供了 Kubernetes 上应用包整合部署的一个解决方案。它已经成为了社区的事实标准，许多开源项目都会提供自己的 Chart 来部署应用。
+Helm 仓库里面只有配置清单，镜像还是由镜像仓库来提供，比如 hub.docker.com。
+Helm 提供了一个应用所需要的所有清单文件。比如部署一个 nginx，我们需要一份 deployment 的清单文件，一份service的清单文件，一个hpa的清单文件，把这三个文件打包到一起，就是一个应用程序的程序包，称之为Chart。
+同类竞品还有：Kustomize 等。
 
 ## 安装步骤
 安装前需要有 Kubernetes 服务，如果没有本地 Kubernetes，那么需要 `--kube-apiserver localhost:8080`这样显式地指定 Kubernetes 的服务器：

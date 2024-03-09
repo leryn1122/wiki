@@ -1,6 +1,7 @@
 
 # NFS
-NFS（Network File System）表示层协议。<br />需要开通网络权限的请注意：
+NFS（Network File System）表示层协议。
+需要开通网络权限的请注意：
 
 - NFS 网络默认使用了 111 和 2049 端口的 TCP/UDP 协议，并且 UDP 是双向的。请同时开通**两个端口**的 TCP 以及**双向 UDP**。
 
@@ -53,7 +54,10 @@ sudo mount -t nfs -o vers=3,tcp,nolock,async,mountproto=tcp,rsize=1048576,wsize=
 1. 打开【服务器管理器】，点击【添加角色和功能】
 2. 选择【基于角色或基于功能的安装】，默认选项即可→【远程桌面服务】默认不用操作，【桌面会话主机】【远程桌面授权 】→【添加功能】完成安装
 3. 在 cmd 中输入`gpedit.msc`，打开计算机本地组策略。
-4. 在计算机本地组策略里选择【计算机配置 】→【管理模板-windows 组件 】→【远程桌面服务 】→【远程桌面会话主机 】→【连接】，<br />找到 【限制限制连接数量（可根据具体数量设置）】和【将远程桌面服务用户限制到单独的远程桌面服务会话（禁用）】<br />【这台电脑 】→【属性 】→【远程设置】，选择【允许远程连接到此计算机】，去掉下方【仅允许允许使用网络级别身份验证的……】的勾，<br />【选择用户】，输入远程连接的用户，点击确定
+4. 在计算机本地组策略里选择【计算机配置 】→【管理模板-windows 组件 】→【远程桌面服务 】→【远程桌面会话主机 】→【连接】，
+找到 【限制限制连接数量（可根据具体数量设置）】和【将远程桌面服务用户限制到单独的远程桌面服务会话（禁用）】
+【这台电脑 】→【属性 】→【远程设置】，选择【允许远程连接到此计算机】，去掉下方【仅允许允许使用网络级别身份验证的……】的勾，
+【选择用户】，输入远程连接的用户，点击确定
 
 参考地址：
 
@@ -74,7 +78,8 @@ mount ***.***.***.***:/path/to/mnt X:
 ```
 成功挂载，打开我的电脑，可以在网络位置看到 `X:` 盘了
 
-3. 取消挂载<br />直接在【我的电脑】里面鼠标点击取消映射网络驱动器 `X:`
+3. 取消挂载
+直接在【我的电脑】里面鼠标点击取消映射网络驱动器 `X:`
 ```bash
 umount X:
 
@@ -91,7 +96,8 @@ umount -a
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ClientForNFS\CurrentVersion\Default\ /v AnonymousUid /d 0 /t REG_DWORD /f
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ClientForNFS\CurrentVersion\Default\ /v AnonymousGid /d 0 /t REG_DWORD /f
 ```
-**Windows 10 NFS 挂载成功后，没有写权限**<br />Win10 系统就是修改 `/etc/export` 文件中的数据，添加 anongid 与 anonuid
+**Windows 10 NFS 挂载成功后，没有写权限**
+Win10 系统就是修改 `/etc/export` 文件中的数据，添加 anongid 与 anonuid
 ```bash
 /path/to/mnt 196.168.0.0/24(rw,sync,insecure,no_subtree_check,all_squash,anonuid=0,anongid=0)
 ```

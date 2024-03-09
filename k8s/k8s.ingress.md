@@ -4,7 +4,9 @@
 
 - [Ingress 介绍 - Kubernetes 官方文档](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
-Ingress 就是**入口**的意思，那么 Ingress Controller 就是入口控制器了。它为了解决 Kubernetes 集群上同一入口的负载均衡和路由转发。<br />通俗地来说，一般我们会在集群上创建应用并暴露端口与其通信，但 Kubernetes 的暴露方式只有 NodePort，每次暴露一个 NodePort 相当于在 Kubernetes 集群的网络边界上“挖了一个洞”。Ingress Controller 为我们做的事情就是：通过一个 LoadBalancer 来代理这个这个 NodePort 所有流量统一经过它。<br />Ingress Controller 有不同的实现方式，实现的功能也不尽相同：
+Ingress 就是**入口**的意思，那么 Ingress Controller 就是入口控制器了。它为了解决 Kubernetes 集群上同一入口的负载均衡和路由转发。
+通俗地来说，一般我们会在集群上创建应用并暴露端口与其通信，但 Kubernetes 的暴露方式只有 NodePort，每次暴露一个 NodePort 相当于在 Kubernetes 集群的网络边界上“挖了一个洞”。Ingress Controller 为我们做的事情就是：通过一个 LoadBalancer 来代理这个这个 NodePort 所有流量统一经过它。
+Ingress Controller 有不同的实现方式，实现的功能也不尽相同：
 
 - Kuberentes ingress
 - NGINX Ingress
@@ -12,7 +14,8 @@ Ingress 就是**入口**的意思，那么 Ingress Controller 就是入口控制
 - Traefik
 - Gloo，等等。
 
-这里我个人更加倾向于 Ingress-nginx，因为我个人更加熟悉 nginx 配置文件。<br />下表简单对照一下 Ingress 和传统 NGINX 部署的关系，对照不是那么的严格，理解大概意思即可：
+这里我个人更加倾向于 Ingress-nginx，因为我个人更加熟悉 nginx 配置文件。
+下表简单对照一下 Ingress 和传统 NGINX 部署的关系，对照不是那么的严格，理解大概意思即可：
 
 | Ingress 部署在 Kubernetes 中 | 传统 NGINX 部署 |
 | --- | --- |
@@ -20,7 +23,15 @@ Ingress 就是**入口**的意思，那么 Ingress Controller 就是入口控制
 | Ingress | nginx.conf 中的监听和路由规则 |
 | Service | iptables 或者 ipvs |
 
-可以看下面的插图，解释的很非常通俗易懂：<br />![20220217001612.png](./../assets/1648298721391-71350fe3-57e3-47ed-a828-f774a636d15e.png)
+可以看下面的插图，解释的很非常通俗易懂：
+![20220217001612.png](./../assets/1645028213793-1d78138e-d34c-4488-99f3-1f2546d78295.png)
+
+![image.png](./../assets/1646287841984-15460956-9921-4434-87b9-7bc4959f7dfd.png)
+
+![image.png](./../assets/1646287881167-995db7ce-c382-47e6-8082-61150bbf109c.png)
+
+![image.png](./../assets/1648298721391-71350fe3-57e3-47ed-a828-f774a636d15e.png)
+
 
 ## Nginx Ingress Controller 安装步骤
 参考文档：
@@ -104,7 +115,8 @@ If TLS is enabled for the Ingress, a Secret containing the certificate and key m
     tls.key: <base64 encoded key>
   type: kubernetes.io/tls
 ```
-配置一个自己的 Ingress 和 Service 就可以测试了。<br />调试的时候可以通过如下命令来查看 Ingress-nginx 的配置，如果服务发现配置成功, 可以在其中发现对应服务的配置。
+配置一个自己的 Ingress 和 Service 就可以测试了。
+调试的时候可以通过如下命令来查看 Ingress-nginx 的配置，如果服务发现配置成功, 可以在其中发现对应服务的配置。
 ```bash
 kubectl get pods -n ingress-nginx
 kubectl exec -it ingress-nginx-nginx-ingress-controller-57b6f9794f-zkzrj -n gateway \
@@ -115,7 +127,8 @@ kubectl exec -it ingress-nginx-nginx-ingress-controller-57b6f9794f-zkzrj -n gate
 安装的时候已经介绍了一下 Ingress Controller 和其上匹配的默认配置，下面是 Ingress 的 YAML 中可配置的参数。
 
 ### Https 证书
-需要配置 Https 证书。获得一下两个值,，这里是用 acme.sh 生成的自授权证书：<br />**方法1**
+需要配置 Https 证书。获得一下两个值,，这里是用 acme.sh 生成的自授权证书：
+**方法1**
 ```bash
 kubectl create secret tls leryn.top -n ingress-nginx \
   --cert '/etc/tls/leryn.top/fullchain.cer'   \
@@ -167,7 +180,9 @@ helm install ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx \
 - `nginx.ingress.kubernetes.io/rewrite-target`: `/$1`，如何重写转发路径
 
 ### Ingress Class
-如果一个集群上可以安装多个 Ingress Controller，例如通过不同的 Ingress Class 来区分不同的渠道：Admin Ingress，Internal Ingress等等，不同的渠道的认证、转发规则都不尽相同，内部认证可能基于 Cookies，外部认证基于 Token。<br />当创建新的 Ingress 时，可以通过为其指定 Ingress Class 的方式将其注入到预期的 Ingress Controller 中。如果不显式指定 Ingress Class，且集群中只有一个 Ingress Class 标记为默认，那么会自动应用到 Ingress 上。<br />早期版本使用注解来标记默认 Ingress Class，现在请使用 `spec.ingressClassName: "name"` 来指定。另外在 IngressClass 使用注解 `ingressclass.kubernetes.io/is-default-class: true` 来指定默认 Ingress Class。
+如果一个集群上可以安装多个 Ingress Controller，例如通过不同的 Ingress Class 来区分不同的渠道：Admin Ingress，Internal Ingress等等，不同的渠道的认证、转发规则都不尽相同，内部认证可能基于 Cookies，外部认证基于 Token。
+当创建新的 Ingress 时，可以通过为其指定 Ingress Class 的方式将其注入到预期的 Ingress Controller 中。如果不显式指定 Ingress Class，且集群中只有一个 Ingress Class 标记为默认，那么会自动应用到 Ingress 上。
+早期版本使用注解来标记默认 Ingress Class，现在请使用 `spec.ingressClassName: "name"` 来指定。另外在 IngressClass 使用注解 `ingressclass.kubernetes.io/is-default-class: true` 来指定默认 Ingress Class。
 
 ### 发布策略
 参考文档：

@@ -47,7 +47,9 @@ export default defineConfig({
 ```
 
 ### nginx 开启 gzip
-许多浏览器都支持 gzip，建议 nginx 开启 gzip 模式传输静态文件，可以提高页面加载速度，减小网络传输。docker 镜像中带上开启 gzip 的 nginx 配置文件即可。<br />目前从实操下来，文件传输比最高接近 20%，大部分情况在 35%~50%。
+许多浏览器都支持 gzip，建议 nginx 开启 gzip 模式传输静态文件，可以提高页面加载速度，减小网络传输。docker 镜像中带上开启 gzip 的 nginx 配置文件即可。
+目前从实操下来，文件传输比最高接近 20%，大部分情况在 35%~50%。
 
 ### Dockerfile
-这项优化与打包的静态文件大小无关，但可以显著减小前端镜像的大小。<br />Dockerfile 用底镜像选择小巧 `node:slim` 的镜像，在其中编译后，将编译好的静态文件和 nginx 配置中 copy 到 nginx 镜像中。可以显著减小镜像体积，最终大约之比 nginx 镜像大约十几到几十M。
+这项优化与打包的静态文件大小无关，但可以显著减小前端镜像的大小。
+Dockerfile 用底镜像选择小巧 `node:slim` 的镜像，在其中编译后，将编译好的静态文件和 nginx 配置中 copy 到 nginx 镜像中。可以显著减小镜像体积，最终大约之比 nginx 镜像大约十几到几十M。

@@ -31,7 +31,10 @@ export PATH=$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
 tar -xf hadoop-3.3.0.tar.gz
 mv hadoop-3.3.0 ${HADOOP_HOME}
 ```
-根据实际情况，选择单节点安装或完全分布式安装。<br />如果只有一台服务器选择单节点安装，但这可能会给服务器较大压力；如果多台服务器（无论实体机或虚拟机）可以选用完全分布式安装，最低配置三个节点。<br />**单节点安装**<br />修改 Hadoop 主要的配置文件，路径都在`${HADOOP_HOME}/etc/hadoop`下。
+根据实际情况，选择单节点安装或完全分布式安装。
+如果只有一台服务器选择单节点安装，但这可能会给服务器较大压力；如果多台服务器（无论实体机或虚拟机）可以选用完全分布式安装，最低配置三个节点。
+**单节点安装**
+修改 Hadoop 主要的配置文件，路径都在`${HADOOP_HOME}/etc/hadoop`下。
 
 - `core-site.xml`
 - `hdfs-site.xml`
@@ -108,13 +111,17 @@ vim etc/hadoop/workers
 ```
 localhost
 ```
-**完全分布式安装**<br />难民三节点配置~~（这么规划因为穷, 只能玩得起三节点）~~
+**完全分布式安装**
+难民三节点配置~~（这么规划因为穷, 只能玩得起三节点）~~
 
 |  | HDFS | YARN |
 | --- | --- | --- |
-| hadoop001 | NameNode<br />DataNode | NodeManager |
-| hadoop002 | DataNode | ResourceManager<br />NodeManager |
-| hadoop003 | SecondaryNameNode<br />DataNode | NodeManager |
+| hadoop001 | NameNode
+DataNode | NodeManager |
+| hadoop002 | DataNode | ResourceManager
+NodeManager |
+| hadoop003 | SecondaryNameNode
+DataNode | NodeManager |
 
 完全分布式安装方式与单节点基本一致，只是配置文件中的配置参数不同，且需要将配置文件（包括 JDK 等）分发到各个节点上，推荐使用`rsync`同步分发。
 
@@ -262,7 +269,8 @@ hadoop003
 ```
 
 ### Boot
-**启动 HDFS**<br />验证 Hadoop 是否安装成功，使用命令查看版本，如果可以正确显示版本信息则安装成功：
+**启动 HDFS**
+验证 Hadoop 是否安装成功，使用命令查看版本，如果可以正确显示版本信息则安装成功：
 ```bash
 hadoop version
 ```

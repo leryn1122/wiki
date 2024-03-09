@@ -27,16 +27,20 @@
 - 硬件虚拟化：基于硬件辅助的服务器虚拟化，创建虚拟机方式来隔离
 - 硬件分区：从硬件平台隔离硬件资源，已经式微的模式
 
-隔离能力的提升，相反会带来资源冗余和维护成本<br />![](./../assets/1709051098483-8b753e70-8b66-4a96-855a-60fe93be51be.jpeg)
+隔离能力的提升，相反会带来资源冗余和维护成本
+![](./../assets/1709051098483-8b753e70-8b66-4a96-855a-60fe93be51be.jpeg)
+
 
 ### OCI：Low-level 容器运行时
-OCI（Open Container Initiative）是开发容器标准。它是由各个容器公司倡议形成的开放的行业标准，可以底层实现不同的平台、不同的操作系统上运行容器，但需要遵守行业标准。<br />OCI 涵盖了三个标准：
+OCI（Open Container Initiative）是开发容器标准。它是由各个容器公司倡议形成的开放的行业标准，可以底层实现不同的平台、不同的操作系统上运行容器，但需要遵守行业标准。
+OCI 涵盖了三个标准：
 
 - **runtime-spec**：它主要负责容器如何创建和运行、如何和宿主机交互。
 - image-spec：镜像如何组成的。
 - distribution-spec：镜像如何分发、镜像库的 API。
 
-初版 runc 由 Docker 公司开发并捐献给 OCI，他基于 Linux 内核的 namespace 和 cgroup 技术。随着厂商对隔离性的要求提升和不同的业务需求，除了用宿主机的进程隔离策略，现在有厂商提供基于虚拟机的容器方案，例如基于 QEMU 的容器，或者 ESXi 的裸金属虚拟机等等。<br />主要有这几种：
+初版 runc 由 Docker 公司开发并捐献给 OCI，他基于 Linux 内核的 namespace 和 cgroup 技术。随着厂商对隔离性的要求提升和不同的业务需求，除了用宿主机的进程隔离策略，现在有厂商提供基于虚拟机的容器方案，例如基于 QEMU 的容器，或者 ESXi 的裸金属虚拟机等等。
+主要有这几种：
 
 - runc：轻量级低级容器运行时，由 go 语言实现，基于 Linux namespace 和 cgroup 的实现。它也是 docker 底层的运行时
 - runv & kata-containers：轻量级虚拟机，基于虚拟机实现。
@@ -47,7 +51,8 @@ OCI（Open Container Initiative）是开发容器标准。它是由各个容器�
 - runhcs：Windows 系统独有的 Windows server container 机制和 Hyper-V containers 机制。虽然 Windows 操作系统臃肿和生态问题导致它很小众，但它架构反而非常优秀。
 
 ### CRI：High-level 容器运行时
-CRI（Container Runtime Interface）是 Kubernetes 官方提出的接口标准，它要求了 CRI 如何通过和 socket 进行 gRPC 通信来操作容器、拉取镜像等等。<br />通常应用开发者视角下的容器运行时就是 CRI，它们有很多种类，包括但不限于以下：
+CRI（Container Runtime Interface）是 Kubernetes 官方提出的接口标准，它要求了 CRI 如何通过和 socket 进行 gRPC 通信来操作容器、拉取镜像等等。
+通常应用开发者视角下的容器运行时就是 CRI，它们有很多种类，包括但不限于以下：
 
 - Docker
 - Containerd
@@ -57,10 +62,14 @@ CRI（Container Runtime Interface）是 Kubernetes 官方提出的接口标准�
 
 ![image.png](./../assets/1709051887636-781f34f8-2caf-4bb1-b80e-8e7556a6deae.png)
 
+
 ![image.png](./../assets/1709051862385-dafdedd3-9293-44cb-9487-e0c91d849399.png)
 
+
 ## nerdctl & buildkit
-nerdctl 旨在为 containerd 提供那些从 docker 中裁剪掉的功能。本身 runc 的 ctr 和 containerd 的 crictl 非常难使用，因为它们只提供了最基本的功能。nerdctl 的出现解决了这点。<br />如果需要完全替代 docker，nerdctl 还需要能构建镜像。但是 crictl 和 nerdctl 本身不支持构建，需要再额外安装一个 buildkitd 来作为 daemon 服务提供构建镜像的能力。<br />安装 nerdctl：
+nerdctl 旨在为 containerd 提供那些从 docker 中裁剪掉的功能。本身 runc 的 ctr 和 containerd 的 crictl 非常难使用，因为它们只提供了最基本的功能。nerdctl 的出现解决了这点。
+如果需要完全替代 docker，nerdctl 还需要能构建镜像。但是 crictl 和 nerdctl 本身不支持构建，需要再额外安装一个 buildkitd 来作为 daemon 服务提供构建镜像的能力。
+安装 nerdctl：
 ```bash
 VERSION=1.7.3
 wget https://github.com/containerd/nerdctl/releases/download/v${VERSION}/nerdctl-${VERSION}-linux-amd64.tar.gz

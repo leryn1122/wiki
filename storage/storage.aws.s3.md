@@ -5,10 +5,13 @@
 - [什么是 Amazon S3？ - Amazon Simple Storage Service](https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/Welcome.html)
 - [Java_对象存储(OSS)-阿里云帮助中心](https://help.aliyun.com/document_detail/32007.html)
 
-OSS 完全符合 Amazon S3 的规范，所有文档参考 Amazon S3 文档即可。<br />S3 适合维护了一个扁平化的索引，不存在传统意义上的文件夹的概念。适合大量小文件的存储以及读多写少的场景。
+OSS 完全符合 Amazon S3 的规范，所有文档参考 Amazon S3 文档即可。
+S3 适合维护了一个扁平化的索引，不存在传统意义上的文件夹的概念。适合大量小文件的存储以及读多写少的场景。
 
 ## 介绍
-界面上配置 S3 用户，之后会拿到两个密钥：访问密钥（Access Key）和安全密钥（Secret Key），需要妥善保存，有点类似于 Oauth2 中的 ClientId 和 ClientSecret。<br />存储桶是 S3 中的对象容器，通俗的话可以理解成文件系统的驱动器（C 盘，D 盘）。存储桶名是全局唯一的，不能重复创建。桶之间的对象是隔离的，除非你明确转移桶内的资源存储桶中的对象。<br />对象用存储桶名和本身键名唯一确定。键名可以是一个类似于文件路径的字符串。
+界面上配置 S3 用户，之后会拿到两个密钥：访问密钥（Access Key）和安全密钥（Secret Key），需要妥善保存，有点类似于 Oauth2 中的 ClientId 和 ClientSecret。
+存储桶是 S3 中的对象容器，通俗的话可以理解成文件系统的驱动器（C 盘，D 盘）。存储桶名是全局唯一的，不能重复创建。桶之间的对象是隔离的，除非你明确转移桶内的资源存储桶中的对象。
+对象用存储桶名和本身键名唯一确定。键名可以是一个类似于文件路径的字符串。
 
 ## FUSE
 参考文档：

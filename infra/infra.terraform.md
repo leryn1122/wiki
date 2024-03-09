@@ -2,7 +2,8 @@
 # Terraform
 
 ## 介绍
-Terraform 有 Hashicorp 公司开发，可以通过第三方厂商提供的插件，结合 HCL 配置文件来声明式的自动化部署基础设施。这里的基础设施可以是：云服务器、操作系统、存储、 Kubernetes 资源、中间件等等。<br />常见的云厂商都有提供自己平台的插件：
+Terraform 有 Hashicorp 公司开发，可以通过第三方厂商提供的插件，结合 HCL 配置文件来声明式的自动化部署基础设施。这里的基础设施可以是：云服务器、操作系统、存储、 Kubernetes 资源、中间件等等。
+常见的云厂商都有提供自己平台的插件：
 
 - 国内公有云：阿里云、腾讯云
 - 国外公有云：AWS、Google Cloud、Azure
@@ -15,13 +16,16 @@ Terraform 有几个概念：
 - Resource：对应了厂商给出的基础设施资源。
 - DataSource：获得基础设施资源配置的数据源。
 
-![image.png](./../assets/1709387180890-f8ad9abb-2b94-409c-bea2-6fbf69126e8d.png)<br />Terraform 执行分成三个步骤：
+![image.png](./../assets/1709387180890-f8ad9abb-2b94-409c-bea2-6fbf69126e8d.png)
+
+Terraform 执行分成三个步骤：
 
 - Write：编写配置文件来定义资源和设置配置参数。
 - Plan：生成基础设施执行计划，包括显式指定或者资源类型隐式蕴含的依赖关系。
 - Apply：真正的执行基础设施的变更。
 
 ![image.png](./../assets/1709387296751-62f20e3d-210e-4892-b0bf-c5aaca667c70.png)
+
 
 ## 安装手册
 在 MacOS 上安装：
@@ -58,3 +62,4 @@ go get github.com/hashicorp/terraform-plugin-sdk
 go get github.com/hashicorp/terraform-plugin-framework
 ```
 ![](./../assets/1709482514938-ed9c2981-2915-4ded-8d44-fe156c093d83.jpeg)
+

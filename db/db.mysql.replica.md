@@ -103,7 +103,8 @@ mysql> show slave status\G
 ```
 Last_IO_Error: error connecting to master ...
 ```
-设置从库只读，如果`my.cnf`已经设置了，就不需要重复配置<br />值得注意的是, 在将主库数据导入前不能开启`super_read_only`，否则会无法导入数据，而每次修改`my.cnf`都需要重启数据库，并且重启后要手动`start slave`。
+设置从库只读，如果`my.cnf`已经设置了，就不需要重复配置
+值得注意的是, 在将主库数据导入前不能开启`super_read_only`，否则会无法导入数据，而每次修改`my.cnf`都需要重启数据库，并且重启后要手动`start slave`。
 ```sql
 # 如果my.cnf配置了中配置了read_only = 1, 那么以下结果中的read_only和super_read_only为ON
 mysql> show global variables like "%read_only%";
@@ -123,13 +124,15 @@ mysql> set global super_read_only = 1;
 ```
 
 ## 常见问题
-**repl 用户认证**<br />检查用户认真方式是否为`mysql_native_password`：
+**repl 用户认证**
+检查用户认真方式是否为`mysql_native_password`：
 ```sql
 mysql> select user, host, plugin from mysql.user;
 ```
 如果是请修改为`mysql_native_password`，并重新修改密码。
 
-**同步出错**<br />参考文档：
+**同步出错**
+参考文档：
 
 - [https://dba.stackexchange.com/questions/10184/mysql-replication-error](https://dba.stackexchange.com/questions/10184/mysql-replication-error)
 

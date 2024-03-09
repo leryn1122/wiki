@@ -6,7 +6,9 @@
 - [Redis 三种集群模式，你还傻傻分不清吗？_Redis_服务器之家](http://www.zzvips.com/article/142376.html)
 
 ## 包管理器
-直接使用默认源 apt 不能下载到最新的 redis，先更新 apt 的源：<br />**方法一**<br />将如下链接添加到`/etc/apt/sources.list`中：
+直接使用默认源 apt 不能下载到最新的 redis，先更新 apt 的源：
+**方法一**
+将如下链接添加到`/etc/apt/sources.list`中：
 ```
 deb http://ppa.launchpad.net/rwky/redis/ubuntu trusty main
 deb-src http://ppa.launchpad.net/rwky/redis/ubuntu trusty main
@@ -67,7 +69,8 @@ redis-cli
 ```
 
 ## 高可用集群
-Redis 高可用集群至少需要 6 台服务器：其中三台形成一主两从的主从结构，另外三台作为哨兵监听这三台集群，形成高可用。如果主节点宕机，哨兵会进行投票选举出一个从节点晋升为新的主节点。<br />暂时以伪分布式（单机多容器、多进程）搭建高可用集群，一个集群模拟一个节点。
+Redis 高可用集群至少需要 6 台服务器：其中三台形成一主两从的主从结构，另外三台作为哨兵监听这三台集群，形成高可用。如果主节点宕机，哨兵会进行投票选举出一个从节点晋升为新的主节点。
+暂时以伪分布式（单机多容器、多进程）搭建高可用集群，一个集群模拟一个节点。
 ```bash
 # 主从配置文件
 cp -ar redis.conf conf/redis-01.conf  # master

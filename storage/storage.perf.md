@@ -46,7 +46,8 @@ fio -filename=/mnt/s3/perf.txt -rw=read \
 - `group_reporting` 关于显示结果的，汇总每个进程的信息；
 - `runtime=120` 测试时间为 120 秒，如果不写则一直将 5g 文件分 4k 每次写完为止；
 - `time_based` 如果设置的话，即使 file 已被完全读写或写完，也要执行完 runtime 规定的时间，它是通过循环执行相同的负载来实现的；
-- `ioengine=libaio` 指定io引擎使用 libaio 方式；<br />libaio：Linux本地异步 I/O。请注意，Linux 可能只支持具有非缓冲 I/O 的排队行为（设置为 `direct=1` 或 `buffered=0`）；
+- `ioengine=libaio` 指定io引擎使用 libaio 方式；
+libaio：Linux本地异步 I/O。请注意，Linux 可能只支持具有非缓冲 I/O 的排队行为（设置为 `direct=1` 或 `buffered=0`）；
 - `iodepth=32` 队列的深度为32。
 
 某次结果（2C/4G/40G SSD/千兆网卡）：

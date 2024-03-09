@@ -6,7 +6,8 @@ Ansible 在我的工作内容中有两个用途：
 - 监控系统时更加接近 Shell 命令的内容，例如 ping 我们会用 REST API 调用 Ansible Semaphore 来完成。
 
 ## Ansible
-Ansible 基于 ssh 和 Python<br />Ansible 很重要的特性是所有操作的都具备幂等性。
+Ansible 基于 ssh 和 Python
+Ansible 很重要的特性是所有操作的都具备幂等性。
 ```bash
 ansible -i hosts -m ping
 
@@ -21,7 +22,8 @@ ansible-playbook -i hosts main.yaml
 - [API - Ansible Semaphore](https://www.semui.co/api-docs/)
 - [Build software better, together](https://github.com/fiftin/ansible-semaphore-deploy-demo)
 
-基于 Golang 开发的 Ansible 控制台，对外暴露 REST API，搭配数据库持久化操作记录。<br />以下用 Kubernetes 部署一个 Ansible Semaphore：
+基于 Golang 开发的 Ansible 控制台，对外暴露 REST API，搭配数据库持久化操作记录。
+以下用 Kubernetes 部署一个 Ansible Semaphore：
 ```bash
 kubectl create secret generic ansible-secret -n ansible \
   --from-literal=SEMAPHORE_DB_USER=semaphore \

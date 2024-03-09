@@ -20,7 +20,13 @@
 5. 无法避免, 如果监控节点和主库网络出现波动;
 
 ## 环境准备
-原有的一主二从的 MySQL 集群:<br />node1 10.xxx.xxx.70 主库 提供写服务<br />node2 10.xxx.xxx.71 从库 提供读服务<br />node3 10.xxx.xxx.72 从库 提供读服务<br />新增一个管理节点:<br />manager 10.xxx.xxx.73 管理 管理集群<br />vip 10.xxx.xxx.74 虚拟 IP
+原有的一主二从的 MySQL 集群:
+node1 10.xxx.xxx.70 主库 提供写服务
+node2 10.xxx.xxx.71 从库 提供读服务
+node3 10.xxx.xxx.72 从库 提供读服务
+新增一个管理节点:
+manager 10.xxx.xxx.73 管理 管理集群
+vip 10.xxx.xxx.74 虚拟 IP
 ```bash
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 rpm -ivh epel-release-latest-7.noarch.rpm
@@ -137,7 +143,9 @@ ifconfig eth0:2 10.xxx.xxx.74 netmask 255.255.255.0 up
 ```bash
 nohup masterha_manager --conf=/etc/masterha/app1/app1.cnf --remove_dead_master_conf --ignore_last_failover >> /etc/masterha/app1/manager.log 2>&1 &
 ```
-remove_dead_master_conf: 该参数代表当发生主从切换后, 老的主库的 IP 将会从配置文件中移除<br />ignore_last_failover: 在默认情况下, MHA 发生切换后将会在/etc/masterha/app1 下产生 app1.failover.complete 文件, 下次再次切换的时候如果发现该目录下存在该文件且两次切换的时间间隔不足 8 小时的话, 将不允许触发切换. 除非在第一次切换后手动 rm -rf /etc/masterha/app1/app1.failover.complete. 该参数代表忽略上次 MHA 触发切换产生的文件<br />vip 搭建完成之后并没有 vip, 只有第一次切换之后才会有, 所以所以刚刚配置完 mha 的时候, 如果想用 vip, 需要在主库手工创建一个 vip
+remove_dead_master_conf: 该参数代表当发生主从切换后, 老的主库的 IP 将会从配置文件中移除
+ignore_last_failover: 在默认情况下, MHA 发生切换后将会在/etc/masterha/app1 下产生 app1.failover.complete 文件, 下次再次切换的时候如果发现该目录下存在该文件且两次切换的时间间隔不足 8 小时的话, 将不允许触发切换. 除非在第一次切换后手动 rm -rf /etc/masterha/app1/app1.failover.complete. 该参数代表忽略上次 MHA 触发切换产生的文件
+vip 搭建完成之后并没有 vip, 只有第一次切换之后才会有, 所以所以刚刚配置完 mha 的时候, 如果想用 vip, 需要在主库手工创建一个 vip
 
 ### 测试切换
 手动下线当前 MySQL 主机:
@@ -169,7 +177,8 @@ masterha_stop --conf=/etc/masterha/app1/app1.cnf
 # 会出现两次提示, 需要填yes/no, 填yes即可
 masterha_master_switch --conf=/etc/masterha/app1/app1.cnf --master_state=alive --new_master_host=10.xxx.xxx.70 --new_master_port=3306 --orig_master_is_new_slave --running_updates_limit=10000
 ```
-`orig_master_is_new_slave`是将原 master 切换为新主的 slave, 默认情况下, 是不添加的.<br />`running_updates_limit`默认为 1s, 即如果主从延迟时间(Seconds_Behind_Master), 或 master show processlist 中 dml 操作大于 1s, 则不会执行切换
+`orig_master_is_new_slave`是将原 master 切换为新主的 slave, 默认情况下, 是不添加的.
+`running_updates_limit`默认为 1s, 即如果主从延迟时间(Seconds_Behind_Master), 或 master show processlist 中 dml 操作大于 1s, 则不会执行切换
 
 ### 手工 failover
 还有种特殊情况是 mha 监控没有开, 但是主库挂掉了该怎么手工 failover
