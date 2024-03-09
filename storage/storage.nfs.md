@@ -57,9 +57,9 @@ sudo mount -t nfs -o vers=3,tcp,nolock,async,mountproto=tcp,rsize=1048576,wsize=
 
 参考地址：
 
-- [https://jingyan.baidu.com/article/22fe7ced1e696d7102617ff5.html](https://jingyan.baidu.com/article/22fe7ced1e696d7102617ff5.html)
-- [https://jingyan.baidu.com/article/9faa7231c9e061473d28cb65.html](https://jingyan.baidu.com/article/9faa7231c9e061473d28cb65.html)
-- [https://www.52sanmiao.com/xitongyw/49.html](https://www.52sanmiao.com/xitongyw/49.html)
+- [windows2012怎么增加远程用户连接数量-百度经验](https://jingyan.baidu.com/article/22fe7ced1e696d7102617ff5.html)
+- [Server2012设置多用户同时登录远程服务器-百度经验](https://jingyan.baidu.com/article/9faa7231c9e061473d28cb65.html)
+- [52sanmiao.com](https://www.52sanmiao.com/xitongyw/49.html)
 
 #### 第二步：配置 Windows 系统 NFS 客户端服务
 

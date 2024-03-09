@@ -27,7 +27,7 @@ nsenter --net=/proc/2152524/ns/net
 ip a
 ```
 pod 内的 eth0 就是 宿主机上的 257 号网卡：
-```typescript
+```
 256: eth0@if257: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
     link/ether 42:0a:b3:3c:c9:f6 brd ff:ff:ff:ff:ff:ff link-netnsid 0
     inet 10.0.0.51/32 scope global eth0
@@ -41,7 +41,7 @@ nsenter --net=/proc/1/ns/net
 ip a
 ```
 宿主机的 257 网卡就是 pod 的网卡：
-```typescript
+```
 257: lxc9749d6440b99@if256: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
     link/ether 42:8b:80:f6:e7:7d brd ff:ff:ff:ff:ff:ff link-netns cni-cc201ee2-49ad-7f8b-2124-4c9685c4a995
     inet6 fe80::408b:80ff:fef6:e77d/64 scope link 

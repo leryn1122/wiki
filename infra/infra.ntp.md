@@ -82,9 +82,8 @@ synchronised to NTP server (xxx.xxx.xxx.xxx) at stratum .
 ```bash
 # 查看同步主机
 ntpq -p
-
-
-# 结果
+```
+```
 remote           refid      st t when poll reach   delay   offset  jitter
 ==============================================================================
 *xxx.xxx.xxx.xxx xxx.xxx.xxx.xxx  2 u   17   64  377   32.823   -0.201   2.141

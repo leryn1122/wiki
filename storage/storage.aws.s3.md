@@ -2,8 +2,8 @@
 # Amazon S3 对象存储
 参考文档：
 
-- [https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/Welcome.html](https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/Welcome.html)
-- [https://help.aliyun.com/document_detail/32007.html](https://help.aliyun.com/document_detail/32007.html)
+- [什么是 Amazon S3？ - Amazon Simple Storage Service](https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/Welcome.html)
+- [Java_对象存储(OSS)-阿里云帮助中心](https://help.aliyun.com/document_detail/32007.html)
 
 OSS 完全符合 Amazon S3 的规范，所有文档参考 Amazon S3 文档即可。<br />S3 适合维护了一个扁平化的索引，不存在传统意义上的文件夹的概念。适合大量小文件的存储以及读多写少的场景。
 
@@ -13,7 +13,7 @@ OSS 完全符合 Amazon S3 的规范，所有文档参考 Amazon S3 文档即可
 ## FUSE
 参考文档：
 
-- [https://github.com/s3fs-fuse/s3fs-fuse](https://github.com/s3fs-fuse/s3fs-fuse)
+- [GitHub - s3fs-fuse/s3fs-fuse: FUSE-based file system backed by Amazon S3](https://github.com/s3fs-fuse/s3fs-fuse)
 
 介绍 SDK 前，我们先来用 FUSE 的命令行感受一下，过程会像 nfsmount 一样，先安装客户端：
 ```bash

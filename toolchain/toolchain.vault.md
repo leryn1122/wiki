@@ -3,7 +3,7 @@
 
 参考文档:
 
-- [https://github.com/hashicorp/vault](https://github.com/hashicorp/vault)
+- [GitHub - hashicorp/vault: A tool for secrets management, encryption as a service, and privileged access management](https://github.com/hashicorp/vault)
 - [https://hub.docker.com/_/vault](https://hub.docker.com/_/vault)
 - [secrets 管理工具 Vault 的介绍、安装及使用 - 走看看](http://t.zoukankan.com/kirito-c-p-14327708.html)
 

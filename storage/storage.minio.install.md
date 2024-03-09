@@ -2,8 +2,8 @@
 # MinIO 安装手册
 参考文档：
 
-- [https://docs.min.io/](https://docs.min.io/)
-- [https://docs.minio.org.cn/docs/](https://docs.minio.org.cn/docs/)
+- [MinIO Object Storage for Kubernetes — MinIO Object Storage for Kubernetes](https://docs.min.io/)
+- [MinIO对象存储 Kubernetes — MinIO中文文档 | MinIO Kubernetes中文文档](https://docs.minio.org.cn/docs/)
 
 ## Docker 安装
 这里：
@@ -33,7 +33,7 @@ docker run \
 ## Helm 安装
 参考文档：
 
-- [https://github.com/minio/minio/tree/master/helm/minio](https://github.com/minio/minio/tree/master/helm/minio)
+- [minio/helm/minio at master · minio/minio](https://github.com/minio/minio/tree/master/helm/minio)
 
 较新的 MinIO 调整了网关，暂时使用老版本的 Chart。
 ```bash

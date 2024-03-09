@@ -2,7 +2,7 @@
 # 文件系统性能测试工具
 参考文档：
 
-- [https://blog.csdn.net/wkl_venus/article/details/127486535](https://blog.csdn.net/wkl_venus/article/details/127486535)
+- [文件系统读写性能fio测试方法及参数详解_fio测试结果怎么看-CSDN博客](https://blog.csdn.net/wkl_venus/article/details/127486535)
 
 测试工具安装：
 ```bash

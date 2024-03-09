@@ -266,14 +266,13 @@ hadoop003
 ```bash
 hadoop version
 ```
-```
-Hadoop 3.3.0
-Source code repository https://gitbox.apache.org/repos/asf/hadoop.git -r aa96f1871bfd858f9bac59cf2a81ec470da649af
-Compiled by brahma on 2020-07-06T18:44Z
-Compiled with protoc 3.7.1
-From source with checksum 5dc29b802d6ccd77b262ef9d04d19c4
-This command was run using /opt/module/hadoop-3.3.0/share/hadoop/common/hadoop-common-3.3.0.jar
-```
+> Hadoop 3.3.0
+> Source code repository [https://gitbox.apache.org/repos/asf/hadoop.git](https://gitbox.apache.org/repos/asf/hadoop.git) -r aa96f1871bfd858f9bac59cf2a81ec470da649af
+> Compiled by brahma on 2020-07-06T18:44Z
+> Compiled with protoc 3.7.1
+> From source with checksum 5dc29b802d6ccd77b262ef9d04d19c4
+> This command was run using /opt/module/hadoop-3.3.0/share/hadoop/common/hadoop-common-3.3.0.jar
+
 **首次**启动`HDFS`前需要执行格式化，这会删除 NameNode 中所有的节点，已经投入生产的文件系统**请不要使用**格式化命令：
 ```bash
 hadoop namenode -format
@@ -282,6 +281,7 @@ hadoop namenode -format
 ```bash
 # 启动HDFS
 sbin/start-dfs.sh
+
 # 停止HDFS
 sbin/stop-dfs.sh
 ```
@@ -289,17 +289,15 @@ sbin/stop-dfs.sh
 ```bash
 jps
 ```
-```
-31169 SecondaryNameNode
-30997 DataNode
-30870 NameNode
-```
+> 31169 SecondaryNameNode
+> 30997 DataNode
+> 30870 NameNode
+
 使用 hadoop shell 可以正常访问 hdfs 上的文件系统：
 ```bash
 hdfs dfs -mkdir /data
 hdfs dfs -ls /
 ```
-```
-Found 1 items
-drwxr-xr-x   - hadoop supergroup          0 2021-01-24 16:50 /data
-```
+> Found 1 items
+> drwxr-xr-x   - hadoop supergroup          0 2021-01-24 16:50 /data
+

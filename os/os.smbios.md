@@ -2,7 +2,7 @@
 # SMBIOS
 参考资料：
 
-- [https://www.dmtf.org/standards/smbios](https://www.dmtf.org/standards/smbios)
+- [SMBIOS | DMTF](https://www.dmtf.org/standards/smbios)
 - [https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.7.0.pdf](https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.7.0.pdf)
 - [https://www.dmtf.org/sites/default/files/standards/documents/DSP0130.pdf](https://www.dmtf.org/sites/default/files/standards/documents/DSP0130.pdf)
 
@@ -23,7 +23,7 @@ SMBIOS 只能获得板载设备，例如集成显卡、板载网卡。如果插�
 使用命令行接口：
 ```bash
 dmidecode -s xxx
-#Valid string keywords are:
+# Valid string keywords are:
 #  bios-vendor
 #  bios-version
 #  bios-release-date
@@ -52,7 +52,7 @@ dmidecode -s xxx
 #  processor-frequency
 
 dmidecode -t xxx
-#Valid type keywords are:
+# Valid type keywords are:
 #  bios
 #  system
 #  baseboard

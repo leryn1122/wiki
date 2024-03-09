@@ -2,9 +2,9 @@
 # Rust
 参考文档：
 
-- [https://www.rust-lang.org](https://www.rust-lang.org)
-- [https://www.rust-lang.org/tools/install](https://www.rust-lang.org/tools/install)
-- [https://forge.rust-lang.org/infra/other-installation-methods.html](https://forge.rust-lang.org/infra/other-installation-methods.html)
+- [Rust Programming Language](https://www.rust-lang.org)
+- [Install Rust](https://www.rust-lang.org/tools/install)
+- [Other Installation Methods - Rust Forge](https://forge.rust-lang.org/infra/other-installation-methods.html)
 - [https://cargo.budshome.com/reference/source-replacement.html](https://cargo.budshome.com/reference/source-replacement.html)
 
 ## Rust 环境安装
