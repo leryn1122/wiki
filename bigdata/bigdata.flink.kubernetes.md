@@ -1,10 +1,9 @@
 
 # Flink on Kubernetes 配置文件
 
-参考文档:
+参考文档：
 
 - [Kubernetes](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/resource-providers/standalone/kubernetes/)
-
 
 ## Common cluster resource definitions
 
