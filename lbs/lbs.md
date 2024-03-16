@@ -32,8 +32,13 @@
 ## 负载分类
 
 ### 硬件负载均衡
+参考文档：
+
+- [应用和网络性能](https://www.f5.com.cn/solutions/application-network-performance)
+
 用硬件厂商提供的专用负载均衡器。通常都是一体机，从专用硬件和驱动上实现负载均衡。
 例如 F5 负载均衡器，其负载均衡能力高，但缺点是设备价格昂贵。据说一台 F5 负载均衡器的报价在 50W 左右。
+![F5 负载均衡器](https://cdn.nlark.com/yuque/0/2024/png/26002940/1710605823203-4ef516d9-7c06-47a1-bdc8-90303dbec5ba.png#averageHue=%23030303&clientId=u92a8537f-8aac-4&from=paste&height=659&id=u7bc1ebaa&originHeight=1317&originWidth=2664&originalType=binary&ratio=2&rotation=0&showTitle=true&size=160776&status=done&style=stroke&taskId=u76b8b850-2a2a-4f93-b2e9-ebe719838e6&title=F5%20%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%99%A8&width=1332 "F5 负载均衡器")
 
 ### 软件负载均衡
 利用应用层软件实现，例如 Nginx / LVS / HAProxy 等等。

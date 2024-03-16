@@ -36,13 +36,40 @@ RESTful & JSON HTTP 这不是任何一种 RPC。放在这里提及是因为它�
 
 JSON HTTP 只要求通过 JSON 来发送请求体和接收响应体。
 
-
+### Spring 的例子
 Spring 中直接使用 `RestTemplate` 调用 API 接口即可：
 ```java
 HttpEntity<GetFeatureRequest> httpEntity = new HttpEntity<>(request, headers);
 ResponseEntity<GetFeatureResponse> responseEntity = restTemplate.postForEntity("https://api.mydomain.com/getFeature", httpEntity, GetFeatureResponse.class);
 ```
-Spring Cloud 中提供了另一个声明式的 HTTP 客户端 Feign。
+Spring Cloud 中提供了另一个声明式的 HTTP 客户端 Feign：
+```xml
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+```
+SpringBoot 的 `application.yml` 里配置 Feign：
+```java
+@FeignClient(name = "user-service")
+public interface UserServiceFeign {
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/user/{id}")
+    User getUserById(@PathVariable("id") Long id);
+}
+
+@Service
+public class OrderService {
+    
+    @Autowired
+    private UserServiceFeign userServiceFeign;
+    
+    public void processOrder(Long userId) {
+        User user = userServiceFeign.getUserById(userId);
+        // ...
+    }
+}
+```
 
 ## gRPC HTTP/2.0 Protobuf
 gRPC（Google RPC）是 Google 开源的一种 RPC 协议，它基于 HTTP/2.0 封装上层。它是跨语言的，因为 Google 提供了主流语言的 Protobuf 的序列化库。
@@ -52,7 +79,7 @@ gRPC（Google RPC）是 Google 开源的一种 RPC 协议，它基于 HTTP/2.0 �
 各种语言的 gRPC 调用需要根据官方文档来编写。
 
 ## Thrift
-这是一个由 Facebook 提出的 RPC 框架。Hive 使用了这种技术。
+这是一个由 Facebook 提出的 RPC 框架，Hive 使用了这种技术。
 
 # gRPC
 

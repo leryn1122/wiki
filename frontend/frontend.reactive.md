@@ -5,10 +5,11 @@
 - [Responsive Mobile Navigation Menu - Methods and Solutions](https://www.queness.com/post/13093/responsive-mobile-navigation-menumethods-and-solutions)
 
 ## 导航布局
-首先可以通过监听原生 Window 的视宽，根据视宽的大小来判断是否是 PC 端或移动端，不同设备采用不同的布局。
+首先可以通过监听原生 Window 的视宽，根据视宽的大小来判断是否是 PC 端或移动端，不同设备采用不同的布局：
 
 - PC 端可以使用侧边、顶部导航或者混合导航
 - 移动端可以使用打开画出侧边目录导航栏
+- 对于平板设备，可以视为较宽手机端、也可以视为平板端再额外维护一套布局
 
 以 Vue 3 举例：
 ```vue

@@ -1,6 +1,6 @@
 
 # Anaconda
-Anaconda 是一款常用的 python 虚拟环境管理工具。
+Anaconda 是一款常用的 Python 虚拟环境管理工具。
 创建 venv：
 ```bash
 conda create -n chatglm-6b
