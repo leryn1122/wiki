@@ -1,3 +1,14 @@
+---
+id: monitor.prometheus.redis
+tags:
+- monitor
+- nosql
+- prometheus
+- redis
+title: "Redis Prometheus \u76D1\u63A7"
+
+---
+
 
 # Redis Exporter Prometheus 监控
 参考文档：

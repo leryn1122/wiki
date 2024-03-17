@@ -1,3 +1,12 @@
+---
+id: cicd.jenkins.library
+tags:
+- cicd
+- jenkins
+title: "Jenkins \u6269\u5C55\u5171\u4EAB\u5E93"
+
+---
+
 
 # Jenkins 扩展共享库
 参考文档：
@@ -6,7 +15,9 @@
 - [Pipeline Steps Reference](https://www.jenkins.io/doc/pipeline/steps/)
 - [Jenkins Shared Libraries](https://www.jianshu.com/p/a248dc7e80ea)
 
+
 ## 安装扩展库
+
 
 ### 创建仓库
 创建一个 Groovy 的 git 项目，暂时叫 `jenkins-shared-lib`。目录结构是：
@@ -29,6 +40,7 @@
 > 这些目录中的 Groovy 源文件 在脚本化流水线中的 “CPS transformation” 一样。
 > resources 目录允许从外部库中使用 libraryResource 步骤来加载有关的非 Groovy 文件。 目前，内部库不支持该特性。
 > 根目录下的其他目录被保留下来以便于将来的增强。
+
 
 
 ### 使用库

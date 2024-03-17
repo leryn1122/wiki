@@ -1,6 +1,14 @@
+---
+id: lbs.nginx
+tags:
+- lbs
+- nginx
+title: Nginx
+
+---
+
 
 # Nginx
-![](./../assets/1706973752886-351af435-9e51-49bc-b5e6-10cdfe5ada32.png)
 
 
 ## 安装手册
@@ -13,6 +21,7 @@
 
 Nginx 强烈不推荐使用源码编译的方式安装，除非需要额外的模块。
 
+
 ### 包管理器
 ```bash
 sudo apt update -y
@@ -22,6 +31,7 @@ sudo systemctl restart nginx
 sudo systemctl status  nginx
 sudo systemctl enable  nginx
 ```
+
 
 ### Docker 安装
 ```bash
@@ -33,6 +43,7 @@ docker run \
   --volume=/etc/nginx/sites-enabled:/etc/nginx/sites-enabled:ro \
   nginxinc/nginx-unprivileged:1.24-bullseye
 ```
+
 
 ### Nginx 动态模块
 参考文档：
@@ -49,6 +60,7 @@ tar -xzvf nginx-*.tar.gz
 
 git clone https://github.com/perusio/nginx-hello-world-module.git
 ```
+
 
 ## Nginx 配置
 参考文档：

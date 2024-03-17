@@ -1,10 +1,21 @@
+---
+id: storage.hadoop
+tags:
+- hadoop
+- storage
+title: "Hadoop \u6587\u4EF6\u7CFB\u7EDF"
+
+---
+
 
 # Hadoop 文件系统
+
 
 ## Hadoop 安装手册
 参考文档：
 
 - [Apache Hadoop](http://hadoop.apache.org)
+
 
 ### 前置准备
 部署准备，安装前需要准备如下材料：
@@ -18,6 +29,7 @@
 ```bash
 wget https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-bin.tar.gz
 ```
+
 
 ### 安装步骤
 配置 Hadoop 环境变量，并使其生效。
@@ -267,6 +279,7 @@ hadoop001
 hadoop002
 hadoop003
 ```
+
 
 ### Boot
 **启动 HDFS**

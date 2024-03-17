@@ -1,10 +1,19 @@
+---
+id: toolchain.confluence
+tags: []
+title: Confluence
+
+---
+
 
 # Confluence
 参考文档：
 
 - [Conflunce - 官网](https://www.atlassian.com/zh/software/confluence)
 
+
 ## Docker 安装
+
 
 ### Docker 镜像安装
 官方镜像提供了镜像 [atlassian/confluence-server](https://hub.docker.com/r/atlassian/confluence-server)，提供了完善的配置和解决方案。
@@ -22,6 +31,7 @@ docker run \
 ```
 容器启动成功后进入对应的界面，根据界面提示操作即可。有两步需要额外的服务端操作。
 
+
 ### 生成序列号
 如果需要生成序列号，可以使用如下命令生成序列号。
 ```bash
@@ -35,6 +45,7 @@ docker exec confluence \
   -o https://confluence.mydomain.com \
   -s B0YY-DP3U-WMSM-9HVK
 ```
+
 
 ### 创建数据库
 创建数据库，这里选择 MySQL：
@@ -51,6 +62,7 @@ FLUSH PRIVILEGES;
 jdbc:mysql://mysql.mydomain.com:3306/confluence?sessionVariables=transaction_isolation='READ-COMMITTED'&useSSL=false&allowPublicKeyRetrieval=true
 ```
 
+
 ### 修改 JVM 内存限制（可选）
 默认的 JVM 内存限制最大最小内存都是 1024M。4G 贫民服务器需要降低内存才能正常工作。
 ```bash
@@ -58,6 +70,7 @@ docker exec confluence \
   sed -i 's/-Xms[0-9]*m -Xmx[0-9]*m/-Xms1024m -Xmx1024m/p' /opt/confluence/bin/setenv.sh
 docker restart confluence
 ```
+
 
 ### 设置 Base URL
 如果使用域名访问需要把 Base URL 设置成域名，而不是 IP 地址加端口的形式。或者再一开始生成序列号的时候就填写域名。
@@ -92,6 +105,7 @@ vim server.xml
 docker cp ./server.xml confluence:/opt/confluence/conf/server.xml
 docker restart confluence
 ```
+
 
 ## 二进制安装
 参考文档：
@@ -216,12 +230,14 @@ copytruncate
 } 
 ```
 
+
 ## 集成 Jira
 参考官方文档：
 
 - [在设置向导中配置 Jira 集成 - 官方文档](https://confluence.atlassian.com/doc/configuring-jira-integration-in-the-setup-wizard-242255467.html)
 
 需要 Jira 管理员权限，根据提示操作。
+
 
 ## 备份与恢复
 参考官方文档：
@@ -231,12 +247,14 @@ copytruncate
 
 虽然 Confluence 提供了预定的 XML 备份，但这种备份方式只适用于**小型站点**，以及除了数据库和**目录**备份**之外**的备份。
 
+
 ### 数据库备份策略
 我们建议建立一个健壮的数据库备份策略：
 
 - 使用数据库提供的工具创建数据库的备份或转储
 - 如果您的数据库不支持在线备份，您需要在执行此操作时停止 Confluence
 - 创建主目录的文件系统备份（本地主目录和数据中心的共享主目录）
+
 
 ### 需要备份的文件
 备份整个主目录是最安全的选择，但是大多数文件和目录在启动时填充，可以忽略。至少必须备份这些文件/目录：
@@ -257,9 +275,11 @@ copytruncate
 - `**${CONF_HOME}/thumbnails**`
 - `**${CONF_HOME}/viewfile**`
 
+
 ### 备份
 
 - [生产备份策略 - 官方文档](https://confluence.atlassian.com/conf76/production-backup-strategy-1018769697.html)
+
 
 ### 从备份恢复
 

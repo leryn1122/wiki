@@ -1,5 +1,16 @@
+---
+id: k8s.kubectl
+tags:
+- cli
+- k8s
+- kubernetes
+title: "Kubectl \u547D\u4EE4\u884C\u5DE5\u5177"
+
+---
+
 
 # Kubectl 命令行工具
+
 
 ## Kubectl 通用命令
 Kubectl 很多命令和 docker 是通用的, 无非是增加 `-n <namespace>` 这个参数:
@@ -46,6 +57,7 @@ kubectl get secret -A  -o go-template-file='./go-template-file.tpl' > secrets.tx
 
 
 ![20211119211339.jpg](./../assets/1645168735400-7705f3f6-64a7-4bc3-a9e2-e8068f49d5f8.jpeg)
+
 
 
 ## 

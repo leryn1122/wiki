@@ -1,18 +1,25 @@
+---
+id: db.tidb.install
+tags: []
+title: "TiDB \u5B89\u88C5\u624B\u518C"
+
+---
+
 
 # TiDB 安装手册
-参考文档:
+参考文档：
 
-- [TiDB 官方文档](https://docs.pingcap.com/zh/tidb/stable)
-- [TiDB 软件和硬件环境建议配置 - TiDB 官方文档](https://docs.pingcap.com/zh/tidb/v4.0/hardware-and-software-requirements)
-- [最小拓扑架构 - TiDB 官方文档](https://docs.pingcap.com/zh/tidb/v4.0/minimal-deployment-topology)
-- [TiDB 环境与系统配置检查 - TiDB 官方文档](https://docs.pingcap.com/zh/tidb/v4.0/check-before-deployment)
-- [安装与启动 - TiDB 官方文档](https://docs.pingcap.com/zh/tidb/v4.0/production-deployment-using-tiup)
+- [TiDB 产品文档](https://docs.pingcap.com/zh/tidb/stable)
+- [TiDB 软件和硬件环境建议配置](https://docs.pingcap.com/zh/tidb/v4.0/hardware-and-software-requirements)
+- [最小拓扑架构](https://docs.pingcap.com/zh/tidb/v4.0/minimal-deployment-topology)
+- [TiDB 环境与系统配置检查](https://docs.pingcap.com/zh/tidb/v4.0/check-before-deployment)
+- [使用 TiUP 部署 TiDB 集群](https://docs.pingcap.com/zh/tidb/v4.0/production-deployment-using-tiup)
+
 
 
 ## 前置步骤
 
 **_这一块 tuning 有关的内容开发环境安装时都没有做, 不做不会导致安装失败, 但根据文档可能会影响性能._**
-
 参考文档:
 
 - [检查和配置操作系统优化参数 - TiDB 官方文档](https://docs.pingcap.com/zh/tidb/v4.0/check-before-deployment#%E6%A3%80%E6%9F%A5%E5%92%8C%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E5%8F%82%E6%95%B0)
@@ -63,6 +70,7 @@ NUMA 绑核工具的使用，主要为了防止 CPU 资源的争抢，引发性�
 ```bash
 yum -y install numactl
 ```
+
 
 
 ## 安装步骤
@@ -243,6 +251,7 @@ tiup cluster display tidb-test
 ```bash
 mysql -u root -h <YOUR_IP_ADDRESS> -P 4000
 ```
+
 
 
 

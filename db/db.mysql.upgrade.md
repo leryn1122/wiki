@@ -1,8 +1,18 @@
+---
+id: db.mysql.upgrade
+tags:
+- db
+- mysql
+title: "MySQL \u5347\u7EA7\u65B9\u6848"
+
+---
+
 
 # MySQL 升级方案
 参考文档:
 
 - [https://dev.mysql.com/doc/relnotes/mysql/8.0/en/](https://dev.mysql.com/doc/relnotes/mysql/8.0/en/)
+
 
 ## 禁用预编译语句
 
@@ -10,6 +20,7 @@
 
 JDBC 连接将绑定变量功能开启：数据库 general_log 显示 prepare 字样，就表示使用了绑定变量
 JDBC 连接将绑定变量功能关闭：数据库 general_log 不会显示 prepare 字样，就表示没有使用绑定变量
+
 
 ## 对 MySQL 就地升级
 
@@ -59,6 +70,7 @@ tail -f error.log
 ```sql
 select version();
 ```
+
 
 ## 重新安装 MySQL
 

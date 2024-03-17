@@ -1,3 +1,12 @@
+---
+id: jvm.groovy.install
+tags:
+- groovy
+- jvm
+title: "Groovy \u5B89\u88C5\u624B\u518C"
+
+---
+
 
 # Groovy 安装手册
 参考文档：

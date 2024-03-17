@@ -1,13 +1,24 @@
+---
+id: cpp
+tags:
+- cpp
+title: C++
+
+---
+
 
 # C++
 
+
 ## C++ 环境安装
+
 
 ### Linux 安装 Clang
 ```bash
 sudo apt update
 sudo apt install -y clang
 ```
+
 
 ### Windows MinGW64 安装 Clang
 先用安装包安装 msys64，再安装 Clang：

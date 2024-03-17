@@ -1,3 +1,12 @@
+---
+id: http.tls.self-signed
+tags:
+- http
+- tls
+title: "HTTPS \u81EA\u6388\u6743\u8BC1\u4E66"
+
+---
+
 
 # HTTPS 自授权证书
 参考文档：
@@ -38,6 +47,7 @@ cd /etc/tls/leryn.top
 ln -s '/root/.acme.sh/*.leryn.top/fullchain.cer'   fullchain.cer
 ln -s '/root/.acme.sh/*.leryn.top/*.leryn.top.key' leryn.top.key
 ```
+
 
 ### dns_api
 各大 DNS 供应商 API 请参照：

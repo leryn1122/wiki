@@ -1,12 +1,21 @@
+---
+id: cri.dockerfile
+tags:
+- cri
+- dockerfile
+title: "Dockerfile \u6700\u4F73\u5B9E\u8DF5"
+
+---
+
 
 # Dockerfile 最佳实践
-
 参考文档：
 
 - [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 - [Overview of best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
 
 Dockerfile 是一个用来构建镜像的唯一方式，这很基本也很简单，重点是优化。如果需要完整的学习 Dockerfile，请跳转到官方文档。
+
 
 ## Dockerfile 优化
 糟糕的 Dockerfile 可能会构建一个 1-2G 的镜像，这是不能接受的。较大的镜像无论是在流水线构建还是环境部署时都是非常耗时耗资源的。
@@ -25,6 +34,7 @@ docker system df --verbose
 
 如果镜像超出以上参考值，可能需要优先 Dockerfile。
 
+
 ### 写在前面
 Dockerfile 的每一个命令，都会独立的形成一个 UnionFS 文件层。保存了与上一层的差别文件。但只有`RUN`，`COPY`，`ADD`会产生有大小的中间层。所以使用多句命令创建并删除文件，这些文件依旧存在于之前层中，只是对当前层不可见了，最终镜像的体积将是这些层体积的叠加。
 分层的另一个好处是利于分发，镜像相同的层将在同一节点上共用。拉取新镜像时，共用的层如果已经存在于节点上，将不会被重新拉取。这既可以节省网络流量、也可以节省节点本地磁盘的占用。
@@ -32,6 +42,7 @@ Dockerfile 的每一个命令，都会独立的形成一个 UnionFS 文件层。
 ```bash
 docker history <IMAGE>
 ```
+
 
 ### .dockerignore
 类似`.gitignore`、`.eslintignore`等等，排除与 Dockerfile 无关的文件，语法也几乎一致。这些文件仍然会出现在构建上下文当中，但无法使用`COPY`或`ADD`加入镜像。
@@ -43,8 +54,10 @@ docker history <IMAGE>
 - 包含敏感信息的文件
 - 可以用 stdin 写入的文件，可以直接用`echo EOF`的方式写在 Dockerfile 中
 
+
 ### 解耦应用程序
 这步跟 Dockerfile 都无关，从代码和仓库架构上应该解耦应用。将应用程序拆成不同仓库、不同的镜像，而不是将前后端，对客端和管理端全部糅杂在一个超级镜像中。
+
 
 ### 更小的基镜像
 :::info
@@ -64,6 +77,7 @@ docker history <IMAGE>
 | openjdk:17.0.1-jdk-slim | 210.27 MB |
 
 
+
 ### 使用内网镜像源
 这不是 Docker 的技巧。请尽量使用内网或者国内镜像源（容器或制品库），来提高下载依赖包时的速度，同时保证依赖的安全性。
 例如：
@@ -71,6 +85,7 @@ docker history <IMAGE>
 - npm 的`.npmrc`
 - Maven 的`settings.xml`
 - 配置内网`GO_PROXY`
+
 
 ### 使用中间层缓存
 如果没有使用`--no-cache`选项，那么 Dockerfile 中的指令都会存在缓冲层，下次如果遇到同样的结果就会直接调用缓冲层，以提高性能和节省磁盘空间。
@@ -85,6 +100,7 @@ docker history <IMAGE>
 - 前文的复制`.npmrc`和`settings.xml`这一步会直接使用缓存
 - 非常长的`apt-get install -y`
 
+
 ### 使用单句命令
 既然多句 Dockerfile 会产生非常多的中间层，那么索性尽量把命令都用`&&`拼凑到一行命令上。大量官方镜像的命令都使用了这个技巧，每个`RUN`命令可能都有上百行。
 例如如下命令，排序后可以优化安装顺序。同时也易于后期修改和代码评审。
@@ -98,9 +114,11 @@ RUN apt-get update && apt-get install -y \
  && rm -rf /var/lib/apt/lists/*
 ```
 
+
 ### 外部构建
 通常基础应用的镜像都会选择这种方式构建，大多`FROM scratch`镜像。
 与容器内构建不同，有的人选择外部构建成 tarball 包，因此 Dockerfile 退化为验签并解压 tarball 包。可以参考 OpenJDK 等等官方镜像都是这么编写的，将构建好的 JDK 以 tarball 的形式直接 COPY 到容器内，并比较 SHA256 信息。
+
 
 ### 多阶段构建
 多阶段构建将在不同的镜像中构建，这些中间镜像会被抛弃，不会影响到最终镜像，因此无需费力减少中间层和文件。
@@ -116,8 +134,10 @@ RUN apt-get update && apt-get install -y \
 > 133MB (`nginx`) + 500KB (`dist`) = 133.5MB
 
 
+
 ### 启动时加载
 这一点常常被人忽略，通常镜像的入口常常是 `entrypoint.sh` 或者 `docker-entrypoint.sh` 之类的脚本。可以将一些预备工作延迟到这些容器入口脚本里，例如 MySQL 的镜像在启动时，就会判断挂载目录中是否存在数据文件来决定是否初始化等等。
+
 
 ## DinD 构建
 现在都要求容器内构建，对外部环境影响更小也更容易受控制。多阶段创建也会创建许多悬空镜像，需要及时清理。

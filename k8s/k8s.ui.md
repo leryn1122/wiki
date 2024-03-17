@@ -1,5 +1,15 @@
+---
+id: k8s.ui
+tags:
+- k8s
+- kubernetes
+title: Kubernetes UI
+
+---
+
 
 # Kubernetes UI
+
 
 ## K9S
 ![image.png](./../assets/1645719729527-7890d912-e808-4a1e-bb10-96b257d4df63.png)
@@ -26,6 +36,7 @@ K9S 也非常适合二次开发，你可以为你常用的功能编写插件，�
 ![image.png](./../assets/1645719540088-85e908a6-9371-44c1-bf68-53dfab5c817e.png)
 
 
+
 # Rancher
 参考文档：
 
@@ -33,6 +44,7 @@ K9S 也非常适合二次开发，你可以为你常用的功能编写插件，�
 
 Rancher 自带了一套 k3s 单机。实际使用下来，性能要求略高于裸机 k3s。如果是开发或者个人建站使用，更推荐使用 k3s。
 我司生产上在两台超融合上的虚拟机使用 RKE 安装 Rancher，作为管理界面管理多套 k8s 集群。因此这是一个生产级的应用，包括内置了 Rancher Pipeline（用起来真是世界上安装最简单的 CI）。
+
 
 ### 安装步骤 using Docker
 安装 rancher 镜像，然后打开网页初始化 Rancher
@@ -59,6 +71,7 @@ docker logs rancher 2>&1 | grep "Bootstrap Password:"
 ```
 直接访问 `https://xxx.xxx.xxx.xxx:8443` 即可。
 
+
 ### 安装步骤 using Helm
 以下是在公司中使用 helm 安装的步骤：
 ```bash
@@ -68,6 +81,7 @@ helm install rancher rancher-stable/rancher \
   --set ingress.tls.source=secret \
   --set replicas=1
 ```
+
 
 ### Rancher 导入集群
 打开 Rancher 界面，点击 `import generic` 并设定好集群名，Rancher 临时生成一段 YAML。这段 YAML 在待托管的 Kubernetes master 节点上执行即可，它会为新集群安装 Rancher 的探针和 Agent。
@@ -84,7 +98,9 @@ curl --insecure -sfL https://xxx.xxx.xxx.xxx:8443/v3/import/2fc8tn8vw7ccf96mqx5t
 kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user <your username from your kubeconfig>
 ```
 
+
 ### 常见运维问题
+
 
 #### Webhook 证书过期
 参考文档：
@@ -100,6 +116,7 @@ kubectl delete secret -n cattle-system cattle-webhook-tls
 kubectl delete pod -n cattle-system -l app=rancher-webhook
 ```
 
+
 #### Serving-cert 证书过期
 参考文档：
 
@@ -107,6 +124,7 @@ kubectl delete pod -n cattle-system -l app=rancher-webhook
 
 如果使用 Rancher 2.5+ 的话，`serving-cert` 证书过期是不要紧的。
 > This is legacy and is no longer needed/used assuming you are running rancher 2.5+ so it's fine if it expires
+
 
 
 ## Kubernetes-Dashboard
@@ -118,6 +136,7 @@ kubectl delete pod -n cattle-system -l app=rancher-webhook
 kubectl proxy --address='0.0.0.0' --accept-hosts='^*$'
 ```
 
+
 ## Kuboard
 参考文档：
 
@@ -125,6 +144,7 @@ kubectl proxy --address='0.0.0.0' --accept-hosts='^*$'
 
 这是一个国产免费的 Kubernetes 控制面板。目前已经更新到 v3 版本，v2 处于长期支持版本。这里使用 v2 版本即可。
 非常强大的 Kubernetes UI，但是个人界面上的元素过于多，面板花哨。
+
 
 ### 安装步骤
 ```bash
@@ -140,6 +160,7 @@ kubectl get pods -l k8s.kuboard.cn/name=kuboard -n kube-system
 NAME                       READY   STATUS        RESTARTS   AGE
 kuboard-54c9c4f6cb-6lf88   1/1     Running       0          45s
 ```
+
 
 ### 获取Token
 您可以获得管理员用户，只读用户的Token。我这里只使用管理员用户：

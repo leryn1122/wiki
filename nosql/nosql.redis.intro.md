@@ -1,5 +1,13 @@
+---
+id: nosql.redis.intro
+tags: []
+title: "Redis \u4ECB\u7ECD"
+
+---
+
 
 # Redis 介绍
+
 
 #### maxmemory
 
@@ -16,6 +24,7 @@ Redis提供了下面几种淘汰策略供用户选择, 其中默认的策略为 
 | allkeys-random | 在主键空间中, 随机移除某个 key |
 | volatile-random | 在设置了过期时间的键空间中, 随机移除某个 key |
 | volatile-ttl | 在设置了过期时间的键空间中, 具有更早过期时间的 key 优先移除 |
+
 
 
 #### maxmemory-policy noeviction

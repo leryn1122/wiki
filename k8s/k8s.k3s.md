@@ -1,3 +1,10 @@
+---
+id: k8s.k3s
+tags: []
+title: K3S & Cilium
+
+---
+
 
 # K3S & Cilium 部署
 参考文档：
@@ -7,6 +14,7 @@
 
 K3S 是 Rancher 官方提出的轻量级 Kubernetes，阉割或降级了很多 Kubernetes 的配置，例如用 SQLite 来替换 Etcd，但它仍然满足 Kubernetes 的所有 API。性能上，资源占用比 Minikube 更小，是 Kubernetes 开发机最合适的产品实现。
 CNI 改用 cilium 而不是 flannel 等。
+
 
 ## 安装步骤
 运行以下命令即可一键安装，在这之前解释一下参数的意义：
@@ -43,6 +51,7 @@ sudo k3s kubectl get pods
 /usr/local/bin/kubectl -> k3s
 ```
 
+
 ## 安装 CNI
 安装 Cilium 作为 CNI。先安装 `cilium-cli` 命令行可执行。
 ```bash
@@ -63,6 +72,7 @@ cilium status --wait
 cilium ui enable
 ```
 
+
 ## 配置文件
 一些常用的文件路径：
 ```bash
@@ -79,6 +89,7 @@ cilium ui enable
 /var/lib/rancher/k3s/server/db/state.db
 ```
 
+
 ## 卸载 K3S
 如果您使用安装脚本安装了k3s，那么在安装过程中会生成一个卸载 k3s 的脚本。卸载 k3s 会删除集群数据和所有脚本。要使用不同的安装选项重新启动集群，请使用不同的标志重新运行安装脚本。
 要从 server 节点卸载 k3s，请运行：
@@ -90,11 +101,13 @@ cilium ui enable
 /usr/local/bin/k3s-agent-uninstall.sh
 ```
 
+
 ## Helm支持
 正常安装 K3S 无法直接使用 Helm：
 ```bash
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 ```
+
 
 
 # Minikube
@@ -104,7 +117,9 @@ Minikube 是一个单机 Kubernetes 的解决方案，以下称为`minikube`。
 
 - [Minikube - 官方入门文档](https://minikube.sigs.k8s.io/docs/start/)
 
+
 ## 二进制安装
+
 
 ### 安装 kubectl
 
@@ -136,6 +151,7 @@ sudo apt install -y kubectl kubelet kubeadm
 ```
 
 
+
 ### 前置准备
 
 - Linux 环境
@@ -144,6 +160,7 @@ sudo apt install -y kubectl kubelet kubeadm
 - 20GB 硬盘空间
 - 网络连接
 - 虚拟化容器/虚拟机: Docker, Hyperkit, Hyper-V, KVM, Parallels, Podman, VirtualBox, or VMWare
+
 
 
 ### 安装步骤

@@ -1,3 +1,13 @@
+---
+id: cri.containerd
+tags:
+- containerd
+- k8s
+- kubernetes
+title: "Containerd \u914D\u7F6E\u6587\u4EF6"
+
+---
+
 
 # Containerd 配置文件
 Containerd 的参考配置文件：

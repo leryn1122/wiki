@@ -1,3 +1,13 @@
+---
+id: cri
+tags:
+- cri
+- docker
+- oci
+title: "\u5BB9\u5668\u8FD0\u884C\u65F6"
+
+---
+
 
 # 容器运行时
 参考文档：
@@ -11,12 +21,14 @@
 
 聊完再介绍容器运行时的两个概念 OCI 和 CRI。
 
+
 ### 为什么要隔离
 
 - 安全隔离：不同用户、不同信任域
 - 性能隔离：避免应用间资源挤兑
 - 故障隔离：合理划分故障域，减小爆炸半径
 - 配置隔离：支持多版本、多配置
+
 
 ### 隔离级别
 隔离级别，隔离能力从低到高有以下五种：
@@ -29,6 +41,7 @@
 
 隔离能力的提升，相反会带来资源冗余和维护成本
 ![](./../assets/1709051098483-8b753e70-8b66-4a96-855a-60fe93be51be.jpeg)
+
 
 
 ### OCI：Low-level 容器运行时
@@ -50,6 +63,7 @@ OCI 涵盖了三个标准：
 - runnc：
 - runhcs：Windows 系统独有的 Windows server container 机制和 Hyper-V containers 机制。虽然 Windows 操作系统臃肿和生态问题导致它很小众，但它架构反而非常优秀。
 
+
 ### CRI：High-level 容器运行时
 CRI（Container Runtime Interface）是 Kubernetes 官方提出的接口标准，它要求了 CRI 如何通过和 socket 进行 gRPC 通信来操作容器、拉取镜像等等。
 通常应用开发者视角下的容器运行时就是 CRI，它们有很多种类，包括但不限于以下：
@@ -64,6 +78,7 @@ CRI（Container Runtime Interface）是 Kubernetes 官方提出的接口标准�
 
 
 ![image.png](./../assets/1709051862385-dafdedd3-9293-44cb-9487-e0c91d849399.png)
+
 
 
 ## nerdctl & buildkit

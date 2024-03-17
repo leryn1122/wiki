@@ -1,3 +1,10 @@
+---
+id: frontend.node.install
+tags: []
+title: Node.js
+
+---
+
 
 # Node.js
 参考文档：
@@ -12,7 +19,9 @@ node 会自带一个 npm（Node Package Manager）作为包管理器。
 - 用于 JavaScript 执行器，可执行 JavaScript 开发的工具链和开发环境的本地服务进程
 - 轻量级 Web 后端服务
 
+
 ## 安装手册
+
 
 ### 包管理器安装（推荐）
 如果你使用默认存储库安装带有 apt 的 Node.js，下载的版本会比较古老。所以请使用 NodeSource PPA 安装带有 apt 的 Node.js。PPA 拥有比官方 ubuntu 存储库更多的 Node.js 版本。
@@ -25,6 +34,7 @@ sudo apt update && sudo apt install -y nodejs
 node -v
 ```
 
+
 ### 启动与验证
 新建 JavaScript 脚本 `hello_world.js` 用于验证：
 ```javascript
@@ -34,6 +44,7 @@ console.log('Hello World!!');
 ```bash
 node hello_world.js
 ```
+
 
 ### 安装全局插件
 这里比较建议使用 pnpm 作为包管理器，pnpm 安装依赖时不会重复安装依赖，该改用硬链接的方式指向了统一的依赖。因此它的下载速度更快，磁盘占用更小。

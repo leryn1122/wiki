@@ -1,3 +1,11 @@
+---
+id: storage.aws.s3
+tags:
+- s3
+title: "Amazon S3 \u5BF9\u8C61\u5B58\u50A8\u4ECB\u7ECD"
+
+---
+
 
 # Amazon S3 对象存储
 参考文档：
@@ -8,10 +16,12 @@
 OSS 完全符合 Amazon S3 的规范，所有文档参考 Amazon S3 文档即可。
 S3 适合维护了一个扁平化的索引，不存在传统意义上的文件夹的概念。适合大量小文件的存储以及读多写少的场景。
 
+
 ## 介绍
 界面上配置 S3 用户，之后会拿到两个密钥：访问密钥（Access Key）和安全密钥（Secret Key），需要妥善保存，有点类似于 Oauth2 中的 ClientId 和 ClientSecret。
 存储桶是 S3 中的对象容器，通俗的话可以理解成文件系统的驱动器（C 盘，D 盘）。存储桶名是全局唯一的，不能重复创建。桶之间的对象是隔离的，除非你明确转移桶内的资源存储桶中的对象。
 对象用存储桶名和本身键名唯一确定。键名可以是一个类似于文件路径的字符串。
+
 
 ## FUSE
 参考文档：
@@ -45,8 +55,10 @@ s3fs mybucket /path/to/mount \
   -o use_path_request_style
 ```
 
+
 ## SDK
 这里着重将 S3 Java 的 SDK。如果需要可以使用。
+
 
 ### Maven 依赖
 `1.12.261` 及以下版本有安全性漏洞
@@ -68,6 +80,7 @@ s3fs mybucket /path/to/mount \
     <version>${amazon-s3.version}</version>
 </dependency>
 ```
+
 
 #### 常见的 SDK
 如果需要自学可以低价开通阿里云 OSS 服务，使用阿里云的 SDK，和 AmazonS3 基本大同小异，大部分情况只是换个包名和类名。
@@ -105,6 +118,7 @@ s3fs mybucket /path/to/mount \
     <version>${minio.version}</version>
 </dependency>
 ```
+
 
 ### Java 代码
 创建一个客户端连接，以下代码可以创建可以客户端连接，客户端连接是一个需要及时关闭的对象，但不是`Closeable`的对象。客户端连接前需要配置连接信息。
@@ -168,6 +182,7 @@ URL url = amazonS3.generatePresignedUrl(bucketName, objectKeyName, expiration);
 amazonS3.shutdown();
 ```
 
+
 ## Kubernetes CSI
 需要安装：
 
@@ -218,6 +233,7 @@ spec:
       storage: 5Gi
   storageClassName: csi-driver-s3
 ```
+
 
 ### 注意事项
 

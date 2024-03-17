@@ -1,3 +1,13 @@
+---
+id: k8s.crd
+tags:
+- CRD
+- k8s
+- kubernetes
+title: "Kubernetes CRD \u5F00\u53D1"
+
+---
+
 
 # Kubernetes CRD 开发
 参考文档：

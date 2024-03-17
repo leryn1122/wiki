@@ -1,9 +1,19 @@
+---
+id: nosql.redis
+tags:
+- nosql
+- redis
+title: "Redis \u5B89\u88C5\u624B\u518C"
+
+---
+
 
 # Redis 安装手册
 参考文档：
 
 - [Redis](https://redis.io/)
 - [Redis 三种集群模式，你还傻傻分不清吗？_Redis_服务器之家](http://www.zzvips.com/article/142376.html)
+
 
 ## 包管理器
 直接使用默认源 apt 不能下载到最新的 redis，先更新 apt 的源：
@@ -24,6 +34,7 @@ sudo apt install -y redis-server   # redis 服务端
 sudo apt install -y redis-sentinel # redis 哨兵
 ```
 
+
 ## Docker 安装
 注意一点：如果挂载了`redis.conf`，那么必须设为`daemonize no`，否则无法启动。原因很简单，如果使用 Daemon 守护进程，那么 1 号进程退出了，Docker 会自动停止，所以得阻塞住 1 号进程。
 ```bash
@@ -37,6 +48,7 @@ docker run \
   redis:6.2.8-alpine \
   redis-server /usr/local/etc/redis/redis.conf --appendonly yes
 ```
+
 
 ## 启动与验证
 验证 Redis 是否安装成功，使用命令查看版本，如果可以正确显示版本信息则安装成功。
@@ -67,6 +79,7 @@ redis-cli
 127.0.0.1:6379> del foo
 127.0.0.1:6379> exit
 ```
+
 
 ## 高可用集群
 Redis 高可用集群至少需要 6 台服务器：其中三台形成一主两从的主从结构，另外三台作为哨兵监听这三台集群，形成高可用。如果主节点宕机，哨兵会进行投票选举出一个从节点晋升为新的主节点。

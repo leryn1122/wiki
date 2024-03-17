@@ -1,3 +1,10 @@
+---
+id: os.sys.operation
+tags: []
+title: "\u7CFB\u7EDF\u8FD0\u7EF4"
+
+---
+
 
 # 系统运维
 参考文档：

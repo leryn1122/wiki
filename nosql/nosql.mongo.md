@@ -1,3 +1,10 @@
+---
+id: nosql.mongo
+tags: []
+title: Mongo
+
+---
+
 
 # Mongo
 ```bash

@@ -1,3 +1,11 @@
+---
+id: network.ib
+tags:
+- network
+title: "IB \u7F51\u7EDC\u4ECB\u7ECD"
+
+---
+
 
 # IB 网络介绍
 IB 网络就是 InfiniBand 网络，即无限带宽网络。一种需要特殊软硬件支持的网络架构，特点是高带宽、低延时、高可靠的网络互联技术，一般用于数据中心内部、GPU计算集群的组网。

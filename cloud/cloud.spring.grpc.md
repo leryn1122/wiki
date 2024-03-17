@@ -1,3 +1,11 @@
+---
+id: cloud.spring.grpc
+tags:
+- grpc
+title: RPC
+
+---
+
 
 # RPC - 远程过程调用
 参考文档：
@@ -26,6 +34,7 @@ RESTful & JSON HTTP 这并不是任何的 RPC，但还是会介绍它们。
 - Thrift
 - Dubbo
 
+
 ## RESTful & JSON HTTP
 RESTful & JSON HTTP 这不是任何一种 RPC。放在这里提及是因为它们也是最常使用的 HTTP 调用的风格和约定，它和 RPC 不是一个位面上谈论的事物。
 首先，HTTP 本身一是一种应用层网络传输协议。在业务实践中，慢慢产生了两张主流的接口开发风格和约定，一种是 RESTful（Representational State Transfer，表述性状态转移），它要求：
@@ -35,6 +44,7 @@ RESTful & JSON HTTP 这不是任何一种 RPC。放在这里提及是因为它�
 - 通常返回 JSON 格式的数据
 
 JSON HTTP 只要求通过 JSON 来发送请求体和接收响应体。
+
 
 ### Spring 的例子
 Spring 中直接使用 `RestTemplate` 调用 API 接口即可：
@@ -71,6 +81,7 @@ public class OrderService {
 }
 ```
 
+
 ## gRPC HTTP/2.0 Protobuf
 gRPC（Google RPC）是 Google 开源的一种 RPC 协议，它基于 HTTP/2.0 封装上层。它是跨语言的，因为 Google 提供了主流语言的 Protobuf 的序列化库。
 它将数据序列化为二进制数据，虽然对于人类不可读，但是具有更高的传输效率，并且专门优化了 Protobuf 的序列化和反序列化算法。
@@ -78,10 +89,13 @@ gRPC（Google RPC）是 Google 开源的一种 RPC 协议，它基于 HTTP/2.0 �
 对于不对外的服务接口，例如集群内部的服务间调用，完全可以使用
 各种语言的 gRPC 调用需要根据官方文档来编写。
 
+
 ## Thrift
 这是一个由 Facebook 提出的 RPC 框架，Hive 使用了这种技术。
 
+
 # gRPC
+
 
 ## Protobuf
 所有 gRPC 项目都必须编写 Protobuf 文件，再 Protobuf complier 生成对应语言的代码。另一方面，Protobuf 文件本身提供了接口的自述规范，对接的开发只需要根据同一份 Protobuf 生成自己开发语言代码即可。
@@ -97,6 +111,7 @@ message Point {
 }
 ```
 
+
 ## Python
 参考文档：
 
@@ -110,6 +125,7 @@ pipenv run python3 -m grpc_tools.protoc -I../../protos \
   --grpc_python_out=. \
   ../proto/*.proto
 ```
+
 
 ### 服务端
 注册一个 RouteGuideServicer 的 gRPC Service：
@@ -131,6 +147,7 @@ def serve():
     server.wait_for_termination()
 ```
 
+
 ## Golang
 参考文档：
 
@@ -150,6 +167,7 @@ protoc \
   --go-grpc_opt=paths=source_relative \
   ../proto/*.proto
 ```
+
 
 ### 服务端
 ```go
@@ -172,6 +190,7 @@ func (s *routeGuideServer) GetFeature(ctx context.Context, point *pb.Point) (*pb
 }
 ```
 
+
 ### 客户端
 ```go
 var opts []grpc.DialOption
@@ -191,6 +210,7 @@ if err != nil {
   ...
 }
 ```
+
 
 ## Java
 ```xml

@@ -1,5 +1,15 @@
+---
+id: k8s.install
+tags:
+- k8s
+- kubernetes
+title: "Kubernetes \u5B89\u88C5\u624B\u518C"
+
+---
+
 
 # Kubernetes 安装手册
+
 
 ## 前置准备
 前置准备：
@@ -12,6 +22,7 @@
 sudo apt update && sudo apt install -y \
   apt-transport-https ca-certificates curl gnupg2 software-properties-common
 ```
+
 
 ## 安装应用
 添加 Kubernetes 源：
@@ -56,6 +67,7 @@ edit /etc/fstab
 # 注释掉 swap 分区
 ```
 
+
 ## 高可用集群安装
 如果一个 Kubernetes 要满足高可用，那么建议保证集群有：
 
@@ -68,6 +80,7 @@ edit /etc/fstab
 参考文档：
 
 - [HAProxy & KeepAlived](https://www.yuque.com/leryn/wiki/lbs.haproxy?view=doc_embed)
+
 
 ### HAProxy 安装
 ```bash
@@ -148,6 +161,7 @@ systemctl restart haproxy
 systemctl status haproxy
 ```
 
+
 ### KeepAlived 安装
 KeepAlived 用于占用 VIP（虚拟IP），不需要实际的服务器，但要占用一个空闲 IP。KeepAlived 会轮流占用这个 VIP，如果当前 KeepAlived 宕机，那么 VIP 会漂移到另一个 KeepAlived 之上，实现高可用。
 ```bash
@@ -184,6 +198,7 @@ systemctl restart keepalived
 systemctl status  keepalived
 ```
 然后我们初始化集群之前要将 Controll Plane 域名解析指向这个 VIP 的地址。
+
 
 ## 初始化集群
 初始化集群：如果执行成功，控制台会打印 `kubeadm join` 命令，依次在对应的节点上运行：
@@ -253,9 +268,12 @@ kubectl get nodes
 kubectl get cs
 ```
 
+
 # Kubernetes 运维
 
+
 ## Kubernetes 运维常见场景
+
 
 ### 集群证书问题
 目前 Kubernetes 是由 `kubeadm` 安装的 1.18 版本，默认证书有效期是1年
@@ -276,6 +294,7 @@ docker ps | grep -E 'k8s_kube-apiserver|k8s_kube-controller-manager|k8s_kube-sch
 kubeadm alpha certs check-expiration
 ```
 
+
 ### 强制删除 namespace
 有时候 `kubectl` 删除 namespace 时，namespace 一直处于 **terminating**。这分两种场景：
 
@@ -295,6 +314,7 @@ kubectl proxy --port=8081
 curl -k -H "Content-Type: application/json" \
   -XPUT --data-binary @xxxx.json http://127.0.0.1:8081/api/v1/namespaces/xxxx/finalize
 ```
+
 
 ### 操作 Etcd
 ```bash

@@ -1,3 +1,12 @@
+---
+id: infra.ntp
+tags:
+- infra
+- ntp
+title: "NTP - \u7F51\u7EDC\u65F6\u95F4\u534F\u8BAE"
+
+---
+
 
 # NTP - 网络时间协议
 参考文档:
@@ -5,6 +14,7 @@
 - [Linux的NTP配置总结 - 潇湘隐者 - 博客园](https://www.cnblogs.com/kerrycode/p/4744804.html)
 - [windows时间同步设置 - Dark_Elf - 博客园](https://www.cnblogs.com/zhangdongyu/p/15674265.html)
 - [如何在Windows10上安装NTP客户端更精确的校准系统时间](https://blog.minirplus.com/8808/)
+
 
 ## 简介
 > 下面是网上关于 ntpd 与 ntpdate 区别的相关资料。如下所示所示。
@@ -17,12 +27,14 @@
 ntpd 在和时间服务器的同步过程中，会把 BIOS 计时器的振荡频率偏差——或者说 Local Clock 的自然漂移（drift）——记录下来。这样即使网络有问题，本机仍然能维持一个相当精确的走时。
 
 
+
 ## 安装前的注意点
 注意点：
 
 - `ntp`和`ntpdate`都占用了`123`端口，如果`ntp`的 daemon 进程启动时, 无法使用`ntpdate`。
 - Ubuntu 默认安装了`chrony`服务，服务器重启后会默认启用这个服务，导致 NTP 无法自启动。虽然`chrony`比`ntp`更加先进，但很多公司仍然在使用 ntp。
 - `ntp`使用了双向 UDP 协议校时，网络权限需要放开 UDP 协议。
+
 
 ## 包管理器安装
 安装 NTP 服务：

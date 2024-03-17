@@ -1,5 +1,13 @@
+---
+id: nosql.es.install
+tags: []
+title: "Elasticsearch \u5B89\u88C5\u624B\u518C"
+
+---
+
 
 # ElasticSearch 安装手册
+
 
 ## Debian 包管理器安装（推荐）
 参考文档:

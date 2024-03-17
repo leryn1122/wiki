@@ -1,3 +1,12 @@
+---
+id: mq.rabbitmq
+tags:
+- mq
+- rabbitmq
+title: RabbitMQ
+
+---
+
 
 # RabbitMQ
 参考文档：
@@ -6,12 +15,14 @@
 - [RabbitMQ: One broker to queue them all | RabbitMQ](https://www.rabbitmq.com/)
 - [GitHub - rabbitmq/rabbitmq-delayed-message-exchange: Delayed Messaging for RabbitMQ](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange)
 
+
 ## 安装 Erlang
 ```bash
 wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
 echo "deb https://packages.erlang-solutions.com/ubuntu bionic contrib" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
 apt update & apt install -y erlang
 ```
+
 
 ## 安装 RabbitMQ
 ```bash
@@ -32,6 +43,7 @@ rabbitmq-plugins enable rabbitmq_management
 mv rabbitmq_delayed_message_exchange-3.8.0.ez /usr/lib/rabbitmq/lib/rabbitmq_server-3.8.11/plugins/
 rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 ```
+
 
 ## 搭建集群
 配置主机名和本地域名解析：
@@ -59,6 +71,7 @@ rabbitmqctl start_app
 
 rabbitmqctl cluster_status
 ```
+
 
 ## 设置高可用策略
 高可用可配置所有节点存储副本或 n 节点存储副本。在管理端的 Admin -> Policy 处可以看到。官方建议副本数设置为 （2/N + 1）。

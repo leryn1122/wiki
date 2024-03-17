@@ -1,3 +1,10 @@
+---
+id: nosql.es.sql
+tags: []
+title: Elasticsearch SQL
+
+---
+
 
 # Elasticsearch SQL
 
@@ -5,7 +12,9 @@
 
 - [SQL access | Elasticsearch Guide [7.6] | Elastic - ElasticSearch 官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/7.6/xpack-sql.html)
 
+
 ## Elasticsearch SQL API
+
 
 ### SQL 介绍
 
@@ -43,6 +52,7 @@ SHOW FUNCTIONS;
 ```
 
 
+
 ### API 接口
 
 有两个核心接口:
@@ -78,9 +88,11 @@ curl -XPOST https://elasticsearch:9200/_xpack/sql?format=json \
 ```
 
 
+
 ### 局限性
 
 - 仅只是 SELECT 语句和一部分 SHOW 语句, 完全不支持 INSERT, DELETE, UPDATE 语句
+
 
 ## Elasticsearch JDBC
 

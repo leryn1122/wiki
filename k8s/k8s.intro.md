@@ -1,3 +1,12 @@
+---
+id: k8s.intro
+tags:
+- k8s
+- kubernetes
+title: "Kubernetes \u4ECB\u7ECD"
+
+---
+
 
 # Kubernetes 介绍
 参考文档：
@@ -7,6 +16,7 @@
 Kubernetes 是 Google 推出的容器编排技术，由 Golang 开发。Google 背书，通过自家大量的容器管理和运维，目前在容器编排技术上只此一家。
 Kubernetes 官方文档的一张配图解释了传统部署、虚拟机部署、容器化部署三者的区别：
 ![](./../assets/1658306431889-3842a32a-6c54-4190-a244-6459419ec94b.svg)
+
 
 
 # Kubernetes 架构
@@ -21,6 +31,7 @@ master 由三部分组成：
 - Scheduler：调度器，它负责选择合适的节点来运行容器
 - Controller：控制器，通过 ControlLoop 时刻维持容器与声明的状态一致
 - Etcd：基于 Raft 算法的分布式键值数据库
+
 
 ### Kubernetes 和 Spring Cloud 的对比
 有很多人问同样是微服务，用 Kubernetes 做容器编排和 Spring Cloud 做云服务框架有什么区别：
@@ -39,6 +50,7 @@ master 由三部分组成：
 
 
 ![0d0eadfee1e6506472c6340aa044921.jpg](./../assets/1666593519943-b9e0238b-970c-4205-92af-6a607e6e1690.jpeg)
+
 
 
 # 

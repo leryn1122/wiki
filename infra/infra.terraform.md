@@ -1,5 +1,16 @@
+---
+id: infra.terraform
+tags:
+- cli
+- infra
+- terraform
+title: Terraform
+
+---
+
 
 # Terraform
+
 
 ## 介绍
 Terraform 有 Hashicorp 公司开发，可以通过第三方厂商提供的插件，结合 HCL 配置文件来声明式的自动化部署基础设施。这里的基础设施可以是：云服务器、操作系统、存储、 Kubernetes 资源、中间件等等。
@@ -27,6 +38,7 @@ Terraform 执行分成三个步骤：
 ![image.png](./../assets/1709387296751-62f20e3d-210e-4892-b0bf-c5aaca667c70.png)
 
 
+
 ## 安装手册
 在 MacOS 上安装：
 ```bash
@@ -39,6 +51,7 @@ project
 ├── provider.tf
 └── version.tf
 ```
+
 
 ## 开发手册
 参考文档：

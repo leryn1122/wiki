@@ -1,14 +1,27 @@
+---
+id: k8s.helm
+tags:
+- chart
+- helm
+- k8s
+- kubernetes
+title: "Helm Chart \u4ECB\u7ECD"
+
+---
+
 
 # Helm Chart 介绍
 参考文档：
 
 - [Helm - 官网](https://docs.helm.sh/zh/docs/)
 
+
 ## 简介
 Helm 是 Kubernetes 相关的另外一个项目，它提供了 Kubernetes 上应用包整合部署的一个解决方案。它已经成为了社区的事实标准，许多开源项目都会提供自己的 Chart 来部署应用。
 Helm 仓库里面只有配置清单，镜像还是由镜像仓库来提供，比如 hub.docker.com。
 Helm 提供了一个应用所需要的所有清单文件。比如部署一个 nginx，我们需要一份 deployment 的清单文件，一份service的清单文件，一个hpa的清单文件，把这三个文件打包到一起，就是一个应用程序的程序包，称之为Chart。
 同类竞品还有：Kustomize 等。
+
 
 ## 安装步骤
 安装前需要有 Kubernetes 服务，如果没有本地 Kubernetes，那么需要 `--kube-apiserver localhost:8080`这样显式地指定 Kubernetes 的服务器：
@@ -71,6 +84,7 @@ helm instsall <RELEASE> <CHART> \
   --install
 ```
 
+
 ## Helm 仓库
 Helm 可以用一下方式存储 Chart 用于分发：
 
@@ -78,7 +92,9 @@ Helm 可以用一下方式存储 Chart 用于分发：
 - Harbor：集成 Docker Registry 和 Chartmuseum 等等的开源软件
 - Git 仓库（不推荐，经常引起版本冲突）
 
+
 # Helm Chart 开发
+
 
 ## 目录结构
 创建一个新的 Chart：
@@ -94,6 +110,7 @@ helloworld
 │   └── deployment.yaml
 └── values.yaml             # 部署时需要开放可配置的参数
 ```
+
 
 ## 语法
 Helm 主要依赖于 Go template 语法，并加入了 [sprig 方法](https://masterminds.github.io/sprig/)。

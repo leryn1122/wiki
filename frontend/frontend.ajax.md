@@ -1,3 +1,14 @@
+---
+id: frontend.ajax
+tags:
+- ajax
+- axios
+- frontend
+- web
+title: AJAX & Axios
+
+---
+
 
 # AJAX
 参考文档：
@@ -12,6 +23,7 @@ AJAX 是 Asynchronous JavaScript And XML 的首字母缩写~~_（并不是球队
 
 以上两者的结合可以实现浏览器和服务端传输数据来异步更新页面，这意味了用户不在需要重新加载整个页面就可以更新局部页面。
 ![image.png](./../assets/1710602657295-30bfbceb-4699-49ff-bbf7-68c1a2840fd4.png)
+
 
 
 # Axios

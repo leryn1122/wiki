@@ -1,9 +1,21 @@
+---
+id: monitor.prometheus.rabbitmq
+tags:
+- monitor
+- mq
+- prometheus
+- rabbitmq
+title: "RabbitMQ Prometheus \u76D1\u63A7"
+
+---
+
 
 # RabbitMQ Prometheus 监控
 参考文档：
 
 - [RabbitMQ Prometheus 插件 - RabbitMQ 官网](https://www.rabbitmq.com/prometheus.html)
 - [RabbitMQ Dashboard - Grafana 官网](https://grafana.com/grafana/dashboards/10991-rabbitmq-overview/)
+
 
 ## 监控插件安装
 RabbitMQ 已经内置了 Prometheus 插件，所以直接通过命令行开启，无需其他的 Exporter。
@@ -43,6 +55,7 @@ kubectl create secret generic additional-scrape-configs \
 
 kubectl apply -f additional-scrape-configs.yaml -n monitoring
 ```
+
 
 ## Grafana 仪表盘
 在 Grafana 上导入 [RabbitMQ-Overview 仪表盘](https://grafana.com/grafana/dashboards/10991)，这是 RabbitMQ 官方提供的仪表盘。

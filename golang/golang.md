@@ -1,3 +1,11 @@
+---
+id: golang
+tags:
+- go
+title: Golang
+
+---
+
 
 # Golang
 参考文档：

@@ -1,5 +1,14 @@
+---
+id: toolchain.metabase
+tags:
+- metabase
+- software
+title: Metabase
 
-# Metabase 安装手册
+---
+
+
+# Metabase
 参考文档：
 
 - [https://www.metabase.com/](https://www.metabase.com/)

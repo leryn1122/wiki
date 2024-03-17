@@ -1,8 +1,17 @@
+---
+id: frontend.reactive
+tags:
+- frontend
+title: "\u54CD\u5E94\u5F0F\u5E03\u5C40"
+
+---
+
 
 # 响应式布局
 参考文档：
 
 - [Responsive Mobile Navigation Menu - Methods and Solutions](https://www.queness.com/post/13093/responsive-mobile-navigation-menumethods-and-solutions)
+
 
 ## 导航布局
 首先可以通过监听原生 Window 的视宽，根据视宽的大小来判断是否是 PC 端或移动端，不同设备采用不同的布局：
@@ -57,6 +66,7 @@ const layout = computed<ReturnType<typeof defineComponent>>(() => {
   </component>
 </template>
 ```
+
 
 ## CSS
 HTML5 引入了一种方法，使 Web 设计者可以通过 `<meta>` 标签来控制视口。

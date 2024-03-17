@@ -1,5 +1,14 @@
+---
+id: test.jmeter
+tags:
+- jmeter
+title: "Jmeter \u538B\u529B\u6D4B\u8BD5"
+
+---
+
 
 # Jmeter 压力测试
+
 
 ## 常见问题
 每次发起请求都会占用一个 Windows 压测机的本地端口，所有端口都被占用后 Jmeter 将报 `Address already in use` 的错误，因为所有端口都被占用而没有规划给操作系统。

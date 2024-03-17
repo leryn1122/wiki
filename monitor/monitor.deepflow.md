@@ -1,3 +1,12 @@
+---
+id: monitor.deepflow
+tags:
+- deepflow
+- ebpf
+title: "Deepflow \u76D1\u63A7"
+
+---
+
 
 # Deepflow 监控
 参考文档：
@@ -13,6 +22,7 @@ Server 端必须在 Kubernetes 集群中，agent 可以在同一集群中、不�
 
 Deepflow 架构图：
 ![image.png](./../assets/1678691417859-7daba259-251d-40f1-bbdc-c34c8d3c33fd.png)
+
 
 
 
@@ -36,6 +46,7 @@ helm install deepflow -n deepflow deepflow/deepflow --create-namespace \
 curl -o /usr/bin/deepflow-ctl https://deepflow-ce.oss-cn-beijing.aliyuncs.com/bin/ctl/stable/linux/$(arch | sed 's|x86_64|amd64|' | sed 's|aarch64|arm64|')/deepflow-ctl
 chmod a+x /usr/bin/deepflow-ctl
 ```
+
 
 ## 跨集群
 部署 agent
@@ -63,6 +74,7 @@ helm repo update deepflow # use `helm repo update` when helm < 3.7.0
 helm install deepflow-agent -n deepflow deepflow/deepflow-agent --create-namespace \
     -f values-custom.yaml
 ```
+
 
 #### 常见问题
 

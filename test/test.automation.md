@@ -1,6 +1,16 @@
+---
+id: test.automation
+tags:
+- selenium
+- test
+title: "\u81EA\u52A8\u5316\u6D4B\u8BD5"
+
+---
+
 
 # 自动化测试
 自动化测试这里主要介绍的 Selenium Python 框架的教程。
+
 
 ## Selenium 框架
 参考文档：
@@ -73,6 +83,7 @@ def skip_cloudflare_waf(driver: webdriver.Chrome):
             )
 ```
 
+
 ### 定位元素
 然后可以用过定位器定位元素：
 ```python
@@ -94,6 +105,7 @@ driver.find_element_by_partial_link_text()
 driver.find_element_by_xpath()
 driver.find_element_by_css_selector()
 ```
+
 
 ### 发送键盘事件
 ```python

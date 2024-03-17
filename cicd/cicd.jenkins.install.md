@@ -1,3 +1,12 @@
+---
+id: cicd.jenkins.install
+tags:
+- cicd
+- jenkins
+title: Jenkins
+
+---
+
 
 # Jenkins 安装手册
 参考文档：
@@ -15,6 +24,7 @@ Jenkins 本身也不是完美无缺，甚至还有点笨重和过时，但很多
 - 文件系统：Jenkins 的配置文件和工作目录都依赖本地的文件系统，使用 XML 来管理，而不是数据库。
 - 云原生：Jenkins 可以使用 Kubernetes 插件接入云原生，但 JNLP 本身效率低下。
 - 内存占用：Jenkins 内存占用极大。
+
 
 ## Docker 安装
 Dockerhub 上 **jenkins** 和 **jenkinsci/jenkins** 的镜像已经 deprecated 了，改用官方 [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins) 镜像。
@@ -53,6 +63,7 @@ docker exec jenkins \
 ```
 安装插件，可能由于网络问题安装失败，失败也可以在之后手动安装。后续安装界面提示操作即可。
 
+
 ## Helm 安装（云环境推荐）
 参考文档：
 
@@ -75,7 +86,9 @@ persistence.enabled=true
 persistence.existingClaim=jenkins-pvc
 ```
 
+
 ## 配置
+
 
 ### GitHub Proxy 代理
 加速 GitHub clone 的代理设置：
@@ -83,6 +96,7 @@ persistence.existingClaim=jenkins-pvc
 git config --global protocol.https.allow always
 git config --global url."https://mirror.ghproxy.com/https://github.com/".insteadOf "https://github.com/"
 ```
+
 
 ## Jenkins Docker
 参考文档：
@@ -140,12 +154,15 @@ USER jenkins
 ENTRYPOINT [ "/usr/local/bin/jenkins-agent" ]
 ```
 
+
 # 访问 Jenkins
+
 
 ## Jenkins CLI
 ```bash
 java -jar jenkins-cli.jar -s https://jenkins.mydomain.com/ -auth admin:1159a750229c40a61247baaff72f75b9b5 -webSocket help
 ```
+
 
 ## Jenkins Crumb
 Jenkins Crumb 实际上相当于其他 Web 服务中的 Token。它用于防止 CSRF 攻击。
@@ -178,8 +195,10 @@ curl -XPOST https://jenkins.mydomain.com/job/$PROJECT/job/$PIPELINE/buildWithPar
 http://jenkins.mydomain.com/queue/item/313/
 ```
 
+
 # Jenkins 插件
 本文会列举常用插件的用法，主要是 JCasC。之后插件的配置都会以 JCasC 的 YAML 配置为基础。如果 Jenkins 可配置化后，一切部署和调用都可以实现自动化了。
+
 
 ## JCasC - Jenkins Configuration as Code
 参考文档：
@@ -189,6 +208,7 @@ http://jenkins.mydomain.com/queue/item/313/
 
 它允许用户用可读的、声明式的 YAML 配置各种参数，而不是在页面上点击按钮添加配置。
 如果你需要通过命令行启动 Jenkins Docker 容器，那么它会自动初始化 Jenkins 实例。
+
 
 ### 配置方式
 它查找 `CASC_JENKINS_CONFIG` 环境变量或者 `casc.jenkins.config` Java 参数 (逗号分隔) :
@@ -200,9 +220,11 @@ http://jenkins.mydomain.com/queue/item/313/
 如果 `CASC_JENKINS_CONFIG` 指向文件夹，将递归遍历 `.yml`, `.yaml`, `.YAML`, `.YML` 后缀文件
 默认地址是 `$JENKINS_HOME/jenkins.yaml`。
 
+
 ### 刷新配置
 更新配置后，需要调用 Jenkins 重新加载配置的 RESTful API。
 如果使用的是 Helm 的安装方式，那么 Jenkins 的 StatefulSet 下会有个名为 `config-reload` 的 SideCar 用于解决这个问题。它会自动监听 JCasC 对应的 ConfigMap 的变化，如果数据更新自动调用重新加载的接口。
+
 
 ## Simple Themes
 下载后 [Simple Theme](https://wiki.jenkins-ci.org/display/JENKINS/Simple+Theme+Plugin) 插件后，

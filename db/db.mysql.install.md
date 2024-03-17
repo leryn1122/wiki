@@ -1,3 +1,12 @@
+---
+id: db.mysql.install
+tags:
+- db
+- mysql
+title: "MySQL \u5B89\u88C5\u624B\u518C"
+
+---
+
 
 # MySQL
 Reference:
@@ -6,6 +15,7 @@ Reference:
 - Mysql5.7 - 一键安装脚本 - cnblogs - 作者: 小豹子加油
 - Mysql8.0 - 一键安装脚本 - cnblogs - 作者: 小豹子加油
 
+
 ## 包管理器
 
 这很简单..
@@ -13,6 +23,7 @@ Reference:
 sudo apt update
 sudo apt install -y mysql-server-8.0 mysql-client-8.0
 ```
+
 
 ## Docker
 
@@ -34,7 +45,9 @@ docker run \
   mysql:8.0.26
 ```
 
+
 ## 二进制安装
+
 
 ### 前置准备
 部署准备, 安装前需要准备如下材料:
@@ -68,6 +81,7 @@ sudo usermod -a -G mysql leryn
 sudo rpm -qa | grep -i mysql   | grep -v libs | xargs rpm -ev --nodeps
 sudo rpm -qa | grep -i mariadb | grep -v libs | xargs rpm -ev --nodeps
 ```
+
 
 ### 安装步骤
 先做一些 MySQL 在 Linux 系统层面的参数配置.
@@ -260,6 +274,7 @@ mysql -uroot -p
 mysql> shutdown;
 mysql> exit;
 ```
+
 
 ### Boot
 启动或停止服务:

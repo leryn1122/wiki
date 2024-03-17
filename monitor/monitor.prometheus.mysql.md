@@ -1,3 +1,10 @@
+---
+id: monitor.prometheus.mysql
+tags: []
+title: "MySQL Prometheus \u76D1\u63A7"
+
+---
+
 
 # MySQL Prometheus 监控
 参考文献：

@@ -1,3 +1,12 @@
+---
+id: k8s.csi
+tags:
+- csi
+- storage
+title: "Kubernetes CSI \u63D2\u4EF6\u5F00\u53D1"
+
+---
+
 
 # Kubernetes CSI 插件开发
 参考文档：
@@ -5,6 +14,7 @@
 - [Introduction - Kubernetes CSI Developer Documentation](https://kubernetes-csi.github.io/docs/introduction.html)
 - [design-proposals-archive/storage/container-storage-interface.md at main · kubernetes/design-proposals-archive](https://github.com/kubernetes/design-proposals-archive/blob/main/storage/container-storage-interface.md)
 - [一文读懂容器存储接口 CSI](https://zhuanlan.zhihu.com/p/364255271)
+
 
 ## 简介
 开始前介绍一下，Kubernetes 原生支持一些存储类型，比如 NFS、HostPath、CephFS 等等，这些代码在 Kubernetes 仓库中维护，因此称之为 in-tree。但这带来一些问题：
@@ -46,7 +56,9 @@ NodeUnstageVolume 和 NodeUnpublishVolume 正是 Volume 卸载阶段所分别对
 ![](./../assets/095597376fc0fc6cfc58b8f4ecbc2f74.svg)
 ![](./../assets/b55867cf23cc5a30975da65fcce46850.svg)
 
+
 ## 流程
+
 
 ### Provisioning Volumes
 
@@ -72,6 +84,7 @@ annotation:
 5. External Provisioner 创盘成功后会创建 PersistentVolume 资源
 6. PersistentVolumeController 会将绑定 PV 和 PVC
 
+
 ### Attaching Volumes
 
 1. AD 控制器（AttachDetachController）观察到使用 CSI 类型 PV 的 Pod 调度到某节点上，会调用**内部 in-tree CSI 插件（csiAttacher）**的 Attach 函数。
@@ -79,17 +92,20 @@ annotation:
 3. External Attacher 观察到该 VolumeAttachment 对象，并调用**外部 CSI 插件**的** **ControllerPublish 函数以将卷挂接到对应节点上。外部 CSI 插件挂载成功后，External Attacher 会更新相关 VolumeAttachment 对象的 `.Status.Attached` 为 true。
 4. AD 控制器 csiAttacher 观察到 VolumeAttachment 对象的 `.Status.Attached` 设置为 true，于是更新AD 控制器内部状态（ActualStateOfWorld），该状态会显示在 Node 资源的 `.Status.VolumesAttached` 上。
 
+
 ### Mounting Volumes
 
 1. **Volume Manager（Kubelet 组件）**观察到有新的使用 CSI 类型 PV 的 Pod 调度到本节点上，于是调用 csiAttacher 的 WaitForAttach 函数。
 2. csiAttacher 等待集群中 VolumeAttachment 对象状态 `.Status.Attached` 变为 true。
 3. csiAttacher 调用 MountDevice 函数，该函数内部通过 Unix Socket 调用外部 CSI 插件的 NodeStageVolume 函数；之后 csiAttacher 调用**内部 in-tree CSI 插件（csiMountMgr）**的 SetUp 函数，该函数内部会通过 Unix Socket 调用外部 CSI 插件的 NodePublishVolume 函数。
 
+
 ### Unmounting Volumes
 
 1. 用户删除相关 Pod。
 2. Volume Manager 观察到包含 CSI 存储卷的 Pod 被删除，于是调用 csiMountMgr 的 TearDown 函数，该函数内部会通过 Unix Socket 调用外部 CSI 插件的 NodeUnpublishVolume 函数。
 3. Volume Manager 调用内部 csiAttacher 的 UnmountDevice 函数，该函数内部会通过 Unix Socket 调用外部 CSI 插件的 NodeUnpublishVolume 函数。
+
 
 ### Detaching Volumes
 
@@ -98,6 +114,7 @@ annotation:
 3. External Attacher 观察到集群中 VolumeAttachment 对象的 DeletionTimestamp 非空，于是调用外部 CSI 插件的 ControllerUnpublish 函数以将卷从对应节点上摘除。外部 CSI 插件摘除成功后，External Attacher 会移除相关 VolumeAttachment 对象的 finalizer 字段，此时 VolumeAttachment 对象被彻底删除。
 4. AD 控制器中 csiAttacher 观察到 VolumeAttachment 对象已删除，于是更新 AD 控制器中的内部状态；同时AD 控制器更新 Node 资源，此时 Node 资源的 `.Status.VolumesAttached` 上已没有相关挂接信息。
 
+
 ### Deleting Volumes
 
 1. 用户删除相关 PVC。
@@ -105,93 +122,128 @@ annotation:
    - Delete：调用外部 CSI 插件的 DeleteVolume 函数以删除卷设备；一旦卷成功删除，Provisioner 会删除集群中对应 PV 对象。
    - Retain：Provisioner 不执行卷设备删除操作。
 
+
 ## CSI Sidecar 组件介绍
+
 
 ### external-attacher
 监视集群中的 VolumeAttachment 资源，然后触发 ControllerPublishVolume 和 ControllerUnpublishVolume。
 
+
 ### external-provisioner
 监视集群中的 PersistentVolumeClaim，然后触发 CreateVolume 和 DeleteVolume。
+
 
 ### external-resizer
 主要功能是实现持久卷的弹性扩缩容，需要云厂商插件提供相应的能力。
 监视集群中的 PersistentVolumeClaim 对象的编辑并触发 ControllerExpandVolume。
 
+
 ### external-snapshotter
 主要功能是实现持久卷的快照（VolumeSnapshot）、备份恢复等能力。
 监视集群中的 VolumeSnapshotContent，然后触发 CreateSnapshot、DeleteSnapshot 和 ListSnapshots。
 
+
 ### livenessprobe
 把 Kubernetes 内置的 Liveness Probe 健康检查，转发为 IdentityServer 的 Probe 方法调用。
+
 
 ### node-driver-registrar
 将外部 CSI 插件注册到 Kubelet，Kubelet 绑定 Unix socket 来调用外部 CSI 插件的函数。Kubelet 向其发出 NodeGetInfo、NodeStageVolume 和 NodePublishVolume 调用。
 
+
 ### external-health-monitor-controller
 
+
 ### external-health-monitor-agent
+
 
 ## CSI 接口
 存储厂商需实现 CSI 插件的三大接口：`IdentityServer`、`ControllerServer`、`NodeServer`。
 
+
 ### IdentityServer
 IdentityServer 主要用于认证 CSI 插件的身份信息，三个方法整体实现都比较简单：
+
 
 #### GetPluginInfo
 只需要返回 CSI 插件名称和版本。
 
+
 #### GetPluginCapabilities
 返回插件的 Controller 的 Capabilities。如果需要插件支持某些功能，则必须返回对应的 Capabilities。
+
 
 #### Probe
 健康检查，永远返回 OK 即可。
 
+
 ### ControllerServer
 ControllerServer 主要负责存储卷及快照的 Create/Delete 以及 Attach/Detach 操作
+
 
 #### CreateVolume
 创建实际的存储卷设备。
 
+
 #### DeleteVolume
 删除实际的存储卷设备。
 
+
 #### ControllerPublishVolume
+
 
 #### ControllerUnpublishVolume
 
+
 #### ValidateVolumeCapabilities
+
 
 #### ListVolumes
 
+
 #### GetCapacity
 
+
 #### ControllerGetCapabilities
+
 
 #### CreateSnapshot
 创建卷快照。
 
+
 #### DeleteSnapshot
 删除卷快照。
+
 
 #### ListSnapshots
 查询卷快照。
 
+
 #### ControllerExpandVolume
+
 
 #### ControllerGetVolume
 
+
 #### ControllerModifyVolume
+
 
 ### NodeServer
 NodeServer 主要负责存储卷 Mount/Umount 操作
 
+
 #### NodeStageVolume
+
 
 #### NodeUnstageVolume
 
+
 #### NodePublishVolume
 
+
 #### NodeUnpublishVolume
+
 
 #### NodeGetVolumeStats
 为 CSI 实现监控，Kubelet 会调用该方法并反映在 metrics 上。
@@ -203,8 +255,11 @@ NodeServer 主要负责存储卷 Mount/Umount 操作
 - kubelet_volume_stats_inodes_used：存储卷 inode 使用量
 - kubelet_volume_stats_inodes_free：存储卷 inode 剩余量
 
+
 #### NodeExpandVolume
 
+
 #### NodeGetCapabilities
+
 
 #### NodeGetInfo

@@ -1,8 +1,18 @@
+---
+id: toolchain.clash
+tags:
+- clash
+- software
+title: Clash
 
-# Clash 安装手册
-本文只介绍如何将 Clash 部署到服务端，实现上网。
+---
 
-## Clash 手动安装手册
+
+# Clash
+本文只介绍如何将 Clash 部署到服务端，实现联网上网。
+
+
+## Linux 安装手册
 安装客户端：
 ```bash
 wget https://github.com/Dreamacro/clash/releases/download/v1.10.6/clash-linux-amd64-v1.10.6.gz
@@ -17,7 +27,7 @@ mkdir -p /etc/clash
 ```
 把 PC 客户端的配置文件拷贝到这里，取名 `config.yml`。并创建 Clash 代理的配置文件。
 ```bash
-cat <<EOF> /etc/clash/clash.env
+cat <<\EOF> /etc/clash/clash.env
 https_proxy=http://127.0.0.1:7890
 http_proxy=http://127.0.0.1:7890
 all_proxy=socks5://127.0.0.1:7890
@@ -27,7 +37,7 @@ EOF
 ```bash
 touch /etc/systemd/system/clash.service
 ```
-```properties
+```toml
 [Unit]
 Description=Clash Proxy
 Documentation=https://github.com/Dreamacro/clash

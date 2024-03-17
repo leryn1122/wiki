@@ -1,14 +1,24 @@
+---
+id: network.dns
+tags: []
+title: DNS
+
+---
+
 
 # DNS
 阿里云购买域名后自动解锁对应域名的 DNS 服务。域名购买按年付费，域名架构根据不同域名，价格不同。
 当前使用的`leryn.top`域名约 10-30 人民币左右。
 
+
 ## 公网备案
 国内公网使用域名需要工信部备案，否则无法在公网开通 80/443 端口的服务（~~内网可无视~~）。客服小姐姐也会在域名备案时提供人工服务。域名备案后，必须在主页的最下方展示域名备案。
+
 
 ## HTTP TLS 证书
 此外，阿里云可以免费领取 20 个域名证书，仅支持单域名，不支持泛域名。
 需要泛域名 HTTP TLS 证书推荐使用`Let's Encryption`生成自授权证书。具体见 [HTTPS 自授权证书](https://www.yuque.com/leryn/wiki/https)。
+
 
 ## DNS配置
 
@@ -21,6 +31,7 @@
 | www | CNAME | leryn.top |
 | @ | A | IP 地址 |
 | _acme-challenge | TXT | 授权码 |
+
 
 
 ### hosts 文件

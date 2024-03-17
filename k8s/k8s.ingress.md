@@ -1,3 +1,13 @@
+---
+id: k8s.ingress
+tags:
+- ingress
+- k8s
+- kubernetes
+title: Kubernetes Ingress Controller
+
+---
+
 
 # Kubernetes Ingress Controller
 参考文档：
@@ -31,6 +41,7 @@ Ingress Controller 有不同的实现方式，实现的功能也不尽相同：
 ![image.png](./../assets/1646287881167-995db7ce-c382-47e6-8082-61150bbf109c.png)
 
 ![image.png](./../assets/1648298721391-71350fe3-57e3-47ed-a828-f774a636d15e.png)
+
 
 
 ## Nginx Ingress Controller 安装步骤
@@ -123,8 +134,10 @@ kubectl exec -it ingress-nginx-nginx-ingress-controller-57b6f9794f-zkzrj -n gate
   -- bash -c "cat /etc/nginx/nginx.conf"
 ```
 
+
 ## 相关配置
 安装的时候已经介绍了一下 Ingress Controller 和其上匹配的默认配置，下面是 Ingress 的 YAML 中可配置的参数。
+
 
 ### Https 证书
 需要配置 Https 证书。获得一下两个值,，这里是用 acme.sh 生成的自授权证书：
@@ -171,6 +184,7 @@ helm install ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx \
   --set service.type="NodePort"
 ```
 
+
 ### 路由规则
 路由规则可以以 `annotations` 的方式添加到 Ingress 中：
 
@@ -179,10 +193,12 @@ helm install ingress-nginx bitnami/nginx-ingress-controller -n ingress-nginx \
 - `nginx.ingress.kubernetes.io/ssl-redirect`: true，是否开启 SSL 重定向
 - `nginx.ingress.kubernetes.io/rewrite-target`: `/$1`，如何重写转发路径
 
+
 ### Ingress Class
 如果一个集群上可以安装多个 Ingress Controller，例如通过不同的 Ingress Class 来区分不同的渠道：Admin Ingress，Internal Ingress等等，不同的渠道的认证、转发规则都不尽相同，内部认证可能基于 Cookies，外部认证基于 Token。
 当创建新的 Ingress 时，可以通过为其指定 Ingress Class 的方式将其注入到预期的 Ingress Controller 中。如果不显式指定 Ingress Class，且集群中只有一个 Ingress Class 标记为默认，那么会自动应用到 Ingress 上。
 早期版本使用注解来标记默认 Ingress Class，现在请使用 `spec.ingressClassName: "name"` 来指定。另外在 IngressClass 使用注解 `ingressclass.kubernetes.io/is-default-class: true` 来指定默认 Ingress Class。
+
 
 ### 发布策略
 参考文档：

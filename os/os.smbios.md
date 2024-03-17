@@ -1,3 +1,13 @@
+---
+id: os.smbios
+tags:
+- dmi
+- infra
+- smbios
+title: SMBIOS
+
+---
+
 
 # SMBIOS
 参考资料：
@@ -5,6 +15,7 @@
 - [SMBIOS | DMTF](https://www.dmtf.org/standards/smbios)
 - [https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.7.0.pdf](https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.7.0.pdf)
 - [https://www.dmtf.org/sites/default/files/standards/documents/DSP0130.pdf](https://www.dmtf.org/sites/default/files/standards/documents/DSP0130.pdf)
+
 
 ## 介绍
 
@@ -18,6 +29,7 @@
 - `/dev/mem`（FreeBSD）
 
 SMBIOS 只能获得板载设备，例如集成显卡、板载网卡。如果插在插槽上的，例如独立显卡、独立网卡，只能获得插槽口上的信息，而不能获得所有详细的设备信息。
+
 
 ## 命令行
 使用命令行接口：
@@ -63,6 +75,7 @@ dmidecode -t xxx
 #  connector
 #  slot
 ```
+
 
 ## API
 可以通过第三方库，访问 SMBIOS：

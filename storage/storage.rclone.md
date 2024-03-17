@@ -1,3 +1,11 @@
+---
+id: storage.rclone
+tags:
+- rclone
+title: Rclone
+
+---
+
 
 # Rclone
 参考文档：
@@ -9,7 +17,9 @@
 Rclone 是一款支持超过 40 种云存储的命令行工具，包括（NFS、S3 对象存储）。命令与 Unix 下相似，支持 Shell 管道。跨平台支持操作系统 Windows、macOS、linux 和 FreeBSD。同时能够实现挂载云存储到本地盘。
 开发语言：golang 和前端界面使用 React
 
+
 ## 安装
+
 
 ### Rclone
 Windows 下载安装包即可，只包含一个可执行文件。
@@ -18,14 +28,17 @@ Linux / macOS / BSD 用户请这样安装：
 sudo -v ; curl https://rclone.org/install.sh | sudo bash
 ```
 
+
 ### WinFsp（Windows）
 仅安装 Rclone 本身并不能支持各种复杂的文件系统协议，Windows 下需要安装 WinFsp（Windows File System Proxy），它来实现各个协议的对接。下载[安装包](https://winfsp.dev/rel/)安装即可。
+
 
 ### FUSE（Linux）
 Linux 下安装文件协议对应的 FUSE 即可。
 ```bash
 sudo apt install -y nfs-common s3fs
 ```
+
 
 ## GUI
 它会先从远程下载一个 React 的前端包（界面不是特别好看），再启动一个 Web UI 界面。如果需要指定密码登录、端口和 TLS 证书等等，请参考 [GUI 文档](https://rclone.org/gui/)。一般只用来临时启动界面编辑配置。
@@ -36,6 +49,7 @@ rclone rcd --rc-web-gui
 --rc-web-gui-force-update     # 强制更新 UI 包
 --rc-web-gui-no-open-browser  # 关闭默认打开浏览器
 ```
+
 
 ## 命令
 ```bash

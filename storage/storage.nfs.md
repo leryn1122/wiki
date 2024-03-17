@@ -1,9 +1,19 @@
+---
+id: storage.nfs
+tags:
+- nfs
+- storage
+title: NFS
+
+---
+
 
 # NFS
 NFS（Network File System）表示层协议。
 需要开通网络权限的请注意：
 
 - NFS 网络默认使用了 111 和 2049 端口的 TCP/UDP 协议，并且 UDP 是双向的。请同时开通**两个端口**的 TCP 以及**双向 UDP**。
+
 
 ## 服务端安装
 **Ubuntu 系统**
@@ -16,6 +26,7 @@ sudo yum install nfs-utils rpcbind
 sudo systemctl start nfs-server.service
 ```
 
+
 ## 客户端安装
 **Ubuntu 系统**
 ```bash
@@ -25,6 +36,7 @@ sudo apt install nfs-common
 ```bash
 sudo yum install nfs-utils
 ```
+
 
 ## 挂载
 首先需要在服务端配置：
@@ -47,7 +59,9 @@ mkdir -p /mnt/path
 sudo mount -t nfs -o vers=3,tcp,nolock,async,mountproto=tcp,rsize=1048576,wsize=1048576  121.196.30.0:/path/to/mnt /mnt/path
 ```
 
+
 ## Windows 客户端支持
+
 
 #### 第一步：配置远程桌面服务
 
@@ -64,6 +78,7 @@ sudo mount -t nfs -o vers=3,tcp,nolock,async,mountproto=tcp,rsize=1048576,wsize=
 - [windows2012怎么增加远程用户连接数量-百度经验](https://jingyan.baidu.com/article/22fe7ced1e696d7102617ff5.html)
 - [Server2012设置多用户同时登录远程服务器-百度经验](https://jingyan.baidu.com/article/9faa7231c9e061473d28cb65.html)
 - [52sanmiao.com](https://www.52sanmiao.com/xitongyw/49.html)
+
 
 #### 第二步：配置 Windows 系统 NFS 客户端服务
 
@@ -86,6 +101,7 @@ umount X:
 # 或者取消所有网络驱动器
 umount -a
 ```
+
 
 ### 常见问题
 **Windows Server 2016 NFS 挂载成功后，没有写权限**

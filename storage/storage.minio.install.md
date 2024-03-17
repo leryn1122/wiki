@@ -1,9 +1,19 @@
+---
+id: storage.minio.install
+tags:
+- minio
+- s3
+title: "MinIO \u5B89\u88C5\u624B\u518C"
+
+---
+
 
 # MinIO 安装手册
 参考文档：
 
 - [MinIO Object Storage for Kubernetes — MinIO Object Storage for Kubernetes](https://docs.min.io/)
 - [MinIO对象存储 Kubernetes — MinIO中文文档 | MinIO Kubernetes中文文档](https://docs.minio.org.cn/docs/)
+
 
 ## Docker 安装
 这里：
@@ -29,6 +39,7 @@ docker run \
   --env="MINIO_ACCESS_KEY=admin" \
   --env="MINIO_SECRET_KEY=admin" \
 ```
+
 
 ## Helm 安装
 参考文档：

@@ -1,11 +1,22 @@
+---
+id: cri.docker
+tags:
+- cri
+- docker
+title: "Docker \u5468\u8FB9\u751F\u6001"
+
+---
+
 
 # Docker 周边生态
+
 
 ## Docker
 十分推荐使用 Ubuntu 系统安装 Docker，而不是 CentOS。这基于以下原因：
 
 - Linux 内核会为 containerd 让路并提供相应的支持，而 CentOS 的发行版的更新速度完全跟不上变化速度
 - 相对比较多的开发者使用 Ubuntu 来作为开发机或开发环境的构建
+
 
 ### 包管理器安装
 ```bash
@@ -41,10 +52,12 @@ cat > /etc/docker/daemon.json <<EOF
 EOF
 ```
 
+
 ### Docker API
 
 - [Develop with Docker Engine API](https://docs.docker.com/engine/api/)
 - [Develop with Docker Engine SDKs](https://docs.docker.com/engine/api/sdk/#unofficial-libraries)
+
 
 #### 命令行
 查看 docker 存储空间
@@ -112,6 +125,7 @@ docker images --format "{{.Repository}}:{{.Tag}}" | xargs -L1 docker pull
 docker images | awk '$1=="<none>"||$2=="<none>"{print $3}' | xargs -r docker rmi --force
 ```
 
+
 #### HTTP 接口
 :::danger
 **请不要在未加 TLS 证书的情况下，向外部开放 TCP 端口。**
@@ -134,11 +148,13 @@ curl -XPOST 'http://xxx.xxx.xxx.xxx:2375/build?t=image:tag' \
 ```
 
 
+
 ## Registry
 参考文档：
 
 - [Registry](https://docs.docker.com/registry/spec/api/)
 - [https://registry.hub.docker.com/r/konradkleine/docker-registry-frontend](https://registry.hub.docker.com/r/konradkleine/docker-registry-frontend)
+
 
 ### DockerHub 和其他公开源
 DockerHub 是 Docker 官方提供的镜像仓库。纵使 Docker 有种种问题，Kubernetes 也改用 containerd 作为默认 OCI 了，但是 Dockerhub 丰富生态使得 Docker 经久不衰。其他公开源：
@@ -157,6 +173,7 @@ DockerHub 任何人都可以注册免费账户，并享有一个私有仓库，�
 docker tag docker.mydomain.com/<image>:<tag> leryn/app:<image>-<tag>
 docker push leryn/app:<image>-<tag>
 ```
+
 
 ### ~~Docker Resgisty 安装手册（已过时）~~
 ```bash
@@ -193,6 +210,7 @@ vim /etc/docker/daemon.json
 }
 ```
 
+
 ### HTTP API
 最常用的两个 API：
 ```http
@@ -217,6 +235,7 @@ GET /v2/openjdk/tags/list
   ]
 }
 ```
+
 
 ## ~~Docker Resgisty Frontend（已过时）~~
 参考文档：
@@ -249,6 +268,7 @@ docker run \
   konradkleine/docker-registry-frontend:v2
 ```
 注意这里需要让`docker.mydomain.com`支持跨域，我使用 nginx 来实现。
+
 
 ## Portainer
 参考文档：

@@ -1,3 +1,11 @@
+---
+id: storage.perf
+tags:
+- storage
+title: "\u6587\u4EF6\u7CFB\u7EDF\u6027\u80FD\u6D4B\u8BD5\u5DE5\u5177"
+
+---
+
 
 # 文件系统性能测试工具
 参考文档：

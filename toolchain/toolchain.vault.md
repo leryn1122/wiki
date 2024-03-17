@@ -1,3 +1,11 @@
+---
+id: toolchain.vault
+tags:
+- vault
+title: Vault
+
+---
+
 
 # Vault 安装手册
 

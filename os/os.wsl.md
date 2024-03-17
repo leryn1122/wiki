@@ -1,6 +1,17 @@
+---
+id: os.wsl
+tags:
+- vm
+- wsl
+- wsl2
+title: WSL - Windows Subsystem Linux
+
+---
+
 
 # WSL - Windows Subsystem Linux
 WSL（Windows Subsystem Linux）是 Windows 操作系统内置的 Linux 子系统，类似 WSA（Windows Subsystem Android），不过后者已经停止维护了。
+
 
 ## 安装方法
 首先，需要开启 Windows Hyper-V 虚拟机，然后可以在微软商店下载 Ubuntu WSL 或 Fedora WSL。

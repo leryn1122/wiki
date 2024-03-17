@@ -1,9 +1,20 @@
+---
+id: infra.ansible
+tags:
+- ansible
+- cli
+- infra
+title: "Ansible - \u81EA\u52A8\u5316\u8FD0\u7EF4"
+
+---
+
 
 # Ansible - 自动化运维
 Ansible 在我的工作内容中有两个用途：
 
 - 批量操作服务器：例如一个非常真实的场景是网络安全组要求为某个网段的服务器加装安全探针、升级内核等等，一个 Ansible 脚本可以完成数百台服务器的安装；
 - 监控系统时更加接近 Shell 命令的内容，例如 ping 我们会用 REST API 调用 Ansible Semaphore 来完成。
+
 
 ## Ansible
 Ansible 基于 ssh 和 Python
@@ -13,6 +24,7 @@ ansible -i hosts -m ping
 
 ansible-playbook -i hosts main.yaml
 ```
+
 
 ## Semaphore - Ansible 控制台
 参考文档：
@@ -119,6 +131,7 @@ spec:
               port: http
       restartPolicy: Always
 ```
+
 
 ## 常用 API
 域名使用 `ansible.mydomain.com`，由于是集群内部可以直接用 Kubernetes Service 的名字 `ansible.ansible`。

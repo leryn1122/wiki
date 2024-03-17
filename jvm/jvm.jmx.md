@@ -1,5 +1,15 @@
+---
+id: jvm.jmx
+tags:
+- jmx
+- jvm
+title: "JMX \u8C03\u8BD5\u4EE5\u53CA\u76D1\u63A7\u65B9\u6848"
+
+---
+
 
 # JMX 调试以及监控方案
+
 
 ## JVM 原生工具
 JDK 提供了一个查看堆栈的工具 jstack：
@@ -17,6 +27,7 @@ jmap -dump:format=b,file=/Users/xxxx/Desktop/testdump.hprof <PID>
 ![image.png](./../assets/1689581980334-b38f9d23-d844-4de5-bf0c-39bee1f59c2d.png)
 
 
+
 ## JMX Exporter
 参考文档：
 
@@ -28,6 +39,7 @@ java \
   -javaagent:/usr/local/jmx/jmx_prometheus_javaagent-0.16.1.jar=8081:/opt/jmx-config.yaml
   -jar app.jar
 ```
+
 
 ### Kubernetes 非侵入性方案
 我们在 Kubernetes 运维的时候有一个非侵入性的解决方案：
@@ -116,6 +128,7 @@ data:
 ```bash
 curl -XGET http://localhost:8081/metrics
 ```
+
 
 ## jconsole & cjmx
 参考文档：

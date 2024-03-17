@@ -1,3 +1,10 @@
+---
+id: os.linux.enlarge
+tags: []
+title: "\u6269\u5BB9\u5177\u4F53\u8FC7\u7A0B\u6F14\u793A"
+
+---
+
 
 # 扩容具体过程演示
 以下内容又臭又长，可以略过：
@@ -73,6 +80,7 @@ vgdisplay
   Free  PE / Size       2 / 8.00 MiB
   VG UUID               sH16CU-JTk0-5yv5-mwUI-FQ4f-xyVA-9z6UO1
 ```
+
 
 ## 物理盘
 查看磁盘，在超融合中挂载上新的硬盘后，用`fdisk -l`查看（不需要重启）。
@@ -193,6 +201,7 @@ vdb             252:16   0    40G  0 dis.
 └─vdb2          252:18   0    30G  0 part
 ```
 
+
 ## 物理卷 PV
 创建物理卷：
 ```bash
@@ -242,6 +251,7 @@ pvdisplay
   Allocated PE          0
   PV UUID               LYeEb1-jsTc-NSUe-Mj2D-AosK-iGsC-fvvAQl
 ```
+
 
 ## 卷组 VG
 朝已有的虚拟卷组里添加新的卷，不可以把已经隶属某虚拟卷组的卷利用`vgcreate`建立为新的卷组，会提示它已经被占用。
@@ -309,7 +319,9 @@ Volume group "centos" successfully extended
   VG UUID               sH16CU-JTk0-5yv5-mwUI-FQ4f-xyVA-9z6UO1
 ```
 
+
 ## 逻辑卷 LV
+
 
 ### 默认逻辑卷扩容
 逻辑卷中扩展大小，**这种操作没有指定挂载目录, 需要则查看新增逻辑卷扩容**。
@@ -386,6 +398,7 @@ tmpfs                    7.8G     0  7.8G   0% /sys/fs/cgroup
 /dev/vda1               1014M  148M  867M  15% /boot
 tmpfs                    1.6G     0  1.6G   0% /run/user/0
 ```
+
 
 ### 新增逻辑卷扩容
 查看逻辑卷。

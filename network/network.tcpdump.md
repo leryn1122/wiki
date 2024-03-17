@@ -1,3 +1,12 @@
+---
+id: network.tcpdump
+tags:
+- network
+- tcpdump
+title: "tcpdump \u6293\u5305\u624B\u518C"
+
+---
+
 
 # tcpdump 抓包手册
 如何在 kubernetes 中 tcpdump 容器的网络包：
@@ -5,11 +14,13 @@
 - kubectl debug
 - tcpdump pod 的网卡
 
+
 ## kubectl debug
 在 v1.23 版本前需要手动 kubernetes 更改配置，再重启 kubelet：
 ```bash
 kubectl debug -it ${pod_name} --image=rstp/net-tools:latest --target=${container_name} -- bash
 ```
+
 
 ## tcpdump pod的网卡
 ```bash

@@ -1,3 +1,12 @@
+---
+id: network.ebpf
+tags:
+- ebpf
+- network
+title: "eBPF \u5F00\u53D1"
+
+---
+
 
 # eBPF 开发
 本节指导利用 Rust 的 Aya 库来构建一个 eBPF 程序，类似的库还有 redpbf 等。

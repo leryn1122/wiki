@@ -1,3 +1,11 @@
+---
+id: monitor.prometheus
+tags:
+- prometheus
+title: "Prometheus \u5165\u95E8"
+
+---
+
 
 # Prometheus 入门
 Prometheus Server 负责去每个 Exporter 上拉去数据到内存里，默认是`/metrics`。
@@ -15,10 +23,12 @@ server:
 ```
 `registry.k8s.io/kube-state-metrics/kube-state-metrics` 的镜像可能拉不下来，可以改用 `bitnami/kube-state-metrics`。
 
+
 # Prometheus 告警二次开发
 参考文档：
 
 - [AlertManager Webhook Configuration - Prometheus 官网](https://prometheus.io/docs/alerting/latest/configuration/#webhook_config)
+
 
 ## AlertManager Webhook
 AlertManager 推送的告警 JOSN 格式。AlertManager 会将报警信息推送到指定的 Webhook。

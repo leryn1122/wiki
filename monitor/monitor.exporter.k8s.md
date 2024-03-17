@@ -1,5 +1,15 @@
+---
+id: monitor.exporter.k8s
+tags:
+- k8s
+- monitor
+title: "Kubernetes Prometheus \u76D1\u63A7"
+
+---
+
 
 # Kubernetes Prometheus 监控
+
 
 ## Kubernetes Event Exporter
 参考文档：

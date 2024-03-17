@@ -1,8 +1,20 @@
+---
+id: cri.gpu
+tags:
+- gpu
+- k8s
+- kubernetes
+- nvidia
+title: "NVIDIA GPU \u5BB9\u5668\u8FD0\u884C\u65F6"
+
+---
+
 
 # NVIDIA GPU 容器运行时
 参考文档：
 
 - [Overview — NVIDIA Container Toolkit 1.14.5 documentation](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)
+
 
 ## NVIDIA Container
 ```bash
@@ -35,6 +47,7 @@ sudo nvidia-smi
 # 或者
 sudo docker run --rm --gpus all nvidia/cuda:11.0.3-base-ubuntu20.04 nvidia-smi
 ```
+
 
 ## MIG
 MIG（Multi-Instance GPU）是一种 Ampere 架构显卡上的特性。通过硬件设计，将 GPU 分为更小的子 GPU。依次建立 GI（GPU Instnace）和并在其上创建 CI（Computed Instance）。MIG-vGPU 技术性能优于基于 Time-sliced 的 vGPU 技术。
