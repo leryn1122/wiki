@@ -15,11 +15,18 @@ title: "Amazon S3 \u5BF9\u8C61\u5B58\u50A8\u4ECB\u7ECD"
 
 OSS 完全符合 Amazon S3 的规范，所有文档参考 Amazon S3 文档即可。
 S3 适合维护了一个扁平化的索引，不存在传统意义上的文件夹的概念。适合大量小文件的存储以及读多写少的场景。
+不同的云厂商提供的对象存储，都满足 Amazon S3 存储的标准协议：
+
+- [Amazon S3 云存储_对象存储_云存储服务-AWS云服务](https://aws.amazon.com/cn/s3/)
+- [对象存储 OSS_云存储服务_企业数据管理_存储-阿里云](https://www.aliyun.com/product/oss)
+- [对象存储数据处理_COS数据处理_数据处理方案-腾讯云](https://cloud.tencent.com/product/cos)
+- [对象存储服务OBS_官网_云存储服务_数据云存储解决方案-华为云](https://www.huaweicloud.com/intl/zh-cn/product/obs.html)
+- [MinIO | 用于AI的S3&Kubernetes原生对象存储](https://www.minio.org.cn/)
 
 
 ## 介绍
-界面上配置 S3 用户，之后会拿到两个密钥：访问密钥（Access Key）和安全密钥（Secret Key），需要妥善保存，有点类似于 Oauth2 中的 ClientId 和 ClientSecret。
-存储桶是 S3 中的对象容器，通俗的话可以理解成文件系统的驱动器（C 盘，D 盘）。存储桶名是全局唯一的，不能重复创建。桶之间的对象是隔离的，除非你明确转移桶内的资源存储桶中的对象。
+界面上配置 S3 用户，之后会拿到两个密钥：访问密钥（AK，Access Key）和安全密钥（SK，Secret Key），需要妥善保存，有点类似于用户名账号和密码，或 Oauth2 中的 ClientId 和 ClientSecret。
+存储桶是 S3 中的对象容器，类似于文件系统的驱动器（C 盘，D 盘）。存储桶名是全局唯一的，不能重复创建。桶之间的对象是隔离的，除非你明确转移桶内的资源存储桶中的对象。
 对象用存储桶名和本身键名唯一确定。键名可以是一个类似于文件路径的字符串。
 
 
@@ -57,7 +64,7 @@ s3fs mybucket /path/to/mount \
 
 
 ## SDK
-这里着重将 S3 Java 的 SDK。如果需要可以使用。
+这里着重将 S3 Java 的 SDK：
 
 
 ### Maven 依赖

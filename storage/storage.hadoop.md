@@ -32,21 +32,20 @@ wget https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-bin.ta
 
 
 ### 安装步骤
-配置 Hadoop 环境变量，并使其生效。
+配置 Hadoop 环境变量，并使其生效：
 ```bash
 # Set Hadoop environment.
 export HADOOP_HOME=/opt/module/hadoop-3.3.0
 export PATH=$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
 ```
-解压安装包到指定路径
+解压安装包到指定路径：
 ```bash
 tar -xf hadoop-3.3.0.tar.gz
 mv hadoop-3.3.0 ${HADOOP_HOME}
 ```
-根据实际情况，选择单节点安装或完全分布式安装。
-如果只有一台服务器选择单节点安装，但这可能会给服务器较大压力；如果多台服务器（无论实体机或虚拟机）可以选用完全分布式安装，最低配置三个节点。
+根据实际情况，选择单节点安装（仅开发环境）或完全分布式安装。如果只有一台服务器选择单节点安装，但这可能会给服务器较大压力；如果多台服务器（无论实体机或虚拟机）可以选用完全分布式安装，最低配置三个节点。
 **单节点安装**
-修改 Hadoop 主要的配置文件，路径都在`${HADOOP_HOME}/etc/hadoop`下。
+修改 Hadoop 主要的配置文件，路径都在`${HADOOP_HOME}/etc/hadoop`下：
 
 - `core-site.xml`
 - `hdfs-site.xml`

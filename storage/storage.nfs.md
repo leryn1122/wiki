@@ -45,7 +45,7 @@ sudo yum install nfs-utils
 ```bash
 vim /etc/exports
 
-/path/to/mnt 196.168.0.0/24(rw,sync,insecure,no_subtree_check,no_all_squash,no_root_squash)
+/path/to/mnt 196.168.xxx.xxx/24(rw,sync,insecure,no_subtree_check,no_all_squash,no_root_squash)
 
 # 重新加载配置，不会导致已有挂载断开
 exportfs -rv
@@ -67,7 +67,7 @@ sudo mount -t nfs -o vers=3,tcp,nolock,async,mountproto=tcp,rsize=1048576,wsize=
 
 1. 打开【服务器管理器】，点击【添加角色和功能】
 2. 选择【基于角色或基于功能的安装】，默认选项即可→【远程桌面服务】默认不用操作，【桌面会话主机】【远程桌面授权 】→【添加功能】完成安装
-3. 在 cmd 中输入`gpedit.msc`，打开计算机本地组策略。
+3. 在 cmd 中输入 `gpedit.msc`，打开计算机本地组策略。
 4. 在计算机本地组策略里选择【计算机配置 】→【管理模板-windows 组件 】→【远程桌面服务 】→【远程桌面会话主机 】→【连接】，
 找到 【限制限制连接数量（可根据具体数量设置）】和【将远程桌面服务用户限制到单独的远程桌面服务会话（禁用）】
 【这台电脑 】→【属性 】→【远程设置】，选择【允许远程连接到此计算机】，去掉下方【仅允许允许使用网络级别身份验证的……】的勾，
@@ -89,7 +89,7 @@ sudo mount -t nfs -o vers=3,tcp,nolock,async,mountproto=tcp,rsize=1048576,wsize=
 
 2. 挂载网络驱动器：
 ```bash
-mount ***.***.***.***:/path/to/mnt X:
+mount 196.168.xxx.xxx:/path/to/mnt X:
 ```
 成功挂载，打开我的电脑，可以在网络位置看到 `X:` 盘了
 
@@ -106,7 +106,7 @@ umount -a
 ### 常见问题
 **Windows Server 2016 NFS 挂载成功后，没有写权限**
 
-1. 点击挂载虚拟盘，打开属性，查看 nfs 装载选项，uid 和 gid 为 -2 时，修改注册表，跳转到`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ClientForNFS\CurrentVersion\Default` 目录下新建两个 DWORD 值 ，名称为：`AnonymousGid` 和 `AnonymousUid`，数据值为 0 和 2。确认数据都保存以后，系统重启。
+1. 点击挂载虚拟盘，打开属性，查看 nfs 装载选项，uid 和 gid 为 -2 时，修改注册表，跳转到 `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ClientForNFS\CurrentVersion\Default` 目录下新建两个 DWORD 值 ，名称为：`AnonymousGid` 和 `AnonymousUid`，数据值为 0 和 2。确认数据都保存以后，系统重启。
 ```bash
 # 管理员权限下开启命令行, 执行如下两个命令并重启机器
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ClientForNFS\CurrentVersion\Default\ /v AnonymousUid /d 0 /t REG_DWORD /f
@@ -115,6 +115,6 @@ reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ClientForNFS\CurrentVersion\Defaul
 **Windows 10 NFS 挂载成功后，没有写权限**
 Win10 系统就是修改 `/etc/export` 文件中的数据，添加 anongid 与 anonuid
 ```bash
-/path/to/mnt 196.168.0.0/24(rw,sync,insecure,no_subtree_check,all_squash,anonuid=0,anongid=0)
+/path/to/mnt 196.168.xxx.xxx/24(rw,sync,insecure,no_subtree_check,all_squash,anonuid=0,anongid=0)
 ```
 

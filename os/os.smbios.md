@@ -20,12 +20,12 @@ title: SMBIOS
 ## 介绍
 
 - SMBIOS（System Management BIOS）是一个主板或系统制造者以标准格式显示产品管理信息所需遵循的统一规范。
-- DMI（Desktop Management Interface）就是帮助收集电脑系统信息的管理系统， DMI 信息的收集必须在严格遵照 SMBIOS 规范的前提下进行。
+- DMI（Desktop Management Interface）就是帮助收集电脑系统信息的管理系统，DMI 信息的收集必须在严格遵照 SMBIOS 规范的前提下进行。
 
-在 Linux 平台下读取以下三个文件（通常是前两个）可以获得 SMBIOS 数据。
+在 Linux 平台下读取以下三个文件（通常是前两个）可以 s 获得 SMBIOS 数据。
 
-- `/sys/firmware/dmi/tables/smbios_entry_point`（SMBIOS entrypoint）
-- `/sys/firmware/dmi/tables/DMI`（SMBIOS table data）
+- `/sys/firmware/dmi/tables/smbios_entry_point`（SMBIOS Entrypoint）s
+- `/sys/firmware/dmi/tables/DMI`（SMBIOS Table data）
 - `/dev/mem`（FreeBSD）
 
 SMBIOS 只能获得板载设备，例如集成显卡、板载网卡。如果插在插槽上的，例如独立显卡、独立网卡，只能获得插槽口上的信息，而不能获得所有详细的设备信息。
