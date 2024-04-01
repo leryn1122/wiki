@@ -29,8 +29,8 @@ kubectl get <resource> <name> -n <namespace> -o yaml
 # 修改 kubernetes 资源的配置
 kubectl edit <resource> <name> -n <namespace>
 
-# 删除无用的 replica
-kubectl delete replicaset $(kubectl get replicaset.apps -A | awk '$3==0{printf "%s -n %s\n",$2,$1}')
+# 删除被驱逐的 pod
+kubectl delete pod $(kubectl get pod -A | grep Evicted | awk '{printf "%s -n %s\n",$2,$1}')
 ```
 一个更加复杂的例子, 比如查看 Ingress-nginx 的 `nginx.conf`:
 ```bash
