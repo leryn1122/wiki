@@ -78,17 +78,17 @@ HTML5 引入了一种方法，使 Web 设计者可以通过 `<meta>` 标签来�
 经典的设备分辨率断点：
 ```css
 /* 超小型设备（电话，600px 及以下） */
-@media only screen and (max-width: 600px) {...} 
+@media only screen and (width <= 600px) {...} 
 
 /* 小型设备（纵向平板电脑和大型手机，600 像素及以上） */
-@media only screen and (min-width: 600px) {...} 
+@media only screen and (width > 600px) {...} 
 
 /* 中型设备（横向平板电脑，768 像素及以上） */
-@media only screen and (min-width: 768px) {...} 
+@media only screen and (width > 768px) {...} 
 
 /* 大型设备（笔记本电脑/台式机，992px 及以上） */
-@media only screen and (min-width: 992px) {...} 
+@media only screen and (width > 992px) {...} 
 
 /* 超大型设备（大型笔记本电脑和台式机，1200px 及以上） */
-@media only screen and (min-width: 1200px) {...}
+@media only screen and (width > 1200px) {...}
 ```
