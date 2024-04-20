@@ -28,4 +28,4 @@ Ventoy 是一个制作可启动 U 盘的开源工具。有了 Ventoy 之后，�
 - [https://github.com/ventoy/Ventoy/releases/download/v1.0.97/ventoy-1.0.97-windows.zip](https://github.com/ventoy/Ventoy/releases/download/v1.0.97/ventoy-1.0.97-windows.zip)
 
 安装完后可以看到 U 盘上产生了新的分区。
-![Ventoy 引导页面](https://cdn.nlark.com/yuque/0/2024/png/26002940/1710695695442-57335a32-a51e-4471-b663-530c4903a8c0.png#averageHue=%23dadad8&clientId=u60e1bdd8-5b2c-4&from=paste&id=u6f02aa55&originHeight=480&originWidth=640&originalType=binary&ratio=2&rotation=0&showTitle=true&size=124136&status=done&style=shadow&taskId=ua6600e7a-790c-4dcd-9373-26f1639e1c8&title=Ventoy%20%E5%BC%95%E5%AF%BC%E9%A1%B5%E9%9D%A2 "Ventoy 引导页面")
+![Ventoy 引导页面](https://cdn.nlark.com/yuque/0/2024/png/26002940/1713631946034-b7e45d07-df3e-4ba8-a41b-03beaab3ebf0.png#averageHue=%23dcddda&clientId=uafa2fbea-31cb-4&from=ui&id=ud110ad0c&originHeight=480&originWidth=640&originalType=binary&ratio=2&rotation=0&showTitle=true&size=17198&status=done&style=none&taskId=u6a50d07c-a276-4420-8585-a6abb567eb1&title=Ventoy%20%E5%BC%95%E5%AF%BC%E9%A1%B5%E9%9D%A2 "Ventoy 引导页面")
