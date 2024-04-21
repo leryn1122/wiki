@@ -45,4 +45,36 @@ hypervisor.cpuid.v0=FALSE
 pciPassthru.use64bitMMIO=TRUE
 pciPassthru.64bitMMIOSizeGB=64
 ```
-`pciPassthru.64bitMMIOSizeGB` 的大小应当填为的显存大小下一档 2 的幂次的两倍。例如 6G 显存显卡，下一档 2 的幂次是 8G，两倍是 16G。
+`pciPassthru.64bitMMIOSizeGB` 的大小应当填为的显存大小下一档 2 的幂次的两倍。
+例如 6G 显存显卡，下一档 2 的幂次是 8G，两倍是 16G。
+
+
+## Cloud-init
+参考文档：
+
+- [VMware Knowledge Base](https://kb.vmware.com/s/article/82250)
+
+前置条件：
+
+- ESXi 至少需要 7.0 U3 版本及以上
+- VMware Tools 至少需要 11.3.0 版本及以上
+- cloud-init 至少需要 21.1 版本及以上
+- 保证 OVF（cloud-init < 23.1）或 VMware（cloud-init >= 23.1）在 Datasource 列表中
+
+操作步骤：
+
+- 创建 Metadata 和 Userdata 字段（JSON 或 YAML），然后在虚拟机的高级设置中添加参数：分别表示编码方式是 base64 和 base64 编码后的 JSON/YAML 内容。
+:::danger
+注意  #cloud-config 必须是 YAML 的第一行
+:::
+```properties
+guestinfo.metadata.encoding=base64
+guestinfo.metadata=<base64 metadata.yml>
+guestinfo.userdata.encoding=base64
+guestinfo.userdata=<base64 userdata.yml>
+```
+也可以使用 gzip+base64 编码
+```properties
+guestinfo.userdata.encoding=gzip+base64
+guestinfo.userdata=$(gzip -c9 <userdata.yaml | { base64 -w0 2>/dev/null || base64; })
+```
