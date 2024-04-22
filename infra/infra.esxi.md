@@ -37,6 +37,7 @@ lspci -n
 修改完成后，需要重新引导宿主机。重新引导后需要在设备界面开启直通。
 
 - 虚拟机引导方式改为 BIOS
+- 修改虚拟机兼容性，设置到最新版本：例如，ubuntu-server-cloudimg 默认兼容性是 ESXi 5.5，直接修改为支持的最高版本
 - 虚拟机设置内存需要：锁定内存，为虚拟机预留全部内存
 - 虚拟机以 PCIe 设备方式添加 GPU 设备
 - 虚拟机设置高级参数：
@@ -72,6 +73,8 @@ guestinfo.metadata.encoding=base64
 guestinfo.metadata=<base64 metadata.yml>
 guestinfo.userdata.encoding=base64
 guestinfo.userdata=<base64 userdata.yml>
+guestinfo.vendordata.encoding=base64
+guestinfo.vendordata=<base64 userdata.yml>
 ```
 也可以使用 gzip+base64 编码
 ```properties
