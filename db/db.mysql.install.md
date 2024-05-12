@@ -32,17 +32,16 @@ sudo apt install -y mysql-server-8.0 mysql-client-8.0
 ```bash
 docker run \
   --detach=true \
-  --env=MYSQL_USER=mysql \
   --env=MYSQL_ROOT_PASSWORD=root \
   --env=TZ=Asia/Shanghai \
   --publish=3306:3306 \
   --restart=always \
   --volume=/data/mysql:/var/lib/mysql \
   --volume=/data/mysql-files:/var/lib/mysql-files \
-  --volume=/conf/mysql:/etc/mysql \
+  --volume=/etc/mysql:/etc/mysql:ro \
   --name=mysql \
   --hostname=mysql \
-  mysql:8.0.26
+  mysql:8.0.29
 ```
 
 

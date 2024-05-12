@@ -24,7 +24,7 @@ title: SMBIOS
 
 在 Linux 平台下读取以下三个文件（通常是前两个）可以 s 获得 SMBIOS 数据。
 
-- `/sys/firmware/dmi/tables/smbios_entry_point`（SMBIOS Entrypoint）s
+- `/sys/firmware/dmi/tables/smbios_entry_point`（SMBIOS Entrypoint）
 - `/sys/firmware/dmi/tables/DMI`（SMBIOS Table data）
 - `/dev/mem`（FreeBSD）
 
