@@ -6,6 +6,12 @@ tags:
 title: "\u4EA4\u6362\u673A"
 
 ---
+
+
+# 交换机
+
+
+## 简介
 交换机（Switch），交换机家族包括了以太网交换机、电话语音交换机、光纤交换机等等。本文都指以太网交换机。
 交换机的前身是集线器。集线器工作在物理层（OSI 协议第一层），只支持将单一网线扩展成多网线，可以用于构建子网。它有几个致命的缺点：
 
@@ -44,3 +50,36 @@ title: "\u4EA4\u6362\u673A"
 - 电口光口混合交换机
 
 
+## 交换机模拟器
+
+- [大学四年走来，这些网络工程师必备的模拟器我都给你整理好了](https://zhuanlan.zhihu.com/p/117563080)
+
+
+### Cisco Packet Tracer
+完全基于内存的实现
+
+
+### HCL
+依赖 VirtualBox
+
+
+### ENSP
+华为现在只向供应商提供 ENSP 安装包，只能通过网络找到分享安装包资源。
+依赖 VirtualBox
+
+
+## 交换机指令
+
+
+### Cisco
+
+
+### H3C
+```bash
+display mac-address link info
+
+display interface g1/0/22
+```
+
+
+### HW
