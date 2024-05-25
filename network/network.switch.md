@@ -58,6 +58,8 @@ title: "\u4EA4\u6362\u673A"
 ### Cisco Packet Tracer
 完全基于内存的实现
 
+- 支持
+
 
 ### HCL
 依赖 VirtualBox
@@ -76,9 +78,13 @@ title: "\u4EA4\u6362\u673A"
 
 ### H3C
 ```bash
+system-view
+
+vlan 10
+
 display mac-address link info
 
-display interface g1/0/22
+display interface g1/0/24
 ```
 
 
