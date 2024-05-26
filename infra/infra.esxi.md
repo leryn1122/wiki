@@ -18,6 +18,10 @@ wget http://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-c
 virt-customize -a ubuntu-22.04-server-cloudimg-amd64.img --root-password password:ubuntu
 ```
 
+```yaml
+esxcli system hostname set --fqdn=anna-esxi8-ecs-pc.leryn.io
+```
+
 
 ## GPU 设备直通
 以 PCIe 设备方式直通：
@@ -80,4 +84,14 @@ guestinfo.vendordata=<base64 userdata.yml>
 ```properties
 guestinfo.userdata.encoding=gzip+base64
 guestinfo.userdata=$(gzip -c9 <userdata.yaml | { base64 -w0 2>/dev/null || base64; })
+```
+例如：
+```yaml
+#cloud-config
+users:
+  - default
+  - name: root
+    groups: root
+    lock_passwd: false
+    plain_text_passwd: P@s5W0rd
 ```
