@@ -90,18 +90,12 @@ title: "\u4EA4\u6362\u673A"
 | 显示当前系统版本 | show version   | display version | display version |
 | 设置主机名 | hostname | sysname | sysname |
 | 退回上级 | exit | quit | quit |
-|  |  |  |  |
 | 创建用户 | username | local-user | local-user |
 | 配置明文密码 | enable password | set authentication  password simple | set authentication  password simple |
 | 登出 | exit | logout | logout |
 | 重启 | reload | reload | reload |
 | 保存当前配置 | write | save | save |
 | 删除文件 | delete | delete | delete |
-| 
- | 
- | 
- | 
- |
 | 查看已保存过的配置 | show startup-config | display saved-configuration | display saved-configuration |
 | 显示当前配置 | show running-config | display current-configuration | display current-configuration |
 | 删除配置 | erase startup-config | reset saved-configuration | reset saved-configuration |
@@ -113,7 +107,6 @@ title: "\u4EA4\u6362\u673A"
 | 启动配置 | start-config | saved-configuration  | saved-configuration  |
 | 当前配置 | running-config | current-configuration | current-configuration |
 | 禁止、关闭端口 | shutdown | shutdown | shutdown |
-|  |  |  |  |
 | host 名字和 ip 地址对应 | host | ip host | ip host |
 | 进入接口 | interface type/number  | interface type/number  | interface type/number  |
 | 进入vlan配置vlan管理地址 | interface vlan 1 | interface vlan 1 | interface vlan 1 |
@@ -128,21 +121,12 @@ title: "\u4EA4\u6362\u673A"
 | 查看vlan | show vlan ID | display vlan ID | display vlan ID |
 | 封装协议 | encapsulation | link-protocol | link-protocol |
 | 链路聚合 | channel-group 1 mode on | port link-aggregation group 1 | port link-aggregation group 1 |
-| 
- | 
- | 
- | 
- |
 | 开启三层交换的路由功能 | ip routing | <默认开启> | <默认开启> |
 | 开启接口三层功能 | no switchport | <不支持> | <不支持> |
 | 对跨以太网交换机的VLAN进行动态注册和删除 | vtp domain | GVRP | GVRP |
 | stp配置根网桥 | spanning-tree vlan ID root primary | stp instance id root primary | stp instance id root primary |
 | 配置网桥优先级 | spanning-tree vlan ID priority | stp primary value | stp primary value |
 | 查看STP配置 | show spanning-tree | dis stp brief | dis stp brief |
-|  | 
- | 
- | 
- |
 | 配置默认路由 | ip route 0.0.0.0  0.0.0.0 | ip route-static  0.0.0.0 0.0.0.0 | ip route-static  0.0.0.0 0.0.0.0 |
 | 配置静态路由 | ip route 目标网段 + 掩码 下一跳 | ip route-static  目标网段 + 掩码 下一跳 | ip route-static  目标网段 + 掩码 下一跳 |
 | 查看路由表 | show ip route | display ip routing-table | display ip routing-table |
@@ -179,14 +163,14 @@ VLAN 会在以太帧中添加一个 4 字节的帧标识：
    - 1 位是 CFI 标识：以太网中通常是 0
    - 12 位是 VLAN ID：标识帧所属于的 VLAN，有 0-4095 个 VLAN，其中 VLAN 0 和 VLAN 4095 是保留的。
 ```
-                         +----+----+------+--------------------------+
-        Ethernet Frame   | DA | SA | Type |  Data                    |
-                         +----+----+------+--------------------------+
+                         +----+----+------+---------------------+
+        Ethernet Frame   | DA | SA | Type |  Data               |
+                         +----+----+------+---------------------+
                                   / \
                                  /   \
-                      +----+----+-----+------+------------------------+
-Tagged Ethernet Frame | DA | SA | Tag | Type | Data                   |
-    (IEEE 802.1q)     +----+----+-----+------+------------------------+
+                      +----+----+-----+------+-----------------------+
+Tagged Ethernet Frame | DA | SA | Tag | Type | Data                  |
+    (IEEE 802.1q)     +----+----+-----+------+-----------------------+
                         ________/     \_________________
                        /                                \
                        +------+----------+-----+---------+
@@ -195,31 +179,6 @@ Tagged Ethernet Frame | DA | SA | Tag | Type | Data                   |
                               |                          |
                               |<<------   TCI   ------->>|
                        
-```
-假设接入交换机 g1/0/24 口接到了上联交换机的 g1/0/12 口，接入交换机的 g1/0/1 接入了一台服务器：
-```
-                                  1   3   5   7   9   11  13  15  17  19  21  23
-                                +---+---+---+---+---+---+---+---+---+---+---+---+
-                                |[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|
-                                +---+---+---+---+---+---+---+---+---+---+---+---+
-                                |[ ]|[ ]|[ ]|[ ]|[ ]|[x]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]| 
-                                +---+---+---+---+---+---+---+---+---+---+---+---+
-                                  2   4   6   8   10  ||  14  16  18  20  22  24
-                                                      ||
-                                                      ||
-  1   3   5   7   9   11  13  15  17  19  21  23      ||
-+---+---+---+---+---+---+---+---+---+---+---+---+     ||
-|[x]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|     ||
-+---+---+---+---+---+---+---+---+---+---+---+---+     ||
-|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[x]| =====+
-+---+---+---+---+---+---+---+---+---+---+---+---+
-  2   4   6   8   10  12  14  16  18  20  22  24
- ||
- +==========+
-           ||
-     +------------+
-     |   Server   |
-     +------------+
 ```
 对于 Access 口和 Trunk 口，接受到数据包会有不同的处理
 
@@ -235,5 +194,33 @@ PVID = Ported VLAN ID，即端口上的 VLAN ID，一个端口可以属于多个
 | Access | 发送含 VLAN 的数据包 | 如果该 VID 与 Access 的 PVID 相同，则剥离 VLAN 标签后发送，否则丢弃 |
 | Trunk | 收到不含 VLAN 的数据包 | 给数据打上 Trunk 的 PVID |
 | Trunk | 收到含 VLAN 的数据包 | 如果该 VID 与 Trunk 的 PVID 相同，则接收，否则丢弃 |
-| Trunk | 发送含 VLAN 的数据包 | 如果 Trunk 端口配置允许该 VLAN 的数据包通过，则保留 VID 通过；否则丢弃 |
+| Trunk | 发送含 VLAN 的数据包 | 如果 Trunk 端口配置允许该 VLAN 的数据包通过，则保留 VID 通过，否则丢弃 |
 
+
+假设接入交换机 g1/0/24 口接到了上联交换机的 g1/0/12 口，接入交换机的 g1/0/1 接入了一台服务器：
+```
+                                  1   3   5   7   9  11  13  15  17  19  21  23
+                                +---+---+---+---+---+---+---+---+---+---+---+---+
+                        SW01    |[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|
+                                +---+---+---+---+---+---+---+---+---+---+---+---+
+                                |[ ]|[ ]|[ ]|[ ]|[ ]|[x]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]| 
+                                +---+---+---+---+---+---+---+---+---+---+---+---+
+                                  2   4   6   8  10   |  14  16  18  20  22  24
+  SW02                                                |
+                                                      |
+  1   3   5   7   9  11  13  15  17  19  21  23       |
++---+---+---+---+---+---+---+---+---+---+---+---+     |
+|[x]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|     |
++---+---+---+---+---+---+---+---+---+---+---+---+     |
+|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[ ]|[x]| ----+
++---+---+---+---+---+---+---+---+---+---+---+---+
+  2   4   6   8  10  12  14  16  18  20  22  24
+  |
+  +--------+
+           |
+     +-----------+
+     |  Server   |
+     +-----------+
+```
+如果服务器想和 SW01 上的相同 VLAN 通信，两者都设置相同的 VLAN Access 口，两者在同一 VLAN 的冲突域内。
+如果想和不同 VLAN 通信，那么它的上联需要设置为 Trunk，放行所有需要的 VLAN。
