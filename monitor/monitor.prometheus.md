@@ -1,6 +1,7 @@
 ---
 id: monitor.prometheus
 tags:
+- monitor
 - prometheus
 title: "Prometheus \u5165\u95E8"
 

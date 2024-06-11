@@ -9,7 +9,7 @@ title: "NTP - \u7F51\u7EDC\u65F6\u95F4\u534F\u8BAE"
 
 
 # NTP - 网络时间协议
-参考文档:
+参考文档：
 
 - [Linux的NTP配置总结 - 潇湘隐者 - 博客园](https://www.cnblogs.com/kerrycode/p/4744804.html)
 - [windows时间同步设置 - Dark_Elf - 博客园](https://www.cnblogs.com/zhangdongyu/p/15674265.html)

@@ -112,7 +112,7 @@ title: "\u4EA4\u6362\u673A"
 | 进入vlan配置vlan管理地址 | interface vlan 1 | interface vlan 1 | interface vlan 1 |
 | 定义多个端口的组 | interface rang | interface ethID to ID | interface ethID to ID |
 | 设置特权口令 | enable secret | super password | super password |
-| 配置接口状态 | duplex (half&#124;full&#124;auto) | duplex (half&#124;full&#124;auto) | duplex (half&#124;full&#124;auto) |
+| 配置接口状态 | duplex (half/full/auto) | duplex (half/full/auto) | duplex (half/full/auto) |
 | 配置端口速率 | speed (10/100/1000) | speed (10/100/1000) | speed (10/100/1000) |
 | 配置trunk | switchport mode trunk | port link-type trunk | port link-type trunk |
 | 添加、删除vlan | vlan ID /no vlan ID  | vlan batch ID /undo vlan batch ID | vlan batch ID /undo vlan batch ID |
@@ -137,7 +137,7 @@ title: "\u4EA4\u6362\u673A"
 | 查看路由协议 | show ip protocol | display ip protocol | display ip protocol |
 | 扩展访问控制列表 | access-list 100-199 permit/deny protocol source IP + 反码 destination IP + 反码 operator operan
 
- | rule {normal&#124;special}{permit&#124;deny}{tcp&#124; udp}source {<ip wild>&#124;any}destination  <ip wild>&#124;any}[operate] | rule {normal&#124;special}{permit&#124;deny}{tcp&#124; udp}source {<ip wild>&#124;any}destination  <ip wild>&#124;any}[operate] |
+ | rule {normal/special}{permit/deny}{tcp/udp}source {<ip wild>/any}destination  <ip wild>/any}[operate] | rule {normal&#124;special}{permit&#124;deny}{tcp&#124; udp}source {<ip wild>&#124;any}destination  <ip wild>&#124;any}[operate] |
 | 配置HSRP组 | standby group-number ip virtual-ip | vrrp vrid number virtual-ip
 
  | vrrp vrid number virtual-ip
