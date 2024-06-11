@@ -113,6 +113,7 @@ spec:
     extraArgs:
       "envflag.enable": "true"
       "envflag.prefix": "VM_"
+      "vmalert.proxyUrl": <vmalert service>
     logFormat: json
     resources:
       limits:
