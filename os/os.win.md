@@ -7,8 +7,7 @@ title: Windows
 ---
 
 
-# Windows
-
+# Windows 封装
 ```bash
 # 激活 Windows
 slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
