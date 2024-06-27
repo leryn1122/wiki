@@ -2,12 +2,15 @@
 id: network.ib
 tags:
 - network
-title: "IB \u7F51\u7EDC\u4ECB\u7ECD"
+title: "IB \u548C RoCE \u7F51\u7EDC\u4ECB\u7ECD"
 
 ---
 
 
-# IB 网络介绍
+# IB 和 RoCE 网络介绍
+
+
+## IB 网络
 IB 网络就是 InfiniBand 网络，即无限带宽网络。一种需要特殊软硬件支持的网络架构，特点是高带宽、低延时、高可靠的网络互联技术，一般用于数据中心内部、GPU计算集群的组网。
 它与以太网对比：
 
@@ -23,4 +26,21 @@ IB 网卡的设备没有以太网中的 MAC 地址，取而代之的是专属的
 ![image.png](./../assets/1706972244950-ddbc41c2-a0d3-4e38-9dde-bd6d8725ec48.png)
 
 ![image.png](./../assets/1706972264178-d8afd63a-cde7-4142-8662-30fc71588bbc.png)
+
+
+
+
+## RoCE 网络
+RoCE（RDMA over Converged Ethernet）
+
+|  | IB | RoCE v2 |
+| --- | --- | --- |
+| 端到端时延 | 2us | 5us |
+| 带宽 | 1.6T/Server; 400Gbps HCA | 1.6T/Server; 400Gbps HCA |
+| 稳定性 | 最好 | 较好（拥塞、丢包机制） |
+| 扩展性 | 高 | 高（万卡规模吞吐较弱） |
+| 运维难度 | 低 | 高（配置复杂） |
+| 开放性 | 完全闭源 | 开源，基于以太网，通用性强 |
+| 建设成本 | 高，3 倍 | 较低 |
+| 代表厂家 | 英伟达独家 | 很多 |
 
