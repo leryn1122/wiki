@@ -109,6 +109,7 @@ WantedBy=multi-user.target
 ### coredns
 配置 CoreDNS 配置文件：
 ```
+mkdir -p /etc/coredns
 vim /etc/coredns/Corefile
 ```
 ```
@@ -134,6 +135,10 @@ leryn.io:53 {
 ```
 vim /etc/systemd/system/coredns.service
 
+
+systemctl stop systemd-resolved.service
+systemctl disable systemd-resolved.service
+
 systemctl enable  coredns.service
 systemctl restart coredns.service
 systemctl status  coredns.service
@@ -146,7 +151,7 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-Type=notify
+Type=simple
 ExecStart=/usr/local/bin/coredns -conf /etc/coredns/Corefile
 ExecStop=/bin/kill -HUP $MAINPID
 Restart=on-failure
