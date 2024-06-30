@@ -162,6 +162,10 @@ spec:
     repository: harbor.domain.com/prom/alertmanager
     tag: v0.26.0
     pullPolicy: IfNotPresent
+  # 这是一个令人困惑的配置, 默认关闭
+  # 关闭时会为 route 自动插入一条 namespace = "xxx" 条件
+  # 从而导致路由失效, 所有告警都会进入默认路由
+  disableNamespaceMatcher: true
   configNamespaceSelector:
     matchLabels:
       "kubernetes.io/metadata.name": monitoring

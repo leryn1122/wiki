@@ -8,6 +8,7 @@ title: Windows
 
 
 # Windows 封装
+进入引导界面后按下 `Ctrl + Shitf + F3`，系统会重启并跳过 OOBE。重启后可以直接用 Administrator 进入 Windows。
 ```bash
 # 激活 Windows
 slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
@@ -24,6 +25,4 @@ XCOPY C:\windows\System32\svchost.exe C:\windows\System32\oobe\audit.exe /X
 
 - OpenSSH Server：[Releases · PowerShell/Win32-OpenSSH](https://github.com/PowerShell/Win32-OpenSSH/releases)
 - Dism++：[Releases · Chuyu-Team/Dism-Multi-language](https://github.com/Chuyu-Team/Dism-Multi-language/releases)
-- 
-
 

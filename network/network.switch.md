@@ -137,7 +137,9 @@ title: "\u4EA4\u6362\u673A"
 | 查看路由协议 | show ip protocol | display ip protocol | display ip protocol |
 | 扩展访问控制列表 | access-list 100-199 permit/deny protocol source IP + 反码 destination IP + 反码 operator operan
 
- | rule {normal/special}{permit/deny}{tcp/udp}source {<ip wild>/any}destination  <ip wild>/any}[operate] | rule {normal&#124;special}{permit&#124;deny}{tcp&#124; udp}source {<ip wild>&#124;any}destination  <ip wild>&#124;any}[operate] |
+ | 
+ | 
+ |
 | 配置HSRP组 | standby group-number ip virtual-ip | vrrp vrid number virtual-ip
 
  | vrrp vrid number virtual-ip
