@@ -225,3 +225,18 @@ PVID = Ported VLAN ID，即端口上的 VLAN ID，一个端口可以属于多个
 ```
 如果服务器想和 SW01 上的相同 VLAN 通信，两者都设置相同的 VLAN Access 口，两者在同一 VLAN 的冲突域内。
 如果想和不同 VLAN 通信，那么它的上联需要设置为 Trunk，放行所有需要的 VLAN。
+
+
+#### 特殊场景
+如果服务器想要和多个 VLAN 都通信，那么需要在服务器的网络配置上打上对应的 VLAN 标签。
+```yaml
+network:
+  version: 2
+  bridges:
+    intranet-work:
+      interfaces:
+        - vlan100
+  vlans:
+    vlan100:
+      id: 100
+```
