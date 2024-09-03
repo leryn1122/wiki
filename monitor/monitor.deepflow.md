@@ -6,28 +6,30 @@ tags:
 title: "Deepflow \u76D1\u63A7"
 
 ---
-
-
 # Deepflow 监控
 参考文档：
 
-- [https://deepflow.io/docs/zh/about/overview/](https://deepflow.io/docs/zh/about/overview/)
++ [https://deepflow.io/docs/zh/about/overview/](https://deepflow.io/docs/zh/about/overview/)
 
 基于 eBPF 的监控全链路监控、无需插点，支持任何语言和协议。
+
 Server 端必须在 Kubernetes 集群中，agent 可以在同一集群中、不同 Kubernetes 集群、物理机上，监控数据由 agent 向宿主机上报。
+
 版本对比：
 
-- 商业版和社区版的后端是一致的
-- 商业版的 UI 是独立的，社区版是基于 Grafana 的图表
++ 商业版和社区版的后端是一致的
++ 商业版的 UI 是独立的，社区版是基于 Grafana 的图表
 
 Deepflow 架构图：
-![image.png](./../assets/1678691417859-7daba259-251d-40f1-bbdc-c34c8d3c33fd.png)
+
+![](./../assets/1678691417859-7daba259-251d-40f1-bbdc-c34c8d3c33fd.png)
 
 
 
 
 ## 单集群
 需要一个 MySQL，一个 Clickhouse
+
 ```bash
 # 创建EBS默认StorageClass
 kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml
@@ -47,9 +49,9 @@ curl -o /usr/bin/deepflow-ctl https://deepflow-ce.oss-cn-beijing.aliyuncs.com/bi
 chmod a+x /usr/bin/deepflow-ctl
 ```
 
-
 ## 跨集群
 部署 agent
+
 ```bash
 unset CLUSTER_NAME
 CLUSTER_NAME="k8s-1"  # FIXME: K8s cluster name
@@ -60,6 +62,7 @@ EOF
 
 deepflow-ctl domain list $CLUSTER_NAME  # Get K8sClusterID
 ```
+
 ```bash
 cat << EOF > values-custom.yaml
 deepflowServerNodeIPS:
@@ -68,6 +71,7 @@ deepflowServerNodeIPS:
 clusterNAME: k8s-1  # FIXME: name of the cluster in deepflow
 EOF
 ```
+
 ```bash
 helm repo add deepflow https://deepflowio.github.io/deepflow
 helm repo update deepflow # use `helm repo update` when helm < 3.7.0
@@ -75,10 +79,9 @@ helm install deepflow-agent -n deepflow deepflow/deepflow-agent --create-namespa
     -f values-custom.yaml
 ```
 
-
 #### 常见问题
-
 1. 目前测试多网卡设配时，deepflow 会默认选择第一块网卡。如果需要调整网卡，请修改这几个表中的 IP，并重启 server 和 agent。
+
 ```sql
 select * from controller;
 select * from analyzer;
@@ -88,3 +91,8 @@ select * from vtap;
 ```
 
 2. 数据清理
+
+```bash
+
+```
+

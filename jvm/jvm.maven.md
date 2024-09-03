@@ -4,36 +4,30 @@ tags: []
 title: "Maven \u5B89\u88C5\u624B\u518C"
 
 ---
-
-
 # Maven 安装手册
-
-
 ## 包管理器
 很简单一句命令即可，但是可能缺少 protobuff 并无法使用：
-
 
 ### 安装步骤
 ```bash
 sudo apt install -y maven
 ```
 
-
 ## 二进制安装
-
-
 ### 前置准备
 下载二进制安装包：
+
 ```bash
 wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
 ```
 
-
 ### 安装步骤
 解压安装包到指定路径，并配置环境变量
-```
+
+```plain
 tar -xf apache-maven-3.8.4-bin.tar.gz -C /path/to/maven
 ```
+
 ```bash
 cat <<EOF | sudo tee /etc/profile.d/env-mvn.sh
 #!/usr/bin/env bash
@@ -42,14 +36,15 @@ export MAVEN_HOME=/path/to/maven
 export M2_HOME=${}
 export PATH=${MAVEN_HOME}/bin;${PATH}
 ```
-通常都会再修改默认的 maven 配置，位置在`${MAVEN_HOME}/conf/settings.xml`
 
+通常都会再修改默认的 maven 配置，位置在`${MAVEN_HOME}/conf/settings.xml`
 
 ### 启动与验证
 ```bash
 mvn -v
 ```
-```
+
+```plain
 Apache Maven 3.8.4 (9b656c72d54e5bacbed989b64718c159fe39b537)
 Maven home: /opt/module/apache-maven-3.8.4
 Java version: 17, vendor: Private Build, runtime: /usr/lib/jvm/java-17-openjdk-amd64
@@ -57,13 +52,11 @@ Default locale: en_US, platform encoding: UTF-8
 OS name: "linux", version: "5.4.0-77-generic", arch: "amd64", family: "unix"
 ```
 
-
 ## Docker
 ```bash
 docker pull maven:3.8.4-openjdk-17-slim
 docker pull maven:3.8.4-jdk-8-slim
 ```
-
 
 # Maven-Daemon
 `mvnd` 是 apache/maven 的一个子项目, 它并不是一个全新的构建工具, 而是对 maven 的扩展. 它内置了 maven, 其实现原理是构建了一个或者多个 maven 守护进程来执行构建服务.
@@ -74,14 +67,12 @@ docker pull maven:3.8.4-jdk-8-slim
 4. mvnd 客户端使用 GraalVM 构建本地可执行文件, 与启动传统 JVM 相比, 它启动得更快, 占用的内存更少. 
 5. 如果 mvnd 没有空闲守护进程来服务一个构建请求, 可以并行地生成多个守护进程.
 
-
 ## 构建镜像
 目前还没有官方镜像, 但是目前构建完镜像使用仍然有点问题. 构建镜像, 需要以下文件:
 
-- `Dockerfile`
-- `settings-docker.xml`
-- `mvn-entrypoint.sh`
-
++ `Dockerfile`
++ `settings-docker.xml`
++ `mvn-entrypoint.sh`
 
 ### `Dockerfile`
 ```dockerfile
@@ -109,7 +100,6 @@ ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
 CMD ["mvnd"]
 ```
 
-
 ### `settings-docker.xml`
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
@@ -119,7 +109,6 @@ CMD ["mvnd"]
   <localRepository>/usr/share/maven/ref/repository</localRepository>
 </settings>
 ```
-
 
 ### `mvn-entrypoint.sh`
 ```bash
@@ -168,3 +157,4 @@ cd "${owd}"
 unset owd
 exec "$@"
 ```
+

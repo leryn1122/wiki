@@ -6,34 +6,35 @@ tags:
 title: "\u81EA\u52A8\u5316\u6D4B\u8BD5"
 
 ---
-
-
 # 自动化测试
 自动化测试这里主要介绍的 Selenium Python 框架的教程。
-
 
 ## Selenium 框架
 参考文档：
 
-- [1. Installation — Selenium Python Bindings 2 documentation](https://selenium-python.readthedocs.io/installation.html)
-- [https://sites.google.com/chromium.org/driver/downloads?authuser=0](https://sites.google.com/chromium.org/driver/downloads?authuser=0)
-- [Chrome for Testing availability](https://googlechromelabs.github.io/chrome-for-testing/)
++ [1. Installation — Selenium Python Bindings 2 documentation](https://selenium-python.readthedocs.io/installation.html)
++ [https://sites.google.com/chromium.org/driver/downloads?authuser=0](https://sites.google.com/chromium.org/driver/downloads?authuser=0)
++ [Chrome for Testing availability](https://googlechromelabs.github.io/chrome-for-testing/)
 
 Selenium 是一款用于 Web 应用自动化测试的测试框架，可以利用浏览器驱动模拟用户在浏览器中的操作。
+
 可以通过 Python 带来启动一个浏览器实例来自动化测试 Web 应用，对于 iOS 和 Android 移动端应用也可以很好的支持。同样也可以用于模拟 JS 运行环境来爬取 SPA 网页应用。
+
 ```bash
 pipenv install selenium
 ```
+
 下载对应的浏览器驱动，Selenium 支持多种浏览器，其他浏览器有：
 
-- Chrome
-- Firefox
-- IE
-- Edge
-- Opera
-- PhantomJS
++ <font style="color:rgb(25, 27, 31);">Chrome</font>
++ <font style="color:rgb(25, 27, 31);">Firefox</font>
++ <font style="color:rgb(25, 27, 31);">IE</font>
++ <font style="color:rgb(25, 27, 31);">Edge</font>
++ <font style="color:rgb(25, 27, 31);">Opera</font>
++ <font style="color:rgb(25, 27, 31);">PhantomJS</font>
 
 我选择 ChromeDriver，需要根据当前浏览器和框架来下载对应版本的浏览器驱动。参考上面的 Chrome 官方驱动下载页面。
+
 ```python
 from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
@@ -58,9 +59,11 @@ def create_webdriver_instance(path: str = None,
         option.add_argument('--proxy-server=http://127.0.0.1:7890')
     return webdriver.Chrome(options=option)
 ```
+
 如果有的网页由 Cloudflare 人机检测守护，使用 `stealth.min.js` 隐藏 Selenium 特征越过人机检测：
 
-- [stealth.min.js - jsDelivr CDN](https://cdn.jsdelivr.net/gh/requireCool/stealth.min.js/stealth.min.js)
++ [stealth.min.js - jsDelivr CDN](https://cdn.jsdelivr.net/gh/requireCool/stealth.min.js/stealth.min.js)
+
 ```python
 from selenium_stealth import stealth
 
@@ -83,9 +86,9 @@ def skip_cloudflare_waf(driver: webdriver.Chrome):
             )
 ```
 
-
 ### 定位元素
 然后可以用过定位器定位元素：
+
 ```python
 driver.get("https://github.com")
 driver.maximize_window()
@@ -106,7 +109,6 @@ driver.find_element_by_xpath()
 driver.find_element_by_css_selector()
 ```
 
-
 ### 发送键盘事件
 ```python
 element = driver.find_element_by_id("kw")
@@ -123,3 +125,4 @@ element.send_keys(Keys.CONTROL,'v')
 element.send_keys(Keys.F1) 键盘 F1
 element.send_keys(Keys.F12) 键盘 F12
 ```
+

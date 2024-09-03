@@ -6,17 +6,17 @@ tags:
 title: "Elasticsearch Prometheus \u76D1\u63A7"
 
 ---
-
-
 # Elasticsearch Prometheus 监控
 参考文档：
 
-- [https://github.com/prometheus-community/elasticsearch_exporter](https://github.com/prometheus-community/elasticsearch_exporter)
++ [https://github.com/prometheus-community/elasticsearch_exporter](https://github.com/prometheus-community/elasticsearch_exporter)
 
 下载二进制包安装：
+
 ```bash
 vim /usr/lib/systemd/system/elasticsearch_exporter.service
 ```
+
 ```toml
 [Unit]
 Description=Elasticsearch Exporter
@@ -41,12 +41,15 @@ ExecStart=/opt/elasticsearch_exporter/elasticsearch_exporter \
 [Install]
 WantedBy=multi-user.target
 ```
+
 ```bash
 systemctl start  elasticsearch_exporter.service
 systemctl enable elasticsearch_exporter.service
 systemctl status elasticsearch_exporter.service
 ```
+
 Prometheus 配置：
+
 ```yaml
   - job_name: external/elastichsearch_exporter
     honor_timestamps: true
@@ -68,4 +71,6 @@ Prometheus 配置：
         labels:
           env: "dev"
 ```
+
 导入安装包内的`dashboard.json`到 Grafana 即可。
+

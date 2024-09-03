@@ -6,13 +6,10 @@ tags:
 title: "Lua \u811A\u672C"
 
 ---
-
-
 # Lua 脚本
 参考文档：
 
-- [Lua: download](https://www.lua.org/download.html)
-
++ [Lua: download](https://www.lua.org/download.html)
 
 ## 源码编译安装
 ```bash
@@ -25,11 +22,15 @@ cd src
 ln -s $PWD/lua  /usr/local/bin/lua
 ln -s $PWD/luac /usr/local/bin/luac 
 ```
+
 或者直接下载二进制：
+
 ```bash
 wget https://altushost-swe.dl.sourceforge.net/project/luabinaries/5.4.2/Linux%20Libraries/lua-5.4.2_Linux415_64_lib.tar.gz
 ```
+
 编译完后直接启动 lua：
+
 ```bash
 ./lua   
 Lua 5.4.4  Copyright (C) 1994-2022 Lua.org, PUC-Rio
@@ -37,3 +38,4 @@ Lua 5.4.4  Copyright (C) 1994-2022 Lua.org, PUC-Rio
 hello, world
 >
 ```
+

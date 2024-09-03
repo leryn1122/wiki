@@ -6,6 +6,4 @@ tags:
 title: Elasticsearch
 
 ---
-
-
 # Elasticsearch

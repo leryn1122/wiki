@@ -6,13 +6,10 @@ tags:
 title: "MySQL \u8FD0\u7EF4"
 
 ---
-
-
 # MySQL 运维
-
-
 ## MySQL 生产备份
 备份服务器不需要安装mysql数据库，但需要有mysql的安装包（需要用到 `mysqldump` 命令）。
+
 ```bash
 # 移除linux发行版内置的mariadb
 rpm -qa | grep -i mysql   | grep -v libs | xargs rpm -ev --nodeps &> /dev/null
@@ -35,14 +32,18 @@ vim ~/.bash_profile
 source ~/.bash_profile
 which mysql
 ```
+
 先现在各个数据库建立专门用于备份的用户：
+
 ```sql
 /* 创建用户，专门用于备份 */
 CREATE USER 'datasource_backup'@'%' IDENTIFIED BY '密码';
 GRANT SELECT, PROCESS, RELOAD, SUPER, REPLICATION CLIENT, EVENT ON *.* TO 'datasource_backup'@'%';
 FLUSH PRIVILEGES;
 ```
+
 从各数据库主库备份到统一的备份服务器路径下 `/data`，先 `df -h` 检查 `/data` 是否处于一个空间足够大的逻辑卷上，否则先参考硬盘扩容文档扩容：
+
 ```bash
 # 新建目录
 mkdir -p /data
@@ -59,17 +60,18 @@ crontab -e        # 添加定时任务
 # 数据库IP 用户 密码 以参数形式依次传给shell脚本
 5 3 * * * bash /data/script/back.sh 数据库IP 用户 密码
 ```
+
 脚本功能：
 
-- 远程读取 mysql 中的所有schema（包括mysql，但除去三个元数据schema）
-- 根据远程地址的后两位创建文件夹
-- mysqldump 备份全库数据（刷新binlog）
-- 压缩备份数据
-- 删除 14 天以外的备份数据
-
++ 远程读取 mysql 中的所有schema（包括mysql，但除去三个元数据schema）
++ 根据远程地址的后两位创建文件夹
++ mysqldump 备份全库数据（刷新binlog）
++ 压缩备份数据
++ 删除 14 天以外的备份数据
 
 ## 数据文件更换目录
 用于将数据文件的目录迁移到别的挂载盘的目录：
+
 ```bash
 #创建新的数据目录
 mkdir -p /home/mysqldata/
@@ -102,15 +104,16 @@ service mysql start
 start slave;
 show slave status;
 ```
-配套修改其他的数据库有关的组件，例如备份脚本和监控平台中的路径。
-一段时间后删除原来的数据可文件/
 
+配套修改其他的数据库有关的组件，例如备份脚本和监控平台中的路径。  
+一段时间后删除原来的数据可文件/
 
 ## 从生产远程同步数据到仿真环境
 同样需要先创建对应同步数据的用户：
 
-- 远端用户需要 `SELECT` 和 `PROCESS` 权限
-- 本地用户需要 `SELECT,INSERT,UPDATE,DELETE` 权限
++ 远端用户需要 `SELECT` 和 `PROCESS` 权限
++ 本地用户需要 `SELECT,INSERT,UPDATE,DELETE` 权限
+
 ```bash
 vim syncDataFromProd.sh # 内容见下文
 
@@ -119,6 +122,7 @@ crontab -e              # 添加定时任务
 # 添加如下记录，时间定在18点
 0 18 * * * bash /root/syncDataFromProd.sh >> sync.log 2>&1
 ```
+
 ```bash
 #!/usr/bin/bash
 
@@ -140,9 +144,9 @@ mysqldump -u用户名 -p密码    \
 mysql -u用户名 -p密码 -D数据库名 < 数据库名.sql
 ```
 
-
 ## 常用脚本
 导出MySQL指定表的记录（根据where子句）
+
 ```bash
 mysqldump -u用户名 -p密码    \
     数据库名 表名1 表名2      \
@@ -155,7 +159,9 @@ mysqldump -u用户名 -p密码    \
     --skip-extended-insert      \
     --where="条件语句" > mysql_dump.sql
 ```
+
 查看指定时间段MySQL binlog（MD5解码）
+
 ```bash
 mysqlbinlog \
   --no-defaults binlog.000195 \
@@ -164,10 +170,7 @@ mysqlbinlog \
   --base64-output=decode-rows -vv > mysql_history_20210607.log
 ```
 
-
 ## 重置 root 密码
-
-
 ### MySQL 8.0
 ```bash
 vim /etc/my.cnf
@@ -179,10 +182,12 @@ service mysql restart
 # 此时无密码验证, 随便输入密码
 mysql -uroot -p
 ```
+
 ```sql
 USE mysql;
 UPDATE user SET password = '' WHERE user = 'root' LIMIT 1;
 ```
+
 ```bash
 vim /etc/my.cnf
 # [mysqld]下删除
@@ -193,18 +198,21 @@ service mysql restart
 # 此时密码为空, 不需要输入密码
 mysql -uroot -p
 ```
+
 ```sql
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'; 
 ```
 
-
 ## 运维参数
 计算缓存命中率：
+
 ```sql
 show global status like 'innodb%read%';
 ```
-![](./../assets/8006547ca5422f8253214655e6bf236a.svg)
 
-```
+$ Hit\% = \frac{Innodb\_buffer\_pool\_read\_requests}{Innodb\_buffer\_pool\_read\_requests + Innodb\_buffer\_pool\_reads + Innodb\_buffer\_pool\_read\_ahead} $
+
+```plain
 Hit% = Innodb_buffer_pool_read_requests/ (Innodb_buffer_pool_read_requests + Innodb_buffer_pool_reads + Innodb_buffer_pool_read_ahead)
 ```
+

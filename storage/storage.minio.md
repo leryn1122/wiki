@@ -6,20 +6,18 @@ tags:
 title: "MinIO \u5B89\u88C5\u624B\u518C"
 
 ---
-
-
 # MinIO 安装手册
 参考文档：
 
-- [MinIO Object Storage for Kubernetes — MinIO Object Storage for Kubernetes](https://docs.min.io/)
-- [MinIO对象存储 Kubernetes — MinIO中文文档 | MinIO Kubernetes中文文档](https://docs.minio.org.cn/docs/)
-
++ [MinIO Object Storage for Kubernetes — MinIO Object Storage for Kubernetes](https://docs.min.io/)
++ [MinIO对象存储 Kubernetes — MinIO中文文档 | MinIO Kubernetes中文文档](https://docs.minio.org.cn/docs/)
 
 ## Docker 安装
 这里：
 
-- 端口 9000 因为被其他应用占用了，所以改用 9002
-- 密码要至少 8 位，否则会报错。
++ 端口 9000 因为被其他应用占用了，所以改用 9002
++ 密码要至少 8 位，否则会报错。
+
 ```bash
 docker run \
   --detach=true \
@@ -34,19 +32,21 @@ docker run \
   --hostname=minio \
   minio/minio:latest server /data --console-address ":9001"
 ```
+
 比较新的 minio 镜像中以下两个环境变量已经废弃，请在管理端手动创建新用户。
+
 ```bash
   --env="MINIO_ACCESS_KEY=admin" \
   --env="MINIO_SECRET_KEY=admin" \
 ```
 
-
 ## Helm 安装
 参考文档：
 
-- [minio/helm/minio at master · minio/minio](https://github.com/minio/minio/tree/master/helm/minio)
++ [minio/helm/minio at master · minio/minio](https://github.com/minio/minio/tree/master/helm/minio)
 
 较新的 MinIO 调整了网关，暂时使用老版本的 Chart。
+
 ```bash
 helm repo add minio https://charts.min.io/
 helm repo update
@@ -73,3 +73,4 @@ helm install minio minio/minio -n oss \
   --set securityContext.runAsUser=0                    \
   --set securityContext.runAsGroup=0
 ```
+

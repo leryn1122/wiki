@@ -7,10 +7,9 @@ tags:
 title: "Containerd \u914D\u7F6E\u6587\u4EF6"
 
 ---
-
-
 # Containerd 配置文件
 Containerd 的参考配置文件：
+
 ```toml
 disabled_plugins = []
 imports = []
@@ -235,3 +234,4 @@ version = 2
   git = 0
   
 ```
+

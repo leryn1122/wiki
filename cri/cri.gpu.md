@@ -8,13 +8,10 @@ tags:
 title: "NVIDIA GPU \u5BB9\u5668\u8FD0\u884C\u65F6"
 
 ---
-
-
 # NVIDIA GPU 容器运行时
 参考文档：
 
-- [Overview — NVIDIA Container Toolkit 1.14.5 documentation](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)
-
++ [Overview — NVIDIA Container Toolkit 1.14.5 documentation](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)
 
 ## NVIDIA Container
 ```bash
@@ -26,7 +23,9 @@ curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-contai
 sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
 ```
+
 配置 Docker / Containerd / CRI-O 运行时，`nvidia-ctk` 会自动修改对应运行时的配置文件：
+
 ```bash
 # Docker
 sudo nvidia-ctk runtime configure --runtime=docker
@@ -40,7 +39,9 @@ sudo systemctl restart containerd
 sudo nvidia-ctk runtime configure --runtime=crio
 sudo systemctl restart crio
 ```
+
 查看`nvidia-smi`：
+
 ```bash
 sudo nvidia-smi
 
@@ -48,7 +49,8 @@ sudo nvidia-smi
 sudo docker run --rm --gpus all nvidia/cuda:11.0.3-base-ubuntu20.04 nvidia-smi
 ```
 
-
 ## MIG
 MIG（Multi-Instance GPU）是一种 Ampere 架构显卡上的特性。通过硬件设计，将 GPU 分为更小的子 GPU。依次建立 GI（GPU Instnace）和并在其上创建 CI（Computed Instance）。MIG-vGPU 技术性能优于基于 Time-sliced 的 vGPU 技术。
+
 MIG 设备编号：例如 1c.3g.20gb 表示 1c = 一个计算单位，3g.20gb = 3G GPU内存和 20G内存。
+

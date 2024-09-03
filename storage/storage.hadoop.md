@@ -6,54 +6,59 @@ tags:
 title: "Hadoop \u6587\u4EF6\u7CFB\u7EDF"
 
 ---
-
-
 # Hadoop 文件系统
-
-
 ## Hadoop 安装手册
 参考文档：
 
-- [Apache Hadoop](http://hadoop.apache.org)
-
++ [Apache Hadoop](http://hadoop.apache.org)
 
 ### 前置准备
 部署准备，安装前需要准备如下材料：
 
-- JDK 环境：至少需要 JDK 8 及以上
-- Hadoop 安装包：`hadoop-*.tar.gz`
++ JDK 环境：至少需要 JDK 8 及以上
++ Hadoop 安装包：`hadoop-*.tar.gz`
+
 > 目前主流版本为 Hadoop 2.7.x.
+>
 > Hadoop 3.x 引入了全新的特性擦除编码，降低磁盘存储上的开销，并提升了读写性能
+>
 
 从 Hadoop 官网下载源文件安装包。
+
 ```bash
 wget https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-bin.tar.gz
 ```
 
-
 ### 安装步骤
 配置 Hadoop 环境变量，并使其生效：
+
 ```bash
 # Set Hadoop environment.
 export HADOOP_HOME=/opt/module/hadoop-3.3.0
 export PATH=$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
 ```
+
 解压安装包到指定路径：
+
 ```bash
 tar -xf hadoop-3.3.0.tar.gz
 mv hadoop-3.3.0 ${HADOOP_HOME}
 ```
+
 根据实际情况，选择单节点安装（仅开发环境）或完全分布式安装。如果只有一台服务器选择单节点安装，但这可能会给服务器较大压力；如果多台服务器（无论实体机或虚拟机）可以选用完全分布式安装，最低配置三个节点。
+
 **单节点安装**
+
 修改 Hadoop 主要的配置文件，路径都在`${HADOOP_HOME}/etc/hadoop`下：
 
-- `core-site.xml`
-- `hdfs-site.xml`
-- `mapred-site.xml`
-- `yarn-site.xml`
-- `hadoop-env.sh`
-- `workers`
++ `core-site.xml`
++ `hdfs-site.xml`
++ `mapred-site.xml`
++ `yarn-site.xml`
++ `hadoop-env.sh`
++ `workers`
 1. 修改`core-site.xml`配置文件：
+
 ```xml
 <configuration>
     <!-- 指定HDFS中NameNode的地址 -->
@@ -79,6 +84,7 @@ mv hadoop-3.3.0 ${HADOOP_HOME}
 ```
 
 2. 修改`hdfs-site.xml`配置文件：
+
 ```xml
 <configuration>
     <!-- 集群备份数 默认为3 -->
@@ -102,9 +108,11 @@ mv hadoop-3.3.0 ${HADOOP_HOME}
 ```
 
 3. 修改`hadoop-env.sh`配置文件：
-```
+
+```plain
 vim etc/hadoop/hadoop-env.sh
 ```
+
 ```bash
 # The java implementation to use. By default, this environment
 # variable is REQUIRED on ALL platforms except OS X!
@@ -115,28 +123,32 @@ export HADOOP_LOG_DIR=/opt/data/hadoop/logs
 ```
 
 4. 修改`workers`配置文件，尽管这是指一个普通格式的文件：
+
 ```bash
 vim etc/hadoop/workers
 ```
+
 配置节点的`hostname`或者 IP 地址，单节点只需配置`localhost`：
-```
+
+```plain
 localhost
 ```
+
 **完全分布式安装**
+
 难民三节点配置~~（这么规划因为穷, 只能玩得起三节点）~~
 
-|  | HDFS | YARN |
+| | HDFS | YARN |
 | --- | --- | --- |
-| hadoop001 | NameNode
-DataNode | NodeManager |
-| hadoop002 | DataNode | ResourceManager
-NodeManager |
-| hadoop003 | SecondaryNameNode
-DataNode | NodeManager |
+| hadoop001 | NameNode   DataNode | NodeManager |
+| hadoop002 | DataNode | ResourceManager   NodeManager |
+| hadoop003 | SecondaryNameNode   DataNode | NodeManager |
+
 
 完全分布式安装方式与单节点基本一致，只是配置文件中的配置参数不同，且需要将配置文件（包括 JDK 等）分发到各个节点上，推荐使用`rsync`同步分发。
 
 1. 修改`core-site.xml`配置文件：
+
 ```xml
 <configuration>
     <!-- 指定HDFS中NameNode的地址 -->
@@ -165,6 +177,7 @@ DataNode | NodeManager |
 ```
 
 2. 修改`hdfs-site.xml`配置文件.
+
 ```xml
 <configuration>
     <!-- 限制集群备份数: 默认为3, 对于单节点来说是1 -->
@@ -198,6 +211,7 @@ DataNode | NodeManager |
 ```
 
 3. 修改`yarn-site.xml`配置文件：
+
 ```xml
 <configuration>
     <!-- Site specific YARN configuration properties -->
@@ -251,6 +265,7 @@ DataNode | NodeManager |
 ```
 
 4. 修改`mapred-site.xml`配置文件：
+
 ```xml
 <configuration>
     <!-- 指定MR运行在Yarn上 -->
@@ -273,31 +288,43 @@ DataNode | NodeManager |
 
 5. 修改`hadoop-env.sh`配置文件，与单节点节点相同
 6. 修改`workers`配置文件，写入 hadoop 各节点的主机名
-```
+
+```plain
 hadoop001
 hadoop002
 hadoop003
 ```
 
-
 ### Boot
 **启动 HDFS**
+
 验证 Hadoop 是否安装成功，使用命令查看版本，如果可以正确显示版本信息则安装成功：
+
 ```bash
 hadoop version
 ```
+
 > Hadoop 3.3.0
+>
 > Source code repository [https://gitbox.apache.org/repos/asf/hadoop.git](https://gitbox.apache.org/repos/asf/hadoop.git) -r aa96f1871bfd858f9bac59cf2a81ec470da649af
+>
 > Compiled by brahma on 2020-07-06T18:44Z
+>
 > Compiled with protoc 3.7.1
+>
 > From source with checksum 5dc29b802d6ccd77b262ef9d04d19c4
+>
 > This command was run using /opt/module/hadoop-3.3.0/share/hadoop/common/hadoop-common-3.3.0.jar
+>
 
 **首次**启动`HDFS`前需要执行格式化，这会删除 NameNode 中所有的节点，已经投入生产的文件系统**请不要使用**格式化命令：
+
 ```bash
 hadoop namenode -format
 ```
+
 用`sbin`下的启动/关机脚本，启动 HDFS：
+
 ```bash
 # 启动HDFS
 sbin/start-dfs.sh
@@ -305,19 +332,29 @@ sbin/start-dfs.sh
 # 停止HDFS
 sbin/stop-dfs.sh
 ```
+
 使用`jps`命令可以看到 NameNode、DataNode 即可。~~有时候启动~~`~~NameNode~~`~~和~~`~~SecondaryNameNode~~`~~进程无法启动，但是 HDFS 可以正常工作~~：
+
 ```bash
 jps
 ```
+
 > 31169 SecondaryNameNode
+>
 > 30997 DataNode
+>
 > 30870 NameNode
+>
 
 使用 hadoop shell 可以正常访问 hdfs 上的文件系统：
+
 ```bash
 hdfs dfs -mkdir /data
 hdfs dfs -ls /
 ```
+
 > Found 1 items
+>
 > drwxr-xr-x   - hadoop supergroup          0 2021-01-24 16:50 /data
+>
 

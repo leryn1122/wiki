@@ -4,23 +4,24 @@ tags: []
 title: Elasticsearch SQL
 
 ---
-
-
 # Elasticsearch SQL
+
 
 参考文档:
 
-- [SQL access | Elasticsearch Guide [7.6] | Elastic - ElasticSearch 官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/7.6/xpack-sql.html)
-
++ [SQL access | Elasticsearch Guide [7.6] | Elastic - ElasticSearch 官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/7.6/xpack-sql.html)
 
 ## Elasticsearch SQL API
-
-
 ### SQL 介绍
+
 
 Elasticsearch SQL 是 Elasticsearch 官方 XPack 提供的一系列 DSL 的 API, 可以使用 SQL 的方式访问 Elasticsearch 中的数据, 而不是去拼接原生的 Elasticsearch JSON 查询接口 (即使有 SDK 也很麻烦).
 
-对比一下 数据库 (SQL) 和 Elasticsearch 对应关系:
+
+
+对比一下 数据库 (SQL) 和 <font style="color:rgb(79, 79, 79);">Elasticsearch 对应关系:</font>
+
+
 
 | SQL | ElasticSearch |
 | --- | --- |
@@ -31,7 +32,11 @@ Elasticsearch SQL 是 Elasticsearch 官方 XPack 提供的一系列 DSL 的 API,
 | database server 数据库服务器 | ElasticSearch 集群实例 |
 
 
+
+
 ElasticSearch SQL 支持以下语法, 不支持JOIN, 不支持较复杂的子查询:
+
+
 
 ```sql
 SELECT select_expr [, ...]
@@ -44,7 +49,11 @@ SELECT select_expr [, ...]
 [ PIVOT ( aggregation_expr FOR column IN ( value [ [ AS ] alias ] [, ...] ) ) ]
 ```
 
+
+
 还可以使用以下语句查看对应的索引和可用的函数:
+
+
 
 ```sql
 SHOW TABLES;
@@ -55,12 +64,17 @@ SHOW FUNCTIONS;
 
 ### API 接口
 
+
 有两个核心接口:
 
-- `_xpack/sql/translate`
-- `_xpack/sql`
++ `_xpack/sql/translate`
++ `_xpack/sql`
+
+
 
 调试翻译接口, 你可以发送一段包含 Elasticsearch SQL 给 Elasticsearch, 它会翻译成具体的 JSON 查询接口. 但是其中的表名和字段必须服务端上实际存在的, 才能得到正确的响应. 拿到接口后可以使用 Elasticsearch 的 SDK 来生成这个查询请求.
+
+
 
 ```bash
 curl -XPOST https://elasticsearch:9200/_xpack/sql/translate \
@@ -69,7 +83,11 @@ curl -XPOST https://elasticsearch:9200/_xpack/sql/translate \
      -d '{"query": "select * from \"my-index*\" limit 10", "fetch_size": 10}'
 ```
 
+
+
 或者直接使用这个接口进行查询:
+
+
 
 ```bash
 curl -XPOST https://elasticsearch:9200/_xpack/sql?format=json \
@@ -78,7 +96,11 @@ curl -XPOST https://elasticsearch:9200/_xpack/sql?format=json \
      -d '{"query": "select * from \"my-index*\" limit 10"}'
 ```
 
+
+
 于此同时 Elasticsearch 甚至提供 PreparedStatement 风格式的查询, 它接受一个参数的数组并将 SQL 语句中的占位符 `?` 替换为参数. 性能方面, 与数据库类似, 这条查询会被 Elasticsearch 缓存下来, 不会每次查询都触发硬解析.
+
+
 
 ```sql
 curl -XPOST https://elasticsearch:9200/_xpack/sql?format=json \
@@ -91,12 +113,15 @@ curl -XPOST https://elasticsearch:9200/_xpack/sql?format=json \
 
 ### 局限性
 
-- 仅只是 SELECT 语句和一部分 SHOW 语句, 完全不支持 INSERT, DELETE, UPDATE 语句
 
++ 仅只是 SELECT 语句和一部分 SHOW 语句, 完全不支持 INSERT, DELETE, UPDATE 语句
 
 ## Elasticsearch JDBC
 
+
 Elasticsearch 也提供 JDBC 的 Jar 包, 但需要白金版 License 或者~~破解~~.
+
+
 
 ```xml
 <repositories>
@@ -114,3 +139,4 @@ Elasticsearch 也提供 JDBC 的 Jar 包, 但需要白金版 License 或者~~破
   </dependency>
 </dependencies>
 ```
+

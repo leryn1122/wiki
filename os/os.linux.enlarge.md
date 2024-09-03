@@ -4,14 +4,14 @@ tags: []
 title: "\u6269\u5BB9\u5177\u4F53\u8FC7\u7A0B\u6F14\u793A"
 
 ---
-
-
 # 扩容具体过程演示
 以下内容又臭又长，可以略过：
+
 ```bash
 lsblk
 ```
-```
+
+```plain
 NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sr0              11:0    1   4.3G  0 rom.
 vda             252:0    0   200G  0 dis.
@@ -20,10 +20,12 @@ vda             252:0    0   200G  0 dis.
   ├─centos-root 253:0    0 186.3G  0 lvm  /
   └─centos-swap 253:1    0   7.9G  0 lvm  [SWAP
 ```
+
 ```bash
 df -h
 ```
-```
+
+```plain
 Filesystem               Size  Used Avail Use% Mounted on
 /dev/mapper/centos-root  187G  1.4G  185G   1% /
 devtmpfs                 7.8G     0  7.8G   0% /dev
@@ -33,10 +35,12 @@ tmpfs                    7.8G     0  7.8G   0% /sys/fs/cgroup
 /dev/vda1               1014M  148M  867M  15% /boot
 tmpfs                    1.6G     0  1.6G   0% /run/user/0
 ```
+
 ```bash
 fdisk -l
 ```
-```
+
+```plain
 Disk /dev/vda: 214.7 GB, 214748364800 bytes, 419430400 sectors
 Units = sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
@@ -55,10 +59,12 @@ Units = sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
 ```
+
 ```bash
 vgdisplay
 ```
-```
+
+```plain
 --- Volume group ---
   VG Name               centos
   System ID
@@ -81,15 +87,16 @@ vgdisplay
   VG UUID               sH16CU-JTk0-5yv5-mwUI-FQ4f-xyVA-9z6UO1
 ```
 
-
 ## 物理盘
 查看磁盘，在超融合中挂载上新的硬盘后，用`fdisk -l`查看（不需要重启）。
+
 ```bash
 # 查看磁盘
 # 可以查看到新增的/dev/vdb, 大小为40G
 fdisk -l
 ```
-```
+
+```plain
 Disk /dev/vda: 214.7 GB, 214748364800 bytes, 419430400 sectors
 Units = sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
@@ -112,11 +119,14 @@ Units = sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
 ```
+
 如果需要分区的话，**根据提示操作**：
+
 ```bash
 fdisk /dev/vdb
 ```
-```
+
+```plain
 Welcome to fdisk (util-linux 2.23.2).
 Changes will remain in memory only, until you decide to write them.
 Be careful before using the write command.
@@ -184,11 +194,14 @@ The partition table has been altered!
 Calling ioctl() to re-read partition table.
 Syncing disks.
 ```
+
 查看可用块，`vdb`下面已经有了两个 10G 和 30G 的分区了。
+
 ```bash
 lsblk
 ```
-```
+
+```plain
 NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sr0              11:0    1   4.3G  0 rom.
 vda             252:0    0   200G  0 dis.
@@ -201,23 +214,27 @@ vdb             252:16   0    40G  0 dis.
 └─vdb2          252:18   0    30G  0 part
 ```
 
-
 ## 物理卷 PV
 创建物理卷：
+
 ```bash
 # vdb分区后不能使用/dev/vdb创建pv
 pvcreate /dev/vdb1
 pvcreate /dev/vdb2
 ```
-```
+
+```plain
 Physical volume "/dev/vdb1" successfully created.
   Physical volume "/dev/vdb2" successfully created.
 ```
+
 查看物理卷，可以看到新增的物理卷`/dev/vdb1`：
+
 ```bash
 pvdisplay
 ```
-```
+
+```plain
 --- Physical volume ---
   PV Name               /dev/vda2
   VG Name               centos
@@ -252,22 +269,26 @@ pvdisplay
   PV UUID               LYeEb1-jsTc-NSUe-Mj2D-AosK-iGsC-fvvAQl
 ```
 
-
 ## 卷组 VG
 朝已有的虚拟卷组里添加新的卷，不可以把已经隶属某虚拟卷组的卷利用`vgcreate`建立为新的卷组，会提示它已经被占用。
+
 ```bash
 # 扩展虚拟卷组, 朝已有卷组增加卷
 vgextend centos /dev/vdb1
 ```
-```
+
+```plain
 Volume group "centos" successfully extended
 ```
+
 查看虚拟卷组。
+
 ```bash
 # 查看虚拟卷组
 vgdisplay
 ```
-```
+
+```plain
 --- Volume group ---
   VG Name               centos
   System ID
@@ -289,14 +310,18 @@ vgdisplay
   Free  PE / Size       2561 / 10.00 GiB
   VG UUID               sH16CU-JTk0-5yv5-mwUI-FQ4f-xyVA-9z6UO1
 ```
+
 对`/dev/vdb2`同理
+
 ```bash
 vgextend centos /dev/vdb2
 ```
-```
+
+```plain
 Volume group "centos" successfully extended
 ```
-```
+
+```plain
 --- Volume group ---
   VG Name               centos
   System ID
@@ -319,27 +344,29 @@ Volume group "centos" successfully extended
   VG UUID               sH16CU-JTk0-5yv5-mwUI-FQ4f-xyVA-9z6UO1
 ```
 
-
 ## 逻辑卷 LV
-
-
 ### 默认逻辑卷扩容
 逻辑卷中扩展大小，**这种操作没有指定挂载目录, 需要则查看新增逻辑卷扩容**。
+
 ```bash
 # 扩展逻辑卷
 # +号表示增加容量  无+号表示扩展到的容量
 # lvresize -L +10G /dev/mapper/centos-root(舍弃.
 lvextend -l +100%free /dev/mapper/centos-root
 ```
-```
+
+```plain
 Size of logical volume centos/root changed from 186.26 GiB (47683 extents) to 196.26 GiB (50243 extents).
   Logical volume centos/root successfully resized.
 ```
+
 查看可用块。
+
 ```bash
 lsblk
 ```
-```
+
+```plain
 NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sr0              11:0    1   4.3G  0 rom
 vda             252:0    0   200G  0 disk
@@ -350,29 +377,38 @@ vda             252:0    0   200G  0 disk
 vdb             252:16   0    40G  0 disk
 └─centos-root   253:0    0 197.3G  0 lvm  /                  <== 已经增加了10G, 从186G增加到197GG
 ```
+
 现在卷加载了但`df -h`的大小仍然没有变化。**调整文件系统**的大小，这步报错了。
+
 ```bash
 # 调整文件系统
 resize2fs /dev/mapper/centos-root
 ```
-```
+
+```plain
 resize2fs 1.42.9 (28-Dec-2013)
 resize2fs: Bad magic number in super-block while trying to open /dev/mapper/centos-root
 Couldn't find valid filesystem superblock.
 ```
+
 查看挂载类型, 发现为原类型为`xfs`。
+
 ```bash
 mount | grep /dev/mapper/centos-root
 ```
-```
+
+```plain
 /dev/mapper/centos-root on / type xfs (rw,relatime,attr2,inode64,noquota)
 ```
+
 `xfs`更新需要使用`xfs_growfs`。
+
 ```bash
 # 调整文件系统
 xfs_growfs /dev/mapper/centos-root
 ```
-```
+
+```plain
 meta-data=/dev/mapper/centos-root isize=512    agcount=4, agsize=12206848 blks
          =                       sectsz=512   attr=2, projid32bit=1
          =                       crc=1        finobt=0 spinodes=0
@@ -384,11 +420,14 @@ log      =internal               bsize=4096   blocks=23841, version=2
 realtime =none                   extsz=4096   blocks=0, rtextents=0
 data blocks changed from 48827392 to 51448832
 ```
+
 查看文件系统：
+
 ```bash
 df -h
 ```
-```
+
+```plain
 Filesystem               Size  Used Avail Use% Mounted on
 /dev/mapper/centos-root  197G  1.4G  195G   1% /                    <== 已经增加了10G, 从186G增加到197GG
 devtmpfs                 7.8G     0  7.8G   0% /dev
@@ -399,13 +438,14 @@ tmpfs                    7.8G     0  7.8G   0% /sys/fs/cgroup
 tmpfs                    1.6G     0  1.6G   0% /run/user/0
 ```
 
-
 ### 新增逻辑卷扩容
 查看逻辑卷。
+
 ```bash
 lvdisplay
 ```
-```
+
+```plain
 --- Logical volume ---
   LV Path                /dev/centos/root
   LV Name                root
@@ -439,18 +479,24 @@ lvdisplay
   - currently set to     8192
   Block device           253:1
 ```
+
 创建一个新的逻辑卷。
+
 ```bash
 lvcreate -L 20G -n /dev/centos/data
 ```
-```
+
+```plain
 Logical volume "data" created.
 ```
+
 查看逻辑卷。
+
 ```bash
 lvdisplay
 ```
-```
+
+```plain
 --- Logical volume ---
   LV Path                /dev/centos/root
   LV Name                root
@@ -500,11 +546,14 @@ lvdisplay
   - currently set to     256
   Block device           253:2
 ```
+
 格式化这个逻辑卷。
+
 ```bash
 mkfs -t ext4 /dev/centos/data
 ```
-```
+
+```plain
 mke2fs 1.42.9 (28-Dec-2013)
 Filesystem label=
 OS type: Linux
@@ -526,7 +575,9 @@ Writing inode tables: done
 Creating journal (32768 blocks): done
 Writing superblocks and filesystem accounting information: done
 ```
+
 创建挂载目录并挂载到其上.
+
 ```bash
 # 创建目录
 mkdir /data
@@ -535,7 +586,8 @@ mount /dev/centos/data /data
 # 查看文件系统
 df -h
 ```
-```
+
+```plain
 Filesystem               Size  Used Avail Use% Mounted on
 /dev/mapper/centos-root  197G  1.4G  195G   1% /
 devtmpfs                 7.8G     0  7.8G   0% /dev
@@ -546,11 +598,14 @@ tmpfs                    7.8G     0  7.8G   0% /sys/fs/cgroup
 tmpfs                    1.6G     0  1.6G   0% /run/user/0
 /dev/mapper/centos-data   20G   45M   19G   1% /data            <== 挂载20G逻辑卷到/data目录下
 ```
+
 检查可用块。
+
 ```bash
 lsblk
 ```
-```
+
+```plain
 NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sr0              11:0    1   4.3G  0 rom
 vda             252:0    0   200G  0 disk
@@ -564,35 +619,30 @@ vdb             252:16   0    40G  0 disk
 └─vdb2          252:18   0    30G  0 part
   └─centos-data 254:2    0    20G  0 lvm  /data            <== 20G可用块
 ```
+
 配置开机自动挂载，在`/etc/fstab`文件下写入. 如果不这么做, 重启后将不会出现挂载的目录。
+
 ```bash
 vim /etc/fstab
 ```
-```
+
+```plain
 /dev/mapper/centos-data /data     ext4    defaults   0    0
 ```
+
 `/etc/fstab`中各个域的解释（建议不要改动最后两个域，容易导致**内核启动失败**）。
 
 | 域 | 解释 |
 | --- | --- |
 | file system | 挂载的文件系统的设备名称或块信息，也可以是远程的文件系统。 |
-| mount point | 挂载点: 挂到这个目录上，然后就可以从这个目录中访问要挂载文件系统。
-对于`swap`
+| mount point | 挂载点: 挂到这个目录上，然后就可以从这个目录中访问要挂载文件系统。   对于`swap`
 分区填：`none`，表示没有挂载点 |
-| type | 指定文件系统的类型：
-`ext3``ext2``ext``swap``nfs``hpfs``ncpfs``ntfs``proc``cifs``iso9660`等等 |
-| options | 这里用来填写设置选项, 各个选项用逗号隔开；
-选项非常多, 不作详细介绍, 如需了解, 请用 命令 `man mount`
-来查看；
-可以使用`defaults`
+| type | 指定文件系统的类型：   `ext3``ext2``ext``swap``nfs``hpfs``ncpfs``ntfs``proc``cifs``iso9660`等等 |
+| options | 这里用来填写设置选项, 各个选项用逗号隔开；   选项非常多, 不作详细介绍, 如需了解, 请用 命令 `man mount`
+来查看；   可以使用`defaults`
 关键字：它代表包含了选项`rw``suid``dev``exec``auto``nouser``async` |
-| dump | 为 1 的话，表示要将整个里的内容备份；
-为 0 的话。表示不备份。
-现在很少用到 dump 这个工具，在这里一般选 0。 |
+| dump | 为 1 的话，表示要将整个里的内容备份；   为 0 的话。表示不备份。   现在很少用到 dump 这个工具，在这里一般选 0。 |
 | pass | 使用`fsck`
-来检查硬盘：
-如果这里填 0，则不检查；
-挂载点为`/`的（即根分区），必须在这里填写 1，其他的都不能填写 1；
-如果有分区填写大于 1 的话，则在检查完根分区后，接着按填写的数字从小到大依次检查下去；
-同数字的同时检查。比如第一和第二个分区填写 2，第三和第四个分区填写 3，则系统在检查完根分区后，接着同时检查第一和第二个分区，然后再同时检查第三和第四个分区。 |
+来检查硬盘：   如果这里填 0，则不检查；   挂载点为`/`的（即根分区），必须在这里填写 1，其他的都不能填写 1；   如果有分区填写大于 1 的话，则在检查完根分区后，接着按填写的数字从小到大依次检查下去；   同数字的同时检查。比如第一和第二个分区填写 2，第三和第四个分区填写 3，则系统在检查完根分区后，接着同时检查第一和第二个分区，然后再同时检查第三和第四个分区。 |
+
 

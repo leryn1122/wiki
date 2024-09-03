@@ -6,27 +6,31 @@ tags:
 title: "TiDB \u5B89\u88C5\u624B\u518C"
 
 ---
-
-
 # TiDB 安装手册
 参考文档：
 
-- [TiDB 产品文档](https://docs.pingcap.com/zh/tidb/stable)
-- [TiDB 软件和硬件环境建议配置](https://docs.pingcap.com/zh/tidb/v4.0/hardware-and-software-requirements)
-- [最小拓扑架构](https://docs.pingcap.com/zh/tidb/v4.0/minimal-deployment-topology)
-- [TiDB 环境与系统配置检查](https://docs.pingcap.com/zh/tidb/v4.0/check-before-deployment)
-- [使用 TiUP 部署 TiDB 集群](https://docs.pingcap.com/zh/tidb/v4.0/production-deployment-using-tiup)
++ [TiDB 产品文档](https://docs.pingcap.com/zh/tidb/stable)
++ [TiDB 软件和硬件环境建议配置](https://docs.pingcap.com/zh/tidb/v4.0/hardware-and-software-requirements)
++ [最小拓扑架构](https://docs.pingcap.com/zh/tidb/v4.0/minimal-deployment-topology)
++ [TiDB 环境与系统配置检查](https://docs.pingcap.com/zh/tidb/v4.0/check-before-deployment)
++ [使用 TiUP 部署 TiDB 集群](https://docs.pingcap.com/zh/tidb/v4.0/production-deployment-using-tiup)
 
 
 
 ## 前置步骤
 
-**_这一块 tuning 有关的内容开发环境安装时都没有做, 不做不会导致安装失败, 但根据文档可能会影响性能._**
+
+_**这一块 tuning 有关的内容开发环境安装时都没有做, 不做不会导致安装失败, 但根据文档可能会影响性能.**_
+
 参考文档:
 
-- [检查和配置操作系统优化参数 - TiDB 官方文档](https://docs.pingcap.com/zh/tidb/v4.0/check-before-deployment#%E6%A3%80%E6%9F%A5%E5%92%8C%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E5%8F%82%E6%95%B0)
++ [检查和配置操作系统优化参数 - TiDB 官方文档](https://docs.pingcap.com/zh/tidb/v4.0/check-before-deployment#%E6%A3%80%E6%9F%A5%E5%92%8C%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E5%8F%82%E6%95%B0)
+
+
 
 1. 检测及关闭系统 swap 分区:
+
+
 
 ```bash
 # 以下会立即生效, 无需重启
@@ -35,8 +39,12 @@ swapoff -a && swapon -a
 sysctl -p
 ```
 
+
+
 2. 检测及安装 NTP 服务, 参考模板机安装手册, 略.
 3. 检测及关闭透明大页:
+
+
 
 ```bash
 # 查看透明大页状态
@@ -52,9 +60,15 @@ vim /etc/default/grub
 grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 
+
+
 4. 配置 SSH 免密互信
 
+
+
 原官方手册上会推荐使用普通用户, 再 `su - root` 或 `sudo`. 我们选择直接使用 root 用户简化步骤, 不会对应用有任何影响.这步建议使用命令行工具同时对所有 Session 窗口操作, 使机器之间两两互信.
+
+
 
 ```bash
 ssh-keygen -t rsa
@@ -63,10 +77,16 @@ ssh-keygen -t rsa
 ssh-copy-id -i ~/.ssh/id_rsa.pub 10.0.1.1
 ```
 
+
+
 5. 安装 numactl 工具
 
-> 在生产环境中，因为硬件机器配置往往高于需求，为了更合理规划资源，会考虑单机多实例部署 TiDB 或者 TiKV。
+
+
+> 在生产环境中，因为硬件机器配置往往高于需求，为了更合理规划资源，会考虑单机多实例部署 TiDB 或者 TiKV。  
 NUMA 绑核工具的使用，主要为了防止 CPU 资源的争抢，引发性能衰退。NUMA 绑核是用来隔离 CPU 资源的一种方法，适合高配置物理机环境部署多实例使用。
+>
+
 
 
 ```bash
@@ -77,9 +97,14 @@ yum -y install numactl
 
 ## 安装步骤
 
+
 完成按步骤之后,
 
+
+
 1. 先执行以下步骤安装 TiUP:
+
+
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://tiup-mirrors.pingcap.com/install.sh | sh
@@ -98,11 +123,17 @@ tiup update --self && tiup update cluster
 tiup --binary cluster
 ```
 
+
+
 2. 选一台机器作为中控机, 之后到操作只需要在中控机上操作即可. 在其上编写一个拓扑结构的 YAML 文件`topology.yaml`. 参考这个配置 [标准环境拓扑架构 YAML](https://github.com/pingcap/docs-cn/blob/release-4.0/config-templates/complex-mini.yaml). 只需要写出对应组件安装的 IP, 端口, 文件路径等等, 不填写则使用注释中的默认值. 如果同一节点上需要安装多个相同组件时, 需要区分端口和文件路径.
+
+
 
 ```bash
 vim topology.yaml
 ```
+
+
 
 ```yaml
 # # Global variables are applied to all deployments and used as the default value of
@@ -220,35 +251,57 @@ alertmanager_servers:
     # log_dir: "/tidb-deploy/alertmanager-9093/log"
 ```
 
+
+
 3. 准备好配置文件后
+
+
 
 ```bash
 tiup cluster deploy tidb-test v4.0.16 ./topology.yaml --user root
 ```
 
+
+
 以上部署命令中：
 
-- 通过 TiUP cluster 部署的集群名称为 `tidb-test`
-- 部署版本为 `v4.0.16`, 最新版本可以通过执行`tiup list tidb` 来查看 TiUP 支持的版本
-- 初始化配置文件为 `topology.yaml`
-- `--user root`: 通过 root 用户登录到目标主机完成集群部署, 该用户需要有 ssh 到目标机器的权限, 并且在目标机器有 sudo 权限. 也可以用其他有 ssh 和 sudo 权限的用户完成部署.
 
-预期日志结尾输出会有 `Deployed cluster`tidb-test`successfully` 关键词, 表示部署成功.
+
++ 通过 TiUP cluster 部署的集群名称为 `tidb-test`
++ 部署版本为 `v4.0.16`, 最新版本可以通过执行`tiup list tidb` 来查看 TiUP 支持的版本
++ 初始化配置文件为 `topology.yaml`
++ `--user root`: 通过 root 用户登录到目标主机完成集群部署, 该用户需要有 ssh 到目标机器的权限, 并且在目标机器有 sudo 权限. 也可以用其他有 ssh 和 sudo 权限的用户完成部署.
+
+
+
+预期日志结尾输出会有 `Deployed cluster`tidb-test`successfully` 关键词, 表示部署成功.  
+
+
 
 
 4. 启动集群并初始化数据库, 初始化成功后会显示, 初始 root 密码, 密码请**务必**保存, 只会出现一次.
+
+
 
 ```bash
 tiup cluster start tidb-test --init
 ```
 
+
+
 5. 验证集群运行状态:
+
+
 
 ```bash
 tiup cluster display tidb-test
 ```
 
+
+
 6. 验证数据库连接, 本地没有 mysql 客户端, 请使用其他地方的客户端或数据库工具连接:
+
+
 
 ```bash
 mysql -u root -h <YOUR_IP_ADDRESS> -P 4000
@@ -257,7 +310,9 @@ mysql -u root -h <YOUR_IP_ADDRESS> -P 4000
 
 
 
+
 # 备份数据
+
 
 ```bash
 tiup install dumpling
@@ -265,3 +320,4 @@ tiup install dumpling
 tiup dumpling  -u root -P 3306 -h <YOUR_IP_ADDRESS> -p <YOUR_IP_PASSWORD> --filetype sql -t 8 -o tidb-dump.sql -r 200000 -F 256MiB -B demo
 
 ```
+

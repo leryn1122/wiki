@@ -6,18 +6,14 @@ tags:
 title: "Flink on Kubernetes \u914D\u7F6E\u6587\u4EF6"
 
 ---
-
-
 # Flink on Kubernetes 配置文件
+
 
 参考文档：
 
-- [Kubernetes](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/resource-providers/standalone/kubernetes/)
-
++ [Kubernetes](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/resource-providers/standalone/kubernetes/)
 
 ## Common cluster resource definitions
-
-
 ### flink-configuration-configmap.yaml
 ```yaml
 apiVersion: v1
@@ -84,8 +80,7 @@ data:
     logger.netty.level = OFF
 ```
 
-
-### flink-reactive-mode-configuration-configmap.yaml
+### <font style="color:rgb(0, 0, 0);">flink-reactive-mode-configuration-configmap.yaml</font>
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -153,9 +148,9 @@ data:
     logger.netty.level = OFF
 ```
 
+### <font style="color:rgb(0, 0, 0);">jobmanager-service.yaml</font>
+<font style="color:rgb(0, 0, 0);">Optional service, which is only necessary for non-HA mode.</font>
 
-### jobmanager-service.yaml
-Optional service, which is only necessary for non-HA mode.
 ```yaml
 apiVersion: v1
 kind: Service
@@ -175,9 +170,9 @@ spec:
     component: jobmanager
 ```
 
+### <font style="color:rgb(0, 0, 0);">jobmanager-rest-service.yaml</font>
+<font style="color:rgb(0, 0, 0);">Optional service, that exposes the jobmanager </font><font style="color:rgb(0, 0, 0);">rest</font><font style="color:rgb(0, 0, 0);"> port as public Kubernetes node's port.</font>
 
-### jobmanager-rest-service.yaml
-Optional service, that exposes the jobmanager rest port as public Kubernetes node's port.
 ```yaml
 apiVersion: v1
 kind: Service
@@ -195,9 +190,9 @@ spec:
     component: jobmanager
 ```
 
+### <font style="color:rgb(0, 0, 0);">taskmanager-query-state-service.yaml</font>
+<font style="color:rgb(0, 0, 0);">Optional service, that exposes the TaskManager port to access the queryable state as a public Kubernetes node's port.</font>
 
-### taskmanager-query-state-service.yaml
-Optional service, that exposes the TaskManager port to access the queryable state as a public Kubernetes node's port.
 ```yaml
 apiVersion: v1
 kind: Service
@@ -215,8 +210,7 @@ spec:
     component: taskmanager
 ```
 
-
-### taskmanager-job-deployment.yaml
+### <font style="color:rgb(0, 0, 0);">taskmanager-job-deployment.yaml</font>
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -269,3 +263,4 @@ spec:
         hostPath:
           path: /host/path/to/job/artifacts
 ```
+
