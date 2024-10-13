@@ -27,7 +27,7 @@ CNI 改用 cilium 而不是 flannel 等。
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik" sh -s - --docker
 
 # 国内加速使用
-curl -sfL https://rancher-mirror.oss-cn-beijing.aliyuncs.com/k3s/k3s-install.sh | \
+curl -sfL https://rancher-mirror.rancher.cn/k3s/k3s-install.sh | \
   INSTALL_K3S_MIRROR=cn \
   INSTALL_K3S_EXEC="--disable traefik --disable servicelb --flannel-backend=none --disable-network-policy " \
   sh -s - --service-node-port-range=1-65535
