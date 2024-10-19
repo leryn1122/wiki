@@ -7,11 +7,13 @@ title: "Kubernetes \u5B89\u88C5\u624B\u518C"
 
 ---
 # Kubernetes 安装手册
-## 前置准备
+
+
+### 前置准备
 前置准备：
 
 + 安装前置依赖
-+ 安装 Docker，或者其他容器运行时（个人目前使用 Docker，即使上 Kubernetes 已经将 containerd 作为默认运行时了）
++ 安装容器运行时，已经不推荐使用 Docker，请使用 containerd 或其他运行时
 
 安装前置依赖：
 
@@ -20,59 +22,162 @@ sudo apt update && sudo apt install -y \
   apt-transport-https ca-certificates curl gnupg2 software-properties-common
 ```
 
-## 安装应用
-添加 Kubernetes 源：
-
-```bash
-# curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6A030B21BA07F4FB
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FEEA9169307EA071
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8B57C5C2836F4BEB
-sudo apt update
-
-cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
-#deb https://apt.kubernetes.io/ kubernetes-xenial main
-deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
-deb https://mirrors.cloud.tencent.com/kubernetes/apt kubernetes-xenial main
-EOF
+```plain
+buildkit-v0.16.0.linux-amd64.tar.gz
+cilium-linux-amd64.tar.gz
+cni-plugins-linux-amd64-v1.6.0.tgz
+containerd-1.7.23-linux-amd64.tar.gz
+kubeadm
+kubectl
+kubelet
+k9s_Linux_amd64.tar.gz
+nerdctl-1.7.7-linux-amd64.tar.gz
+runc.amd64
 ```
-
-安装 Kubelet：
-
-```bash
-KUBE_VERSION=1.18.16-00
-sudo apt install -y kubelet=${KUBE_VERSION} kubeadm=${KUBE_VERSION} kubectl=${KUBE_VERSION}
-sudo apt-mark hold kubelet kubeadm kubectl docker-ce docker-ce-cli containerd
-```
-
-修改网络配置，开启 Linux 内核中的 iptables 模块，Kubernetes 网络默认使用 iptables 来实现 Service 功能：
 
 ```bash
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.ipv4.ip_forward = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
+
+sudo sysctl --system
 ```
 
 ```bash
-sudo sysctl --system
-
 modprobe br_netfilter
 lsmod | grep br_netfilter
 ```
 
-关闭 swap 分区。
+关闭 swap 分区
 
 如果开启 swap 分区，当节点 OOM 时内存被交换到磁盘上时，这个节点可能会 hang up，而且没有任何报错信息提示，甚至无法使用物理终端访问，最后只能硬重启整个节点。所以 kubelet 启动时会检测 swap 是否关闭，如果没有关闭则会启动失败。
 
 ```bash
 swapoff -a
 
-edit /etc/fstab
+vim /etc/fstab
 # 注释掉 swap 分区
 ```
 
-## 高可用集群安装
+### 二进制安装
+```bash
+vim /etc/containerd/config.toml
+```
+
+```bash
+vim /usr/local/lib/systemd/system/containerd.service
+```
+
+```toml
+# Copyright The containerd Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+[Unit]
+Description=containerd container runtime
+Documentation=https://containerd.io
+After=network.target local-fs.target dbus.service
+
+[Service]
+ExecStartPre=-/sbin/modprobe overlay
+ExecStart=/usr/local/bin/containerd
+
+Type=notify
+Delegate=yes
+KillMode=process
+Restart=always
+RestartSec=5
+
+# Having non-zero Limit*s causes performance problems due to accounting overhead
+# in the kernel. We recommend using cgroups to do container-local accounting.
+LimitNPROC=infinity
+LimitCORE=infinity
+
+# Comment TasksMax if your systemd version does not supports it.
+# Only systemd 226 and above support this version.
+TasksMax=infinity
+OOMScoreAdjust=-999
+
+[Install]
+WantedBy=multi-user.target
+```
+
+nerdctl 的配置文件
+
+```bash
+vim /etc/nerdctl/nerdctl.toml
+```
+
+```toml
+# This is an example of /etc/nerdctl/nerdctl.toml .
+# Unrelated to the daemon's /etc/containerd/config.toml .
+
+debug          = false
+debug_full     = false
+address        = "unix:///run/containerd/containerd.sock"
+namespace      = "k8s.io"
+# snapshotter    = "stargz"
+# cgroup_manager = "cgroupfs"
+# hosts_dir      = ["/etc/containerd/certs.d", "/etc/docker/certs.d"]
+experimental   = true
+```
+
+设置 buildkit
+
+```bash
+vim /usr/local/lib/systemd/system/buildkit.socket
+vim /usr/local/lib/systemd/system/buildkit.service
+```
+
+```toml
+[Unit]
+Description=BuildKit
+Documention=https://github.com/moby/buildkit
+ 
+[Socket]
+ListenStream=%t/buildkit/buildkitd.sock
+ 
+[Install]
+WantedBy=sockets.target
+```
+
+```toml
+[Unit]
+Description=BuildKit
+Documention=https://github.com/moby/buildkit
+ 
+[Socket]
+ListenStream=%t/buildkit/buildkitd.sock
+ 
+[Install]
+WantedBy=sockets.target
+root@faraday-deb12-notebook-pc-bms:/data/installation# cat /usr/local/lib/systemd/system/buildkit.service 
+[Unit]
+Description=BuildKit
+Require=buildkit.socket
+After=buildkit.socket
+Documention=https://github.com/moby/buildkit
+ 
+[Service]
+ExecStart=/usr/local/bin/buildkitd --oci-worker=false --containerd-worker=true
+ 
+[Install]
+WantedBy=multi-user.target
+```
+
+### 高可用集群安装
 如果一个 Kubernetes 要满足高可用，那么建议保证集群有：
 
 + 至少 3 个 master 节点
@@ -85,7 +190,7 @@ edit /etc/fstab
 
 + [HAProxy & KeepAlived](https://www.yuque.com/leryn/wiki/lbs.haproxy)
 
-### HAProxy 安装
+#### HAProxy 安装
 ```bash
 sudo apt update && sudo apt install -y \
   haproxy
@@ -170,7 +275,7 @@ systemctl restart haproxy
 systemctl status haproxy
 ```
 
-### KeepAlived 安装
+#### KeepAlived 安装
 KeepAlived 用于占用 VIP（虚拟IP），不需要实际的服务器，但要占用一个空闲 IP。KeepAlived 会轮流占用这个 VIP，如果当前 KeepAlived 宕机，那么 VIP 会漂移到另一个 KeepAlived 之上，实现高可用。
 
 ```bash
@@ -214,7 +319,7 @@ systemctl status  keepalived
 
 然后我们初始化集群之前要将 Controll Plane 域名解析指向这个 VIP 的地址。
 
-## 初始化集群
+### 初始化集群
 初始化集群：如果执行成功，控制台会打印 `kubeadm join` 命令，依次在对应的节点上运行：
 
 + 第一条是加入 master 节点使用的
@@ -222,11 +327,14 @@ systemctl status  keepalived
 
 ```bash
 kubeadm init \
-  --control-plane-endpoint xxx-k8s-master.mydomain.com \
-  --image-repository k8s.gcr.io/google_containers \
+  --control-plane-endpoint master-test-k8s-home-shanghai.leryn.io \
+  --cri-socket=unix:///run/containerd/containerd.sock \
+  --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers \
+  --service-cidr=20.96.0.0/12 \
+  --pod-network-cidr=30.96.0.0/12 \
+  --ignore-preflight-errors=all \
   --upload-certs \
-  --pod-network-cidr=172.24.0.0/16 \
-  --kubernetes-version 1.18.16
+  --v=5
 ```
 
 如果报错了可以随时清除设置并重新初始化：
@@ -237,7 +345,40 @@ systemctl daemon-reload
 systemctl restart kubelet
 ```
 
-初始化进群后，根据提示生产配置文件：
+```plain
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+You can now join any number of the control-plane node running the following command on each as root:
+
+  kubeadm join master-test-k8s-home-shanghai.leryn.io:6443 --token 4c5cux.99s7drifrftiw998 \
+	--discovery-token-ca-cert-hash sha256:ccb32ca5ab95512fbe9f3629192a3d2ed4fc8d634cbbd4771acc89f415f1bed5 \
+	--control-plane --certificate-key a27cfde0f2ebaf81376fac39545a0296a529d4397fe842f2bbc27bce1de59dbd
+
+Please note that the certificate-key gives access to cluster sensitive data, keep it secret!
+As a safeguard, uploaded-certs will be deleted in two hours; If necessary, you can use
+"kubeadm init phase upload-certs --upload-certs" to reload certs afterward.
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join master-test-k8s-home-shanghai.leryn.io:6443 --token 4c5cux.99s7drifrftiw998 \
+	--discovery-token-ca-cert-hash sha256:ccb32ca5ab95512fbe9f3629192a3d2ed4fc8d634cbbd4771acc89f415f1bed5
+```
+
+初始化成功后，根据提示生产配置文件：
 
 ```bash
 mkdir -p $HOME/.kube
@@ -272,6 +413,13 @@ vim /etc/kubernetes/manifests/kube-apiserver.yaml
 
 + 虽然不安装网络插件无法让 Kubernetes 集群通讯，但是 Kubernetes 官方认为 CNI 不是它的范围，也没有提供默认的网络设施。
 + CNI 网络插件实现非常多：weave，flannel，calico 等等。这里安装 Weave，因为我司用的 Weave，但它不是目前最好的实现。
+
+```plain
+cilium install \
+  --set kubeProxyReplacement=strict
+```
+
+其他 CNI：
 
 weave：[https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#-installation](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#-installation)
 
