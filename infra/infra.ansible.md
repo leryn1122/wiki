@@ -118,8 +118,6 @@ spec:
             - secretRef:
                 name: ansible-secret
           image: ansiblesemaphore/semaphore:latest
-          imagePullPolicy: Always
-
           ports:
             - containerPort: 3000
               name: http
@@ -130,7 +128,6 @@ spec:
           readinessProbe:
             tcpSocket:
               port: http
-      restartPolicy: Always
 ```
 
 ## 常用 API

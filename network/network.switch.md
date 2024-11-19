@@ -66,15 +66,13 @@ title: "\u4EA4\u6362\u673A"
 ### Cisco Packet Tracer
 完全基于内存的实现
 
-+ 支持
-
 ### HCL
 依赖 VirtualBox
 
 ### ENSP
-华为现在只向供应商提供 ENSP 安装包，只能通过网络找到分享安装包资源。
+华为现在只向供应商提供 ENSP 安装包，无法通过公开网络获取安装包。
 
-依赖 VirtualBox
+依赖 VirtualBox。
 
 ## 交换机指令
 | **** | **Cisco** | **H3C** | **HW** |
