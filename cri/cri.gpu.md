@@ -12,6 +12,8 @@ title: "NVIDIA GPU \u5BB9\u5668\u8FD0\u884C\u65F6"
 参考文档：
 
 + [Overview — NVIDIA Container Toolkit 1.14.5 documentation](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)
++ [NVIDIA/k8s-device-plugin源码分析-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/1102413)
++ [Kubernetes教程(二二)---在 K8S 中创建 Pod 是如何使用到 GPU 的：device plugin&nvidia-container-toolkit 源码分析](https://www.lixueduan.com/posts/kubernetes/22-pod-use-gpu-in-k8s-analyze/)
 
 ## GPU on K8S
 在 K8S 上使用 GPU 流程上必须要做到两件事，对应了两个组件：
