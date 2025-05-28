@@ -109,6 +109,17 @@ users:
     plain_text_passwd: P@s5W0rd
 ```
 
+## KVM 在线扩容
+如果使用的是 cloudimg，可以在线扩硬盘无需重启
+
+```bash
+yum install -y cloud-utils-growpart
+
+apt install -y cloud-guest-utils
+
+growpart /dev/sda 1
+resize2fs /dev/sda1
+```
 
 
-### 
+

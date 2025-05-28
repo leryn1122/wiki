@@ -5,6 +5,16 @@ title: "Redis \u4ECB\u7ECD"
 
 ---
 # Redis 介绍
+## 过期时间 和 内存驱逐策略
+  
+Redis 是缓存中间件，不要把 Redis 当数据库使用，Redis 没有的值请去数据库加载
+
+Redis 的 key 都推荐设置一个过期时间
+
+如果同时加载了大量的 Key 到 Redis 且设置了相同的过期时间，那么大量 Key 会在同一时间过期。又因为 Redis 是单线程的，Redis 回收过期的 Key 出现阻塞，会导致读写也阻塞。
+
+这种情况下应当使用 unlink 让 Redis 在空闲的时候回收过期的 Key，且给 Key 的过期时间追加一个随机的值，让这些 Key 不在同一时间过期
+
 #### maxmemory
 
 
@@ -38,4 +48,79 @@ Redis 也支持 Runtime 修改淘汰策略, 这使得我们无需重启 Redis �
 | allkeys-random | 如果我们的应用对于缓存key的访问概率相等, 则可以使用这个策略 |
 | volatile-ttl | 这种策略使得我们可以向 Redis 提示哪些 key 更适合被 eviction |
 
+
+
+
+## Springboot 支持
+
+
+Springboot 默认使用 Lettuce，如果 Classpath 中有 Jedis 则切换为 Jedis。
+
+可选 Lettuce、Jedis 作为底层客户端的实现类，推荐使用 Lettuce + Jedission 具有更好的性能，功能更加强大：[https://docs.spring.io/spring-data/redis/reference/redis/drivers.html](https://docs.spring.io/spring-data/redis/reference/redis/drivers.html)
+
++ Lettuce：支持同步/异步 API，线程安全，共享 Redis 连接
++ Jedis：只支持同步 API，线程不安全，需要额外引入 Jedis 线程池
+
+
+
+```xml
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.lettuce/lettuce-core -->
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>3.48.0</version>
+        </dependency>
+    </dependencies>
+```
+
+配置文件：
+
+```yaml
+# 哨兵模式
+spring:
+  redis:
+    password: xxx
+    sentinel:
+      master: xxx
+      nodes: xxx.xxx.xxx.xxx:26379,xxx.xxx.xxx.xxx:26379,xxx.xxx.xxx.xxx:26379
+      password: xxx
+    database: 0
+```
+
+```yaml
+# 集群模式
+spring:
+  redis:
+    password: xxx
+    clsuster:
+      nodes:
+        - xxx.xxx.xxx.xxx:6379
+        - xxx.xxx.xxx.xxx:6379
+        - xxx.xxx.xxx.xxx:6379
+        - xxx.xxx.xxx.xxx:6379
+        - xxx.xxx.xxx.xxx:6379
+        - xxx.xxx.xxx.xxx:6379
+    database: 0
+    lettuce:
+      cluster:
+        refresh:
+          period: 20s
+          adaptive: true
+```
 

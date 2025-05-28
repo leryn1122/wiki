@@ -185,6 +185,141 @@ ExecStop=/opt/kafka/bin/kafka-server-stop.sh
 WantedBy=multi-user.target
 ```
 
+# Kafka SDK
+## Springboot 支持
+使用 Springboot 默认依赖即可
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
+<dependency>
+  <groupId>org.springframework.kafka</groupId>
+  <artifactId>spring-kafka</artifactId>
+  <version>3.3.6</version>
+</dependency>
+```
+
+配置文件和手动配置 Bean
+
+```java
+@Configuration
+public class KafkaConfiguration {
+    
+    @Bean
+    public KafkaAdmin kafkaAdmin(KafkaProperties props) {
+        Map<String, Object> config = new HashMap<>();
+        config.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, props.getBootstrapServers());
+        return new KafkaAdmin(config);
+    }
+    
+    @Bean
+    public NewTopic topic() {
+        return TopicBuilder.name("topic_name")
+                .partitions(10)
+                .replicas(2)
+                .build();
+    }
+    
+}
+```
+
+创建生产者
+
+```java
+@Configuration
+public class KafkaConfiguration {
+
+    @Bean
+    public ProducerFactory<String, String> producerFactory(KafkaProperties props) {
+        Map<String, Object> configs = new HashMap<>();
+        configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, props.getBootstrapServers());
+        configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        return new DefaultKafkaProducerFactory<>(configs);
+    }
+    
+    @Bean
+    public KafkaTemplate<String, String> kafkaTemplate(ProducerFactory<String, String> producerFactory) {
+        return new KafkaTemplate<>(producerFactory);
+    }
+}
+```
+
+创建消费者
+
+```java
+@Configuration
+public class KafkaConfiguration {
+
+    @Bean
+    public ConsumerFactory<String, String> consumerFactory(KafkaProperties props) {
+        Map<String, Object> configs = new HashMap<>();
+        configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, props.getBootstrapServers());
+        configs.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        configs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        return new DefaultKafkaConsumerFactory<>(configs);
+    }
+    
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory(
+        ConsumerFactory<String, String> consumerFactory
+    ) {
+        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory);
+        return factory;
+    }
+    
+    @KafkaListener(
+        topics = {
+            "topic_name"
+        },
+        topicPartitions = @TopicPartition(
+            topic = "topic_name",
+            partitionOffsets = {
+                @PartitionOffset(partition = "0", initialOffset = "0"),
+            }
+        ),
+        groupId = "consumer_group_id" 
+    )
+    public void listenToKafka(String message) {
+        System.out.println(message);
+    }
+    
+}
+```
+
+可以过滤特定条件的 Message 消费
+
+```java
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory(
+        ConsumerFactory<String, String> consumerFactory
+    ) {
+        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory);
+        factory.setRecordFilterStrategy(
+            record -> record.value().contains("message+flags")
+        );
+        return factory;
+    }
+```
+
+自定义化序列器
+
+```java
+    @Bean
+    public ProducerFactory<String, Object> producerFactory(KafkaProperties props) {
+        Map<String, Object> configs = new HashMap<>();
+        configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, props.getBootstrapServers());
+        configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        configs.put(ProducerConfig.TYPE_MAPPINGS,
+                "vehicle:io.github.leryn.wiki.entity.message.Vehicle, " +
+                "camera:io.github.leryn.wiki.entity.message.camera"
+                );
+        return new DefaultKafkaProducerFactory<>(configs);
+    }
+```
+
 # Kafka Exporter
 参考文档：
 
